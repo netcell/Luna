@@ -1,16 +1,23 @@
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,200italic,300italic&subset=vietnamese);
 /* Clear */
 html, body, div, ul, li {
   padding: 0;
   margin: 0;
   list-style: none;
-  font-family: 'HelveticaNeue-UltraLight', 'Helvetica Neue UltraLight', 'Helvetica Neue', Arial, Helvetica, sans-serif;
-  /*font-family:'HelveticaNeueW02-UltLt';*/
+  /*font-family: 'HelveticaNeue-UltraLight', 'Helvetica Neue UltraLight', 'Helvetica Neue', Arial, Helvetica, sans-serif;*/
+  font-family: 'Source Sans Pro', sans-serif;
   letter-spacing: 1px;
-  font-weight: 100;
+  font-weight: 200;
   color: #444750;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
+}
+
+.link:hover {
+  background-color: #444750;
+  cursor: pointer;
+  color: #f6f6f6;
 }
 
 * {
@@ -35,13 +42,14 @@ a, a:hover, a:active {
 
 .container {
   width: 100%;
+  min-width: 768px;
   min-height: 100%;
   overflow: hidden;
   padding-top: 40px;
 }
 
 .mininoic {
-  width: 20em;
+  width: 768px;
   text-align: center;
   margin: 0px auto;
   font-size: 18px;
@@ -59,16 +67,24 @@ a, a:hover, a:active {
   margin-top: 10px;
 }
 
+.mininoic .desc .underline {
+  font-weight: bold;
+}
+
+.mininoic .desc .underline:hover {
+  text-decoration: none;
+}
+
 .app-name {
-  width: 10em;
+  width: 768px;
   font-size: 60px;
-  margin: 7% auto;
+  margin: 10% auto;
   text-align: center;
 }
 
 .app {
   overflow: hidden;
-  width: 90%;
+  width: 768px;
   margin: 0 auto;
   font-size: 36px;
 }
@@ -110,14 +126,10 @@ a, a:hover, a:active {
 }
 
 .app .module .button {
-  font-family: 'HelveticaNeue-Thin', 'Helvetica Neue Thin', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  /*font-family: 'HelveticaNeue-Thin', 'Helvetica Neue Thin', 'Helvetica Neue', Arial, Helvetica, sans-serif;*/
   /*font-family:'HelveticaNeueW01-Thin';*/
+  font-weight: 300;
   font-size: 48px;
-}
-
-.app .module .button:hover {
-  text-decoration: underline;
-  cursor: pointer;
 }
 
 .more {
@@ -129,6 +141,8 @@ a, a:hover, a:active {
 }
 
 .more .text {
+  width: 768px;
+  margin: 0 auto;
   line-height: 50px;
   font-weight: bold;
 }
