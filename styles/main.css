@@ -3,7 +3,8 @@ html, body, div, ul, li {
   padding: 0;
   margin: 0;
   list-style: none;
-  font-family: 'HelveticaNeue-UltraLight', 'Helvetica Neue UltraLight', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  /*font-family: 'HelveticaNeue-UltraLight', 'Helvetica Neue UltraLight', 'Helvetica Neue', Arial, Helvetica, sans-serif;*/
+  font-family:'HelveticaNeueW02-UltLt';
   letter-spacing: 1px;
   font-weight: 100;
   color: #444750;
@@ -109,7 +110,8 @@ a, a:hover, a:active {
 }
 
 .app .module .button {
-  font-family: 'HelveticaNeue-Thin', 'Helvetica Neue Thin', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  /*font-family: 'HelveticaNeue-Thin', 'Helvetica Neue Thin', 'Helvetica Neue', Arial, Helvetica, sans-serif;*/
+  font-family:'HelveticaNeueW01-Thin';
   font-size: 48px;
 }
 
