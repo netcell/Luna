@@ -40,18 +40,23 @@ a, a:hover, a:active {
   cursor: pointer;
 }
 
+.abs-center {
+  position: absolute;
+  width: 768px;
+  left: 50%;
+  margin-left: -384px;
+}
+
 .container {
   width: 100%;
   min-width: 768px;
   min-height: 100%;
   overflow: hidden;
-  padding-top: 40px;
 }
 
 .mininoic {
-  width: 768px;
+  top: 60px;
   text-align: center;
-  margin: 0px auto;
   font-size: 18px;
 }
 
@@ -76,16 +81,14 @@ a, a:hover, a:active {
 }
 
 .app-name {
-  width: 768px;
+  top: 160px;
   font-size: 60px;
-  margin: 10% auto;
   text-align: center;
 }
 
 .app {
   overflow: hidden;
-  width: 768px;
-  margin: 0 auto;
+  top: 50%;
   font-size: 36px;
 }
 
@@ -133,8 +136,6 @@ a, a:hover, a:active {
 }
 
 .more {
-  width: 100%;
-  position: absolute;
   bottom: 0;
   text-align: center;
   cursor: pointer;
