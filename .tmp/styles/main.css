@@ -6,7 +6,11 @@ html,
 body,
 div,
 ul,
-li {
+li,
+span,
+input,
+textarea,
+button {
   padding: 0;
   margin: 0;
   list-style: none;
@@ -18,6 +22,20 @@ li {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
+}
+
+textarea {
+  outline: none;
+  border: none;
+  resize: none;
+  font-style: italic;
+  background-color: #f6f6f6;
+  overflow: auto;
+}
+
+.no-user-select {
+  -webkit-user-select: none;
+  cursor: default;
 }
 
 .link:hover {
@@ -49,22 +67,25 @@ a:active {
   cursor: pointer;
 }
 
+.underline.link:hover {
+  text-decoration: none;
+}
+
 .abs-center {
-  position: absolute;
   width: 768px;
-  left: 50%;
-  margin-left: -384px;
+  margin: 0 auto;
 }
 
 .container {
   width: 100%;
   min-width: 768px;
+  position: relative;
   min-height: 100%;
   overflow: hidden;
 }
 
 .mininoic {
-  top: 60px;
+  padding-top: 5%;
   text-align: center;
   font-size: 18px;
 }
@@ -85,32 +106,30 @@ a:active {
   font-weight: bold;
 }
 
-.mininoic .desc .underline:hover {
-  text-decoration: none;
-}
-
 .app-name {
-  top: 160px;
+  padding-top: 5%;
   font-size: 60px;
   text-align: center;
+  padding-bottom: 5%;
 }
 
 .app {
   overflow: hidden;
   top: 50%;
   font-size: 36px;
-}
-
-.app .time,
-.module {
-  width: 50%;
-  height: 100%;
+  margin-bottom: 10%;
 }
 
 .app .time {
+  width: 50%;
+  height: 100%;
   text-align: right;
   float: left;
-  border-right: 2px solid #6e7584;
+  -webkit-transition: all 0.8s ease-in-out;
+}
+
+.app .time.full-left {
+  width: 35%;
 }
 
 .app .time .info {
@@ -128,24 +147,64 @@ a:active {
 }
 
 .app .module {
+  -webkit-transition: all 0.8s ease-in-out;
+  border-left: 2px solid #6e7584;
+  overflow: hidden;
   text-align: left;
-  float: right;
+  float: left;
+  width: 50%;
   margin: auto auto;
 }
 
-.app .module .vertical-center {
+.app .module .module-content {
+  opacity: 100;
+  -webkit-transition: all 0.3s cubic-bezier(.6,.18,.83,.65);
   margin-left: 1em;
+}
+
+.app .module .greeting {
   line-height: 56px;
 }
 
-.app .module .button {
-  /*font-family: 'HelveticaNeue-Thin', 'Helvetica Neue Thin', 'Helvetica Neue', Arial, Helvetica, sans-serif;*/
-  /*font-family:'HelveticaNeueW01-Thin';*/
+.app .module .module-content.ng-leave.ng-leave-active {
+  margin-left: 50%;
+  opacity: 0;
+}
+
+.app .module .module-content.ng-enter {
+  position: absolute;
+  margin-left: -50%;
+  opacity: 0;
+}
+
+.app .module .greeting .button {
   font-weight: 300;
   font-size: 48px;
 }
 
+.app .module .quick-create-home .label,
+.no-input {
+  font-weight: 300;
+  font-size: 20px;
+}
+
+.app .module .quick-create-home .no-input .link {
+  font-weight: bold;
+}
+
+.app .module .quick-create-home .no-input.sign-in {
+  margin-top: 3em;
+}
+
+.app .module .quick-create-home .input textarea {
+  padding: 0.3em 0;
+  font-size: 36px;
+  width: 100%;
+}
+
 .more {
+  position: absolute;
+  width: 100%;
   bottom: 0;
   text-align: center;
   cursor: pointer;

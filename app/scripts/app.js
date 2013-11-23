@@ -2,7 +2,9 @@
 
 angular.module('lunaApp', [
   'ngCookies',
-  'ngRoute'
+  'ngRoute',
+  'ngAnimate',
+  'monospaced.elastic'
 ])
   .config(function ($routeProvider) {
     $routeProvider

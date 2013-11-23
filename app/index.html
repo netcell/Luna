@@ -39,17 +39,24 @@
        ga('send', 'pageview');
     </script>
 
-
-    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/jquery/jquery.js"></script>
 
         <!-- build:js scripts/modules.js -->
+        <script src="bower_components/angular/angular.js"></script>
         <script src="bower_components/angular-cookies/angular-cookies.js"></script>
         <script src="bower_components/angular-route/angular-route.js"></script>
+        <script src="bower_components/angular-animate/angular-animate.js"></script>
+        <script type="text/javascript" src="/bower_components/angular-autosize/elastic.js"></script>
         <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/directives/appDirective.js"></script>
+        <script src="scripts/directives/textarea.js"></script>
+        <script src="scripts/directives/quickCreateHome.js"></script>
         <!-- endbuild -->
+
+        <!-- <script src="scripts/animations/content-module.js"></script> -->
 </body>
 </html>
