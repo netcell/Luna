@@ -90,9 +90,6 @@ angular.module('lunaApp').controller('QuickcreateCtrl', [
   '$scope',
   function ($scope) {
     var input = $scope.input;
-    $scope.$watch('input', function (input) {
-      $scope.token = ngram(tokenize(input), 2);
-    });
     function tokenize(string) {
       return string.split(' ');
     }
