@@ -13,6 +13,8 @@ angular.module('lunaApp')
             break;
             case 2: timeEl.addClass('full-left');
             break;
+            case 3: timeEl.addClass('full-left');
+            break;
           }
       	});
       }

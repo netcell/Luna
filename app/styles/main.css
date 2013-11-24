@@ -154,7 +154,7 @@ a, a:hover, a:active {
 }
 
 .app .module .module-content.ng-leave.ng-leave-active {
-  margin-left: 50%;
+  margin-left: -50%;
   opacity: 0;
 }
 
