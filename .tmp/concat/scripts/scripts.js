@@ -124,9 +124,7 @@ angular.module('lunaApp').controller('LoadingscreenCtrl', [
       fontSemibold
     ]).then(function () {
       $('head').append($('<link rel=\'stylesheet\' href=\'dynamic/loading.css\' type=\'text/css\' media=\'screen\' />'));
-      $timeout(function () {
-        $scope.loading.value = false;
-      }, 100);
+      $scope.loading.value = false;
     });
   }
 ]);
