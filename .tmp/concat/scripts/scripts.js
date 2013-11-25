@@ -111,7 +111,8 @@ angular.module('lunaApp').controller('LoadingscreenCtrl', [
   '$scope',
   '$http',
   '$q',
-  function ($scope, $http, $q) {
+  '$timeout',
+  function ($scope, $http, $q, $timeout) {
     var fontExtraLight = $http.get('fonts/SourceSansPro-ExtraLight.ttf');
     var fontLight = $http.get('fonts/SourceSansPro-Light.ttf');
     var fontSemibold = $http.get('fonts/SourceSansPro-Semibold.ttf');
@@ -123,7 +124,9 @@ angular.module('lunaApp').controller('LoadingscreenCtrl', [
       fontSemibold
     ]).then(function () {
       $('head').append($('<link rel=\'stylesheet\' href=\'styles/loading.css\' type=\'text/css\' media=\'screen\' />'));
-      $scope.loading.value = false;
+      $timeout(function () {
+        $scope.loading.value = false;
+      }, 100);
     });
   }
 ]);
