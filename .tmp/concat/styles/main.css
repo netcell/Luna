@@ -166,13 +166,18 @@ a:active {
 .module-content-view.ng-enter,
 .module-content-view.ng-leave {
   position: absolute;
-  -webkit-transition: all 0.5s cubic-bezier(.6,.18,.83,.65);
+  -webkit-transition: all 0.5s ease-in-out;
+  /*cubic-bezier(.6,.18,.83,.65);*/
 }
 
-.module-content-view.ng-enter,
-.module-content-view.ng-leave.ng-leave-active {
+.module-content-view.ng-enter {
   opacity: 0;
   margin-left: -100%;
+}
+
+.module-content-view.ng-leave.ng-leave-active {
+  opacity: 0;
+  margin-left: 100%;
 }
 
 .module-content-view.ng-leave,
