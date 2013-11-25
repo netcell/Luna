@@ -22,6 +22,17 @@ button {
   text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
 }
 
+.loading-screen {
+  text-align: center;
+  position: absolute;
+  width: 100%;
+  top: 50%;
+}
+
+.hidden {
+  display: none;
+}
+
 textarea {
   outline: none;
   border: none;
@@ -83,12 +94,12 @@ a:active {
   overflow: hidden;
 }
 
-.afterLoading {
+.after-loading {
   opacity: 100;
   -webkit-transition: all 0.5s ease-in-out;
 }
 
-.afterLoading.ng-enter {
+.after-loading.ng-enter {
   opacity: 0;
 }
 

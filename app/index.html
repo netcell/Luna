@@ -27,8 +27,8 @@
 
     <!-- Add your site or application content here -->
     <div class="container" ng-init="loading.value=true">
-      <div class="loading-screen" ng-if="loading.value" ng-controller="LoadingscreenCtrl">fdasfadsfdsafdasfdsafdsafdsafdsafdsafdsafdasfdsafdsa</div>
-      <div class="container afterLoading" ng-if="!loading.value">
+      <div class="loading-screen" ng-if="loading.value" ng-controller="LoadingscreenCtrl">Loading screen</div>
+      <div class="container after-loading hidden" ng-if="!loading.value">
         <div class="mininoic abs-center no-user-select">
           <div class="logo"></div>
           <div class="desc">một sản phẩm của <span class="underline link">mininoic</span></div>
@@ -54,7 +54,7 @@
           </div>
         </div>
       </div>
-      <div class="more no-user-select afterLoading" ng-if="!loading.value">
+      <div class="more no-user-select after-loading hidden" ng-if="!loading.value">
           <div class="text">tìm hiểu thêm</div>
           <div class="arrow"></div>
       </div>
@@ -90,6 +90,7 @@
         <script src="scripts/controllers/quickCreate.js"></script>
         <script src="scripts/controllers/LoadingScreen.js"></script>
         <script src="scripts/directives/moduleContainer.js"></script>
+        <script src="scripts/directives/afterLoading.js"></script>
         <!-- endbuild -->
 
         <!-- <script src="scripts/animations/content-module.js"></script> -->

@@ -9,6 +9,6 @@ angular.module('lunaApp')
     var logo = $http.get("https://dl.dropboxusercontent.com/u/12656349/2393e39d.logo.png");
     $q.all([fontExtraLight, fontLight, fontSemibold]).then(function() {
     	$("head").append($("<link rel='stylesheet' href='dynamic/loading.css' type='text/css' media='screen' />"));
-    	$scope.loading.value = false;
+        $scope.loading.value = false;
     });
   });
