@@ -1,12 +1,4 @@
-html,
-body,
-div,
-ul,
-li,
-span,
-input,
-textarea,
-button {
+html, body, div, ul, li, span, input, textarea, button {
   padding: 0;
   margin: 0;
   list-style: none;
