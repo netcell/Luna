@@ -1,0 +1,26 @@
+<div class="quick-create-home module-content" grid="2">
+	<div class="label">
+		Gõ để tạo nhắc nhở mới
+	</div>
+	<div class="input">
+		<textarea msd-elastic="" spellcheck="false" ng-model="input" type="text" placeholder="Cúng rằm lúc 12h ngày 15 hàng tháng"></textarea>
+	</div>
+	<div class="no-input" ng-if="!input.length">
+		hoặc 
+		<a href="#/create" class="underline link">
+			tạo theo mẫu.
+		</a>
+	</div>
+	<div class="no-input" ng-if="input.length">
+		ấn phím 
+		<span class="link:hover">
+			Enter
+		</span> 
+		để tạo nhắc nhở.</div>
+	<div class="no-input sign-in">
+		hoặc 
+		<a href="#/under-construction" class="underline link">
+			đăng nhập
+		</a> 
+		để sử dụng nhiều tính năng hơn.</div>
+</div>

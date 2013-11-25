@@ -7,10 +7,10 @@ angular.module('lunaApp', [
 ]).config([
   '$routeProvider',
   function ($routeProvider) {
-    $routeProvider.when('/', {
-      templateUrl: 'views/main.html',
-      controller: 'MainCtrl'
-    }).otherwise({ redirectTo: '/' });
+    $routeProvider.when('/', { templateUrl: 'views/home.html' }).when('/quick-create', {
+      templateUrl: 'views/quick-create.html',
+      controller: 'QuickcreateCtrl'
+    }).when('/under-construction', { templateUrl: 'views/under-construction.html' }).when('/create', { templateUrl: 'views/create.html' }).otherwise({ redirectTo: '/' });
   }
 ]);
 'use strict';
@@ -31,17 +31,15 @@ angular.module('lunaApp').directive('appDirective', function () {
     link: function postLink(scope, element, attrs) {
       var appElement = $(element[0]);
       var timeEl = appElement.find('.time');
-      scope.$watch('state.value', function () {
-        switch (scope.state.value) {
-        case 1:
+      var moduleEl = appElement.find('.module');
+      scope.$watch('grid.value', function () {
+        console.log(scope.grid.value);
+        if (scope.grid.value == 1) {
           timeEl.removeClass('full-left');
-          break;
-        case 2:
+          moduleEl.removeClass('full-left');
+        } else {
           timeEl.addClass('full-left');
-          break;
-        case 3:
-          timeEl.addClass('full-left');
-          break;
+          moduleEl.addClass('full-left');
         }
       });
     }
@@ -59,28 +57,30 @@ angular.module('lunaApp').directive('textarea', function () {
 'use strict';
 angular.module('lunaApp').directive('quickCreateHome', [
   '$window',
-  function ($window) {
+  '$location',
+  function ($window, $location) {
     return {
       restrict: 'C',
       link: function postLink(scope, element, attrs) {
         element.find('textarea').blur(function (e) {
           $(e.currentTarget).focus();
         });
-        var escHandler = function (event) {
+        var keyHandler = function (event) {
           switch (event.keyCode) {
           case 27:
-            scope.state.value = 1;
-            $window.removeEventListener('keydown', escHandler);
-            scope.$apply();
+            $window.removeEventListener('keydown', keyHandler);
+            $window.history.back();
             break;
           case 13:
-            scope.state.value = 3;
-            $window.removeEventListener('keydown', escHandler);
-            scope.$apply();
+            $window.removeEventListener('keydown', keyHandler);
+            $location.path('/');
             break;
           }
         };
-        $window.addEventListener('keydown', escHandler);
+        $window.addEventListener('keydown', keyHandler);
+        element.bind('$destroy', function () {
+          $window.removeEventListener('keydown', keyHandler);
+        });
       }
     };
   }
@@ -128,3 +128,12 @@ angular.module('lunaApp').controller('LoadingscreenCtrl', [
     });
   }
 ]);
+'use strict';
+angular.module('lunaApp').directive('moduleContent', function () {
+  return {
+    restrict: 'C',
+    link: function postLink(scope, element, attrs) {
+      scope.grid.value = attrs.grid;
+    }
+  };
+});

@@ -9,10 +9,20 @@ angular.module('lunaApp', [
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        templateUrl: 'views/home.html'
+        //controller: 'MainCtrl'
+      })
+      .when('/quick-create', {
+        templateUrl: 'views/quick-create.html',
+        controller: 'QuickcreateCtrl'
+      })
+      .when('/under-construction', {
+        templateUrl: 'views/under-construction.html'
+      })
+      .when('/create', {
+        templateUrl: 'views/create.html'
       })
       .otherwise({
         redirectTo: '/'
-      });
+      })
   });

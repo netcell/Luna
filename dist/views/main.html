@@ -7,7 +7,7 @@
 	
 	<div class="app-name abs-center no-user-select pointer">âm dương lịch</div>
 	
-	<div class="app abs-center no-user-select" ng-init="state.value=1" app-directive="">
+	<div class="app abs-center no-user-select" ng-init="state.value=4" app-directive="">
 		<div class="time">
 			<div class="info">
 				<div class="day">thứ sáu</div>
@@ -23,7 +23,7 @@
 			<div class="greeting module-content" ng-if="state.value==1">
 				<div class="button"><span class="link" ng-click="state.value=3">đăng nhập</span></div>
 				<div class="or"><span>hoặc</span></div>
-				<div class="button"><span class="link" ng-click="state.value=2">tạo nhanh</span></div>
+				<div class="button"><span class="link" ng-click="state.value=4">tạo nhanh</span></div>
 			</div>
 			<div class="quick-create-home module-content" ng-if="state.value==2" ng-controller="QuickcreateCtrl">
 				<div class="label">Gõ để tạo nhắc nhở mới</div>
@@ -39,6 +39,16 @@
 				<div class="button">xin lỗi</div>
 				<div class="or"><span>tính năng này đang được xây dựng</span></div>
 				<div class="button"><span class="underline link" ng-click="state.value=1">quay lại</span></div>
+			</div>
+			<div class="create-form module-content" ng-if="state.value==4" ng-controller="QuickcreateCtrl">
+				<div class="label">Gõ để tạo nhắc nhở mới</div>
+				<span class="input">
+					<label class="no-input">Gõ để tạo nhắc nhở mới</label> <input spellcheck="false" ng-model="input" type="text" placeholder="Cúng rằm lúc 12h ngày 15 hàng tháng">
+				</span>
+				<div class="no-input" ng-bind="token"></div>
+				<div class="no-input" ng-if="!input.length">hoặc <span class="underline link" ng-click="state.value=3">tạo theo mẫu.</span></div>
+				<div class="no-input" ng-if="input.length">ấn phím <span class="underline link">Enter</span> để tạo nhắc nhở.</div>
+				<div class="no-input sign-in">hoặc <span class="underline link" ng-click="state.value=3">đăng nhập</span> để sử dụng nhiều tính năng hơn.</div>
 			</div>
 		</div>
 	</div>

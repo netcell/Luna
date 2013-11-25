@@ -26,7 +26,39 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="container" ng-view="" ng-init="loading.value=true"></div>
+    <div class="container" ng-init="loading.value=true">
+      <div class="loading-screen" ng-if="loading.value" ng-controller="LoadingscreenCtrl">fdasfadsfdsafdasfdsafdsafdsafdsafdsafdsafdasfdsafdsa</div>
+      <div class="container afterLoading" ng-if="!loading.value">
+        <div class="mininoic abs-center no-user-select">
+          <div class="logo"></div>
+          <div class="desc">một sản phẩm của <span class="underline link">mininoic</span></div>
+        </div>
+        
+        <div class="app-name abs-center no-user-select pointer">âm dương lịch</div>
+        
+        <div class="app abs-center no-user-select" ng-init="grid.value=1" app-directive>
+          <div class="time">
+            <div class="info">
+              <div class="day">thứ sáu</div>
+              <div class="date-month">
+                <div class="month">10</div>
+                <div class="seperator">|</div>
+                <div class="date">20</div>
+              </div>
+              <div class="year">năm quý tỵ</div>
+            </div>
+          </div>
+          <div class="module">
+            <div class="module-content-view" ng-view="">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="more no-user-select afterLoading" ng-if="!loading.value">
+          <div class="text">tìm hiểu thêm</div>
+          <div class="arrow"></div>
+      </div>
+    </div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -54,9 +86,10 @@
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/directives/appDirective.js"></script>
         <script src="scripts/directives/textarea.js"></script>
-        <script src="scripts/directives/quickCreateHome.js"></script>
+        <script src="scripts/directives/quickCreate.js"></script>
         <script src="scripts/controllers/quickCreate.js"></script>
         <script src="scripts/controllers/LoadingScreen.js"></script>
+        <script src="scripts/directives/moduleContainer.js"></script>
         <!-- endbuild -->
 
         <!-- <script src="scripts/animations/content-module.js"></script> -->

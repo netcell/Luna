@@ -58,6 +58,7 @@ a,
 a:hover,
 a:active {
   text-decoration: none;
+  color: inherit;
 }
 
 .underline {
@@ -119,15 +120,16 @@ a:active {
 }
 
 .app .time {
+  z-index: 2;
   width: 50%;
   height: 100%;
   text-align: right;
   float: left;
-  -webkit-transition: all 0.8s ease-in-out;
+  -webkit-transition: all 0.5s ease-in-out;
 }
 
 .app .time.full-left {
-  width: 35%;
+  width: 30%;
 }
 
 .app .time .info {
@@ -145,34 +147,42 @@ a:active {
 }
 
 .app .module {
-  -webkit-transition: all 0.8s ease-in-out;
+  -webkit-transition: all 0.5s ease-in-out;
   border-left: 2px solid #6e7584;
   overflow: hidden;
   text-align: left;
   float: left;
   width: 50%;
-  margin: auto auto;
+  min-height: 185px;
+  padding-left: 1em;
+  position: relative;
 }
 
-.app .module .module-content {
+.app .module.full-left {
+  overflow: hidden;
+  width: 70%;
+}
+
+.module-content-view.ng-enter,
+.module-content-view.ng-leave {
+  position: absolute;
+  -webkit-transition: all 0.5s cubic-bezier(.6,.18,.83,.65);
+}
+
+.module-content-view.ng-enter,
+.module-content-view.ng-leave.ng-leave-active {
+  opacity: 0;
+  margin-left: -100%;
+}
+
+.module-content-view.ng-leave,
+.module-content-view.ng-enter.ng-enter-active {
   opacity: 100;
-  -webkit-transition: all 0.3s cubic-bezier(.6,.18,.83,.65);
-  margin-left: 1em;
+  margin-left: 0;
 }
 
 .app .module .greeting {
   line-height: 56px;
-}
-
-.app .module .module-content.ng-leave.ng-leave-active {
-  margin-left: -50%;
-  opacity: 0;
-}
-
-.app .module .module-content.ng-enter {
-  position: absolute;
-  margin-left: -50%;
-  opacity: 0;
 }
 
 .app .module .greeting .button {

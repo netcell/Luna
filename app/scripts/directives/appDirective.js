@@ -6,15 +6,16 @@ angular.module('lunaApp')
       restrict: 'A',
       link: function postLink(scope, element, attrs) {
       	var appElement = $(element[0]);
-        var timeEl = appElement.find('.time');
-      	scope.$watch('state.value',function(){
-          switch (scope.state.value){
-            case 1: timeEl.removeClass('full-left');
-            break;
-            case 2: timeEl.addClass('full-left');
-            break;
-            case 3: timeEl.addClass('full-left');
-            break;
+        var timeEl    = appElement.find('.time');
+        var moduleEl  = appElement.find('.module');
+      	scope.$watch('grid.value',function(){
+          console.log(scope.grid.value);
+          if (scope.grid.value == 1){
+              timeEl.removeClass('full-left');
+            moduleEl.removeClass('full-left');
+          } else { 
+              timeEl.addClass('full-left');
+            moduleEl.addClass('full-left');
           }
       	});
       }
