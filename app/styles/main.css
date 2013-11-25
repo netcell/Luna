@@ -1,4 +1,21 @@
-@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,200italic,300italic&subset=vietnamese);
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-weight: 200;
+  src: local('Source Sans Pro ExtraLight'), local('SourceSansPro-ExtraLight'), url(../fonts/SourceSansPro-ExtraLight.ttf) format('woff');
+}
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-weight: bold;
+  src: local('Source Sans Pro Semibold'), local('SourceSansPro-Semibold'), url(../fonts/SourceSansPro-Semibold.ttf) format('woff');
+}
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: italic;
+  font-weight: 200;
+  src: local('Source Sans Pro ExtraLight Italic'), local('SourceSansPro-ExtraLightIt'), url(../fonts/SourceSansPro-ExtraLightItalic.ttf) format('woff');
+}
 /* Clear */
 html, body, div, ul, li, span, input, textarea, button {
   padding: 0;
@@ -165,12 +182,10 @@ a, a:hover, a:active {
 }
 
 .app .module .greeting .button {
-  font-weight: 300;
   font-size: 48px;
 }
 
 .app .module .quick-create-home .label, .no-input {
-  font-weight: 300;
   font-size: 20px;
 }
 
@@ -194,20 +209,13 @@ a, a:hover, a:active {
   bottom: 0;
   text-align: center;
   cursor: pointer;
+  background-color: #444750;
 }
 
 .more .text {
   width: 768px;
   margin: 0 auto;
   line-height: 50px;
-  font-weight: bold;
-}
-
-.more:hover {
-  background-color: #444750;
-}
-
-.more:hover .text {
   color: #f6f6f6;
   font-weight: bold;
 }

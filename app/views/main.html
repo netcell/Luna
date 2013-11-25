@@ -26,7 +26,7 @@
 		<div class="quick-create-home module-content" ng-if="state.value==2" ng-controller="QuickcreateCtrl">
 			<div class="label">Gõ để tạo nhắc nhở mới</div>
 			<div class="input">
-				<textarea spellcheck="false" ng-model="input" type="text" placeholder="Cúng rằm lúc 12h ngày 15 hàng tháng"></textarea>
+				<textarea msd-elastic spellcheck="false" ng-model="input" type="text" placeholder="Cúng rằm lúc 12h ngày 15 hàng tháng"></textarea>
 			</div>
 			<div class="no-input" ng-bind="token"></div>
 			<div class="no-input" ng-if="!input.length">hoặc <span class="underline link" ng-click="state.value=3">tạo theo mẫu.</span></div>
