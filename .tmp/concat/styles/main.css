@@ -128,6 +128,7 @@ a:active {
   overflow: hidden;
   top: 50%;
   font-size: 36px;
+  margin-bottom: 80px;
 }
 
 .app .time {
