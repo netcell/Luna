@@ -297,13 +297,22 @@ module.exports = function (grunt) {
     },
     shell: {
       'git-add': {
-        command: 'git add .'
+        command: 'git add .',
+        options: {
+            stdout: true
+        }
       },
       'git-commit-heroku': {
-        command: 'git commit -m "heroku"'
+        command: 'git commit -m "heroku"',
+        options: {
+            stdout: true
+        }
       },
       'push-heroku': {
-        command: 'git push heroku master'
+        command: 'git push heroku master',
+        options: {
+            stdout: true
+        }
       }
     }
   });
