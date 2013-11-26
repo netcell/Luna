@@ -294,8 +294,21 @@ module.exports = function (grunt) {
           ]
         }
       }
+    },
+    shell: {
+      'git-add': {
+        command: 'git add .'
+      },
+      'git-commit-heroku': {
+        command: 'git commit -m "heroku"'
+      },
+      'push-heroku': {
+        command: 'git push heroku master'
+      }
     }
   });
+
+   grunt.loadNpmTasks('grunt-shell');
 
   grunt.registerTask('server', function (target) {
     if (target === 'dist') {
@@ -332,6 +345,13 @@ module.exports = function (grunt) {
     'uglify',
     'rev',
     'usemin'
+  ]);
+
+  grunt.registerTask('heroku', [
+    'build',
+    'shell:git-add',
+    'shell:git-commit-heroku',
+    'shell:push-heroku'
   ]);
 
   grunt.registerTask('default', [
