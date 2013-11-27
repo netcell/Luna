@@ -179,13 +179,13 @@ a:active {
 
 .module-content-view.ng-enter,
 .module-content-view.ng-leave {
-  -webkit-transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.5s ease-in-out;
 }
 
 .module-content-view.ng-enter {
   position: relative;
   opacity: 0;
-  margin-left: -100%;
+  margin-left: -50%;
 }
 
 .module-content-view.ng-leave {
@@ -200,7 +200,7 @@ a:active {
 }
 
 .module-content-view.ng-enter.ng-enter-active {
-  opacity: 100;
+  opacity: 1;
   margin-left: 0;
 }
 
@@ -314,6 +314,11 @@ a:active {
   text-align: center;
   cursor: pointer;
   background-color: #444750;
+  opacity: 0.9;
+}
+
+.more:hover {
+  opacity: 1;
 }
 
 .more .text {
