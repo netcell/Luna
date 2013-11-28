@@ -20,7 +20,16 @@ angular.module('lunaApp', [
         templateUrl: 'views/under-construction.html'
       })
       .when('/create', {
-        templateUrl: 'views/create.html'
+        templateUrl: 'views/create.html',
+        controller: 'CreateCtrl'
+      })
+      .when('/confirmation-sent', {
+        templateUrl: 'views/confirm-sent.html',
+        controller: 'CreateCtrl'
+      })
+      .when('/account-over-used', {
+        templateUrl: 'views/account-over-used.html',
+        controller: 'CreateCtrl'
       })
       .otherwise({
         redirectTo: '/'

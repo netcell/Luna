@@ -13,6 +13,13 @@ angular.module('lunaApp')
           if (scope.grid.value == 1){
               timeEl.removeClass('full-left');
             moduleEl.removeClass('full-left');
+              timeEl.removeClass('near-left');
+            moduleEl.removeClass('near-left');
+          } else if (scope.grid.value == 3){
+              timeEl.removeClass('full-left');
+            moduleEl.removeClass('full-left');
+              timeEl.addClass('near-left');
+            moduleEl.addClass('near-left');
           } else { 
               timeEl.addClass('full-left');
             moduleEl.addClass('full-left');

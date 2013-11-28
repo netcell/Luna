@@ -8,7 +8,8 @@ li,
 span,
 input,
 textarea,
-button {
+button,
+select {
   padding: 0;
   margin: 0;
   list-style: none;
@@ -34,14 +35,25 @@ button {
 }
 
 textarea,
-input {
+input,
+select {
   outline: none;
   border: none;
+  -webkit-appearance: none;
+  /*Removes default chrome and safari style*/
+  -moz-appearance: none;
+  /*Removes default style Firefox*/
+  text-indent: 0.01px;
+  /* Removes default arrow from firefox*/
+  text-overflow: "";
+  /* Removes default arrow from firefox*/
+  padding: 0;
   resize: none;
   font-style: italic;
   background-color: #f6f6f6;
   font-size: inherit;
   overflow: auto;
+  text-decoration: inherit;
 }
 
 .no-user-select {
@@ -76,7 +88,6 @@ a:active {
 
 .underline {
   text-decoration: underline;
-  cursor: pointer;
 }
 
 .underline.link:hover {
@@ -142,6 +153,10 @@ a:active {
   -webkit-transition: all 0.5s ease-in-out;
 }
 
+.app .time.near-left {
+  width: 40%;
+}
+
 .app .time.full-left {
   width: 30%;
 }
@@ -172,8 +187,11 @@ a:active {
   position: relative;
 }
 
+.app .module.near-left {
+  width: 60%;
+}
+
 .app .module.full-left {
-  overflow: hidden;
   width: 70%;
 }
 
@@ -245,56 +263,110 @@ a:active {
   margin-right: 1em;
 }
 
-.app .module .form .inline span {
-  float: left;
-}
-
 .app .module .form textarea {
   padding: 0.3em;
   width: 100%;
 }
 
-.app .module .form .inline span {
+.app .module .seperator {
+  height: 1em;
+}
+
+.app .module .form select {
+  margin-bottom: -7px;
+}
+
+.app .module .form .input.more-line-height {
+  margin-top: 0.5em;
+}
+
+.disabled {
+  text-decoration: line-through;
+}
+
+.app .module .form .info {
+  font-size: 20px;
+  text-align: justify;
   margin-right: 1em;
 }
 
-.app .module .form input.size-2 {
+.app .module .form input.size-1,
+select.size-1 {
+  width: 1em;
+}
+
+.app .module .form input.size-2,
+select.size-2 {
   width: 2em;
 }
 
-.app .module .form input.size-4 {
+.app .module .form input.size-3,
+select.size-3 {
+  width: 3em;
+}
+
+.app .module .form input.size-4,
+select.size-4 {
   width: 4em;
 }
 
-.app .module .form input.size-6 {
+.app .module .form input.size-5,
+select.size-5 {
+  width: 5em;
+}
+
+.app .module .form input.size-6,
+select.size-6 {
   width: 6em;
 }
 
-.app .module .form input.size-8 {
+.app .module .form input.size-8,
+select.size-8 {
   width: 8em;
 }
 
-.app .module .form input.size-10 {
+.app .module .form input.size-10,
+select.size-10 {
   width: 10em;
 }
 
-.app .module .form input.size-12 {
+.app .module .form input.size-12,
+select.size-12 {
   width: 12em;
 }
 
-.app .module .form input.size-14 {
+.app .module .form input.size-13,
+select.size-13 {
+  width: 13em;
+}
+
+.app .module .form input.size-14,
+select.size-14 {
   width: 14em;
 }
 
-.app .module .form input.size-16 {
+.app .module .form input.size-15,
+select.size-15 {
+  width: 15em;
+}
+
+.app .module .form input.size-16,
+select.size-16 {
   width: 16em;
 }
 
-.app .module .form input.size-18 {
+.app .module .form input.size-17,
+select.size-17 {
+  width: 17em;
+}
+
+.app .module .form input.size-18,
+select.size-18 {
   width: 18em;
 }
 
-.app .module .form input.size-20 {
+.app .module .form input.size-20,
+select.size-20 {
   width: 20em;
 }
 
@@ -302,9 +374,17 @@ a:active {
   margin-top: 1em;
 }
 
-.app .module .form .button .link {
+.app .module .form .link {
   font-weight: bold;
-  margin: 1em;
+}
+
+.app .module .form .button span {
+  margin: 0 0.5em;
+}
+
+.app .module .inform {
+  font-size: 24px;
+  text-align: justify;
 }
 
 .more {
