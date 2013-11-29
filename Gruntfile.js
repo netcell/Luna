@@ -375,6 +375,13 @@ module.exports = function (grunt) {
     'shell:push-heroku'
   ]);
 
+  grunt.registerTask('github', [
+    'build',
+    'shell:git-add',
+    'shell:git-commit-github',
+    'shell:git-push-github'
+  ]);
+
   grunt.registerTask('default', [
     'jshint',
     'test',
