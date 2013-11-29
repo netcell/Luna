@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-        <link rel="stylesheet" href="styles/0a43eae4.main.css"/>
+        <link rel="stylesheet" href="styles/3d41ceef.main.css"/>
 </head>
   <body ng-app="lunaApp">
     <!--[if lt IE 7]>
@@ -37,11 +37,11 @@
         <div class="app abs-center no-user-select" ng-init="grid.value=1" app-directive="">
           <div class="time">
             <div class="info">
-              <div class="day">thứ sáu</div>
+              <div class="day" ng-bind="time.current_day"></div>
               <div class="date-month">
-                <div class="month">10</div>
+                <div class="month" ng-bind="time.current_month"></div>
                 <div class="seperator">|</div>
-                <div class="date">20</div>
+                <div class="date" ng-bind="time.current_date"></div>
               </div>
               <div class="year">năm quý tỵ</div>
             </div>
@@ -73,7 +73,7 @@
 
         <script src="scripts/da668c75.modules.js"></script>
 
-        <script src="scripts/20b18ad6.scripts.js"></script>
+        <script src="scripts/ce399fd3.scripts.js"></script>
 
         <!-- <script src="scripts/animations/content-module.js"></script> -->
 </body>

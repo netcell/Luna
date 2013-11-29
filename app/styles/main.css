@@ -111,6 +111,14 @@ a, a:hover, a:active {
   font-weight: bold;
 }
 
+.mininoic .logo {
+  width: 31px;
+  height: 38px;
+  margin: 0 auto;
+  background: url(../images/logo.png) no-repeat center center;
+  cursor: pointer;
+}
+
 .app-name {
   padding-top: 40px;
   font-size: 60px;

@@ -34,4 +34,9 @@ angular.module('lunaApp', [
       .otherwise({
         redirectTo: '/'
       })
+  })
+  .run(function($rootScope, $templateCache) {
+   //$rootScope.$on('$viewContentLoaded', function() {
+      $templateCache.removeAll();
+   //});
   });
