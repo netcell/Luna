@@ -39,11 +39,11 @@
         <div class="app abs-center no-user-select" ng-init="grid.value=1" app-directive>
           <div class="time">
             <div class="info">
-              <div class="day">thứ sáu</div>
+              <div class="day" ng-bind='time.current_day'></div>
               <div class="date-month">
-                <div class="month">10</div>
+                <div class="month" ng-bind='time.current_month'></div>
                 <div class="seperator">|</div>
-                <div class="date">20</div>
+                <div class="date" ng-bind='time.current_date'></div>
               </div>
               <div class="year">năm quý tỵ</div>
             </div>
@@ -93,6 +93,7 @@
         <script src="scripts/directives/afterLoading.js"></script>
         <script src="scripts/controllers/create.js"></script>
         <script src="scripts/directives/create.js"></script>
+        <script src="scripts/services/amduonglich.js"></script>
         <!-- endbuild -->
 
         <!-- <script src="scripts/animations/content-module.js"></script> -->
