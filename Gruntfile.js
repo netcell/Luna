@@ -302,6 +302,18 @@ module.exports = function (grunt) {
             stdout: true
         }
       },
+      'git-commit-github': {
+        command: 'git commit -m "github"',
+        options: {
+            stdout: true
+        }
+      },
+      'git-push-github': {
+        command: 'git push origin master',
+        options: {
+            stdout: true
+        }
+      },
       'git-commit-heroku': {
         command: 'git commit -m "heroku"',
         options: {
