@@ -11,8 +11,9 @@ angular.module('lunaApp')
 	    			element.find('#create-date')
 	    			.removeClass('size-2')
 	    			.addClass('size-3');
-	    			element.find('#create-month-label')
-	    			.addClass('disabled');
+	    			if (scope.selection.repeat.index!=2)
+		    			element.find('#create-month-label')
+		    			.addClass('disabled');
 	    		break;
 	    		case 'cuối':
 	    			element.find('#create-date')
@@ -25,8 +26,9 @@ angular.module('lunaApp')
 	    			element.find('#create-date')
 	    			.removeClass('size-3')
 	    			.addClass('size-2');
-	    			element.find('#create-month-label')
-	    			.addClass('disabled');
+	    			if (scope.selection.repeat.index!=2)
+		    			element.find('#create-month-label')
+		    			.addClass('disabled');
 	    		break;
 	    	}
 	    });

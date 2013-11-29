@@ -514,7 +514,8 @@ angular.module('lunaApp').directive('create', function () {
         switch (newValue) {
         case 'r\u1eb1m':
           element.find('#create-date').removeClass('size-2').addClass('size-3');
-          element.find('#create-month-label').addClass('disabled');
+          if (scope.selection.repeat.index != 2)
+            element.find('#create-month-label').addClass('disabled');
           break;
         case 'cu\u1ed1i':
           element.find('#create-date').removeClass('size-2').addClass('size-3');
@@ -522,7 +523,8 @@ angular.module('lunaApp').directive('create', function () {
           break;
         default:
           element.find('#create-date').removeClass('size-3').addClass('size-2');
-          element.find('#create-month-label').addClass('disabled');
+          if (scope.selection.repeat.index != 2)
+            element.find('#create-month-label').addClass('disabled');
           break;
         }
       });
