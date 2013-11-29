@@ -6,8 +6,13 @@ angular.module('lunaApp')
     var fontLight = $http.get("fonts/SourceSansPro-Light.ttf");
     var fontSemibold = $http.get("fonts/SourceSansPro-Semibold.ttf");
     var css = $http.get("dynamic/loading.css");
-    var logo = $http.get("https://dl.dropboxusercontent.com/u/12656349/2393e39d.logo.png");
-    $q.all([fontExtraLight, fontLight, fontSemibold]).then(function() {
+    var view1 = $http.get('account-over-used');
+    var view2 = $http.get('confirm-sent');
+    var view3 = $http.get('home');
+    var view4 = $http.get('create');
+    var view5 = $http.get('quick-create');
+    var view6 = $http.get('under-construction');
+    $q.all([fontExtraLight, fontLight, fontSemibold,css,view1,view2,view3,view4,view5,view6]).then(function() {
     	$("head").append($("<link rel='stylesheet' href='dynamic/loading.css' type='text/css' media='screen' />"));
         $scope.loading.value = false;
     });
