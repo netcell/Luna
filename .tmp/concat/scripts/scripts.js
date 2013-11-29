@@ -150,12 +150,12 @@ angular.module('lunaApp').controller('LoadingscreenCtrl', [
     var fontLight = $http.get('fonts/SourceSansPro-Light.ttf');
     var fontSemibold = $http.get('fonts/SourceSansPro-Semibold.ttf');
     var css = $http.get('dynamic/loading.css');
-    var view1 = $http.get('account-over-used');
-    var view2 = $http.get('confirm-sent');
-    var view3 = $http.get('home');
-    var view4 = $http.get('create');
-    var view5 = $http.get('quick-create');
-    var view6 = $http.get('under-construction');
+    var view1 = $http.get('views/account-over-used');
+    var view2 = $http.get('views/confirm-sent');
+    var view3 = $http.get('views/home');
+    var view4 = $http.get('views/create');
+    var view5 = $http.get('views/quick-create');
+    var view6 = $http.get('views/under-construction');
     $q.all([
       fontExtraLight,
       fontLight,
