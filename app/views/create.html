@@ -1,9 +1,9 @@
-<div class="form module-content" create grid=3 ng-init="noidung='o ho ho ho ho'">
+<div class="form module-content" create grid=3>
 	<div class="input">
 		<div class="title">
 			nội dung
 		</div>
-		<textarea class="size-full" msd-elastic spellcheck="false" ng-model="noidung" type="text" placeholder="">
+		<textarea class="size-full" msd-elastic spellcheck="false" ng-model="selection.desc" type="text" placeholder="">
 		</textarea>
 	</div>
 	<div class="seperator"></div>
@@ -42,7 +42,7 @@
 		<div class="title">
 			email
 		</div>
-		<input class="size-17" spellcheck="false" type="text" value="anhnt.fami@gmail.com">
+		<input ng-model="selection.email" class="size-17" spellcheck="false" type="text">
 		</input>
 	</div>
 	<div class="seperator"></div>
@@ -51,7 +51,7 @@
 		<p>Nếu bạn đã sử dụng quá số nhắc nhở được phép, bạn có thể <a href="#/under-construction" class="underline link">bấm vào đây</a> để chọn xóa một hoặc nhiều nhắc nhở đã tạo.</p>
 	</div>
 	<div class="button">
-		<a href="#/confirmation-sent" class="underline link">đặt nhắc nhở</a>
+		<a href="#/confirmation-sent" ng-click="submit()" class="underline link">đặt nhắc nhở</a>
 		<span>hoặc</span> 
 		<a href="#/" class="underline link">hủy nhắc nhở</a> 
 	</div>

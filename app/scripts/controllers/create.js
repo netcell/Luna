@@ -8,14 +8,14 @@ angular.module('lunaApp')
 
     var periods = [
     	[ 
-    		{ value:'sáng' , index:0 },
-    		{ value:'chiều', index:1 }
+    		{ value:'sáng' , index:0, standard:'am' },
+    		{ value:'chiều', index:1, standard:'pm' }
     	],[ 
-    		{ value:'sáng' , index:0 },
-    		{ value:'tối'  , index:1 }
+    		{ value:'sáng' , index:0, standard:'am' },
+    		{ value:'tối'  , index:1, standard:'pm' }
     	],[ 
-    		{ value:'trưa' , index:0 },
-    		{ value:'đêm'  , index:1 }
+    		{ value:'trưa' , index:0, standard:'am' },
+    		{ value:'đêm'  , index:1, standard:'pm' }
     	]
     ];
 
@@ -35,18 +35,18 @@ angular.module('lunaApp')
     ];
 
     $scope.options.months = [
-    	{ value:'giêng'	  , index:0  },
-    	{ value:'hai'	  , index:1  },
-    	{ value:'ba'	  , index:2  },
-    	{ value:'bốn'	  , index:3  },
-    	{ value:'năm'	  , index:4  },
-    	{ value:'sáu'	  , index:5  },
-    	{ value:'bảy'	  , index:6  },
-    	{ value:'tám'	  , index:7  },
-    	{ value:'chín'	  , index:8  },
-    	{ value:'mười'	  , index:9  },
-    	{ value:'mười một', index:10 },
-    	{ value:'chạp'	  , index:11 }
+    	{ value:'giêng'	  , index:0 , standard:'01' },
+    	{ value:'hai'	  , index:1 , standard:'02' },
+    	{ value:'ba'	  , index:2 , standard:'03' },
+    	{ value:'bốn'	  , index:3 , standard:'04' },
+    	{ value:'năm'	  , index:4 , standard:'05' },
+    	{ value:'sáu'	  , index:5 , standard:'06' },
+    	{ value:'bảy'	  , index:6 , standard:'07' },
+    	{ value:'tám'	  , index:7 , standard:'08' },
+    	{ value:'chín'	  , index:8 , standard:'09' },
+    	{ value:'mười'	  , index:9 , standard:'10' },
+    	{ value:'mười một', index:10, standard:'11' },
+    	{ value:'chạp'	  , index:11, standard:'12' }
     ];
 
     $scope.options.repeats = [
@@ -65,24 +65,63 @@ angular.module('lunaApp')
     ];
 
     $scope.options.dates = [
+    	'rằm','cuối',
     	'01','02','03','04','05','06','07','08','09','10',
     	'11','12','13','14','15','16','17','18','19','20',
-    	'21','22','23','24','25','26','27','28','29','30','31'
+    	'21','22','23','24','25','26','27','28','29','30'
+    	
     ]
 
     //INIT
     var selected_hour = $scope.options.hours[0];
+    $scope.selection.desc = 'Cúng rằm';
     $scope.selection.hour = selected_hour;
     $scope.selection.minute= $scope.options.minutes[0];
     $scope.selection.period=periods[selected_hour.periods][0];
     $scope.selection.date= $scope.options.dates[0];
     $scope.selection.month= $scope.options.months[0];
     $scope.selection.repeat= $scope.options.repeats[0];
+    $scope.selection.email= "anhnt.fami@gmail.com"
+    
+    var init = 3;
 
     $scope.$watch('selection.hour', function(newValue, oldValue, scope) {
-    	var period_index = $scope.selection.period.index;
-    	$scope.options.periods=periods[newValue.periods];
-    	$scope.selection.period=$scope.options.periods[period_index];
+    	if (init) {
+    		init--;
+    	} else {
+	    	var period_index = $scope.selection.period.index;
+	    	$scope.options.periods=periods[newValue.periods];
+	    	$scope.selection.period=$scope.options.periods[period_index];
+	    }
     });
+
+    $scope.$watch('selection.date', function(newValue, oldValue, scope) {
+    	if (init) {
+    		init--;
+    	} else if ($scope.selection.repeat.index==0) {
+	    	$scope.selection.repeat = $scope.options.repeats[1];
+	    }
+    });
+
+    $scope.$watch('selection.month', function(newValue, oldValue, scope) {
+    	if (init) {
+    		init--;
+    	} else if ($scope.selection.repeat.index!=2) {
+	    	$scope.selection.repeat = $scope.options.repeats[2];
+	    }
+    });
+
+    $scope.submit = function(){
+    	$scope.form = {
+    		desc: 	$scope.selection.desc,
+    		hour: 	$scope.selection.hour.value,
+    		minute: $scope.selection.minute,
+    		period: $scope.selection.period.standard,
+    		date: 	$scope.selection.date,
+    		month: 	$scope.selection.month.standard,
+    		repeat: $scope.selection.repeat.value,
+    		email: 	$scope.selection.email
+    	};
+    }
     
   });

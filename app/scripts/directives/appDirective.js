@@ -9,7 +9,6 @@ angular.module('lunaApp')
         var timeEl    = appElement.find('.time');
         var moduleEl  = appElement.find('.module');
       	scope.$watch('grid.value',function(){
-          console.log(scope.grid.value);
           if (scope.grid.value == 1){
               timeEl.removeClass('full-left');
             moduleEl.removeClass('full-left');
