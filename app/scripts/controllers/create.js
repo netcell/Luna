@@ -1,8 +1,7 @@
 'use strict';
 
 angular.module('lunaApp')
-  .controller('CreateCtrl', function ($scope) {
-    $scope.form = {};
+  .controller('CreateCtrl', function ($scope, $http) {
     $scope.selection = {};
     $scope.options = {};
 
@@ -112,7 +111,7 @@ angular.module('lunaApp')
     });
 
     $scope.submit = function(){
-    	$scope.form = {
+    	var form = {
     		desc: 	$scope.selection.desc,
     		hour: 	$scope.selection.hour.value,
     		minute: $scope.selection.minute,
@@ -122,6 +121,11 @@ angular.module('lunaApp')
     		repeat: $scope.selection.repeat.value,
     		email: 	$scope.selection.email
     	};
+        $http.post('/user/quick-create', form).then(function(res){
+            console.log(res);
+        }, function(err){
+            console.log(err);
+        });
     }
     
   });
