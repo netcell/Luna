@@ -499,10 +499,17 @@ angular.module('lunaApp').controller('CreateCtrl', [
           period: $scope.selection.period.standard,
           date: $scope.selection.date,
           month: $scope.selection.month.standard,
-          repeat: $scope.selection.repeat.value,
+          repeat: $scope.selection.repeat.index,
           email: $scope.selection.email
         };
-      console.log(form);
+      switch (form.date) {
+      case 'r\u1eb1m':
+        form.date = 15;
+        break;
+      case 'cu\u1ed1i':
+        form.date = 100;
+        break;
+      }
       $http.post('/user/quick-create', form).then(function (res) {
         console.log(res);
       }, function (err) {

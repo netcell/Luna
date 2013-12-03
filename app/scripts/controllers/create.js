@@ -118,10 +118,13 @@ angular.module('lunaApp')
     		period: $scope.selection.period.standard,
     		date: 	$scope.selection.date,
     		month: 	$scope.selection.month.standard,
-    		repeat: $scope.selection.repeat.value,
+    		repeat: $scope.selection.repeat.index,
     		email: 	$scope.selection.email
-    	}; 
-        console.log(form);
+    	};
+        switch(form.date){
+            case 'rằm': form.date = 15; break;
+            case 'cuối': form.date = 100; break;
+        }
         $http.post('/user/quick-create', form).then(function(res){
             console.log(res);
         }, function(err){
