@@ -120,7 +120,8 @@ angular.module('lunaApp')
     		month: 	$scope.selection.month.standard,
     		repeat: $scope.selection.repeat.value,
     		email: 	$scope.selection.email
-    	};
+    	}; 
+        console.log(form);
         $http.post('/user/quick-create', form).then(function(res){
             console.log(res);
         }, function(err){
