@@ -121,7 +121,7 @@ angular.module('lunaApp')
     		repeat: $scope.selection.repeat.value,
     		email: 	$scope.selection.email
     	};
-        $http.post('/user', form).then(function(res){
+        $http.post('/user/quick-create', form).then(function(res){
             console.log(res);
         }, function(err){
             console.log(err);
