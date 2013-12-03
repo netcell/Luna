@@ -194,8 +194,8 @@ angular.module('lunaApp').directive('afterLoading', function () {
 'use strict';
 angular.module('lunaApp').controller('CreateCtrl', [
   '$scope',
-  function ($scope) {
-    $scope.form = {};
+  '$http',
+  function ($scope, $http) {
     $scope.selection = {};
     $scope.options = {};
     var periods = [
@@ -492,16 +492,21 @@ angular.module('lunaApp').controller('CreateCtrl', [
       }
     });
     $scope.submit = function () {
-      $scope.form = {
-        desc: $scope.selection.desc,
-        hour: $scope.selection.hour.value,
-        minute: $scope.selection.minute,
-        period: $scope.selection.period.standard,
-        date: $scope.selection.date,
-        month: $scope.selection.month.standard,
-        repeat: $scope.selection.repeat.value,
-        email: $scope.selection.email
-      };
+      var form = {
+          desc: $scope.selection.desc,
+          hour: $scope.selection.hour.value,
+          minute: $scope.selection.minute,
+          period: $scope.selection.period.standard,
+          date: $scope.selection.date,
+          month: $scope.selection.month.standard,
+          repeat: $scope.selection.repeat.value,
+          email: $scope.selection.email
+        };
+      $http.post('/user/quick-create', form).then(function (res) {
+        console.log(res);
+      }, function (err) {
+        console.log(err);
+      });
     };
   }
 ]);
