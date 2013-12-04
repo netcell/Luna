@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('lunaApp')
-  .controller('CreateCtrl', function ($scope, $http) {
+  .controller('CreateCtrl', function ($scope, $http, $location) {
     $scope.selection = {};
     $scope.options = {};
 
@@ -73,14 +73,14 @@ angular.module('lunaApp')
 
     //INIT
     var selected_hour = $scope.options.hours[0];
-    $scope.selection.desc = 'Cúng rằm';
+    $scope.selection.desc = "";
     $scope.selection.hour = selected_hour;
     $scope.selection.minute= $scope.options.minutes[0];
     $scope.selection.period=periods[selected_hour.periods][0];
     $scope.selection.date= $scope.options.dates[0];
     $scope.selection.month= $scope.options.months[0];
     $scope.selection.repeat= $scope.options.repeats[0];
-    $scope.selection.email= "anhnt.fami@gmail.com"
+    $scope.selection.email= "";
     
     var init = 3;
 
@@ -121,15 +121,19 @@ angular.module('lunaApp')
     		repeat: $scope.selection.repeat.index,
     		email: 	$scope.selection.email
     	};
-        switch(form.date){
-            case 'rằm': form.date = 15; break;
-            case 'cuối': form.date = 100; break;
+        if (form.email) {
+            switch(form.date){
+                case 'rằm': form.date = 15; break;
+                case 'cuối': form.date = 100; break;
+            }
+            $http.post('/user/quick-create', form).then(function(res){
+                $location.path("/confirmation-sent");
+            }, function(err){
+                console.log(err);
+            });
+        } else {
+            alert('Bạn cần nhập email');
         }
-        $http.post('/user/quick-create', form).then(function(res){
-            console.log(res);
-        }, function(err){
-            console.log(err);
-        });
     }
     
   });

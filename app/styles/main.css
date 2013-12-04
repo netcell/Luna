@@ -242,6 +242,10 @@ a, a:hover, a:active {
   margin-left: 0;
 }
 
+.app .module .bold {
+  font-weight: bold;
+}
+
 .app .module .greeting {
   line-height: 56px;
 }
@@ -281,7 +285,7 @@ a, a:hover, a:active {
 }
 
 .app .module .form textarea {
-  padding: 0.3em;
+  padding: 0.3em auto;
   width: 100%;
 }
 

@@ -32,6 +32,10 @@ angular.module('lunaApp', [
         templateUrl: 'views/account-over-used.html',
         controller: 'CreateCtrl'
       })
+      .when('/created-confirmation', {
+        templateUrl: 'views/created-confirmation.html',
+        controller: 'CreatedConfirmationCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       })
