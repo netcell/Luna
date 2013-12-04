@@ -43,13 +43,10 @@ angular.module('lunaApp').controller('MainCtrl', [
       'th\u1ee9 s\xe1u',
       'th\u1ee9 b\u1ea3y'
     ];
-    requestAnimationFrame(function () {
-      $scope.time.current_day = $scope.time.day[new Date().getDay()];
-      var date = amduonglich.getCurrentLunarDate();
-      $scope.time.current_date = date[0];
-      $scope.time.current_month = date[1];
-      $scope.$apply();
-    });
+    $scope.time.current_day = $scope.time.day[new Date().getDay()];
+    var date = amduonglich.getCurrentLunarDate();
+    $scope.time.current_date = date[0];
+    $scope.time.current_month = date[1];
   }
 ]);
 'use strict';
@@ -150,7 +147,6 @@ angular.module('lunaApp').controller('LoadingscreenCtrl', [
     var fontExtraLight = $http.get('fonts/SourceSansPro-ExtraLight.ttf');
     var fontLight = $http.get('fonts/SourceSansPro-Light.ttf');
     var fontSemibold = $http.get('fonts/SourceSansPro-Semibold.ttf');
-    var css = $http.get('dynamic/loading.css');
     var view1 = $http.get('views/account-over-used.html');
     var view2 = $http.get('views/confirm-sent.html');
     var view3 = $http.get('views/home.html');
@@ -161,7 +157,6 @@ angular.module('lunaApp').controller('LoadingscreenCtrl', [
       fontExtraLight,
       fontLight,
       fontSemibold,
-      css,
       view1,
       view2,
       view3,
@@ -169,9 +164,7 @@ angular.module('lunaApp').controller('LoadingscreenCtrl', [
       view5,
       view6
     ]).then(function () {
-      $('head').append($('<link rel=\'stylesheet\' href=\'dynamic/loading.css\' type=\'text/css\' media=\'screen\' />'));
       $scope.loading.value = false;
-      $scope.$apply();
     });
   }
 ]);

@@ -12,11 +12,8 @@ angular.module('lunaApp')
   		'thứ sáu',
   		'thứ bảy'
   	];
-  	requestAnimationFrame(function(){
-  		$scope.time.current_day = $scope.time.day[new Date().getDay()];
-  		var date = amduonglich.getCurrentLunarDate();
-  		$scope.time.current_date = date[0];
-  		$scope.time.current_month = date[1];
-      $scope.$apply();
-  	})
+		$scope.time.current_day = $scope.time.day[new Date().getDay()];
+		var date = amduonglich.getCurrentLunarDate();
+		$scope.time.current_date = date[0];
+		$scope.time.current_month = date[1];
   });
