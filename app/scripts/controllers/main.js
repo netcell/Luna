@@ -7,7 +7,7 @@ angular.module('lunaApp')
   		'chủ nhật',
   		'thứ hai',
   		'thứ ba',
-  		'thứ bốn',
+  		'thứ tư',
   		'thứ năm',
   		'thứ sáu',
   		'thứ bảy'
@@ -17,5 +17,6 @@ angular.module('lunaApp')
   		var date = amduonglich.getCurrentLunarDate();
   		$scope.time.current_date = date[0];
   		$scope.time.current_month = date[1];
+      $scope.$apply();
   	})
   });

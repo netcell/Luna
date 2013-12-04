@@ -26,9 +26,9 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="container" ng-init="loading.value=true" ng-controller="MainCtrl">
+    <div class="container" ng-init="loading.value=true">
       <div class="loading-screen" ng-if="loading.value" ng-controller="LoadingscreenCtrl">Loading screen</div>
-      <div class="container after-loading hidden" ng-if="!loading.value">
+      <div class="container after-loading hidden" ng-if="!loading.value" ng-controller="MainCtrl">
         <div class="mininoic abs-center no-user-select">
           <div class="logo"></div>
           <div class="desc">một sản phẩm của <span class="underline link">mininoic</span></div>

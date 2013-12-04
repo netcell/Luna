@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-        <link rel="stylesheet" href="styles/3d41ceef.main.css"/>
+        <link rel="stylesheet" href="styles/7bac179b.main.css"/>
 </head>
   <body ng-app="lunaApp">
     <!--[if lt IE 7]>
@@ -24,9 +24,9 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="container" ng-init="loading.value=true" ng-controller="MainCtrl">
+    <div class="container" ng-init="loading.value=true">
       <div class="loading-screen" ng-if="loading.value" ng-controller="LoadingscreenCtrl">Loading screen</div>
-      <div class="container after-loading hidden" ng-if="!loading.value">
+      <div class="container after-loading hidden" ng-if="!loading.value" ng-controller="MainCtrl">
         <div class="mininoic abs-center no-user-select">
           <div class="logo"></div>
           <div class="desc">một sản phẩm của <span class="underline link">mininoic</span></div>
@@ -73,7 +73,7 @@
 
         <script src="scripts/da668c75.modules.js"></script>
 
-        <script src="scripts/f7cbd447.scripts.js"></script>
+        <script src="scripts/c2733c5f.scripts.js"></script>
 
         <!-- <script src="scripts/animations/content-module.js"></script> -->
 </body>

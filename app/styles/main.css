@@ -168,6 +168,7 @@ a, a:hover, a:active {
   -webkit-transition: all 0.5s ease-in-out;
   border-left: 2px solid #6e7584;
   overflow: hidden;
+  left: 0;
   text-align: left;
   float: left;
   width: 50%;
@@ -182,6 +183,18 @@ a, a:hover, a:active {
 
 .app .module.full-left {
   width: 70%;
+}
+
+.app .module .module-content-view {
+  width: 360px;
+}
+
+.app .module.near-left .module-content-view {
+  width: 420px;
+}
+
+.app .module.full-left .module-content-view {
+  width: 465px;
 }
 
 .module-content-view.ng-enter, .module-content-view.ng-leave {
@@ -202,7 +215,7 @@ a, a:hover, a:active {
 
 .module-content-view.ng-leave.ng-leave-active {
   opacity: 0;
-  margin-left: -100%;
+  margin-left: 100%;
 }
 
 .module-content-view.ng-enter.ng-enter-active {

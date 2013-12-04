@@ -38,7 +38,7 @@ angular.module('lunaApp').controller('MainCtrl', [
       'ch\u1ee7 nh\u1eadt',
       'th\u1ee9 hai',
       'th\u1ee9 ba',
-      'th\u1ee9 b\u1ed1n',
+      'th\u1ee9 t\u01b0',
       'th\u1ee9 n\u0103m',
       'th\u1ee9 s\xe1u',
       'th\u1ee9 b\u1ea3y'
@@ -48,6 +48,7 @@ angular.module('lunaApp').controller('MainCtrl', [
       var date = amduonglich.getCurrentLunarDate();
       $scope.time.current_date = date[0];
       $scope.time.current_month = date[1];
+      $scope.$apply();
     });
   }
 ]);
@@ -170,6 +171,7 @@ angular.module('lunaApp').controller('LoadingscreenCtrl', [
     ]).then(function () {
       $('head').append($('<link rel=\'stylesheet\' href=\'dynamic/loading.css\' type=\'text/css\' media=\'screen\' />'));
       $scope.loading.value = false;
+      $scope.$apply();
     });
   }
 ]);

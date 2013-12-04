@@ -15,5 +15,6 @@ angular.module('lunaApp')
     $q.all([fontExtraLight, fontLight, fontSemibold,css,view1,view2,view3,view4,view5,view6]).then(function() {
     	$("head").append($("<link rel='stylesheet' href='dynamic/loading.css' type='text/css' media='screen' />"));
         $scope.loading.value = false;
+        $scope.$apply();
     });
   });
