@@ -5,6 +5,7 @@ angular.module('lunaApp')
     return {
       restrict: 'A',
       link: function postLink(scope, element, attrs) {
+      	element.find('textarea').blur();
       	scope.$watch('selection.date', function(newValue, oldValue, scope) {
 	    	switch(newValue) {
 	    		case 'rằm':
