@@ -10,8 +10,8 @@ angular.module('lunaApp', [
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/home.html'
-        //controller: 'MainCtrl'
+        templateUrl: 'views/home.html',
+        controller: 'HomeCtrl'
       })
       .when('/quick-create', {
         templateUrl: 'views/quick-create.html',

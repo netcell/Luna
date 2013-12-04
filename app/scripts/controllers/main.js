@@ -16,4 +16,13 @@ angular.module('lunaApp')
 		var date = amduonglich.getCurrentLunarDate();
 		$scope.time.current_date = date[0];
 		$scope.time.current_month = date[1];
+    $scope.footer={};
+    $scope.footer.buttons = [];
+    $scope.$watch('footer.buttons', function(newVal, oldVal){
+      if ($scope.footer.buttons.length === 0) {
+        $('.more').height(20);
+      } else {
+        $('.more').height(50);
+      }
+    })
   });

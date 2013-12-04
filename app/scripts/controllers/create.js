@@ -110,6 +110,25 @@ angular.module('lunaApp')
 	    }
     });
 
+    $scope.footer.buttons = [
+        {
+            name:'đặt nhắc nhở',
+            action: function(){
+                $scope.submit();
+            }
+        },
+        {
+            name:'quay lại',
+            action: function(){
+                $location.path("/")
+            }
+        }
+    ];
+
+    $scope.$on('$destroy', function(){
+        $scope.footer.buttons = [];
+    });
+
     $scope.submit = function(){
     	var form = {
     		desc: 	$scope.selection.desc,

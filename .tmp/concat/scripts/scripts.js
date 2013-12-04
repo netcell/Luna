@@ -8,7 +8,10 @@ angular.module('lunaApp', [
 ]).config([
   '$routeProvider',
   function ($routeProvider) {
-    $routeProvider.when('/', { templateUrl: 'views/home.html' }).when('/quick-create', {
+    $routeProvider.when('/', {
+      templateUrl: 'views/home.html',
+      controller: 'HomeCtrl'
+    }).when('/quick-create', {
       templateUrl: 'views/quick-create.html',
       controller: 'QuickcreateCtrl'
     }).when('/under-construction', { templateUrl: 'views/under-construction.html' }).when('/create', {
@@ -51,6 +54,15 @@ angular.module('lunaApp').controller('MainCtrl', [
     var date = amduonglich.getCurrentLunarDate();
     $scope.time.current_date = date[0];
     $scope.time.current_month = date[1];
+    $scope.footer = {};
+    $scope.footer.buttons = [];
+    $scope.$watch('footer.buttons', function (newVal, oldVal) {
+      if ($scope.footer.buttons.length === 0) {
+        $('.more').height(20);
+      } else {
+        $('.more').height(50);
+      }
+    });
   }
 ]);
 'use strict';
@@ -491,6 +503,23 @@ angular.module('lunaApp').controller('CreateCtrl', [
         $scope.selection.repeat = $scope.options.repeats[2];
       }
     });
+    $scope.footer.buttons = [
+      {
+        name: '\u0111\u1eb7t nh\u1eafc nh\u1edf',
+        action: function () {
+          $scope.submit();
+        }
+      },
+      {
+        name: 'quay l\u1ea1i',
+        action: function () {
+          $location.path('/');
+        }
+      }
+    ];
+    $scope.$on('$destroy', function () {
+      $scope.footer.buttons = [];
+    });
     $scope.submit = function () {
       var form = {
           desc: $scope.selection.desc,
@@ -564,6 +593,17 @@ angular.module('lunaApp').directive('create', function () {
           element.find('#create-date,#create-date-label,#create-month,#create-month-label').removeClass('disabled');
           break;
         }
+      });
+      var scrollHandler = $(window).scroll(function () {
+          if ($(window).scrollTop() + $(window).height() > $(document).height() - 60) {
+            $('.more').height(0);
+          } else {
+            $('.more').height(50);
+          }
+        });
+      scope.$on('$destroy', function () {
+        $('.more').height(50);
+        scrollHandler.off('scroll');
       });
     }
   };
@@ -1235,5 +1275,26 @@ angular.module('lunaApp').controller('CreatedConfirmationCtrl', [
         }
       }, 1000);
     }
+  }
+]);
+'use strict';
+angular.module('lunaApp').controller('HomeCtrl', [
+  '$scope',
+  function ($scope) {
+    $scope.footer.buttons = [
+      {
+        name: 'x\xf3a nh\u1eafc nh\u1edf',
+        action: function () {
+        }
+      },
+      {
+        name: 'h\u01b0\u1edbng d\u1eabn',
+        action: function () {
+        }
+      }
+    ];
+    $scope.$on('$destroy', function () {
+      $scope.footer.buttons = [];
+    });
   }
 ]);

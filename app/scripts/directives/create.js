@@ -68,6 +68,17 @@ angular.module('lunaApp')
 	    		break;
 	    	}
 	    });
+		var scrollHandler = $(window).scroll(function() {
+		   if($(window).scrollTop() + $(window).height() > $(document).height() - 60) {
+		    	$('.more').height(0);
+		   } else {
+		   		$('.more').height(50);
+		   }
+		});
+		scope.$on('$destroy', function(){
+			$('.more').height(50);
+			scrollHandler.off('scroll');
+		});
       }
     };
   });
