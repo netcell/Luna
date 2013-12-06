@@ -32,7 +32,7 @@ angular.module('lunaApp', [
         templateUrl: 'views/account-over-used.html',
         controller: 'CreateCtrl'
       })
-      .when('/created-confirmation', {
+      .when('/confirmation/:action', {
         templateUrl: 'views/created-confirmation.html',
         controller: 'CreatedConfirmationCtrl'
       })

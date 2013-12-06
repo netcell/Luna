@@ -23,7 +23,7 @@ angular.module('lunaApp', [
     }).when('/account-over-used', {
       templateUrl: 'views/account-over-used.html',
       controller: 'CreateCtrl'
-    }).when('/created-confirmation', {
+    }).when('/confirmation/:action', {
       templateUrl: 'views/created-confirmation.html',
       controller: 'CreatedConfirmationCtrl'
     }).when('/delete', {
@@ -213,7 +213,8 @@ angular.module('lunaApp').controller('CreateCtrl', [
   '$scope',
   '$http',
   '$location',
-  function ($scope, $http, $location) {
+  'Validate',
+  function ($scope, $http, $location, Validate) {
     $scope.selection = {};
     $scope.options = {};
     var periods = [
@@ -537,7 +538,7 @@ angular.module('lunaApp').controller('CreateCtrl', [
           repeat: $scope.selection.repeat.index,
           email: $scope.selection.email
         };
-      if (form.email) {
+      if (form.email && Validate.validateEmail(form.email)) {
         switch (form.date) {
         case 'r\u1eb1m':
           form.date = 15;
@@ -552,7 +553,7 @@ angular.module('lunaApp').controller('CreateCtrl', [
           console.log(err);
         });
       } else {
-        alert('B\u1ea1n c\u1ea7n nh\u1eadp email');
+        alert('B\u1ea1n c\u1ea7n nh\u1eadp \u0111\xfang email');
       }
     };
   }
@@ -1267,7 +1268,15 @@ angular.module('lunaApp').controller('CreatedConfirmationCtrl', [
   '$scope',
   '$timeout',
   '$location',
-  function ($scope, $timeout, $location) {
+  '$routeParams',
+  function ($scope, $timeout, $location, $routeParams) {
+    var announces = {
+        'created': 'Nh\u1eafc nh\u1edf c\u1ee7a b\u1ea1n \u0111\xe3 \u0111\u01b0\u1ee3c t\u1ea1o.',
+        'deleted': 'Nh\u1eafc nh\u1edf c\u1ee7a b\u1ea1n \u0111\xe3 \u0111\u01b0\u1ee3c x\xf3a.'
+      };
+    $scope.announce = announces[$routeParams.action];
+    $scope.deleted = $routeParams.action == 'deleted';
+    $scope.$apply();
     $scope.timer = 10;
     setTimer();
     function setTimer() {

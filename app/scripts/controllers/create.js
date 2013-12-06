@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('lunaApp')
-  .controller('CreateCtrl', function ($scope, $http, $location) {
+  .controller('CreateCtrl', function ($scope, $http, $location, Validate) {
     $scope.selection = {};
     $scope.options = {};
 
@@ -140,7 +140,7 @@ angular.module('lunaApp')
     		repeat: $scope.selection.repeat.index,
     		email: 	$scope.selection.email
     	};
-        if (form.email) {
+        if (form.email && Validate.validateEmail(form.email)) {
             switch(form.date){
                 case 'rằm': form.date = 15; break;
                 case 'cuối': form.date = 100; break;
@@ -151,7 +151,7 @@ angular.module('lunaApp')
                 console.log(err);
             });
         } else {
-            alert('Bạn cần nhập email');
+            alert('Bạn cần nhập đúng email');
         }
     }
     
