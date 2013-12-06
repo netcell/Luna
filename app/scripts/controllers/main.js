@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('lunaApp')
-  .controller('MainCtrl', function ($scope, amduonglich) {
+  .controller('MainCtrl', function ($scope, amduonglich, $window) {
   	$scope.time = {};
   	$scope.time.day = [
   		'chủ nhật',
@@ -18,4 +18,8 @@ angular.module('lunaApp')
 		$scope.time.current_month = date[1];
     $scope.footer={};
     $scope.footer.buttons = [];
+    $scope.main={};
+    $scope.main.back = function(){
+      $window.history.back();
+    };
   });

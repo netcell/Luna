@@ -17,13 +17,7 @@ angular.module('lunaApp', [
     }).when('/under-construction', { templateUrl: 'views/under-construction.html' }).when('/create', {
       templateUrl: 'views/create.html',
       controller: 'CreateCtrl'
-    }).when('/confirmation-sent', {
-      templateUrl: 'views/confirm-sent.html',
-      controller: 'CreateCtrl'
-    }).when('/account-over-used', {
-      templateUrl: 'views/account-over-used.html',
-      controller: 'CreateCtrl'
-    }).when('/confirmation/:action', {
+    }).when('/confirmation-sent', { templateUrl: 'views/confirm-sent.html' }).when('/account-over-used', { templateUrl: 'views/account-over-used.html' }).when('/confirmation/:action', {
       templateUrl: 'views/created-confirmation.html',
       controller: 'CreatedConfirmationCtrl'
     }).when('/delete', {
@@ -42,7 +36,8 @@ angular.module('lunaApp', [
 angular.module('lunaApp').controller('MainCtrl', [
   '$scope',
   'amduonglich',
-  function ($scope, amduonglich) {
+  '$window',
+  function ($scope, amduonglich, $window) {
     $scope.time = {};
     $scope.time.day = [
       'ch\u1ee7 nh\u1eadt',
@@ -59,6 +54,10 @@ angular.module('lunaApp').controller('MainCtrl', [
     $scope.time.current_month = date[1];
     $scope.footer = {};
     $scope.footer.buttons = [];
+    $scope.main = {};
+    $scope.main.back = function () {
+      $window.history.back();
+    };
   }
 ]);
 'use strict';
@@ -510,7 +509,7 @@ angular.module('lunaApp').controller('CreateCtrl', [
       {
         name: 'quay l\u1ea1i',
         action: function () {
-          $location.path('/');
+          $scope.main.back();
         }
       }
     ];

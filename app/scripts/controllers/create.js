@@ -120,7 +120,7 @@ angular.module('lunaApp')
         {
             name:'quay lại',
             action: function(){
-                $location.path("/")
+                $scope.main.back();
             }
         }
     ];
