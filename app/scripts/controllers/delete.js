@@ -5,12 +5,10 @@ angular.module('lunaApp')
     $scope.submit = function(){
     	if ($scope.email && Validate.validateEmail($scope.email)) {
             $http.get('/user/delete-event/'+$scope.email).then(function(res){
-            	console.log(res.data);
-            	console.log(res.data == "0");
             	if (res.data == "0") {
             		alert('Bạn không có nhắc nhở nào.');
+                    $scope.main.back();
             	} else {
-            		alert(res.data);
             		$location.path("/confirmation-sent");
             	}
             }, function(err){

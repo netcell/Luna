@@ -1335,12 +1335,10 @@ angular.module('lunaApp').controller('DeleteCtrl', [
     $scope.submit = function () {
       if ($scope.email && Validate.validateEmail($scope.email)) {
         $http.get('/user/delete-event/' + $scope.email).then(function (res) {
-          console.log(res.data);
-          console.log(res.data == '0');
           if (res.data == '0') {
             alert('B\u1ea1n kh\xf4ng c\xf3 nh\u1eafc nh\u1edf n\xe0o.');
+            $scope.main.back();
           } else {
-            alert(res.data);
             $location.path('/confirmation-sent');
           }
         }, function (err) {
