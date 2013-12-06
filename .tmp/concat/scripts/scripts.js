@@ -1287,6 +1287,10 @@ angular.module('lunaApp').controller('CreatedConfirmationCtrl', [
     $scope.redirect = redirects[$routeParams.action];
     $scope.announce = announces[$routeParams.action];
     $scope.path = paths[$routeParams.action];
+    $scope.goDelete = function () {
+      $scope.path = '/delete';
+      $scope.goNow();
+    };
     $scope.goNow = function () {
       if ($scope.path != '/') {
         $location.path('/');
