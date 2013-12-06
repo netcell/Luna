@@ -14,24 +14,49 @@ angular.module('lunaApp')
       "auth-fail-create"  : "trang tạo nhắc nhở",
       "auth-fail-delete"  : "trang xóa nhắc nhở",
     };
+    var redirectsFooter = {
+      "created"           : "trang chủ",
+      "deleted"           : "trang chủ",
+      "auth-fail-create"  : "tạo nhắc nhở",
+      "auth-fail-delete"  : "xóa nhắc nhở",
+    };
     var paths = {
       "created"           : "/",
       "deleted"           : "/",
       "auth-fail-create"  : "/create",
       "auth-fail-delete"  : "/delete",
     };
+
     $scope.redirect = redirects[$routeParams.action];
     $scope.announce = announces[$routeParams.action];
+    $scope.path = paths[$routeParams.action];
+    $scope.goNow = function(){
+      if($scope.path!="/") {
+        $location.path("/");
+        $timeout(function(){$location.path($scope.path);},100);
+      } else $location.path($scope.path);
+    }
     $scope.created = $routeParams.action == "created";
-    $scope.$apply();
+
+    $scope.footer.buttons = [
+      {
+        name: redirectsFooter[$routeParams.action],
+        action: function(){
+          $scope.goNow();
+        }
+      }
+    ];
+    $scope.$on('$destroy', function(){
+      $scope.footer.buttons = [];
+    });
+
     $scope.timer = 10;
   	var timer;
     setTimer();
   	function setTimer(){
   		timer = $timeout(function(){
-  			console.log($scope.timer);
 	  		if ($scope.timer<=0) {
-	  			$location.path(paths[$routeParams.action]);
+	  			$scope.goNow();
 	  		} else {
 	  			$scope.timer -= 1;
 	  			setTimer();

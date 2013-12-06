@@ -75,7 +75,6 @@ angular.module('lunaApp')
     var selected_hour = $scope.options.hours[0];
     $scope.selection.desc = "";
     $scope.selection.hour = selected_hour;
-    console.log(selected_hour)
     $scope.selection.minute = $scope.options.minutes[0];
     $scope.options.periods=periods[selected_hour.periods];
     $scope.selection.period = periods[selected_hour.periods][0];

@@ -469,7 +469,6 @@ angular.module('lunaApp').controller('CreateCtrl', [
     var selected_hour = $scope.options.hours[0];
     $scope.selection.desc = '';
     $scope.selection.hour = selected_hour;
-    console.log(selected_hour);
     $scope.selection.minute = $scope.options.minutes[0];
     $scope.options.periods = periods[selected_hour.periods];
     $scope.selection.period = periods[selected_hour.periods][0];
@@ -1273,6 +1272,12 @@ angular.module('lunaApp').controller('CreatedConfirmationCtrl', [
         'auth-fail-create': 'trang t\u1ea1o nh\u1eafc nh\u1edf',
         'auth-fail-delete': 'trang x\xf3a nh\u1eafc nh\u1edf'
       };
+    var redirectsFooter = {
+        'created': 'trang ch\u1ee7',
+        'deleted': 'trang ch\u1ee7',
+        'auth-fail-create': 't\u1ea1o nh\u1eafc nh\u1edf',
+        'auth-fail-delete': 'x\xf3a nh\u1eafc nh\u1edf'
+      };
     var paths = {
         'created': '/',
         'deleted': '/',
@@ -1281,16 +1286,33 @@ angular.module('lunaApp').controller('CreatedConfirmationCtrl', [
       };
     $scope.redirect = redirects[$routeParams.action];
     $scope.announce = announces[$routeParams.action];
+    $scope.path = paths[$routeParams.action];
+    $scope.goNow = function () {
+      if ($scope.path != '/') {
+        $location.path('/');
+        $timeout(function () {
+          $location.path($scope.path);
+        }, 100);
+      } else
+        $location.path($scope.path);
+    };
     $scope.created = $routeParams.action == 'created';
-    $scope.$apply();
+    $scope.footer.buttons = [{
+        name: redirectsFooter[$routeParams.action],
+        action: function () {
+          $scope.goNow();
+        }
+      }];
+    $scope.$on('$destroy', function () {
+      $scope.footer.buttons = [];
+    });
     $scope.timer = 10;
     var timer;
     setTimer();
     function setTimer() {
       timer = $timeout(function () {
-        console.log($scope.timer);
         if ($scope.timer <= 0) {
-          $location.path(paths[$routeParams.action]);
+          $scope.goNow();
         } else {
           $scope.timer -= 1;
           setTimer();
