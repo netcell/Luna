@@ -467,6 +467,11 @@ select.size-20 {
   margin: 0 0.5em;
 }
 
+.app .module img {
+  border: 1px solid #DBDBDB;
+  border-radius: 6px;
+}
+
 .app .module .inform {
   font-size: 24px;
   text-align: justify;
