@@ -75,12 +75,14 @@ angular.module('lunaApp')
     var selected_hour = $scope.options.hours[0];
     $scope.selection.desc = "";
     $scope.selection.hour = selected_hour;
-    $scope.selection.minute= $scope.options.minutes[0];
-    $scope.selection.period=periods[selected_hour.periods][0];
-    $scope.selection.date= $scope.options.dates[0];
-    $scope.selection.month= $scope.options.months[0];
-    $scope.selection.repeat= $scope.options.repeats[0];
-    $scope.selection.email= "";
+    console.log(selected_hour)
+    $scope.selection.minute = $scope.options.minutes[0];
+    $scope.options.periods=periods[selected_hour.periods];
+    $scope.selection.period = periods[selected_hour.periods][0];
+    $scope.selection.date = $scope.options.dates[0];
+    $scope.selection.month = $scope.options.months[0];
+    $scope.selection.repeat = $scope.options.repeats[0];
+    $scope.selection.email = "";
     
     var init = 3;
 
