@@ -36,6 +36,10 @@ angular.module('lunaApp', [
         templateUrl: 'views/created-confirmation.html',
         controller: 'CreatedConfirmationCtrl'
       })
+      .when('/delete', {
+        templateUrl: 'views/delete.html',
+        controller: 'DeleteCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       })

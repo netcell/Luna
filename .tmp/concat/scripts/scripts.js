@@ -26,6 +26,9 @@ angular.module('lunaApp', [
     }).when('/created-confirmation', {
       templateUrl: 'views/created-confirmation.html',
       controller: 'CreatedConfirmationCtrl'
+    }).when('/delete', {
+      templateUrl: 'views/delete.html',
+      controller: 'DeleteCtrl'
     }).otherwise({ redirectTo: '/' });
   }
 ]).run([
@@ -1296,5 +1299,23 @@ angular.module('lunaApp').controller('HomeCtrl', [
     $scope.$on('$destroy', function () {
       $scope.footer.buttons = [];
     });
+  }
+]);
+'use strict';
+angular.module('lunaApp').controller('DeleteCtrl', [
+  '$scope',
+  '$http',
+  function ($scope, $http) {
+    $scope.submit = function () {
+      if ($scope.email) {
+        $http.get('/user/delete-event/' + $scope.email).then(function (res) {
+          $location.path('/confirmation-sent');
+        }, function (err) {
+          console.log(err);
+        });
+      } else {
+        alert('B\u1ea1n c\u1ea7n nh\u1eadp email');
+      }
+    };
   }
 ]);
