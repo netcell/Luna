@@ -1283,11 +1283,13 @@ angular.module('lunaApp').controller('CreatedConfirmationCtrl', [
 'use strict';
 angular.module('lunaApp').controller('HomeCtrl', [
   '$scope',
-  function ($scope) {
+  '$location',
+  function ($scope, $location) {
     $scope.footer.buttons = [
       {
         name: 'x\xf3a nh\u1eafc nh\u1edf',
         action: function () {
+          $location.path('/delete');
         }
       },
       {
@@ -1305,10 +1307,12 @@ angular.module('lunaApp').controller('HomeCtrl', [
 angular.module('lunaApp').controller('DeleteCtrl', [
   '$scope',
   '$http',
-  function ($scope, $http) {
+  '$location',
+  function ($scope, $http, $location) {
     $scope.submit = function () {
       if ($scope.email) {
         $http.get('/user/delete-event/' + $scope.email).then(function (res) {
+          console.log(res);
           $location.path('/confirmation-sent');
         }, function (err) {
           console.log(err);

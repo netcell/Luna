@@ -1,12 +1,12 @@
 'use strict';
 
 angular.module('lunaApp')
-  .controller('HomeCtrl', function ($scope) {
+  .controller('HomeCtrl', function ($scope,$location) {
     $scope.footer.buttons = [
     	{
     		name:'xóa nhắc nhở',
     		action: function(){
-    			
+    			$location.path("/delete");
     		}
     	},
     	{
