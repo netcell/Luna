@@ -59,6 +59,9 @@ angular.module('lunaApp').controller('MainCtrl', [
     $scope.time.current_month = date[1];
     $scope.footer = {};
     $scope.footer.buttons = [];
+    if ($scope.footer.buttons.length === 0) {
+      $('.more').height(20);
+    }
     $scope.$watch('footer.buttons', function (newVal, oldVal) {
       if ($scope.footer.buttons.length === 0) {
         $('.more').height(20);
@@ -1308,18 +1311,32 @@ angular.module('lunaApp').controller('DeleteCtrl', [
   '$scope',
   '$http',
   '$location',
-  function ($scope, $http, $location) {
+  'Validate',
+  function ($scope, $http, $location, Validate) {
     $scope.submit = function () {
-      if ($scope.email) {
+      if ($scope.email && Validate.validateEmail($scope.email)) {
         $http.get('/user/delete-event/' + $scope.email).then(function (res) {
           console.log(res);
-          $location.path('/confirmation-sent');
+          if (res.data == '0') {
+            alert('B\u1ea1n kh\xf4ng c\xf3 nh\u1eafc nh\u1edf n\xe0o.');
+          } else {
+            $location.path('/confirmation-sent');
+          }
         }, function (err) {
           console.log(err);
         });
       } else {
-        alert('B\u1ea1n c\u1ea7n nh\u1eadp email');
+        alert('B\u1ea1n c\u1ea7n nh\u1eadp \u0111\xfang \u0111\u1ecba ch\u1ec9 email.');
       }
     };
   }
 ]);
+'use strict';
+angular.module('lunaApp').factory('Validate', function () {
+  return {
+    validateEmail: function validateEmail(email) {
+      var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(email);
+    }
+  };
+});
