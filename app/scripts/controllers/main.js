@@ -18,14 +18,4 @@ angular.module('lunaApp')
 		$scope.time.current_month = date[1];
     $scope.footer={};
     $scope.footer.buttons = [];
-    if ($scope.footer.buttons.length === 0) {
-      $('.more').height(20);
-    }
-    $scope.$watch('footer.buttons', function(newVal, oldVal){
-      if ($scope.footer.buttons.length === 0) {
-        $('.more').height(20);
-      } else {
-        $('.more').height(50);
-      }
-    })
   });

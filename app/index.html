@@ -55,7 +55,7 @@
           </div>
         </div>
       </div>
-      <div class="more no-user-select after-loading hidden" ng-if="!loading.value">
+      <div class="more no-user-select after-loading hidden" ng-if="!loading.value" footer>
           <ul class="menu">
             <li ng-repeat="button in footer.buttons" ng-click="button.action()" ng-bind="button.name"></li>
           </ul>
@@ -101,6 +101,8 @@
         <script src="scripts/controllers/home.js"></script>
         <script src="scripts/controllers/delete.js"></script>
         <script src="scripts/services/validate.js"></script>
+        <script src="scripts/controllers/footer.js"></script>
+        <script src="scripts/directives/footer.js"></script>
         <!-- endbuild -->
 
         <!-- <script src="scripts/animations/content-module.js"></script> -->

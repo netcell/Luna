@@ -59,16 +59,6 @@ angular.module('lunaApp').controller('MainCtrl', [
     $scope.time.current_month = date[1];
     $scope.footer = {};
     $scope.footer.buttons = [];
-    if ($scope.footer.buttons.length === 0) {
-      $('.more').height(20);
-    }
-    $scope.$watch('footer.buttons', function (newVal, oldVal) {
-      if ($scope.footer.buttons.length === 0) {
-        $('.more').height(20);
-      } else {
-        $('.more').height(50);
-      }
-    });
   }
 ]);
 'use strict';
@@ -1271,25 +1261,44 @@ angular.module('lunaApp').controller('CreatedConfirmationCtrl', [
   '$routeParams',
   function ($scope, $timeout, $location, $routeParams) {
     var announces = {
-        'created': 'Nh\u1eafc nh\u1edf c\u1ee7a b\u1ea1n \u0111\xe3 \u0111\u01b0\u1ee3c t\u1ea1o.',
-        'deleted': 'Nh\u1eafc nh\u1edf c\u1ee7a b\u1ea1n \u0111\xe3 \u0111\u01b0\u1ee3c x\xf3a.'
+        'created': 'Nh\u1eafc nh\u1edf c\u1ee7a b\u1ea1n \u0111\xe3 \u0111\u01b0\u1ee3c t\u1ea1o',
+        'deleted': 'Nh\u1eafc nh\u1edf c\u1ee7a b\u1ea1n \u0111\xe3 \u0111\u01b0\u1ee3c x\xf3a',
+        'auth-fail-create': 'Nh\u1eafc nh\u1edf c\u1ee7a b\u1ea1n ch\u01b0a \u0111\u01b0\u1ee3c t\u1ea1o v\xec \u0111\u01b0\u1eddng link x\xe1c nh\u1eadn \u0111\xe3 qu\xe1 c\u0169, kh\xf4ng c\xf2n hi\u1ec7u l\u1ef1c',
+        'auth-fail-delete': 'Nh\u1eafc nh\u1edf c\u1ee7a b\u1ea1n ch\u01b0a \u0111\u01b0\u1ee3c x\xf3a v\xec \u0111\u01b0\u1eddng link x\xe1c nh\u1eadn \u0111\xe3 qu\xe1 c\u0169, kh\xf4ng c\xf2n hi\u1ec7u l\u1ef1c'
       };
+    var redirects = {
+        'created': 'trang ch\u1ee7',
+        'deleted': 'trang ch\u1ee7',
+        'auth-fail-create': 'trang t\u1ea1o nh\u1eafc nh\u1edf',
+        'auth-fail-delete': 'trang x\xf3a nh\u1eafc nh\u1edf'
+      };
+    var paths = {
+        'created': '/',
+        'deleted': '/',
+        'auth-fail-create': '/create',
+        'auth-fail-delete': '/delete'
+      };
+    $scope.redirect = redirects[$routeParams.action];
     $scope.announce = announces[$routeParams.action];
-    $scope.deleted = $routeParams.action == 'deleted';
+    $scope.created = $routeParams.action == 'created';
     $scope.$apply();
     $scope.timer = 10;
+    var timer;
     setTimer();
     function setTimer() {
-      $timeout(function () {
+      timer = $timeout(function () {
         console.log($scope.timer);
         if ($scope.timer <= 0) {
-          $location.path('/');
+          $location.path(paths[$routeParams.action]);
         } else {
           $scope.timer -= 1;
           setTimer();
         }
       }, 1000);
     }
+    $scope.$on('$destroy', function () {
+      $timeout.cancel(timer);
+    });
   }
 ]);
 'use strict';
@@ -1348,6 +1357,29 @@ angular.module('lunaApp').factory('Validate', function () {
     validateEmail: function validateEmail(email) {
       var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       return re.test(email);
+    }
+  };
+});
+'use strict';
+angular.module('lunaApp').controller('FooterCtrl', [
+  '$scope',
+  function ($scope) {
+  }
+]);
+'use strict';
+angular.module('lunaApp').directive('footer', function () {
+  return {
+    restrict: 'A',
+    link: function postLink(scope, element, attrs) {
+      if (!scope.footer.buttons.length)
+        $('.more').height(20);
+      scope.$watch('footer.buttons.length', function (newVal, oldVal) {
+        if (!newVal) {
+          $('.more').height(20);
+        } else {
+          $('.more').height(50);
+        }
+      });
     }
   };
 });
