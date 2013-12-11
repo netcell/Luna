@@ -37,18 +37,10 @@ angular.module('lunaApp').controller('MainCtrl', [
   '$scope',
   'amduonglich',
   '$window',
-  function ($scope, amduonglich, $window) {
+  'DateTime',
+  function ($scope, amduonglich, $window, DateTime) {
     $scope.time = {};
-    $scope.time.day = [
-      'ch\u1ee7 nh\u1eadt',
-      'th\u1ee9 hai',
-      'th\u1ee9 ba',
-      'th\u1ee9 t\u01b0',
-      'th\u1ee9 n\u0103m',
-      'th\u1ee9 s\xe1u',
-      'th\u1ee9 b\u1ea3y'
-    ];
-    $scope.time.current_day = $scope.time.day[new Date().getDay()];
+    $scope.time.current_day = DateTime.getCurrentDay(true);
     var date = amduonglich.getCurrentLunarDate();
     $scope.time.current_date = date[0];
     $scope.time.current_month = date[1];
@@ -203,277 +195,22 @@ angular.module('lunaApp').controller('CreateCtrl', [
   '$http',
   '$location',
   'Validate',
-  function ($scope, $http, $location, Validate) {
+  'DateTime',
+  function ($scope, $http, $location, Validate, DateTime) {
     $scope.selection = {};
     $scope.options = {};
-    var periods = [
-        [
-          {
-            value: 's\xe1ng',
-            index: 0,
-            standard: 'am'
-          },
-          {
-            value: 'chi\u1ec1u',
-            index: 1,
-            standard: 'pm'
-          }
-        ],
-        [
-          {
-            value: 's\xe1ng',
-            index: 0,
-            standard: 'am'
-          },
-          {
-            value: 't\u1ed1i',
-            index: 1,
-            standard: 'pm'
-          }
-        ],
-        [
-          {
-            value: 'tr\u01b0a',
-            index: 0,
-            standard: 'am'
-          },
-          {
-            value: '\u0111\xeam',
-            index: 1,
-            standard: 'pm'
-          }
-        ]
-      ];
-    $scope.options.hours = [
-      {
-        value: '01',
-        periods: 0
-      },
-      {
-        value: '02',
-        periods: 0
-      },
-      {
-        value: '03',
-        periods: 0
-      },
-      {
-        value: '04',
-        periods: 0
-      },
-      {
-        value: '05',
-        periods: 0
-      },
-      {
-        value: '06',
-        periods: 0
-      },
-      {
-        value: '07',
-        periods: 1
-      },
-      {
-        value: '08',
-        periods: 1
-      },
-      {
-        value: '09',
-        periods: 1
-      },
-      {
-        value: '10',
-        periods: 1
-      },
-      {
-        value: '11',
-        periods: 2
-      },
-      {
-        value: '12',
-        periods: 2
-      }
-    ];
-    $scope.options.months = [
-      {
-        value: 'gi\xeang',
-        index: 0,
-        standard: '01'
-      },
-      {
-        value: 'hai',
-        index: 1,
-        standard: '02'
-      },
-      {
-        value: 'ba',
-        index: 2,
-        standard: '03'
-      },
-      {
-        value: 'b\u1ed1n',
-        index: 3,
-        standard: '04'
-      },
-      {
-        value: 'n\u0103m',
-        index: 4,
-        standard: '05'
-      },
-      {
-        value: 's\xe1u',
-        index: 5,
-        standard: '06'
-      },
-      {
-        value: 'b\u1ea3y',
-        index: 6,
-        standard: '07'
-      },
-      {
-        value: 't\xe1m',
-        index: 7,
-        standard: '08'
-      },
-      {
-        value: 'ch\xedn',
-        index: 8,
-        standard: '09'
-      },
-      {
-        value: 'm\u01b0\u1eddi',
-        index: 9,
-        standard: '10'
-      },
-      {
-        value: 'm\u01b0\u1eddi m\u1ed9t',
-        index: 10,
-        standard: '11'
-      },
-      {
-        value: 'ch\u1ea1p',
-        index: 11,
-        standard: '12'
-      }
-    ];
-    $scope.options.repeats = [
-      {
-        value: 'ng\xe0y',
-        index: 0
-      },
-      {
-        value: 'th\xe1ng',
-        index: 1
-      },
-      {
-        value: 'n\u0103m',
-        index: 2
-      }
-    ];
-    $scope.options.minutes = [
-      '00',
-      '01',
-      '02',
-      '03',
-      '04',
-      '05',
-      '06',
-      '07',
-      '08',
-      '09',
-      '10',
-      '11',
-      '12',
-      '13',
-      '14',
-      '15',
-      '16',
-      '17',
-      '18',
-      '19',
-      '20',
-      '21',
-      '22',
-      '23',
-      '24',
-      '25',
-      '26',
-      '27',
-      '28',
-      '29',
-      '30',
-      '31',
-      '32',
-      '33',
-      '34',
-      '35',
-      '36',
-      '37',
-      '38',
-      '39',
-      '40',
-      '41',
-      '42',
-      '43',
-      '44',
-      '45',
-      '46',
-      '47',
-      '48',
-      '49',
-      '50',
-      '51',
-      '52',
-      '53',
-      '54',
-      '55',
-      '56',
-      '57',
-      '58',
-      '59'
-    ];
-    $scope.options.dates = [
-      'r\u1eb1m',
-      'cu\u1ed1i',
-      '01',
-      '02',
-      '03',
-      '04',
-      '05',
-      '06',
-      '07',
-      '08',
-      '09',
-      '10',
-      '11',
-      '12',
-      '13',
-      '14',
-      '15',
-      '16',
-      '17',
-      '18',
-      '19',
-      '20',
-      '21',
-      '22',
-      '23',
-      '24',
-      '25',
-      '26',
-      '27',
-      '28',
-      '29',
-      '30'
-    ];
-    var selected_hour = $scope.options.hours[0];
+    $scope.options.hours = DateTime.hours;
+    $scope.options.minutes = DateTime.minutes;
+    $scope.options.dates = DateTime.dates;
+    $scope.options.months = DateTime.months;
+    $scope.options.repeats = DateTime.repeats;
     $scope.selection.desc = '';
-    $scope.selection.hour = selected_hour;
-    $scope.selection.minute = $scope.options.minutes[0];
-    $scope.options.periods = periods[selected_hour.periods];
-    $scope.selection.period = periods[selected_hour.periods][0];
-    $scope.selection.date = $scope.options.dates[0];
-    $scope.selection.month = $scope.options.months[0];
+    $scope.selection.hour = DateTime.getCurrentHour(true);
+    $scope.selection.minute = DateTime.getCurrentMinute(true);
+    $scope.options.periods = DateTime.periods[$scope.selection.hour.periods];
+    $scope.selection.period = DateTime.getCurrentPeriod(true);
+    $scope.selection.date = DateTime.getCurrentLunarDate(true);
+    $scope.selection.month = DateTime.getCurrentLunarMonth(true);
     $scope.selection.repeat = $scope.options.repeats[0];
     $scope.selection.email = '';
     var init = 3;
@@ -518,17 +255,21 @@ angular.module('lunaApp').controller('CreateCtrl', [
       $scope.footer.buttons = [];
     });
     $scope.submit = function () {
-      var form = {
-          desc: $scope.selection.desc,
-          hour: $scope.selection.hour.value,
-          minute: $scope.selection.minute,
-          period: $scope.selection.period.standard,
-          date: $scope.selection.date,
-          month: $scope.selection.month.standard,
-          repeat: $scope.selection.repeat.index,
-          email: $scope.selection.email
-        };
-      if (form.email && Validate.validateEmail(form.email)) {
+      if (!$scope.selection.email)
+        alert('B\u1ea1n c\u1ea7n nh\u1eadp email');
+      else if (!Validate.validateEmail($scope.selection.email))
+        alert('B\u1ea1n c\u1ea7n nh\u1eadp \u0111\xfang email');
+      else {
+        var form = {
+            desc: $scope.selection.desc,
+            hour: $scope.selection.hour.value,
+            minute: $scope.selection.minute,
+            period: $scope.selection.period.standard,
+            date: $scope.selection.date,
+            month: $scope.selection.month.standard,
+            repeat: $scope.selection.repeat.index,
+            email: $scope.selection.email
+          };
         switch (form.date) {
         case 'r\u1eb1m':
           form.date = 15;
@@ -542,8 +283,6 @@ angular.module('lunaApp').controller('CreateCtrl', [
         }, function (err) {
           console.log(err);
         });
-      } else {
-        alert('B\u1ea1n c\u1ea7n nh\u1eadp \u0111\xfang email');
       }
     };
   }
@@ -1408,3 +1147,301 @@ angular.module('lunaApp').directive('footer', function () {
     }
   };
 });
+'use strict';
+angular.module('lunaApp').factory('DateTime', [
+  'amduonglich',
+  function (amduonglich) {
+    var dayInText = [
+        'ch\u1ee7 nh\u1eadt',
+        'th\u1ee9 hai',
+        'th\u1ee9 ba',
+        'th\u1ee9 t\u01b0',
+        'th\u1ee9 n\u0103m',
+        'th\u1ee9 s\xe1u',
+        'th\u1ee9 b\u1ea3y'
+      ];
+    return {
+      getCurrentDay: function (inText) {
+        var d = new Date().getDay();
+        return inText ? dayInText[d] : d;
+      },
+      getCurrentLunarDate: function (asObject) {
+        return this.dates[amduonglich.getCurrentLunarDate()[0] + 1];
+      },
+      getCurrentLunarMonth: function (asObject) {
+        return this.months[amduonglich.getCurrentLunarDate()[1] - 1];
+      },
+      getCurrentHour: function (asObject) {
+        var h = new Date().getHours() || 24;
+        return this.hours[(h - 1) % 12];
+      },
+      getCurrentMinute: function (asObject) {
+        return this.minutes[new Date().getMinutes()];
+      },
+      getCurrentPeriod: function (asObject) {
+        var h = new Date().getHours() || 24;
+        return this.periods[this.getCurrentHour().periods][h < 13 ? 0 : 1];
+      },
+      periods: [
+        [
+          {
+            value: 's\xe1ng',
+            index: 0,
+            standard: 'am'
+          },
+          {
+            value: 'chi\u1ec1u',
+            index: 1,
+            standard: 'pm'
+          }
+        ],
+        [
+          {
+            value: 's\xe1ng',
+            index: 0,
+            standard: 'am'
+          },
+          {
+            value: 't\u1ed1i',
+            index: 1,
+            standard: 'pm'
+          }
+        ],
+        [
+          {
+            value: 'tr\u01b0a',
+            index: 0,
+            standard: 'am'
+          },
+          {
+            value: '\u0111\xeam',
+            index: 1,
+            standard: 'pm'
+          }
+        ]
+      ],
+      hours: [
+        {
+          value: '01',
+          periods: 0
+        },
+        {
+          value: '02',
+          periods: 0
+        },
+        {
+          value: '03',
+          periods: 0
+        },
+        {
+          value: '04',
+          periods: 0
+        },
+        {
+          value: '05',
+          periods: 0
+        },
+        {
+          value: '06',
+          periods: 0
+        },
+        {
+          value: '07',
+          periods: 1
+        },
+        {
+          value: '08',
+          periods: 1
+        },
+        {
+          value: '09',
+          periods: 1
+        },
+        {
+          value: '10',
+          periods: 1
+        },
+        {
+          value: '11',
+          periods: 2
+        },
+        {
+          value: '12',
+          periods: 2
+        }
+      ],
+      minutes: [
+        '00',
+        '01',
+        '02',
+        '03',
+        '04',
+        '05',
+        '06',
+        '07',
+        '08',
+        '09',
+        '10',
+        '11',
+        '12',
+        '13',
+        '14',
+        '15',
+        '16',
+        '17',
+        '18',
+        '19',
+        '20',
+        '21',
+        '22',
+        '23',
+        '24',
+        '25',
+        '26',
+        '27',
+        '28',
+        '29',
+        '30',
+        '31',
+        '32',
+        '33',
+        '34',
+        '35',
+        '36',
+        '37',
+        '38',
+        '39',
+        '40',
+        '41',
+        '42',
+        '43',
+        '44',
+        '45',
+        '46',
+        '47',
+        '48',
+        '49',
+        '50',
+        '51',
+        '52',
+        '53',
+        '54',
+        '55',
+        '56',
+        '57',
+        '58',
+        '59'
+      ],
+      dates: [
+        'r\u1eb1m',
+        'cu\u1ed1i',
+        '01',
+        '02',
+        '03',
+        '04',
+        '05',
+        '06',
+        '07',
+        '08',
+        '09',
+        '10',
+        '11',
+        '12',
+        '13',
+        '14',
+        '15',
+        '16',
+        '17',
+        '18',
+        '19',
+        '20',
+        '21',
+        '22',
+        '23',
+        '24',
+        '25',
+        '26',
+        '27',
+        '28',
+        '29',
+        '30'
+      ],
+      months: [
+        {
+          value: 'gi\xeang',
+          index: 0,
+          standard: '01'
+        },
+        {
+          value: 'hai',
+          index: 1,
+          standard: '02'
+        },
+        {
+          value: 'ba',
+          index: 2,
+          standard: '03'
+        },
+        {
+          value: 'b\u1ed1n',
+          index: 3,
+          standard: '04'
+        },
+        {
+          value: 'n\u0103m',
+          index: 4,
+          standard: '05'
+        },
+        {
+          value: 's\xe1u',
+          index: 5,
+          standard: '06'
+        },
+        {
+          value: 'b\u1ea3y',
+          index: 6,
+          standard: '07'
+        },
+        {
+          value: 't\xe1m',
+          index: 7,
+          standard: '08'
+        },
+        {
+          value: 'ch\xedn',
+          index: 8,
+          standard: '09'
+        },
+        {
+          value: 'm\u01b0\u1eddi',
+          index: 9,
+          standard: '10'
+        },
+        {
+          value: 'm\u01b0\u1eddi m\u1ed9t',
+          index: 10,
+          standard: '11'
+        },
+        {
+          value: 'ch\u1ea1p',
+          index: 11,
+          standard: '12'
+        }
+      ],
+      repeats: [
+        {
+          value: 'ng\xe0y',
+          index: 0
+        },
+        {
+          value: 'th\xe1ng',
+          index: 1
+        },
+        {
+          value: 'n\u0103m',
+          index: 2
+        }
+      ]
+    };
+  }
+]);
