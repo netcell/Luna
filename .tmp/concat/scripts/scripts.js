@@ -17,9 +17,12 @@ angular.module('lunaApp', [
     }).when('/under-construction', { templateUrl: 'views/under-construction.html' }).when('/create', {
       templateUrl: 'views/create.html',
       controller: 'CreateCtrl'
-    }).when('/confirmation-sent', { templateUrl: 'views/confirm-sent.html' }).when('/account-over-used', { templateUrl: 'views/account-over-used.html' }).when('/confirmation/:action', {
-      templateUrl: 'views/created-confirmation.html',
-      controller: 'CreatedConfirmationCtrl'
+    }).when('/confirmation/:action', {
+      templateUrl: 'views/confirmation.html',
+      controller: 'ConfirmationCtrl'
+    }).when('/account-over-used', { templateUrl: 'views/account-over-used.html' }).when('/has/:action', {
+      templateUrl: 'views/has.html',
+      controller: 'HasCtrl'
     }).when('/delete', {
       templateUrl: 'views/delete.html',
       controller: 'DeleteCtrl'
@@ -151,11 +154,12 @@ angular.module('lunaApp').controller('LoadingscreenCtrl', [
     var fontLight = $http.get('fonts/SourceSansPro-Light.ttf');
     var fontSemibold = $http.get('fonts/SourceSansPro-Semibold.ttf');
     var view1 = $http.get('views/account-over-used.html');
-    var view2 = $http.get('views/confirm-sent.html');
+    var view2 = $http.get('views/confirmation.html');
     var view3 = $http.get('views/home.html');
     var view4 = $http.get('views/create.html');
     var view5 = $http.get('views/quick-create.html');
     var view6 = $http.get('views/under-construction.html');
+    var view7 = $http.get('views/has.html');
     $q.all([
       fontExtraLight,
       fontLight,
@@ -165,7 +169,8 @@ angular.module('lunaApp').controller('LoadingscreenCtrl', [
       view3,
       view4,
       view5,
-      view6
+      view6,
+      view7
     ]).then(function () {
       $scope.loading.value = false;
     });
@@ -196,7 +201,8 @@ angular.module('lunaApp').controller('CreateCtrl', [
   '$location',
   'Validate',
   'DateTime',
-  function ($scope, $http, $location, Validate, DateTime) {
+  'User',
+  function ($scope, $http, $location, Validate, DateTime, User) {
     $scope.selection = {};
     $scope.options = {};
     $scope.options.hours = DateTime.hours;
@@ -212,7 +218,7 @@ angular.module('lunaApp').controller('CreateCtrl', [
     $scope.selection.date = DateTime.getCurrentLunarDate(true);
     $scope.selection.month = DateTime.getCurrentLunarMonth(true);
     $scope.selection.repeat = $scope.options.repeats[0];
-    $scope.selection.email = '';
+    $scope.selection.email = User.getEmail();
     var init = 3;
     $scope.$watch('selection.hour', function (newValue, oldValue, scope) {
       if (init) {
@@ -278,8 +284,10 @@ angular.module('lunaApp').controller('CreateCtrl', [
           form.date = 100;
           break;
         }
+        ;
+        User.setEmail($scope.selection.email);
         $http.post('/user/quick-create', form).then(function (res) {
-          $location.path('/confirmation-sent');
+          $location.path('/confirmation/sent');
         }, function (err) {
           console.log(err);
         });
@@ -993,7 +1001,7 @@ angular.module('lunaApp').factory('amduonglich', function () {
   };
 });
 'use strict';
-angular.module('lunaApp').controller('CreatedConfirmationCtrl', [
+angular.module('lunaApp').controller('HasCtrl', [
   '$scope',
   '$timeout',
   '$location',
@@ -1445,3 +1453,41 @@ angular.module('lunaApp').factory('DateTime', [
     };
   }
 ]);
+'use strict';
+angular.module('lunaApp').controller('ConfirmationCtrl', [
+  '$scope',
+  '$routeParams',
+  'User',
+  function ($scope, $routeParams, User) {
+    $scope.email = User.getEmail();
+  }
+]);
+'use strict';
+angular.module('lunaApp').factory('User', function () {
+  function clone(obj) {
+    return JSON.parse(JSON.stringify(obj));
+  }
+  function updateUser() {
+    return true;
+  }
+  return {
+    clone: function () {
+      return clone(this);
+    },
+    set: function (user) {
+      for (key in user) {
+        this[key] = user[key];
+      }
+      updateUser();
+      return this;
+    },
+    getEmail: function () {
+      return this.email ? this.email : '';
+    },
+    setEmail: function (email) {
+      this.email = email;
+      updateUser();
+      return this;
+    }
+  };
+});

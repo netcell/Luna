@@ -1,0 +1,15 @@
+<div class="inform module-content" grid=2>
+	<div>Cám ơn đã sử dụng dịch vụ của chúng tôi.</div>
+	<div class="seperator"></div>
+	<div>
+		<span class="bold" ng-bind="announce">.</span>
+	</div>
+	<div class="seperator"></div>
+	<div>
+		Dịch vụ sẽ tự động đưa bạn về <span class="underline link bold" ng-click="goNow()" ng-bind="redirect"></span> sau <span class="bold" ng-bind="timer"></span> giây nữa.
+	</div>
+	<div class="seperator"></div>
+	<div class="info" ng-if="created">
+		<p>Bạn có thể <a ng-click="goDelete()" class="underline link">bấm vào đây</a> để chọn xóa một hoặc nhiều nhắc nhở đã tạo nếu cần.</p>
+	</div>
+</div>

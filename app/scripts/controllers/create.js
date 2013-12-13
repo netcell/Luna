@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('lunaApp')
-  .controller('CreateCtrl', function ($scope, $http, $location, Validate, DateTime) {
+  .controller('CreateCtrl', function ($scope, $http, $location, Validate, DateTime, User) {
     
     //Selected values
     $scope.selection = {};
@@ -25,7 +25,7 @@ angular.module('lunaApp')
     $scope.selection.date = DateTime.getCurrentLunarDate(true);
     $scope.selection.month = DateTime.getCurrentLunarMonth(true);
     $scope.selection.repeat = $scope.options.repeats[0];
-    $scope.selection.email = "";
+    $scope.selection.email = User.getEmail();
     
     var init = 3;
 
@@ -92,9 +92,10 @@ angular.module('lunaApp')
             switch(form.date){
                 case 'rằm': form.date = 15; break;
                 case 'cuối': form.date = 100; break;
-            }
+            };
+            User.setEmail($scope.selection.email);
             $http.post('/user/quick-create', form).then(function(res){
-                $location.path("/confirmation-sent");
+                $location.path("/confirmation/sent");
             }, function(err){
                 console.log(err);
             });
