@@ -3,6 +3,26 @@
 angular.module('lunaApp')
   .controller('DeleteCtrl', function ($scope,$http,$location,Validate,User) {
     $scope.email = User.getEmail();
+    
+    $scope.footer.buttons = [
+        {
+            name:'yêu cầu xóa',
+            action: function(){
+                $scope.submit();
+            }
+        },
+        {
+            name:'quay lại',
+            action: function(){
+                $scope.main.back();
+            }
+        }
+    ];
+
+    $scope.$on('$destroy', function(){
+        $scope.footer.buttons = [];
+    });
+
     $scope.submit = function(){
     	if ($scope.email && Validate.validateEmail($scope.email)) {
             $http.get('/user/delete-event/'+$scope.email).then(function(res){

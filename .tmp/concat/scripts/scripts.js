@@ -302,7 +302,6 @@ angular.module('lunaApp').directive('create', function () {
   return {
     restrict: 'A',
     link: function postLink(scope, element, attrs) {
-      $('html, body').animate({ scrollTop: $('.app').offset().top }, 500);
       scope.$watch('selection.date', function (newValue, oldValue, scope) {
         switch (newValue) {
         case 'r\u1eb1m':
@@ -339,17 +338,6 @@ angular.module('lunaApp').directive('create', function () {
           element.find('#create-date,#create-date-label,#create-month,#create-month-label').removeClass('disabled');
           break;
         }
-      });
-      var scrollHandler = $(window).scroll(function () {
-          if ($(window).scrollTop() + $(window).height() > $(document).height() - 60) {
-            $('.more').height(0);
-          } else {
-            $('.more').height(50);
-          }
-        });
-      scope.$on('$destroy', function () {
-        $('.more').height(50);
-        scrollHandler.off('scroll');
       });
     }
   };
@@ -1109,6 +1097,23 @@ angular.module('lunaApp').controller('DeleteCtrl', [
   'User',
   function ($scope, $http, $location, Validate, User) {
     $scope.email = User.getEmail();
+    $scope.footer.buttons = [
+      {
+        name: 'y\xeau c\u1ea7u x\xf3a',
+        action: function () {
+          $scope.submit();
+        }
+      },
+      {
+        name: 'quay l\u1ea1i',
+        action: function () {
+          $scope.main.back();
+        }
+      }
+    ];
+    $scope.$on('$destroy', function () {
+      $scope.footer.buttons = [];
+    });
     $scope.submit = function () {
       if ($scope.email && Validate.validateEmail($scope.email)) {
         $http.get('/user/delete-event/' + $scope.email).then(function (res) {
@@ -1523,3 +1528,33 @@ angular.module('lunaApp').directive('submitInput', function () {
     }
   };
 });
+'use strict';
+angular.module('lunaApp').directive('form', [
+  '$timeout',
+  function ($timeout) {
+    return {
+      restrict: 'C',
+      link: function postLink(scope, element, attrs) {
+        $('html, body').animate({ scrollTop: $('.app').offset().top }, 500);
+        $timeout(function () {
+          if ($(window).scrollTop() + $(window).height() > $(document).height() - 60) {
+            $('.more').height(10);
+          } else {
+            $('.more').height(50);
+          }
+        }, 100);
+        var scrollHandler = $(window).scroll(function () {
+            if ($(window).scrollTop() + $(window).height() > $(document).height() - 60) {
+              $('.more').height(10);
+            } else {
+              $('.more').height(50);
+            }
+          });
+        scope.$on('$destroy', function () {
+          $('.more').height(50);
+          scrollHandler.off('scroll');
+        });
+      }
+    };
+  }
+]);

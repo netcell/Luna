@@ -5,9 +5,6 @@ angular.module('lunaApp')
     return {
       restrict: 'A',
       link: function postLink(scope, element, attrs) {
-      	$('html, body').animate({
-	        scrollTop: $(".app").offset().top
-	    }, 500);
       	scope.$watch('selection.date', function(newValue, oldValue, scope) {
 	    	switch(newValue) {
 	    		case 'rằm':
@@ -64,17 +61,6 @@ angular.module('lunaApp')
 	    		break;
 	    	}
 	    });
-		var scrollHandler = $(window).scroll(function() {
-		   if($(window).scrollTop() + $(window).height() > $(document).height() - 60) {
-		    	$('.more').height(0);
-		   } else {
-		   		$('.more').height(50);
-		   }
-		});
-		scope.$on('$destroy', function(){
-			$('.more').height(50);
-			scrollHandler.off('scroll');
-		});
       }
     };
   });
