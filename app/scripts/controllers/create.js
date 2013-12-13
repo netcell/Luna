@@ -34,7 +34,7 @@ angular.module('lunaApp')
     		init--;
     	} else {
 	    	var period_index = $scope.selection.period.index;
-	    	$scope.options.periods=periods[newValue.periods];
+	    	$scope.options.periods=DateTime.periods[newValue.periods];
 	    	$scope.selection.period=$scope.options.periods[period_index];
 	    }
     });
@@ -80,6 +80,7 @@ angular.module('lunaApp')
             alert('Bạn cần nhập đúng email');
         else {
             var form = {
+                udid:   Date.now()+"-"+(((1+Math.random())*0x10000)|0).toString(16),
                 desc:   $scope.selection.desc,
                 hour:   $scope.selection.hour.value,
                 minute: $scope.selection.minute,

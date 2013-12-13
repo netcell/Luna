@@ -455,6 +455,11 @@ select.size-20 {
   width: 20em;
 }
 
+.app .module .form input.size-full,
+select.size-full {
+  width: 100%;
+}
+
 .app .module .form .button {
   margin-top: 1em;
 }

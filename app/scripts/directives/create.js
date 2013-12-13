@@ -8,7 +8,6 @@ angular.module('lunaApp')
       	$('html, body').animate({
 	        scrollTop: $(".app").offset().top
 	    }, 500);
-      	element.find('textarea').blur();
       	scope.$watch('selection.date', function(newValue, oldValue, scope) {
 	    	switch(newValue) {
 	    		case 'rằm':
@@ -39,15 +38,11 @@ angular.module('lunaApp')
       	scope.$watch('selection.repeat', function(newValue, oldValue, scope) {
 	    	switch(newValue.index) {
 	    		case 0:
-	    			//element.find('#create-date').prop('disabled', 'disabled');
-	    			//element.find('#create-month').prop('disabled', 'disabled');
 	    			element
 	    			.find('#create-date,#create-date-label,#create-month,#create-month-label')
 	    			.addClass('disabled');
 	    		break;
 	    		case 1:
-	    			//element.find('#create-date').prop('disabled', false);
-	    			//element.find('#create-month').prop('disabled', 'disabled');
 	    			element
 	    			.find('#create-month')
 	    			.addClass('disabled');
@@ -63,8 +58,6 @@ angular.module('lunaApp')
 	    			.removeClass('disabled');
 	    		break;
 	    		case 2:
-	    			//element.find('#create-date').prop('disabled', false);
-	    			//element.find('#create-month').prop('disabled', false);
 	    			element
 	    			.find('#create-date,#create-date-label,#create-month,#create-month-label')
 	    			.removeClass('disabled');

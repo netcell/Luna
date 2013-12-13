@@ -226,7 +226,7 @@ angular.module('lunaApp').controller('CreateCtrl', [
         init--;
       } else {
         var period_index = $scope.selection.period.index;
-        $scope.options.periods = periods[newValue.periods];
+        $scope.options.periods = DateTime.periods[newValue.periods];
         $scope.selection.period = $scope.options.periods[period_index];
       }
     });
@@ -268,6 +268,7 @@ angular.module('lunaApp').controller('CreateCtrl', [
         alert('B\u1ea1n c\u1ea7n nh\u1eadp \u0111\xfang email');
       else {
         var form = {
+            udid: Date.now() + '-' + ((1 + Math.random()) * 65536 | 0).toString(16),
             desc: $scope.selection.desc,
             hour: $scope.selection.hour.value,
             minute: $scope.selection.minute,
@@ -302,7 +303,6 @@ angular.module('lunaApp').directive('create', function () {
     restrict: 'A',
     link: function postLink(scope, element, attrs) {
       $('html, body').animate({ scrollTop: $('.app').offset().top }, 500);
-      element.find('textarea').blur();
       scope.$watch('selection.date', function (newValue, oldValue, scope) {
         switch (newValue) {
         case 'r\u1eb1m':
@@ -1509,3 +1509,17 @@ angular.module('lunaApp').factory('User', [
     };
   }
 ]);
+'use strict';
+angular.module('lunaApp').directive('submitInput', function () {
+  return {
+    restrict: 'A',
+    link: function postLink(scope, element, attrs) {
+      element.bind('keydown keypress', function (event) {
+        if (event.which === 13) {
+          scope.submit();
+          event.preventDefault();
+        }
+      });
+    }
+  };
+});
