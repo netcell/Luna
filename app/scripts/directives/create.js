@@ -5,6 +5,9 @@ angular.module('lunaApp')
     return {
       restrict: 'A',
       link: function postLink(scope, element, attrs) {
+      	$('html, body').animate({
+	        scrollTop: $(".app").offset().top
+	    }, 500);
       	element.find('textarea').blur();
       	scope.$watch('selection.date', function(newValue, oldValue, scope) {
 	    	switch(newValue) {

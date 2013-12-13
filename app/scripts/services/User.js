@@ -1,34 +1,31 @@
 'use strict';
 
 angular.module('lunaApp')
-  .factory('User', function () {
+  .factory('User', function ($sessionStorage) {
 
     function clone(obj){
       return JSON.parse(JSON.stringify(obj));
-    }
+    };
 
-    function updateUser(){
-      return true;
-    }
+    var User = $sessionStorage.User || {};
 
     return {
-      clone: function(){
-        return clone(this);
-      },
-      set: function(user){
-        for (key in user) {
-          this[key] = user[key];
+      save: function(){
+        if (!$sessionStorage.User){
+          $sessionStorage.User = User;
         }
-        updateUser();
-        return this;
+      },
+      get: function(){
+        return clone(User);
       },
       getEmail: function(){
-        return this.email?this.email:"";
+        return User.email?User.email:"";
       },
       setEmail: function(email){
-        this.email = email;
-        updateUser();
+        User.email = email;
+        this.save();
         return this;
       },
     };
+    
   });

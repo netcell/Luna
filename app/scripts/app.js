@@ -5,7 +5,8 @@ angular.module('lunaApp', [
   'ngRoute',
   'ngAnimate',
   'monospaced.elastic',
-  'ngTouch'
+  'ngTouch',
+  'ngStorage'
 ])
   .config(function ($routeProvider) {
     $routeProvider

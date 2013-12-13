@@ -4,7 +4,8 @@ angular.module('lunaApp', [
   'ngRoute',
   'ngAnimate',
   'monospaced.elastic',
-  'ngTouch'
+  'ngTouch',
+  'ngStorage'
 ]).config([
   '$routeProvider',
   function ($routeProvider) {
@@ -300,6 +301,7 @@ angular.module('lunaApp').directive('create', function () {
   return {
     restrict: 'A',
     link: function postLink(scope, element, attrs) {
+      $('html, body').animate({ scrollTop: $('.app').offset().top }, 500);
       element.find('textarea').blur();
       scope.$watch('selection.date', function (newValue, oldValue, scope) {
         switch (newValue) {
@@ -1463,31 +1465,31 @@ angular.module('lunaApp').controller('ConfirmationCtrl', [
   }
 ]);
 'use strict';
-angular.module('lunaApp').factory('User', function () {
-  function clone(obj) {
-    return JSON.parse(JSON.stringify(obj));
-  }
-  function updateUser() {
-    return true;
-  }
-  return {
-    clone: function () {
-      return clone(this);
-    },
-    set: function (user) {
-      for (key in user) {
-        this[key] = user[key];
-      }
-      updateUser();
-      return this;
-    },
-    getEmail: function () {
-      return this.email ? this.email : '';
-    },
-    setEmail: function (email) {
-      this.email = email;
-      updateUser();
-      return this;
+angular.module('lunaApp').factory('User', [
+  '$sessionStorage',
+  function ($sessionStorage) {
+    function clone(obj) {
+      return JSON.parse(JSON.stringify(obj));
     }
-  };
-});
+    ;
+    var User = $sessionStorage.User || {};
+    return {
+      save: function () {
+        if (!$sessionStorage.User) {
+          $sessionStorage.User = User;
+        }
+      },
+      get: function () {
+        return clone(User);
+      },
+      getEmail: function () {
+        return User.email ? User.email : '';
+      },
+      setEmail: function (email) {
+        User.email = email;
+        this.save();
+        return this;
+      }
+    };
+  }
+]);
