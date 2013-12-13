@@ -95,7 +95,7 @@ angular.module('lunaApp')
             };
             User.setEmail($scope.selection.email);
             $http.post('/user/quick-create', form).then(function(res){
-                $location.path("/confirmation/sent");
+                $location.path("/confirmation/send");
             }, function(err){
                 console.log(err);
             });

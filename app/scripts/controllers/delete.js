@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('lunaApp')
-  .controller('DeleteCtrl', function ($scope,$http,$location,Validate) {
+  .controller('DeleteCtrl', function ($scope,$http,$location,Validate,User) {
+    $scope.email = User.getEmail();
     $scope.submit = function(){
     	if ($scope.email && Validate.validateEmail($scope.email)) {
             $http.get('/user/delete-event/'+$scope.email).then(function(res){
@@ -9,7 +10,7 @@ angular.module('lunaApp')
             		alert('Bạn không có nhắc nhở nào.');
                     $scope.main.back();
             	} else {
-            		$location.path("/confirmation-sent");
+            		$location.path("/confirmation/delete");
             	}
             }, function(err){
                 console.log(err);

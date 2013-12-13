@@ -15,10 +15,8 @@ angular.module('lunaApp')
           $sessionStorage.User = User;
         }
       },
-      get: function(){
-        return clone(User);
-      },
       getEmail: function(){
+        User = $sessionStorage.User || {};
         return User.email?User.email:"";
       },
       setEmail: function(email){

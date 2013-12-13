@@ -288,7 +288,7 @@ angular.module('lunaApp').controller('CreateCtrl', [
         ;
         User.setEmail($scope.selection.email);
         $http.post('/user/quick-create', form).then(function (res) {
-          $location.path('/confirmation/sent');
+          $location.path('/confirmation/send');
         }, function (err) {
           console.log(err);
         });
@@ -1106,7 +1106,9 @@ angular.module('lunaApp').controller('DeleteCtrl', [
   '$http',
   '$location',
   'Validate',
-  function ($scope, $http, $location, Validate) {
+  'User',
+  function ($scope, $http, $location, Validate, User) {
+    $scope.email = User.getEmail();
     $scope.submit = function () {
       if ($scope.email && Validate.validateEmail($scope.email)) {
         $http.get('/user/delete-event/' + $scope.email).then(function (res) {
@@ -1114,7 +1116,7 @@ angular.module('lunaApp').controller('DeleteCtrl', [
             alert('B\u1ea1n kh\xf4ng c\xf3 nh\u1eafc nh\u1edf n\xe0o.');
             $scope.main.back();
           } else {
-            $location.path('/confirmation-sent');
+            $location.path('/confirmation/delete');
           }
         }, function (err) {
           console.log(err);
@@ -1462,6 +1464,22 @@ angular.module('lunaApp').controller('ConfirmationCtrl', [
   'User',
   function ($scope, $routeParams, User) {
     $scope.email = User.getEmail();
+    var actions = {
+        'create': 't\u1ea1o',
+        'delete': 'x\xf3a'
+      };
+    $scope.action = actions[$routeParams.action];
+    var subactions = {
+        'create': {
+          text: 't\u1ea1o th\xeam nh\u1eafc nh\u1edf m\u1edbi',
+          link: '#/create'
+        },
+        'delete': {
+          text: 'ch\u1ecdn x\xf3a m\u1ed9t ho\u1eb7c nhi\u1ec1u nh\u1eafc nh\u1edf \u0111\xe3 t\u1ea1o',
+          link: '#/delete'
+        }
+      };
+    $scope.subaction = subactions[$routeParams.action];
   }
 ]);
 'use strict';
@@ -1479,10 +1497,8 @@ angular.module('lunaApp').factory('User', [
           $sessionStorage.User = User;
         }
       },
-      get: function () {
-        return clone(User);
-      },
       getEmail: function () {
+        User = $sessionStorage.User || {};
         return User.email ? User.email : '';
       },
       setEmail: function (email) {
