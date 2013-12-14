@@ -329,7 +329,7 @@ angular.module('lunaApp').controller('CreateCtrl', [
           $http.post('/user/quick-create', form).then(function (res) {
             $scope.main.closePopup();
             Share.send('form-create', form);
-            $location.path('/confirmation/send');
+            $location.path('/confirmation/create');
           }, function (err) {
             $scope.main.alert('H\u1ec7 th\u1ed1ng \u0111ang b\u1eadn, xin th\u1eed l\u1ea1i sau \xedt ph\xfat');
           });
