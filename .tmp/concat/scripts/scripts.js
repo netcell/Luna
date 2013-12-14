@@ -1547,7 +1547,6 @@ angular.module('lunaApp').controller('ConfirmationCtrl', [
     $scope.submit = function () {
       if ($routeParams.action == 'create') {
         var form = Share.receive('form-create');
-        console.log(form);
         $scope.main.createPopup('\u0110ang x\u1eed l\xfd');
         $http.post('/user/try-create', form).then(function (res) {
           $scope.main.alert('Ch\xfang t\xf4i \u0111\xe3 g\u1eedi l\u1ea1i email cho b\u1ea1n');
