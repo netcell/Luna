@@ -27,6 +27,7 @@ angular.module('lunaApp')
     $scope.submit = function(){
       if ($routeParams.action == "create") {
         var form = Share.receive("form-create");
+        console.log(form);
         $scope.main.createPopup('Đang xử lý');
         $http.post('/user/try-create', form).then(function(res){
             $scope.main.alert('Chúng tôi đã gửi lại email cho bạn');
