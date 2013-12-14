@@ -7,6 +7,10 @@ angular.module('lunaApp')
   		"create": "tạo",
   		"delete": "xóa"
   	};
+    var theOtherActions = {
+      "create": "tạo",
+      "delete": "xóa"
+    };
   	$scope.action = actions[$routeParams.action];
   	var subactions = {
   		"delete": {
@@ -14,7 +18,7 @@ angular.module('lunaApp')
   			link: "#/create"
   		},
   		"create": {
-  			text: "chọn xóa một hoặc nhiều nhắc nhở đã tạo",
+  			text: "xóa nhắc nhở đã tạo",
   			link: "#/delete"
   		}
   	};
@@ -22,7 +26,7 @@ angular.module('lunaApp')
 
     $scope.footer.buttons = [
         {
-            name: actions[$routeParams.action]+' nhắc nhở',
+            name: subactions[$routeParams.action].text,
             action: function(){
                 $location.path(subactions[$routeParams.action].link);
             }

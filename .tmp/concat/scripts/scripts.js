@@ -1523,6 +1523,10 @@ angular.module('lunaApp').controller('ConfirmationCtrl', [
         'create': 't\u1ea1o',
         'delete': 'x\xf3a'
       };
+    var theOtherActions = {
+        'create': 't\u1ea1o',
+        'delete': 'x\xf3a'
+      };
     $scope.action = actions[$routeParams.action];
     var subactions = {
         'delete': {
@@ -1530,13 +1534,13 @@ angular.module('lunaApp').controller('ConfirmationCtrl', [
           link: '#/create'
         },
         'create': {
-          text: 'ch\u1ecdn x\xf3a m\u1ed9t ho\u1eb7c nhi\u1ec1u nh\u1eafc nh\u1edf \u0111\xe3 t\u1ea1o',
+          text: 'x\xf3a nh\u1eafc nh\u1edf \u0111\xe3 t\u1ea1o',
           link: '#/delete'
         }
       };
     $scope.subaction = subactions[$routeParams.action];
     $scope.footer.buttons = [{
-        name: actions[$routeParams.action] + ' nh\u1eafc nh\u1edf',
+        name: subactions[$routeParams.action].text,
         action: function () {
           $location.path(subactions[$routeParams.action].link);
         }
