@@ -235,10 +235,11 @@ angular.module('lunaApp').controller('CreateCtrl', [
   '$scope',
   '$http',
   '$location',
+  'Share',
   'Validate',
   'DateTime',
   'User',
-  function ($scope, $http, $location, Validate, DateTime, User) {
+  function ($scope, $http, $location, Share, Validate, DateTime, User) {
     $scope.selection = {};
     $scope.options = {};
     $scope.options.hours = DateTime.hours;

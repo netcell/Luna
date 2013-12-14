@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('lunaApp')
-  .controller('CreateCtrl', function ($scope, $http, $location, Validate, DateTime, User) {
+  .controller('CreateCtrl', function ($scope, $http, $location, Share, Validate, DateTime, User) {
     
     //Selected values
     $scope.selection = {};
