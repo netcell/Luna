@@ -28,7 +28,6 @@
 
     <!-- Add your site or application content here -->
     <div main class="container" ng-init="loading.value=true" ng-controller="MainCtrl">
-      <div class="loading-screen" ng-if="loading.value" ng-controller="LoadingscreenCtrl">Loading screen</div>
       <div class="container after-loading hidden" ng-if="!loading.value">
         <div class="mininoic abs-center no-user-select">
           <div class="logo"></div>
@@ -67,12 +66,9 @@
           <div class="buttons">
             <span class="link" ng-repeat="button in popupButtons" ng-bind="button.text" ng-click="button.action()"></span>
           </div>
-          <!-- <div ng-bind="popupText">fdafdsa</div>
-          <div class="buttons">
-            <div ng-repeat="button in popupButtons" ng-bind="button.text" ng-click="button.action"></div>
-          </div> -->
         </div>
       </div>
+      <div class="loading-screen" ng-if="loading.value" ng-controller="LoadingscreenCtrl"><div>Loading screen</div></div>
     </div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
