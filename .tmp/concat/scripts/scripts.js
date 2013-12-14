@@ -1516,7 +1516,8 @@ angular.module('lunaApp').controller('ConfirmationCtrl', [
   '$scope',
   '$routeParams',
   'User',
-  function ($scope, $routeParams, User) {
+  '$location',
+  function ($scope, $routeParams, User, $location) {
     $scope.email = User.getEmail();
     var actions = {
         'create': 't\u1ea1o',
@@ -1524,16 +1525,25 @@ angular.module('lunaApp').controller('ConfirmationCtrl', [
       };
     $scope.action = actions[$routeParams.action];
     var subactions = {
-        'create': {
+        'delete': {
           text: 't\u1ea1o th\xeam nh\u1eafc nh\u1edf m\u1edbi',
           link: '#/create'
         },
-        'delete': {
+        'create': {
           text: 'ch\u1ecdn x\xf3a m\u1ed9t ho\u1eb7c nhi\u1ec1u nh\u1eafc nh\u1edf \u0111\xe3 t\u1ea1o',
           link: '#/delete'
         }
       };
     $scope.subaction = subactions[$routeParams.action];
+    $scope.footer.buttons = [{
+        name: actions[$routeParams.action] + ' nh\u1eafc nh\u1edf',
+        action: function () {
+          $location.path(subactions[$routeParams.action].link);
+        }
+      }];
+    $scope.$on('$destroy', function () {
+      $scope.footer.buttons = [];
+    });
   }
 ]);
 'use strict';
