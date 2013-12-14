@@ -53,7 +53,7 @@ angular.module('lunaApp')
 
     $scope.main.closePopup = function(){
       $scope.hasPopup = false;
-    }
+    };
 
     $scope.main.back = function(){
       $window.history.back();
