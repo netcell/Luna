@@ -82,10 +82,14 @@ select {
   cursor: default;
 }
 
+.link {
+  cursor: pointer;
+}
+
 .link:hover {
   background-color: #444750;
-  cursor: pointer;
   color: #f6f6f6;
+  font-weight: bold;
 }
 
 * {
