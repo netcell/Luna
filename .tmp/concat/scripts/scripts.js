@@ -1565,9 +1565,9 @@ angular.module('lunaApp').controller('ConfirmationCtrl', [
       }
     };
     $scope.footer.buttons = [{
-        name: subactions[$routeParams.action].text,
+        name: $scope.subaction.text,
         action: function () {
-          $location.path(subactions[$routeParams.action].link);
+          $location.path($scope.subaction.link);
         }
       }];
     $scope.$on('$destroy', function () {
