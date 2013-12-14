@@ -100,6 +100,7 @@ angular.module('lunaApp')
                 $scope.main.createPopup('Đang xử lý');
                 $http.post('/user/quick-create', form).then(function(res){
                     $scope.main.closePopup();
+                    Share.send("form-create",form);
                     $location.path("/confirmation/send");
                 }, function(err){
                     $scope.main.alert('Hệ thống đang bận, xin thử lại sau ít phút');

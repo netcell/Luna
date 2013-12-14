@@ -327,6 +327,7 @@ angular.module('lunaApp').controller('CreateCtrl', [
           $scope.main.createPopup('\u0110ang x\u1eed l\xfd');
           $http.post('/user/quick-create', form).then(function (res) {
             $scope.main.closePopup();
+            Share.send('form-create', form);
             $location.path('/confirmation/send');
           }, function (err) {
             $scope.main.alert('H\u1ec7 th\u1ed1ng \u0111ang b\u1eadn, xin th\u1eed l\u1ea1i sau \xedt ph\xfat');
@@ -1517,7 +1518,8 @@ angular.module('lunaApp').controller('ConfirmationCtrl', [
   '$routeParams',
   'User',
   '$location',
-  function ($scope, $routeParams, User, $location) {
+  'Share',
+  function ($scope, $routeParams, User, $location, Share) {
     $scope.email = User.getEmail();
     var actions = {
         'create': 't\u1ea1o',
@@ -1539,6 +1541,28 @@ angular.module('lunaApp').controller('ConfirmationCtrl', [
         }
       };
     $scope.subaction = subactions[$routeParams.action];
+    $scope.submit = function () {
+      if ($routeParams.action == 'create') {
+        var form = Share.receive('form-create');
+        $scope.main.createPopup('\u0110ang x\u1eed l\xfd');
+        $http.post('/user/try-create', form).then(function (res) {
+          $scope.main.alert('Ch\xfang t\xf4i \u0111\xe3 g\u1eedi l\u1ea1i email cho b\u1ea1n');
+        }, function (err) {
+          $scope.main.alert('H\u1ec7 th\u1ed1ng \u0111ang b\u1eadn, xin th\u1eed l\u1ea1i sau \xedt ph\xfat');
+        });
+      } else {
+        $http.get('/user/delete-event/' + $scope.email).then(function (res) {
+          $scope.main.closePopup();
+          if (res.data == '0') {
+            $scope.main.alert('B\u1ea1n kh\xf4ng c\xf3 nh\u1eafc nh\u1edf n\xe0o.');
+          } else {
+            $scope.main.alert('Ch\xfang t\xf4i \u0111\xe3 g\u1eedi l\u1ea1i email cho b\u1ea1n');
+          }
+        }, function (err) {
+          $scope.main.alert('h\u1ec7 th\u1ed1ng \u0111ang b\u1eadn, xin th\u1eed l\u1ea1i sau \xedt ph\xfat');
+        });
+      }
+    };
     $scope.footer.buttons = [{
         name: subactions[$routeParams.action].text,
         action: function () {
@@ -1624,6 +1648,18 @@ angular.module('lunaApp').directive('main', function () {
     link: function postLink(scope, element, attrs) {
       scope.$watch('hasPopup', function () {
       });
+    }
+  };
+});
+'use strict';
+angular.module('lunaApp').factory('Share', function () {
+  var temp = {};
+  return {
+    send: function (id, data) {
+      temp[id] = data;
+    },
+    receive: function (id) {
+      return temp[id];
     }
   };
 });
