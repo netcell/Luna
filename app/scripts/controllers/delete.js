@@ -31,7 +31,6 @@ angular.module('lunaApp')
             	$scope.main.closePopup();
                 if (res.data == "0") {
             		$scope.main.alert('Bạn không có nhắc nhở nào.');
-                    $scope.main.back();
             	} else {
             		$location.path("/confirmation/delete");
             	}

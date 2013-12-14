@@ -1169,7 +1169,6 @@ angular.module('lunaApp').controller('DeleteCtrl', [
           $scope.main.closePopup();
           if (res.data == '0') {
             $scope.main.alert('B\u1ea1n kh\xf4ng c\xf3 nh\u1eafc nh\u1edf n\xe0o.');
-            $scope.main.back();
           } else {
             $location.path('/confirmation/delete');
           }
@@ -1517,9 +1516,10 @@ angular.module('lunaApp').controller('ConfirmationCtrl', [
   '$scope',
   '$routeParams',
   'User',
+  '$http',
   '$location',
   'Share',
-  function ($scope, $routeParams, User, $location, Share) {
+  function ($scope, $routeParams, User, $http, $location, Share) {
     $scope.email = User.getEmail();
     var actions = {
         'create': 't\u1ea1o',

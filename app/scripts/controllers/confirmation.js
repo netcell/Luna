@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('lunaApp')
-  .controller('ConfirmationCtrl', function ($scope, $routeParams, User, $location, Share) {
+  .controller('ConfirmationCtrl', function ($scope, $routeParams, User, $http, $location, Share) {
   	$scope.email = User.getEmail();
   	var actions = {
   		"create": "tạo",
