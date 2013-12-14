@@ -84,7 +84,9 @@ angular.module('lunaApp').controller('MainCtrl', [
       });
     };
     $scope.main.closePopup = function () {
-      $scope.hasPopup = false;
+      $timeout(function () {
+        $scope.hasPopup = false;
+      }, 300);
     };
     $scope.main.back = function () {
       $window.history.back();
