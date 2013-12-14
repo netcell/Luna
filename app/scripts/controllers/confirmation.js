@@ -15,11 +15,11 @@ angular.module('lunaApp')
   	var subactions = {
   		"delete": {
   			text: "tạo thêm nhắc nhở mới",
-  			link: "#/create"
+  			link: "/create"
   		},
   		"create": {
   			text: "xóa nhắc nhở đã tạo",
-  			link: "#/delete"
+  			link: "/delete"
   		}
   	};
   	$scope.subaction = subactions[$routeParams.action];

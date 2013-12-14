@@ -1531,11 +1531,11 @@ angular.module('lunaApp').controller('ConfirmationCtrl', [
     var subactions = {
         'delete': {
           text: 't\u1ea1o th\xeam nh\u1eafc nh\u1edf m\u1edbi',
-          link: '#/create'
+          link: '/create'
         },
         'create': {
           text: 'x\xf3a nh\u1eafc nh\u1edf \u0111\xe3 t\u1ea1o',
-          link: '#/delete'
+          link: '/delete'
         }
       };
     $scope.subaction = subactions[$routeParams.action];
