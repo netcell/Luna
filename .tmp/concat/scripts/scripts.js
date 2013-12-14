@@ -50,7 +50,26 @@ angular.module('lunaApp').controller('MainCtrl', [
     $scope.time.current_month = date[1];
     $scope.footer = {};
     $scope.footer.buttons = [];
+    $scope.hasPopup = false;
     $scope.main = {};
+    $scope.main.createPopup = function (text, buttons) {
+      $scope.popupText = text;
+      $scope.popupButtons = [];
+      for (var key in buttons) {
+        $scope.popupButtons.push({
+          text: key,
+          action: buttons[key]
+        });
+      }
+      ;
+      $scope.hasPopup = true;
+    };
+    $scope.main.alert = function (text) {
+      $scope.main.createPopup(text, { 'OK': $scope.main.closePopup });
+    };
+    $scope.main.closePopup = function () {
+      $scope.hasPopup = false;
+    };
     $scope.main.back = function () {
       $window.history.back();
     };
@@ -263,9 +282,9 @@ angular.module('lunaApp').controller('CreateCtrl', [
     });
     $scope.submit = function () {
       if (!$scope.selection.email)
-        alert('B\u1ea1n c\u1ea7n nh\u1eadp email');
+        $scope.main.alert('B\u1ea1n c\u1ea7n nh\u1eadp email');
       else if (!Validate.validateEmail($scope.selection.email))
-        alert('B\u1ea1n c\u1ea7n nh\u1eadp \u0111\xfang email');
+        $scope.main.alert('B\u1ea1n c\u1ea7n nh\u1eadp \u0111\xfang email');
       else {
         var form = {
             udid: Date.now() + '-' + ((1 + Math.random()) * 65536 | 0).toString(16),
@@ -288,10 +307,13 @@ angular.module('lunaApp').controller('CreateCtrl', [
         }
         ;
         User.setEmail($scope.selection.email);
+        $scope.main.createPopup('\u0110ang x\u1eed l\xfd');
         $http.post('/user/quick-create', form).then(function (res) {
+          $scope.main.closePopup();
           $location.path('/confirmation/send');
         }, function (err) {
-          console.log(err);
+          $scope.main.closePopup();
+          $scope.main.alert('h\u1ec7 th\u1ed1ng \u0111ang b\u1eadn, xin th\u1eed l\u1ea1i sau \xedt ph\xfat');
         });
       }
     };
@@ -1116,18 +1138,21 @@ angular.module('lunaApp').controller('DeleteCtrl', [
     });
     $scope.submit = function () {
       if ($scope.email && Validate.validateEmail($scope.email)) {
+        $scope.main.createPopup('\u0110ang x\u1eed l\xfd');
         $http.get('/user/delete-event/' + $scope.email).then(function (res) {
           if (res.data == '0') {
-            alert('B\u1ea1n kh\xf4ng c\xf3 nh\u1eafc nh\u1edf n\xe0o.');
+            $scope.main.alert('B\u1ea1n kh\xf4ng c\xf3 nh\u1eafc nh\u1edf n\xe0o.');
             $scope.main.back();
           } else {
+            $scope.main.closePopup();
             $location.path('/confirmation/delete');
           }
         }, function (err) {
-          console.log(err);
+          $scope.main.closePopup();
+          $scope.main.alert('h\u1ec7 th\u1ed1ng \u0111ang b\u1eadn, xin th\u1eed l\u1ea1i sau \xedt ph\xfat');
         });
       } else {
-        alert('B\u1ea1n c\u1ea7n nh\u1eadp \u0111\xfang \u0111\u1ecba ch\u1ec9 email.');
+        $scope.main.alert('B\u1ea1n c\u1ea7n nh\u1eadp \u0111\xfang \u0111\u1ecba ch\u1ec9 email.');
       }
     };
   }
@@ -1558,3 +1583,13 @@ angular.module('lunaApp').directive('form', [
     };
   }
 ]);
+'use strict';
+angular.module('lunaApp').directive('main', function () {
+  return {
+    restrict: 'A',
+    link: function postLink(scope, element, attrs) {
+      scope.$watch('hasPopup', function () {
+      });
+    }
+  };
+});

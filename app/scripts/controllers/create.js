@@ -75,9 +75,10 @@ angular.module('lunaApp')
     });
 
     $scope.submit = function(){
-        if (!$scope.selection.email) alert('Bạn cần nhập email');
+        if (!$scope.selection.email) 
+            $scope.main.alert('Bạn cần nhập email')
         else if (!Validate.validateEmail($scope.selection.email))
-            alert('Bạn cần nhập đúng email');
+            $scope.main.alert('Bạn cần nhập đúng email')
         else {
             var form = {
                 udid:   Date.now()+"-"+(((1+Math.random())*0x10000)|0).toString(16),
@@ -95,10 +96,13 @@ angular.module('lunaApp')
                 case 'cuối': form.date = 100; break;
             };
             User.setEmail($scope.selection.email);
+            $scope.main.createPopup('Đang xử lý');
             $http.post('/user/quick-create', form).then(function(res){
+                $scope.main.closePopup();
                 $location.path("/confirmation/send");
             }, function(err){
-                console.log(err);
+                $scope.main.closePopup();
+                $scope.main.alert('hệ thống đang bận, xin thử lại sau ít phút');
             });
         }
     }

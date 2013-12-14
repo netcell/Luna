@@ -14,7 +14,31 @@ angular.module('lunaApp')
     $scope.footer={};
     $scope.footer.buttons = [];
 
+    $scope.hasPopup = false;
+
     $scope.main={};
+
+    $scope.main.createPopup = function(text, buttons){
+      $scope.popupText = text;
+      $scope.popupButtons = [];
+      for (var key in buttons) {
+        $scope.popupButtons.push({
+          text: key,
+          action: buttons[key]
+        });
+      };
+      $scope.hasPopup = true;
+    };
+
+    $scope.main.alert = function(text){
+      $scope.main.createPopup(text, {
+        "OK": $scope.main.closePopup
+      });
+    };
+
+    $scope.main.closePopup = function(){
+      $scope.hasPopup = false;
+    }
 
     $scope.main.back = function(){
       $window.history.back();

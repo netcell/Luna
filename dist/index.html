@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-        <link rel="stylesheet" href="styles/abc15918.main.css" media="screen"/>
+        <link rel="stylesheet" href="styles/7575527d.main.css" media="screen"/>
 </head>
   <body ng-app="lunaApp">
     <!--[if lt IE 7]>
@@ -24,7 +24,7 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="container" ng-init="loading.value=true" ng-controller="MainCtrl">
+    <div main="" class="container" ng-init="loading.value=true" ng-controller="MainCtrl">
       <div class="loading-screen" ng-if="loading.value" ng-controller="LoadingscreenCtrl">Loading screen</div>
       <div class="container after-loading hidden" ng-if="!loading.value">
         <div class="mininoic abs-center no-user-select">
@@ -52,10 +52,23 @@
           </div>
         </div>
       </div>
-      <div class="more no-user-select after-loading hidden" ng-if="!loading.value" footer="">
+      <div class="footer more no-user-select after-loading hidden" ng-if="!loading.value && !hasPopup" footer="">
           <ul class="menu">
             <li ng-repeat="button in footer.buttons" ng-click="button.action()" ng-bind="button.name"></li>
           </ul>
+      </div>
+      <div class="cover" ng-if="!loading.value && hasPopup"></div>
+      <div class="footer popup no-user-select" ng-if="!loading.value && hasPopup">
+        <div class="box">
+          <div class="text" ng-bind="popupText"></div>
+          <div class="buttons">
+            <span class="link" ng-repeat="button in popupButtons" ng-bind="button.text" ng-click="button.action()">fdsafdsa</span>
+          </div>
+          <!-- <div ng-bind="popupText">fdafdsa</div>
+          <div class="buttons">
+            <div ng-repeat="button in popupButtons" ng-bind="button.text" ng-click="button.action"></div>
+          </div> -->
+        </div>
       </div>
     </div>
 
@@ -74,7 +87,7 @@
 
         <script src="scripts/64b51985.modules.js"></script>
 
-        <script src="scripts/c8a72408.scripts.js"></script>
+        <script src="scripts/ebcd6d85.scripts.js"></script>
 
         <!-- <script src="scripts/animations/content-module.js"></script> -->
 </body>

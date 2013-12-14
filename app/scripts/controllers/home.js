@@ -8,8 +8,7 @@ angular.module('lunaApp')
     		action: function(){
     			$location.path("/delete");
     		}
-    	},
-    	{
+    	},{
     		name:'hướng dẫn',
     		action: function(){
 
