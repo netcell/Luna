@@ -1539,9 +1539,12 @@ angular.module('lunaApp').factory('User', [
       return JSON.parse(JSON.stringify(obj));
     }
     ;
+    if (!$sessionStorage.User) {
+      $sessionStorage.User = {};
+    }
     return {
       getEmail: function () {
-        User = $sessionStorage.User || {};
+        var User = $sessionStorage.User;
         return User.email ? User.email : '';
       },
       setEmail: function (email) {
