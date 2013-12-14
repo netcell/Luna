@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-        <link rel="stylesheet" href="styles/7575527d.main.css" media="screen"/>
+        <link rel="stylesheet" href="styles/a838a9e5.main.css" media="screen"/>
 </head>
   <body ng-app="lunaApp">
     <!--[if lt IE 7]>
@@ -60,9 +60,9 @@
       <div class="cover" ng-if="!loading.value && hasPopup"></div>
       <div class="footer popup no-user-select" ng-if="!loading.value && hasPopup">
         <div class="box">
-          <div class="text" ng-bind="popupText"></div>
+          <div ng-repeat="text in popupTexts" class="text" ng-bind="text"></div>
           <div class="buttons">
-            <span class="link" ng-repeat="button in popupButtons" ng-bind="button.text" ng-click="button.action()">fdsafdsa</span>
+            <span class="link" ng-repeat="button in popupButtons" ng-bind="button.text" ng-click="button.action()"></span>
           </div>
           <!-- <div ng-bind="popupText">fdafdsa</div>
           <div class="buttons">
@@ -87,7 +87,7 @@
 
         <script src="scripts/64b51985.modules.js"></script>
 
-        <script src="scripts/ebcd6d85.scripts.js"></script>
+        <script src="scripts/d107bdfa.scripts.js"></script>
 
         <!-- <script src="scripts/animations/content-module.js"></script> -->
 </body>

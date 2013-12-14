@@ -42,7 +42,8 @@ angular.module('lunaApp').controller('MainCtrl', [
   'amduonglich',
   '$window',
   'DateTime',
-  function ($scope, amduonglich, $window, DateTime) {
+  '$timeout',
+  function ($scope, amduonglich, $window, DateTime, $timeout) {
     $scope.time = {};
     $scope.time.current_day = DateTime.getCurrentDay(true);
     var date = amduonglich.getCurrentLunarDate();
@@ -53,7 +54,10 @@ angular.module('lunaApp').controller('MainCtrl', [
     $scope.hasPopup = false;
     $scope.main = {};
     $scope.main.createPopup = function (text, buttons) {
-      $scope.popupText = text;
+      if (Object.prototype.toString.call(text) === '[object Array]') {
+        $scope.popupTexts = text;
+      } else
+        $scope.popupTexts = [text];
       $scope.popupButtons = [];
       for (var key in buttons) {
         $scope.popupButtons.push({
@@ -62,10 +66,22 @@ angular.module('lunaApp').controller('MainCtrl', [
         });
       }
       ;
-      $scope.hasPopup = true;
+      $scope.hasPopup = false;
+      $timeout(function () {
+        $scope.hasPopup = true;
+      }, 300);
     };
     $scope.main.alert = function (text) {
       $scope.main.createPopup(text, { 'OK': $scope.main.closePopup });
+    };
+    $scope.main.pauseup = function (text, callback) {
+      $scope.main.createPopup(text, {
+        'OK': function () {
+          $scope.main.closePopup();
+          callback();
+        },
+        'Cancel': $scope.main.closePopup
+      });
     };
     $scope.main.closePopup = function () {
       $scope.hasPopup = false;
@@ -307,13 +323,17 @@ angular.module('lunaApp').controller('CreateCtrl', [
         }
         ;
         User.setEmail($scope.selection.email);
-        $scope.main.createPopup('\u0110ang x\u1eed l\xfd');
-        $http.post('/user/quick-create', form).then(function (res) {
-          $scope.main.closePopup();
-          $location.path('/confirmation/send');
-        }, function (err) {
-          $scope.main.closePopup();
-          $scope.main.alert('h\u1ec7 th\u1ed1ng \u0111ang b\u1eadn, xin th\u1eed l\u1ea1i sau \xedt ph\xfat');
+        $scope.main.pauseup([
+          'B\u1ea1n ch\u01b0a \u0111i\u1ec1n n\u1ed9i dung nh\u1eafc nh\u1edf.',
+          'B\u1ea1n c\xf3 ch\u1eafc mu\u1ed1n ti\u1ebfp t\u1ee5c t\u1ea1o nh\u1eafc nh\u1edf kh\xf4ng c\xf3 n\u1ed9i dung kh\xf4ng?'
+        ], function () {
+          $scope.main.createPopup('\u0110ang x\u1eed l\xfd');
+          $http.post('/user/quick-create', form).then(function (res) {
+            $scope.main.closePopup();
+            $location.path('/confirmation/send');
+          }, function (err) {
+            $scope.main.alert('H\u1ec7 th\u1ed1ng \u0111ang b\u1eadn, xin th\u1eed l\u1ea1i sau \xedt ph\xfat');
+          });
         });
       }
     };
@@ -1148,7 +1168,6 @@ angular.module('lunaApp').controller('DeleteCtrl', [
             $location.path('/confirmation/delete');
           }
         }, function (err) {
-          $scope.main.closePopup();
           $scope.main.alert('h\u1ec7 th\u1ed1ng \u0111ang b\u1eadn, xin th\u1eed l\u1ea1i sau \xedt ph\xfat');
         });
       } else {

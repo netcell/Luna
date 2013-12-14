@@ -63,9 +63,9 @@
       <div class="cover" ng-if="!loading.value && hasPopup"></div>
       <div class="footer popup no-user-select" ng-if="!loading.value && hasPopup">
         <div class="box">
-          <div class="text" ng-bind="popupText"></div>
+          <div ng-repeat="text in popupTexts" class="text" ng-bind="text"></div>
           <div class="buttons">
-            <span class="link" ng-repeat="button in popupButtons" ng-bind="button.text" ng-click="button.action()">fdsafdsa</span>
+            <span class="link" ng-repeat="button in popupButtons" ng-bind="button.text" ng-click="button.action()"></span>
           </div>
           <!-- <div ng-bind="popupText">fdafdsa</div>
           <div class="buttons">

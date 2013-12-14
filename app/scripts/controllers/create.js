@@ -96,14 +96,18 @@ angular.module('lunaApp')
                 case 'cuối': form.date = 100; break;
             };
             User.setEmail($scope.selection.email);
-            $scope.main.createPopup('Đang xử lý');
-            $http.post('/user/quick-create', form).then(function(res){
-                $scope.main.closePopup();
-                $location.path("/confirmation/send");
-            }, function(err){
-                $scope.main.closePopup();
-                $scope.main.alert('hệ thống đang bận, xin thử lại sau ít phút');
-            });
+            $scope.main.pauseup([
+                "Bạn chưa điền nội dung nhắc nhở.",
+                "Bạn có chắc muốn tiếp tục tạo nhắc nhở không có nội dung không?"
+                ],function(){
+                    $scope.main.createPopup('Đang xử lý');
+                    $http.post('/user/quick-create', form).then(function(res){
+                        $scope.main.closePopup();
+                        $location.path("/confirmation/send");
+                    }, function(err){
+                        $scope.main.alert('Hệ thống đang bận, xin thử lại sau ít phút');
+                    });
+                });
         }
     }
     

@@ -35,7 +35,6 @@ angular.module('lunaApp')
             		$location.path("/confirmation/delete");
             	}
             }, function(err){
-                $scope.main.closePopup();
                 $scope.main.alert('hệ thống đang bận, xin thử lại sau ít phút');
             });
         } else {

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('lunaApp')
-  .controller('MainCtrl', function ($scope, amduonglich, $window, DateTime) {
+  .controller('MainCtrl', function ($scope, amduonglich, $window, DateTime, $timeout) {
   	$scope.time = {};
   	
 		$scope.time.current_day = DateTime.getCurrentDay(true);
@@ -19,7 +19,9 @@ angular.module('lunaApp')
     $scope.main={};
 
     $scope.main.createPopup = function(text, buttons){
-      $scope.popupText = text;
+      if( Object.prototype.toString.call( text ) === '[object Array]' ) {
+             $scope.popupTexts =  text;
+      } else $scope.popupTexts = [text];
       $scope.popupButtons = [];
       for (var key in buttons) {
         $scope.popupButtons.push({
@@ -27,12 +29,25 @@ angular.module('lunaApp')
           action: buttons[key]
         });
       };
-      $scope.hasPopup = true;
+      $scope.hasPopup = false;
+      $timeout(function(){
+        $scope.hasPopup = true;
+      },300);
     };
 
     $scope.main.alert = function(text){
       $scope.main.createPopup(text, {
         "OK": $scope.main.closePopup
+      });
+    };
+
+    $scope.main.pauseup = function(text, callback){
+      $scope.main.createPopup(text, {
+        "OK": function(){
+          $scope.main.closePopup();
+          callback();
+        },
+        "Cancel": $scope.main.closePopup
       });
     };
 
