@@ -1158,6 +1158,7 @@ angular.module('lunaApp').controller('DeleteCtrl', [
     });
     $scope.submit = function () {
       if ($scope.email && Validate.validateEmail($scope.email)) {
+        User.setEmail($scope.selection.email);
         $scope.main.createPopup('\u0110ang x\u1eed l\xfd');
         $http.get('/user/delete-event/' + $scope.email).then(function (res) {
           if (res.data == '0') {
