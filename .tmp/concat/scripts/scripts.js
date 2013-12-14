@@ -1165,11 +1165,11 @@ angular.module('lunaApp').controller('DeleteCtrl', [
         User.setEmail($scope.email);
         $scope.main.createPopup('\u0110ang x\u1eed l\xfd');
         $http.get('/user/delete-event/' + $scope.email).then(function (res) {
+          $scope.main.closePopup();
           if (res.data == '0') {
             $scope.main.alert('B\u1ea1n kh\xf4ng c\xf3 nh\u1eafc nh\u1edf n\xe0o.');
             $scope.main.back();
           } else {
-            $scope.main.closePopup();
             $location.path('/confirmation/delete');
           }
         }, function (err) {

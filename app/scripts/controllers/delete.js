@@ -28,11 +28,11 @@ angular.module('lunaApp')
             User.setEmail($scope.email);
             $scope.main.createPopup('Đang xử lý');
             $http.get('/user/delete-event/'+$scope.email).then(function(res){
-            	if (res.data == "0") {
+            	$scope.main.closePopup();
+                if (res.data == "0") {
             		$scope.main.alert('Bạn không có nhắc nhở nào.');
                     $scope.main.back();
             	} else {
-                    $scope.main.closePopup();
             		$location.path("/confirmation/delete");
             	}
             }, function(err){
