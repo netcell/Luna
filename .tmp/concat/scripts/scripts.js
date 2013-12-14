@@ -323,10 +323,7 @@ angular.module('lunaApp').controller('CreateCtrl', [
         }
         ;
         User.setEmail($scope.selection.email);
-        $scope.main.pauseup([
-          'B\u1ea1n ch\u01b0a \u0111i\u1ec1n n\u1ed9i dung nh\u1eafc nh\u1edf.',
-          'B\u1ea1n c\xf3 ch\u1eafc mu\u1ed1n ti\u1ebfp t\u1ee5c t\u1ea1o nh\u1eafc nh\u1edf kh\xf4ng c\xf3 n\u1ed9i dung kh\xf4ng?'
-        ], function () {
+        var f = function () {
           $scope.main.createPopup('\u0110ang x\u1eed l\xfd');
           $http.post('/user/quick-create', form).then(function (res) {
             $scope.main.closePopup();
@@ -334,7 +331,14 @@ angular.module('lunaApp').controller('CreateCtrl', [
           }, function (err) {
             $scope.main.alert('H\u1ec7 th\u1ed1ng \u0111ang b\u1eadn, xin th\u1eed l\u1ea1i sau \xedt ph\xfat');
           });
-        });
+        };
+        if (!form.desc || /^\s*$/.test(form.desc))
+          $scope.main.pauseup([
+            'B\u1ea1n ch\u01b0a \u0111i\u1ec1n n\u1ed9i dung nh\u1eafc nh\u1edf.',
+            'B\u1ea1n c\xf3 ch\u1eafc mu\u1ed1n ti\u1ebfp t\u1ee5c t\u1ea1o nh\u1eafc nh\u1edf kh\xf4ng c\xf3 n\u1ed9i dung kh\xf4ng?'
+          ], f);
+        else
+          f();
       }
     };
   }
