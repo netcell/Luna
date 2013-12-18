@@ -1183,10 +1183,10 @@ angular.module('lunaApp').controller('DeleteCtrl', [
             $scope.main.alert('h\u1ec7 th\u1ed1ng \u0111ang b\u1eadn, xin th\u1eed l\u1ea1i sau \xedt ph\xfat');
           });
         } else {
-          $scope.main.alert('B\u1ea1n c\u1ea7n nh\u1eadp \u0111\u1ecba ch\u1ec9 email.');
+          $scope.main.alert('B\u1ea1n c\u1ea7n nh\u1eadp \u0111\xfang \u0111\u1ecba ch\u1ec9 email.');
         }
       } else {
-        $scope.main.alert('B\u1ea1n c\u1ea7n nh\u1eadp \u0111\xfang \u0111\u1ecba ch\u1ec9 email.');
+        $scope.main.alert('B\u1ea1n c\u1ea7n nh\u1eadp \u0111\u1ecba ch\u1ec9 email.');
       }
     };
   }

@@ -39,10 +39,10 @@ angular.module('lunaApp')
                     $scope.main.alert('hệ thống đang bận, xin thử lại sau ít phút');
                 });
             } else {
-                $scope.main.alert('Bạn cần nhập địa chỉ email.');    
+                $scope.main.alert('Bạn cần nhập đúng địa chỉ email.');    
             }
         } else {
-            $scope.main.alert('Bạn cần nhập đúng địa chỉ email.');
+            $scope.main.alert('Bạn cần nhập địa chỉ email.');
         }
     }
   });
