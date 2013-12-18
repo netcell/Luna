@@ -106,12 +106,13 @@ angular.module('lunaApp')
                     $scope.main.alert('Hệ thống đang bận, xin thử lại sau ít phút');
                 });
             }
-            if (!form.desc || /^\s*$/.test(form.desc))
+            if (!form.desc || /^\s*$/.test(form.desc)) {
+                form.desc = "";
                 $scope.main.pauseup([
                     "Bạn chưa điền nội dung nhắc nhở.",
                     "Bạn có chắc muốn tiếp tục tạo nhắc nhở không có nội dung không?"
                     ],f);
-            else f();
+            } else f();
         }
     }
     
