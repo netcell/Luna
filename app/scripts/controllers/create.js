@@ -76,9 +76,9 @@ angular.module('lunaApp')
 
     $scope.submit = function(){
         if (!$scope.selection.email) 
-            $scope.main.alert('Bạn cần nhập email')
+            $scope.main.alert('Bạn cần nhập địa chỉ email')
         else if (!Validate.validateEmail($scope.selection.email))
-            $scope.main.alert('Bạn cần nhập đúng email')
+            $scope.main.alert('Bạn cần nhập đúng địa chỉ email')
         else {
             var form = {
                 udid:   Date.now()+"-"+(((1+Math.random())*0x10000)|0).toString(16),

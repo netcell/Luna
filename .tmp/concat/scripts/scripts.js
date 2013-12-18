@@ -303,9 +303,9 @@ angular.module('lunaApp').controller('CreateCtrl', [
     });
     $scope.submit = function () {
       if (!$scope.selection.email)
-        $scope.main.alert('B\u1ea1n c\u1ea7n nh\u1eadp email');
+        $scope.main.alert('B\u1ea1n c\u1ea7n nh\u1eadp \u0111\u1ecba ch\u1ec9 email');
       else if (!Validate.validateEmail($scope.selection.email))
-        $scope.main.alert('B\u1ea1n c\u1ea7n nh\u1eadp \u0111\xfang email');
+        $scope.main.alert('B\u1ea1n c\u1ea7n nh\u1eadp \u0111\xfang \u0111\u1ecba ch\u1ec9 email');
       else {
         var form = {
             udid: Date.now() + '-' + ((1 + Math.random()) * 65536 | 0).toString(16),
@@ -1167,19 +1167,23 @@ angular.module('lunaApp').controller('DeleteCtrl', [
       $scope.footer.buttons = [];
     });
     $scope.submit = function () {
-      if ($scope.email && Validate.validateEmail($scope.email)) {
-        User.setEmail($scope.email);
-        $scope.main.createPopup('\u0110ang x\u1eed l\xfd');
-        $http.get('/user/delete-event/' + $scope.email).then(function (res) {
-          $scope.main.closePopup();
-          if (res.data == '0') {
-            $scope.main.alert('B\u1ea1n kh\xf4ng c\xf3 nh\u1eafc nh\u1edf n\xe0o.');
-          } else {
-            $location.path('/confirmation/delete');
-          }
-        }, function (err) {
-          $scope.main.alert('h\u1ec7 th\u1ed1ng \u0111ang b\u1eadn, xin th\u1eed l\u1ea1i sau \xedt ph\xfat');
-        });
+      if ($scope.email) {
+        if (Validate.validateEmail($scope.email)) {
+          User.setEmail($scope.email);
+          $scope.main.createPopup('\u0110ang x\u1eed l\xfd');
+          $http.get('/user/delete-event/' + $scope.email).then(function (res) {
+            $scope.main.closePopup();
+            if (res.data == '0') {
+              $scope.main.alert('B\u1ea1n kh\xf4ng c\xf3 nh\u1eafc nh\u1edf n\xe0o.');
+            } else {
+              $location.path('/confirmation/delete');
+            }
+          }, function (err) {
+            $scope.main.alert('h\u1ec7 th\u1ed1ng \u0111ang b\u1eadn, xin th\u1eed l\u1ea1i sau \xedt ph\xfat');
+          });
+        } else {
+          $scope.main.alert('B\u1ea1n c\u1ea7n nh\u1eadp \u0111\u1ecba ch\u1ec9 email.');
+        }
       } else {
         $scope.main.alert('B\u1ea1n c\u1ea7n nh\u1eadp \u0111\xfang \u0111\u1ecba ch\u1ec9 email.');
       }
