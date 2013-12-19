@@ -14,7 +14,7 @@ angular.module('lunaApp')
     $scope.footer={};
     $scope.footer.buttons = [];
 
-    $scope.hasPopup = false;
+    $scope.hasPopup = false; 
 
     $scope.main={};
 
