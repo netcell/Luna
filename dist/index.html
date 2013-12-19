@@ -12,7 +12,7 @@
     <link rel="icon" type="image/png" href="apple-touch-icon.png">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-        <link rel="stylesheet" href="styles/d1e2d21e.main.css" media="screen"/>
+        <link rel="stylesheet" href="styles/b06412ab.main.css" media="screen"/>
 </head>
   <body ng-app="lunaApp">
     <!--[if lt IE 7]>
@@ -59,11 +59,11 @@
       </div>
       <div class="cover" ng-if="!loading.value && hasPopup"></div>
       <div class="footer popup no-user-select" ng-if="!loading.value && hasPopup">
-        <div class="video" ng-if="createTut">
-          <iframe width="560" height="315" src="//www.youtube.com/embed/M_QQeoUetPQ?rel=0" frameborder="0" allowfullscreen=""></iframe>
-        </div>
         <div class="box">
           <div ng-repeat="text in popupTexts" class="text" ng-bind="text"></div>
+          <div class="video" ng-if="createTut">
+            <iframe width="560" height="315" src="//www.youtube.com/embed/M_QQeoUetPQ?rel=0" frameborder="0" allowfullscreen=""></iframe>
+          </div>
           <div class="buttons">
             <span class="link" ng-repeat="button in popupButtons" ng-bind="button.text" ng-click="button.action()"></span>
           </div>
@@ -88,7 +88,7 @@
 
         <script src="scripts/7ce03816.modules.js"></script>
 
-        <script src="scripts/4fd25a70.scripts.js"></script>
+        <script src="scripts/aaff10f0.scripts.js"></script>
 
         <!-- <script src="scripts/animations/content-module.js"></script> -->
 </body>

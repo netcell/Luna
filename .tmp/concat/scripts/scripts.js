@@ -54,14 +54,15 @@ angular.module('lunaApp').controller('MainCtrl', [
     $scope.hasPopup = false;
     $scope.main = {};
     var popupOn = function () {
+      $scope.createTut = false;
       $scope.hasPopup = false;
       $timeout(function () {
         $scope.hasPopup = true;
       }, 300);
     };
     $scope.main.showCreateTut = function () {
+      $scope.main.alert('H\u01b0\u1edbng d\u1eabn t\u1ea1o nh\u1eafc nh\u1edf', '\u0110\xf3ng');
       $scope.createTut = true;
-      popupOn();
     };
     $scope.main.createPopup = function (text, buttons) {
       if (Object.prototype.toString.call(text) === '[object Array]') {
@@ -76,11 +77,14 @@ angular.module('lunaApp').controller('MainCtrl', [
         });
       }
       ;
-      $scope.hasPopup = false;
       popupOn();
     };
-    $scope.main.alert = function (text) {
-      $scope.main.createPopup(text, { 'OK': $scope.main.closePopup });
+    $scope.main.alert = function (text, closeButtonText) {
+      if (!closeButtonText)
+        closeButtonText = 'OK';
+      var button = {};
+      button[closeButtonText] = $scope.main.closePopup;
+      $scope.main.createPopup(text, button);
     };
     $scope.main.pauseup = function (text, callback) {
       $scope.main.createPopup(text, {
@@ -93,6 +97,7 @@ angular.module('lunaApp').controller('MainCtrl', [
     };
     $scope.main.closePopup = function () {
       $timeout(function () {
+        $scope.createTut = false;
         $scope.hasPopup = false;
       }, 300);
     };

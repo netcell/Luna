@@ -19,6 +19,7 @@ angular.module('lunaApp')
     $scope.main={};
 
     var popupOn = function(){
+      $scope.createTut = false;
       $scope.hasPopup = false;
       $timeout(function(){
         $scope.hasPopup = true;
@@ -26,8 +27,8 @@ angular.module('lunaApp')
     }
 
     $scope.main.showCreateTut = function(){
+      $scope.main.alert("Hướng dẫn tạo nhắc nhở","Đóng");
       $scope.createTut = true;
-      popupOn();
     }
 
     $scope.main.createPopup = function(text, buttons){
@@ -41,14 +42,14 @@ angular.module('lunaApp')
           action: buttons[key]
         });
       };
-      $scope.hasPopup = false;
       popupOn();
     };
 
-    $scope.main.alert = function(text){
-      $scope.main.createPopup(text, {
-        "OK": $scope.main.closePopup
-      });
+    $scope.main.alert = function(text, closeButtonText){
+      if (!closeButtonText) closeButtonText="OK";
+      var button = {};
+      button[closeButtonText] = $scope.main.closePopup
+      $scope.main.createPopup(text, button);
     };
 
     $scope.main.pauseup = function(text, callback){
@@ -63,6 +64,7 @@ angular.module('lunaApp')
 
     $scope.main.closePopup = function(){
       $timeout(function(){
+        $scope.createTut = false;
         $scope.hasPopup = false;
       },300);
     };

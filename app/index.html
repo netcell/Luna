@@ -64,11 +64,11 @@
       </div>
       <div class="cover" ng-if="!loading.value && hasPopup"></div>
       <div class="footer popup no-user-select" ng-if="!loading.value && hasPopup">
-        <div class="video" ng-if="createTut">
-          <iframe width="560" height="315" src="//www.youtube.com/embed/M_QQeoUetPQ?rel=0" frameborder="0" allowfullscreen></iframe>
-        </div>
         <div class="box">
           <div ng-repeat="text in popupTexts" class="text" ng-bind="text"></div>
+          <div class="video" ng-if="createTut">
+            <iframe width="560" height="315" src="//www.youtube.com/embed/M_QQeoUetPQ?rel=0" frameborder="0" allowfullscreen></iframe>
+          </div>
           <div class="buttons">
             <span class="link" ng-repeat="button in popupButtons" ng-bind="button.text" ng-click="button.action()"></span>
           </div>
