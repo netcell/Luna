@@ -53,6 +53,16 @@ angular.module('lunaApp').controller('MainCtrl', [
     $scope.footer.buttons = [];
     $scope.hasPopup = false;
     $scope.main = {};
+    var popupOn = function () {
+      $scope.hasPopup = false;
+      $timeout(function () {
+        $scope.hasPopup = true;
+      }, 300);
+    };
+    $scope.main.showCreateTut = function () {
+      $scope.createTut = true;
+      popupOn();
+    };
     $scope.main.createPopup = function (text, buttons) {
       if (Object.prototype.toString.call(text) === '[object Array]') {
         $scope.popupTexts = text;
@@ -67,9 +77,7 @@ angular.module('lunaApp').controller('MainCtrl', [
       }
       ;
       $scope.hasPopup = false;
-      $timeout(function () {
-        $scope.hasPopup = true;
-      }, 300);
+      popupOn();
     };
     $scope.main.alert = function (text) {
       $scope.main.createPopup(text, { 'OK': $scope.main.closePopup });
@@ -1132,8 +1140,7 @@ angular.module('lunaApp').controller('HomeCtrl', [
       },
       {
         name: 'h\u01b0\u1edbng d\u1eabn',
-        action: function () {
-        }
+        action: $scope.main.showCreateTut
       }
     ];
     $scope.$on('$destroy', function () {

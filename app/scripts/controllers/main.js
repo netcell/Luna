@@ -18,6 +18,18 @@ angular.module('lunaApp')
 
     $scope.main={};
 
+    var popupOn = function(){
+      $scope.hasPopup = false;
+      $timeout(function(){
+        $scope.hasPopup = true;
+      }, 300);
+    }
+
+    $scope.main.showCreateTut = function(){
+      $scope.createTut = true;
+      popupOn();
+    }
+
     $scope.main.createPopup = function(text, buttons){
       if( Object.prototype.toString.call( text ) === '[object Array]' ) {
              $scope.popupTexts =  text;
@@ -30,9 +42,7 @@ angular.module('lunaApp')
         });
       };
       $scope.hasPopup = false;
-      $timeout(function(){
-        $scope.hasPopup = true;
-      },300);
+      popupOn();
     };
 
     $scope.main.alert = function(text){

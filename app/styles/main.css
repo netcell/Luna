@@ -549,6 +549,12 @@ a, a:hover, a:active {
   text-transform: uppercase;
 }
 
+.popup .video {
+  margin: 4.5em auto;
+  width: 560px;
+  height: 315px;
+}
+
 .footer ul {
   margin-right: 2em;
 }

@@ -10,9 +10,7 @@ angular.module('lunaApp')
     		}
     	},{
     		name:'hướng dẫn',
-    		action: function(){
-
-    		}
+    		action: $scope.main.showCreateTut
     	}
     ];
     $scope.$on('$destroy', function(){
