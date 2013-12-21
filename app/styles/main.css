@@ -526,6 +526,20 @@ a, a:hover, a:active {
   bottom: 0;
 }
 
+.popup{
+  -webkit-transition: all 0.3s ease-in-out;
+  bottom: 0;
+}
+
+.popup.ng-hide-add,
+.popup.ng-hide-remove {
+  display:block!important;
+}
+
+.popup.ng-hide {
+  bottom: -100%; 
+}
+
 .popup .box .text {
   color: #707070;
 }

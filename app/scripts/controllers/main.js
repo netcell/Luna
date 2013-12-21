@@ -19,11 +19,11 @@ angular.module('lunaApp')
     $scope.main={};
 
     var popupOn = function(){
-      $scope.createTut = false;
       $scope.hasPopup = false;
+      $scope.createTut = false;
       $timeout(function(){
         $scope.hasPopup = true;
-      }, 300);
+      }, 100);
     }
 
     $scope.main.showCreateTut = function(){
@@ -63,9 +63,9 @@ angular.module('lunaApp')
     };
 
     $scope.main.closePopup = function(){
+        $scope.hasPopup = false;
       $timeout(function(){
         $scope.createTut = false;
-        $scope.hasPopup = false;
       },300);
     };
 

@@ -3,9 +3,6 @@
 angular.module('lunaApp')
   .controller('QuickcreateCtrl', function ($scope) {
     var input = $scope.input;
-    // $scope.$watch('input', function(input){
-    // 	$scope.token = ngram(tokenize(input), 2);
-    // });
     function tokenize(string) {
     	return string.split(' ');
     }
@@ -20,18 +17,4 @@ angular.module('lunaApp')
     	}
     	return ngram;
     }
-    // function parse(array){
-    // 	var option = {
-    // 		desc : "",
-    // 		hour : -1,
-    // 		minute : -1,
-    // 		day : -1,
-    // 		date : -1,
-    // 		month : -1,
-    // 		year : "",
-    // 		lunar: true,
-    // 		repeat : "",
-    // 	}
-    	
-    // }
   });

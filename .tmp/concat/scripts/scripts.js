@@ -54,11 +54,11 @@ angular.module('lunaApp').controller('MainCtrl', [
     $scope.hasPopup = false;
     $scope.main = {};
     var popupOn = function () {
-      $scope.createTut = false;
       $scope.hasPopup = false;
+      $scope.createTut = false;
       $timeout(function () {
         $scope.hasPopup = true;
-      }, 300);
+      }, 100);
     };
     $scope.main.showCreateTut = function () {
       $scope.main.alert('H\u01b0\u1edbng d\u1eabn t\u1ea1o nh\u1eafc nh\u1edf', '\u0110\xf3ng');
@@ -96,9 +96,9 @@ angular.module('lunaApp').controller('MainCtrl', [
       });
     };
     $scope.main.closePopup = function () {
+      $scope.hasPopup = false;
       $timeout(function () {
         $scope.createTut = false;
-        $scope.hasPopup = false;
       }, 300);
     };
     $scope.main.back = function () {
@@ -195,38 +195,47 @@ angular.module('lunaApp').controller('QuickcreateCtrl', [
   }
 ]);
 'use strict';
+angular.module('lunaApp').directive('afterLoading', function () {
+  return {
+    restrict: 'C',
+    link: function postLink(scope, element, attrs) {
+      element.removeClass('hidden');
+    }
+  };
+});
+'use strict';
 angular.module('lunaApp').controller('LoadingscreenCtrl', [
   '$scope',
-  '$http',
+  '$window',
   '$q',
   '$timeout',
-  function ($scope, $http, $q, $timeout) {
-    var loader = [
-        $http.get('fonts/SourceSansPro-ExtraLight.ttf'),
-        $http.get('fonts/SourceSansPro-Light.ttf'),
-        $http.get('fonts/SourceSansPro-Semibold.ttf'),
-        $http.get('views/account-over-used.html'),
-        $http.get('views/confirmation.html'),
-        $http.get('views/home.html'),
-        $http.get('views/create.html'),
-        $http.get('views/quick-create.html'),
-        $http.get('views/under-construction.html'),
-        $http.get('views/has.html')
-      ];
-    var loaded = 0;
-    for (var i = loader.length - 1; i >= 0; i--) {
-      loader[i].then(function () {
-        loaded++;
-        $('.loader').stop();
-        $('.loader').animate({ width: loaded / loader.length * 100 + '%' }, 500);
+  function ($scope, $window, $q, $timeout) {
+  }
+]);
+'use strict';
+angular.module('lunaApp').directive('main', function () {
+  return {
+    restrict: 'A',
+    link: function postLink(scope, element, attrs) {
+      scope.$watch('hasPopup', function () {
       });
     }
-    ;
-    $q.all(loader).then(function () {
-      $timeout(function () {
-        $scope.loading.value = false;
-      }, 500);
-    });
+  };
+});
+'use strict';
+angular.module('lunaApp').directive('tutorial', function () {
+  return {
+    template: '<iframe id="youtube" width="560" height="315" src="//www.youtube.com/embed/M_QQeoUetPQ?rel=0" frameborder="0" allowfullscreen></iframe>',
+    restrict: 'E',
+    link: function postLink(scope, element, attrs) {
+      IFramePreloader('youtube');
+    }
+  };
+});
+'use strict';
+angular.module('lunaApp').controller('FooterCtrl', [
+  '$scope',
+  function ($scope) {
   }
 ]);
 'use strict';
@@ -235,15 +244,6 @@ angular.module('lunaApp').directive('moduleContent', function () {
     restrict: 'C',
     link: function postLink(scope, element, attrs) {
       scope.grid.value = attrs.grid;
-    }
-  };
-});
-'use strict';
-angular.module('lunaApp').directive('afterLoading', function () {
-  return {
-    restrict: 'C',
-    link: function postLink(scope, element, attrs) {
-      element.removeClass('hidden');
     }
   };
 });
@@ -1213,12 +1213,6 @@ angular.module('lunaApp').factory('Validate', function () {
   };
 });
 'use strict';
-angular.module('lunaApp').controller('FooterCtrl', [
-  '$scope',
-  function ($scope) {
-  }
-]);
-'use strict';
 angular.module('lunaApp').directive('footer', function () {
   return {
     restrict: 'A',
@@ -1668,16 +1662,6 @@ angular.module('lunaApp').directive('form', [
     };
   }
 ]);
-'use strict';
-angular.module('lunaApp').directive('main', function () {
-  return {
-    restrict: 'A',
-    link: function postLink(scope, element, attrs) {
-      scope.$watch('hasPopup', function () {
-      });
-    }
-  };
-});
 'use strict';
 angular.module('lunaApp').factory('Share', function () {
   var temp = {};
