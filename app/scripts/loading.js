@@ -1,6 +1,6 @@
 (function(){
     var links = [
-        'scripts/angular.min.js',
+        'bower_components/angular/angular.min.js',
         'fonts/SourceSansPro-ExtraLight.ttf',
         'fonts/SourceSansPro-Light.ttf',
         'fonts/SourceSansPro-Semibold.ttf',
