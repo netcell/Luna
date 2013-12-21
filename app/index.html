@@ -104,29 +104,25 @@
         <script src="bower_components/ngstorage/ngStorage.js"></script>
         <!-- endbuild -->
 
-        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        
         <script type="text/javascript">
           WebFontConfig = {
             custom: {
-            families: ['Source Sans Pro'],
-            urls: ['styles/main.css']
+            families: ['Source Sans Pro']
             }
            
           };
-          (function() {
-            var wf = document.createElement('script');
-            wf.src = 'scripts/minilicham/webfont.js';
-            wf.type = 'text/javascript';
-            wf.async = 'true';
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(wf, s);
-          })(); 
         </script>
-        <script src ="scripts/minilicham/caat.js"> </script>
-        <script src ="scripts/minilicham/main.js"> </script>
-        <script src ="scripts/minilicham/date.js"> </script>
-        <script src ="scripts/minilicham/calendar.js"> </script>
-        <script src ="scripts/minilicham/ContainerFrameDate.js"> </script>
+        <!-- build:js scripts/minilicham.js -->
+        <script src="scripts/minilicham/webfont.js"> </script>
+        <script src="scripts/minilicham/caat.js"> </script>
+        <script src="scripts/minilicham/main.js"> </script>
+        <script src="scripts/minilicham/date.js"> </script>
+        <script src="scripts/minilicham/calendar.js"> </script>
+        <script src="scripts/minilicham/ContainerFrameDate.js"> </script>
+        <!-- endbuild -->
+
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/directives/appDirective.js"></script>
@@ -134,12 +130,6 @@
         <script src="scripts/directives/quickCreate.js"></script>
         <script src="scripts/controllers/quickCreate.js"></script>
         <script src="scripts/directives/afterLoading.js"></script>
-        <!--
-        <script src="scripts/controllers/LoadingScreen.js"></script>
-        <script src="scripts/directives/main.js"></script>
-        <script src="scripts/directives/tutorial.js"></script>
-        <script src="scripts/controllers/footer.js"></script>
-        -->
         <script src="scripts/directives/moduleContainer.js"></script>
         <script src="scripts/controllers/create.js"></script>
         <script src="scripts/directives/create.js"></script>

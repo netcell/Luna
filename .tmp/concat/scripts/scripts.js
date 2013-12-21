@@ -196,41 +196,6 @@ angular.module('lunaApp').directive('afterLoading', function () {
   };
 });
 'use strict';
-angular.module('lunaApp').controller('LoadingscreenCtrl', [
-  '$scope',
-  '$window',
-  '$q',
-  '$timeout',
-  function ($scope, $window, $q, $timeout) {
-  }
-]);
-'use strict';
-angular.module('lunaApp').directive('main', function () {
-  return {
-    restrict: 'A',
-    link: function postLink(scope, element, attrs) {
-      scope.$watch('hasPopup', function () {
-      });
-    }
-  };
-});
-'use strict';
-angular.module('lunaApp').directive('tutorial', function () {
-  return {
-    template: '<iframe id="youtube" width="560" height="315" src="//www.youtube.com/embed/M_QQeoUetPQ?rel=0" frameborder="0" allowfullscreen></iframe>',
-    restrict: 'E',
-    link: function postLink(scope, element, attrs) {
-      IFramePreloader('youtube');
-    }
-  };
-});
-'use strict';
-angular.module('lunaApp').controller('FooterCtrl', [
-  '$scope',
-  function ($scope) {
-  }
-]);
-'use strict';
 angular.module('lunaApp').directive('moduleContent', function () {
   return {
     restrict: 'C',
