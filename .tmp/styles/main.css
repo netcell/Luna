@@ -648,6 +648,36 @@ select.size-full {
   text-decoration: underline;
 }
 
+.footer.calendarbutton {
+  line-height: 3em;
+  width: auto;
+  padding: 1px 20px;
+}
+
+#calendar {
+  position: fixed;
+  bottom: 3em;
+  margin-bottom: 2px;
+  overflow: hidden;
+  height: 527px;
+  -webkit-transition: all 0.3s ease-in-out!important;
+}
+
+#canvas {
+  margin-bottom: -4px;
+}
+
+#calendar.ng-hide-add,
+#calendar.ng-hide-remove {
+  -webkit-transition: 0.5s linear all;
+  transition: 0.5s linear all;
+  display: block!important;
+}
+
+#calendar.ng-hide {
+  height: 0;
+}
+
 /* Responsive: Portrait tablets and up */
 
 @media screen and (min-width: 768px) {

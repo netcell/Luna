@@ -12,7 +12,7 @@
     <link rel="icon" type="image/png" href="apple-touch-icon.png">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-        <link rel="stylesheet" href="styles/d589f57a.main.css" media="screen"/>
+        <link rel="stylesheet" href="styles/98307904.main.css"/>
 </head>
   <body ng-app="lunaApp">
     <!--[if lt IE 7]>
@@ -52,10 +52,17 @@
           </div>
         </div>
       </div>
+      <!-- <div class="cover" ng-show="showCalendar"></div> -->
       <div class="footer more no-user-select after-loading hidden" footer="">
           <ul class="menu">
             <li class="link" ng-repeat="button in footer.buttons" ng-click="button.action()" ng-bind="button.name"></li>
           </ul>
+      </div>
+      <div class="footer calendarbutton" ng-click="showCalendar=!showCalendar">Lịch
+      </div>
+
+      <div id="calendar" ng-show="showCalendar">
+        <canvas id="canvas"></canvas>
       </div>
       <div class="cover" ng-if="hasPopup"></div>
       <div class="footer popup no-user-select" ng-if="hasPopup">

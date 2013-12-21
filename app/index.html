@@ -16,7 +16,6 @@
 
         <!-- build:css(.tmp) styles/main.css -->
         <link rel="stylesheet" href="styles/main.css">
-        <link rel='stylesheet' href='dynamic/loading.css' type='text/css' media='screen' />
         <!-- endbuild -->
 </head>
   <body ng-app="lunaApp">
@@ -57,10 +56,17 @@
           </div>
         </div>
       </div>
+      <!-- <div class="cover" ng-show="showCalendar"></div> -->
       <div class="footer more no-user-select after-loading hidden" footer>
           <ul class="menu">
             <li class="link" ng-repeat="button in footer.buttons" ng-click="button.action()" ng-bind="button.name"></li>
           </ul>
+      </div>
+      <div class="footer calendarbutton" ng-click="showCalendar=!showCalendar">Lịch
+      </div>
+
+      <div id="calendar" ng-show="showCalendar">
+        <canvas id="canvas"></canvas>
       </div>
       <div class="cover" ng-if="hasPopup"></div>
       <div class="footer popup no-user-select" ng-if="hasPopup">
@@ -100,6 +106,28 @@
         <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script type="text/javascript">
+          WebFontConfig = {
+            custom: {
+            families: ['Source Sans Pro'],
+            urls: ['minilicham/css.css']
+            }
+           
+          };
+          (function() {
+            var wf = document.createElement('script');
+            wf.src = 'minilicham/webfont.js';
+            wf.type = 'text/javascript';
+            wf.async = 'true';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(wf, s);
+          })(); 
+        </script>
+        <script src ="minilicham/caat.js"> </script>
+        <script src ="minilicham/main.js"> </script>
+        <script src ="minilicham/date.js"> </script>
+        <script src ="minilicham/calendar.js"> </script>
+        <script src ="minilicham/ContainerFrameDate.js"> </script>
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/directives/appDirective.js"></script>
