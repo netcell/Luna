@@ -6,8 +6,8 @@ window.onload = function () {
     load();
     function load() {
         new CAAT.Module.Preloader.Preloader().
-            addElement("add", "images/picture1.jpg").
-            addElement("minioic", "images/minioic.jpg").
+            addElement("add", "minilicham/picture1.jpg").
+            addElement("minioic", "minilicham/minioic.jpg").
             load(function onAllAssetsLoaded(images) {
                 setTimeout(function(){run(images)},100);
             }
