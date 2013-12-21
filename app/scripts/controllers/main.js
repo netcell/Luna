@@ -20,15 +20,9 @@ angular.module('lunaApp')
 
     var popupOn = function(){
       $scope.hasPopup = false;
-      $scope.createTut = false;
       $timeout(function(){
         $scope.hasPopup = true;
       }, 100);
-    }
-
-    $scope.main.showCreateTut = function(){
-      $scope.main.alert("Hướng dẫn tạo nhắc nhở","Đóng");
-      $scope.createTut = true;
     }
 
     $scope.main.createPopup = function(text, buttons){
@@ -64,9 +58,6 @@ angular.module('lunaApp')
 
     $scope.main.closePopup = function(){
         $scope.hasPopup = false;
-      $timeout(function(){
-        $scope.createTut = false;
-      },300);
     };
 
     $scope.main.back = function(){

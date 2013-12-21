@@ -10,7 +10,9 @@ angular.module('lunaApp')
     		}
     	},{
     		name:'hướng dẫn',
-    		action: $scope.main.showCreateTut
+    		action: function(){
+                window.open('http://www.youtube.com/watch?v=M_QQeoUetPQ&feature=youtu.be', '_blank').focus();
+            }
     	}
     ];
     $scope.$on('$destroy', function(){

@@ -55,14 +55,9 @@ angular.module('lunaApp').controller('MainCtrl', [
     $scope.main = {};
     var popupOn = function () {
       $scope.hasPopup = false;
-      $scope.createTut = false;
       $timeout(function () {
         $scope.hasPopup = true;
       }, 100);
-    };
-    $scope.main.showCreateTut = function () {
-      $scope.main.alert('H\u01b0\u1edbng d\u1eabn t\u1ea1o nh\u1eafc nh\u1edf', '\u0110\xf3ng');
-      $scope.createTut = true;
     };
     $scope.main.createPopup = function (text, buttons) {
       if (Object.prototype.toString.call(text) === '[object Array]') {
@@ -97,9 +92,6 @@ angular.module('lunaApp').controller('MainCtrl', [
     };
     $scope.main.closePopup = function () {
       $scope.hasPopup = false;
-      $timeout(function () {
-        $scope.createTut = false;
-      }, 300);
     };
     $scope.main.back = function () {
       $window.history.back();
@@ -1145,7 +1137,9 @@ angular.module('lunaApp').controller('HomeCtrl', [
       },
       {
         name: 'h\u01b0\u1edbng d\u1eabn',
-        action: $scope.main.showCreateTut
+        action: function () {
+          window.open('http://www.youtube.com/watch?v=M_QQeoUetPQ&feature=youtu.be', '_blank').focus();
+        }
       }
     ];
     $scope.$on('$destroy', function () {
