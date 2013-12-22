@@ -14,9 +14,16 @@ angular.module('lunaApp')
     $scope.footer={};
     $scope.footer.buttons = [];
 
-    $scope.hasPopup = false;
+    $scope.hasPopup = false; 
 
     $scope.main={};
+
+    var popupOn = function(){
+      $scope.hasPopup = false;
+      $timeout(function(){
+        $scope.hasPopup = true;
+      }, 100);
+    }
 
     $scope.main.createPopup = function(text, buttons){
       if( Object.prototype.toString.call( text ) === '[object Array]' ) {
@@ -29,16 +36,14 @@ angular.module('lunaApp')
           action: buttons[key]
         });
       };
-      $scope.hasPopup = false;
-      $timeout(function(){
-        $scope.hasPopup = true;
-      },300);
+      popupOn();
     };
 
-    $scope.main.alert = function(text){
-      $scope.main.createPopup(text, {
-        "OK": $scope.main.closePopup
-      });
+    $scope.main.alert = function(text, closeButtonText){
+      if (!closeButtonText) closeButtonText="OK";
+      var button = {};
+      button[closeButtonText] = $scope.main.closePopup
+      $scope.main.createPopup(text, button);
     };
 
     $scope.main.pauseup = function(text, callback){
@@ -52,9 +57,7 @@ angular.module('lunaApp')
     };
 
     $scope.main.closePopup = function(){
-      $timeout(function(){
         $scope.hasPopup = false;
-      },300);
     };
 
     $scope.main.back = function(){

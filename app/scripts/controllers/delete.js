@@ -24,21 +24,25 @@ angular.module('lunaApp')
     });
 
     $scope.submit = function(){
-    	if ($scope.email && Validate.validateEmail($scope.email)) {
-            User.setEmail($scope.email);
-            $scope.main.createPopup('Đang xử lý');
-            $http.get('/user/delete-event/'+$scope.email).then(function(res){
-            	$scope.main.closePopup();
-                if (res.data == "0") {
-            		$scope.main.alert('Bạn không có nhắc nhở nào.');
-            	} else {
-            		$location.path("/confirmation/delete");
-            	}
-            }, function(err){
-                $scope.main.alert('hệ thống đang bận, xin thử lại sau ít phút');
-            });
+    	if ($scope.email){
+            if (Validate.validateEmail($scope.email)) {
+                User.setEmail($scope.email);
+                $scope.main.createPopup('Đang xử lý');
+                $http.get('/user/delete-event/'+$scope.email).then(function(res){
+                	$scope.main.closePopup();
+                    if (res.data == "0") {
+                		$scope.main.alert('Bạn không có nhắc nhở nào.');
+                	} else {
+                		$location.path("/confirmation/delete");
+                	}
+                }, function(err){
+                    $scope.main.alert('hệ thống đang bận, xin thử lại sau ít phút');
+                });
+            } else {
+                $scope.main.alert('Bạn cần nhập đúng địa chỉ email.');    
+            }
         } else {
-            $scope.main.alert('Bạn cần nhập đúng địa chỉ email.');
+            $scope.main.alert('Bạn cần nhập địa chỉ email.');
         }
     }
   });

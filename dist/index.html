@@ -6,12 +6,13 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title></title>
+    <title>Âm dương lịch</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
+    <link rel="icon" type="image/png" href="apple-touch-icon.png">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-        <link rel="stylesheet" href="styles/c1274189.main.css" media="screen"/>
+        <link rel="stylesheet" href="styles/dd055e71.main.css"/>
 </head>
   <body ng-app="lunaApp">
     <!--[if lt IE 7]>
@@ -25,7 +26,7 @@
 
     <!-- Add your site or application content here -->
     <div main="" class="container" ng-init="loading.value=true" ng-controller="MainCtrl">
-      <div class="container after-loading hidden" ng-if="!loading.value">
+      <div class="container after-loading hidden">
         <div class="mininoic abs-center no-user-select">
           <div class="logo"></div>
           <div class="desc">một sản phẩm của <span class="underline link">mininoic</span></div>
@@ -51,13 +52,66 @@
           </div>
         </div>
       </div>
-      <div class="footer more no-user-select after-loading hidden" ng-if="!loading.value && !hasPopup" footer="">
+      <!-- <div id="calendar" ng-show="!showCalendar">
+        <div class="row odd">
+          <div class="solar">
+            <span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span>
+          </div>
+          <div class="luna">
+            <span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span>
+          </div>
+        </div>
+        <div class="row even">
+          <div class="solar">
+            <span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span>
+          </div>
+          <div class="luna">
+            <span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span>
+          </div>
+        </div>
+        <div class="row odd">
+          <div class="solar">
+            <span>1</span><span class="today">1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span>
+          </div>
+          <div class="luna">
+            <span>1</span><span class="today">1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span>
+          </div>
+        </div>
+        <div class="row even">
+          <div class="solar">
+            <span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span>
+          </div>
+          <div class="luna">
+            <span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span>
+          </div>
+        </div>
+        <div class="row odd">
+          <div class="solar">
+            <span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span>
+          </div>
+          <div class="luna">
+            <span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span>
+          </div>
+        </div>
+        <div class="row even">
+          <div class="solar">
+            <span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span>
+          </div>
+          <div class="luna">
+            <span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span>
+          </div>
+        </div>
+      </div> -->
+
+      <!-- <div class="cover" ng-show="showCalendar"></div> -->
+      <div class="footer more no-user-select after-loading hidden" footer="">
           <ul class="menu">
             <li class="link" ng-repeat="button in footer.buttons" ng-click="button.action()" ng-bind="button.name"></li>
           </ul>
       </div>
-      <div class="cover" ng-if="!loading.value && hasPopup"></div>
-      <div class="footer popup no-user-select" ng-if="!loading.value && hasPopup">
+      <!-- <div class="footer calendarbutton" ng-click="showCalendar=!showCalendar">Lịch</div> -->
+      <div class="cover" ng-if="hasPopup"></div>
+      <div class="footer popup no-user-select" ng-if="hasPopup">
         <div class="box">
           <div ng-repeat="text in popupTexts" class="text" ng-bind="text"></div>
           <div class="buttons">
@@ -65,25 +119,26 @@
           </div>
         </div>
       </div>
-      <div class="loading-screen" ng-if="loading.value" ng-controller="LoadingscreenCtrl">Loading screen</div>
+      <div class="loading-screen"><div class="loader"></div><div class="content">Đang tải ứng dụng</div></div>
     </div>
-
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
-       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+       // (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+       // (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+       // m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+       // })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-       ga('create', 'UA-XXXXX-X');
-       ga('send', 'pageview');
+       // ga('create', 'UA-XXXXX-X');
+       // ga('send', 'pageview');
     </script>
 
-    <script src="bower_components/jquery/jquery.js"></script>
+    <script type="text/javascript" src="bower_components/jquery/jquery.min.js"></script>
+    <script src="scripts/544257d0.preloading.js"></script>
+    <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
 
-        <script src="scripts/64b51985.modules.js"></script>
+        <script src="scripts/7ce03816.modules.js"></script>
 
-        <script src="scripts/06d06abc.scripts.js"></script>
+        <script src="scripts/69b46411.scripts.js"></script>
 
         <!-- <script src="scripts/animations/content-module.js"></script> -->
 </body>

@@ -24,6 +24,13 @@ angular.module('lunaApp')
   	};
   	$scope.subaction = subactions[$routeParams.action];
 
+    var images = {
+      "delete": 'images/confirmation_delete.png',
+      "create": 'images/confirmation_create.png'
+    };
+
+    $scope.image = images[$routeParams.action];
+
     $scope.submit = function(){
       if ($routeParams.action == "create") {
         var form = Share.receive("form-create");

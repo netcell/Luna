@@ -53,6 +53,12 @@ angular.module('lunaApp').controller('MainCtrl', [
     $scope.footer.buttons = [];
     $scope.hasPopup = false;
     $scope.main = {};
+    var popupOn = function () {
+      $scope.hasPopup = false;
+      $timeout(function () {
+        $scope.hasPopup = true;
+      }, 100);
+    };
     $scope.main.createPopup = function (text, buttons) {
       if (Object.prototype.toString.call(text) === '[object Array]') {
         $scope.popupTexts = text;
@@ -66,13 +72,14 @@ angular.module('lunaApp').controller('MainCtrl', [
         });
       }
       ;
-      $scope.hasPopup = false;
-      $timeout(function () {
-        $scope.hasPopup = true;
-      }, 300);
+      popupOn();
     };
-    $scope.main.alert = function (text) {
-      $scope.main.createPopup(text, { 'OK': $scope.main.closePopup });
+    $scope.main.alert = function (text, closeButtonText) {
+      if (!closeButtonText)
+        closeButtonText = 'OK';
+      var button = {};
+      button[closeButtonText] = $scope.main.closePopup;
+      $scope.main.createPopup(text, button);
     };
     $scope.main.pauseup = function (text, callback) {
       $scope.main.createPopup(text, {
@@ -84,9 +91,7 @@ angular.module('lunaApp').controller('MainCtrl', [
       });
     };
     $scope.main.closePopup = function () {
-      $timeout(function () {
-        $scope.hasPopup = false;
-      }, 300);
+      $scope.hasPopup = false;
     };
     $scope.main.back = function () {
       $window.history.back();
@@ -182,53 +187,20 @@ angular.module('lunaApp').controller('QuickcreateCtrl', [
   }
 ]);
 'use strict';
-angular.module('lunaApp').controller('LoadingscreenCtrl', [
-  '$scope',
-  '$http',
-  '$q',
-  '$timeout',
-  function ($scope, $http, $q, $timeout) {
-    var fontExtraLight = $http.get('fonts/SourceSansPro-ExtraLight.ttf');
-    var fontLight = $http.get('fonts/SourceSansPro-Light.ttf');
-    var fontSemibold = $http.get('fonts/SourceSansPro-Semibold.ttf');
-    var view1 = $http.get('views/account-over-used.html');
-    var view2 = $http.get('views/confirmation.html');
-    var view3 = $http.get('views/home.html');
-    var view4 = $http.get('views/create.html');
-    var view5 = $http.get('views/quick-create.html');
-    var view6 = $http.get('views/under-construction.html');
-    var view7 = $http.get('views/has.html');
-    $q.all([
-      fontExtraLight,
-      fontLight,
-      fontSemibold,
-      view1,
-      view2,
-      view3,
-      view4,
-      view5,
-      view6,
-      view7
-    ]).then(function () {
-      $scope.loading.value = false;
-    });
-  }
-]);
+angular.module('lunaApp').directive('afterLoading', function () {
+  return {
+    restrict: 'C',
+    link: function postLink(scope, element, attrs) {
+      element.removeClass('hidden');
+    }
+  };
+});
 'use strict';
 angular.module('lunaApp').directive('moduleContent', function () {
   return {
     restrict: 'C',
     link: function postLink(scope, element, attrs) {
       scope.grid.value = attrs.grid;
-    }
-  };
-});
-'use strict';
-angular.module('lunaApp').directive('afterLoading', function () {
-  return {
-    restrict: 'C',
-    link: function postLink(scope, element, attrs) {
-      element.removeClass('hidden');
     }
   };
 });
@@ -301,9 +273,9 @@ angular.module('lunaApp').controller('CreateCtrl', [
     });
     $scope.submit = function () {
       if (!$scope.selection.email)
-        $scope.main.alert('B\u1ea1n c\u1ea7n nh\u1eadp email');
+        $scope.main.alert('B\u1ea1n c\u1ea7n nh\u1eadp \u0111\u1ecba ch\u1ec9 email');
       else if (!Validate.validateEmail($scope.selection.email))
-        $scope.main.alert('B\u1ea1n c\u1ea7n nh\u1eadp \u0111\xfang email');
+        $scope.main.alert('B\u1ea1n c\u1ea7n nh\u1eadp \u0111\xfang \u0111\u1ecba ch\u1ec9 email');
       else {
         var form = {
             udid: Date.now() + '-' + ((1 + Math.random()) * 65536 | 0).toString(16),
@@ -336,12 +308,13 @@ angular.module('lunaApp').controller('CreateCtrl', [
             $scope.main.alert('H\u1ec7 th\u1ed1ng \u0111ang b\u1eadn, xin th\u1eed l\u1ea1i sau \xedt ph\xfat');
           });
         };
-        if (!form.desc || /^\s*$/.test(form.desc))
+        if (!form.desc || /^\s*$/.test(form.desc)) {
+          form.desc = '';
           $scope.main.pauseup([
             'B\u1ea1n ch\u01b0a \u0111i\u1ec1n n\u1ed9i dung nh\u1eafc nh\u1edf.',
             'B\u1ea1n c\xf3 ch\u1eafc mu\u1ed1n ti\u1ebfp t\u1ee5c t\u1ea1o nh\u1eafc nh\u1edf kh\xf4ng c\xf3 n\u1ed9i dung kh\xf4ng?'
           ], f);
-        else
+        } else
           f();
       }
     };
@@ -1130,6 +1103,7 @@ angular.module('lunaApp').controller('HomeCtrl', [
       {
         name: 'h\u01b0\u1edbng d\u1eabn',
         action: function () {
+          window.open('http://www.youtube.com/watch?v=M_QQeoUetPQ&feature=youtu.be', '_blank').focus();
         }
       }
     ];
@@ -1165,21 +1139,25 @@ angular.module('lunaApp').controller('DeleteCtrl', [
       $scope.footer.buttons = [];
     });
     $scope.submit = function () {
-      if ($scope.email && Validate.validateEmail($scope.email)) {
-        User.setEmail($scope.email);
-        $scope.main.createPopup('\u0110ang x\u1eed l\xfd');
-        $http.get('/user/delete-event/' + $scope.email).then(function (res) {
-          $scope.main.closePopup();
-          if (res.data == '0') {
-            $scope.main.alert('B\u1ea1n kh\xf4ng c\xf3 nh\u1eafc nh\u1edf n\xe0o.');
-          } else {
-            $location.path('/confirmation/delete');
-          }
-        }, function (err) {
-          $scope.main.alert('h\u1ec7 th\u1ed1ng \u0111ang b\u1eadn, xin th\u1eed l\u1ea1i sau \xedt ph\xfat');
-        });
+      if ($scope.email) {
+        if (Validate.validateEmail($scope.email)) {
+          User.setEmail($scope.email);
+          $scope.main.createPopup('\u0110ang x\u1eed l\xfd');
+          $http.get('/user/delete-event/' + $scope.email).then(function (res) {
+            $scope.main.closePopup();
+            if (res.data == '0') {
+              $scope.main.alert('B\u1ea1n kh\xf4ng c\xf3 nh\u1eafc nh\u1edf n\xe0o.');
+            } else {
+              $location.path('/confirmation/delete');
+            }
+          }, function (err) {
+            $scope.main.alert('h\u1ec7 th\u1ed1ng \u0111ang b\u1eadn, xin th\u1eed l\u1ea1i sau \xedt ph\xfat');
+          });
+        } else {
+          $scope.main.alert('B\u1ea1n c\u1ea7n nh\u1eadp \u0111\xfang \u0111\u1ecba ch\u1ec9 email.');
+        }
       } else {
-        $scope.main.alert('B\u1ea1n c\u1ea7n nh\u1eadp \u0111\xfang \u0111\u1ecba ch\u1ec9 email.');
+        $scope.main.alert('B\u1ea1n c\u1ea7n nh\u1eadp \u0111\u1ecba ch\u1ec9 email.');
       }
     };
   }
@@ -1193,12 +1171,6 @@ angular.module('lunaApp').factory('Validate', function () {
     }
   };
 });
-'use strict';
-angular.module('lunaApp').controller('FooterCtrl', [
-  '$scope',
-  function ($scope) {
-  }
-]);
 'use strict';
 angular.module('lunaApp').directive('footer', function () {
   return {
@@ -1544,6 +1516,11 @@ angular.module('lunaApp').controller('ConfirmationCtrl', [
         }
       };
     $scope.subaction = subactions[$routeParams.action];
+    var images = {
+        'delete': 'images/confirmation_delete.png',
+        'create': 'images/confirmation_create.png'
+      };
+    $scope.image = images[$routeParams.action];
     $scope.submit = function () {
       if ($routeParams.action == 'create') {
         var form = Share.receive('form-create');
@@ -1644,16 +1621,6 @@ angular.module('lunaApp').directive('form', [
     };
   }
 ]);
-'use strict';
-angular.module('lunaApp').directive('main', function () {
-  return {
-    restrict: 'A',
-    link: function postLink(scope, element, attrs) {
-      scope.$watch('hasPopup', function () {
-      });
-    }
-  };
-});
 'use strict';
 angular.module('lunaApp').factory('Share', function () {
   var temp = {};

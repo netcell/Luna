@@ -33,10 +33,29 @@ html, body, div, ul, li, span, input, textarea, button, select {
 }
 
 .loading-screen {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #f6f6f6;
+}
+
+.loading-screen .loader {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  width: 0%;
+  background-color: #e3e3e3;
+}
+
+.loading-screen .content {
   text-align: center;
   position: absolute;
   width: 100%;
   top: 50%;
+  font-size: 24px;
 }
 
 .hidden {
@@ -507,6 +526,20 @@ a, a:hover, a:active {
   bottom: 0;
 }
 
+.popup{
+  -webkit-transition: all 0.3s ease-in-out;
+  bottom: 0;
+}
+
+.popup.ng-hide-add,
+.popup.ng-hide-remove {
+  display:block!important;
+}
+
+.popup.ng-hide {
+  bottom: -100%; 
+}
+
 .popup .box .text {
   color: #707070;
 }
@@ -528,6 +561,12 @@ a, a:hover, a:active {
   font-size: 30px;
   font-weight: bold;
   text-transform: uppercase;
+}
+
+.popup .video {
+  margin: 1em auto;
+  width: 560px;
+  height: 315px;
 }
 
 .footer ul {
@@ -555,6 +594,80 @@ a, a:hover, a:active {
 .footer li:hover {
   text-decoration: underline;
 }
+
+.footer.calendarbutton {
+  line-height: 3em;
+  width: auto;
+  padding: 1px 20px;
+}
+
+#calendar {
+  box-shadow: -3px 2px 19px -7px #000;
+  position: fixed;
+  bottom: 3em;
+  margin-bottom: 2px;
+  overflow: hidden;
+  border-radius: 0px 13px 0px 0px;
+  -webkit-transition: all 0.3s ease-in-out!important;
+  border-bottom: 1px solid #dcdcdc;
+  border-left: 1px solid #dcdcdc;
+  border-right: 1px solid #dcdcdc;
+}
+
+#calendar .row {
+  border-top: 1px solid #dcdcdc;
+  position: relative;
+}
+
+#calendar .row.odd {
+  background-color: #f0f0f0;
+}
+
+#calendar .row.even {
+  background-color: #fafafa;
+}
+
+#calendar .row span {
+  display: inline-block;
+  width: 48px;
+  text-align: center;
+}
+
+#calendar .row .solar span {
+  height: 48px;
+  font-size: 20px;
+  border-radius: 5px;
+}
+
+#calendar .row .luna span {
+  font-size: 13px;
+}
+
+#calendar .row span.today {
+  color: #f6f6f6;
+  font-weight: bold;
+}
+
+#calendar .row .solar span.today {
+  background-color: #444750;
+}
+
+#calendar .row .luna {
+  position: absolute;
+  top: 25px;
+}
+
+#calendar.ng-hide-add, #calendar.ng-hide-remove {
+  transition:0.5s linear all;
+  display:block!important;
+}
+
+#calendar.ng-hide {
+  height: 0;
+}
+
+
+
 
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {

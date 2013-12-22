@@ -76,9 +76,9 @@ angular.module('lunaApp')
 
     $scope.submit = function(){
         if (!$scope.selection.email) 
-            $scope.main.alert('Bạn cần nhập email')
+            $scope.main.alert('Bạn cần nhập địa chỉ email')
         else if (!Validate.validateEmail($scope.selection.email))
-            $scope.main.alert('Bạn cần nhập đúng email')
+            $scope.main.alert('Bạn cần nhập đúng địa chỉ email')
         else {
             var form = {
                 udid:   Date.now()+"-"+(((1+Math.random())*0x10000)|0).toString(16),
@@ -106,12 +106,13 @@ angular.module('lunaApp')
                     $scope.main.alert('Hệ thống đang bận, xin thử lại sau ít phút');
                 });
             }
-            if (!form.desc || /^\s*$/.test(form.desc))
+            if (!form.desc || /^\s*$/.test(form.desc)) {
+                form.desc = "";
                 $scope.main.pauseup([
                     "Bạn chưa điền nội dung nhắc nhở.",
                     "Bạn có chắc muốn tiếp tục tạo nhắc nhở không có nội dung không?"
                     ],f);
-            else f();
+            } else f();
         }
     }
     
