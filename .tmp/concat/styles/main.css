@@ -655,16 +655,60 @@ select.size-full {
 }
 
 #calendar {
+  -webkit-box-shadow: -3px 2px 19px -7px #000;
+  box-shadow: -3px 2px 19px -7px #000;
   position: fixed;
   bottom: 3em;
   margin-bottom: 2px;
   overflow: hidden;
-  height: 527px;
+  border-radius: 0px 13px 0px 0px;
   -webkit-transition: all 0.3s ease-in-out!important;
+  border-bottom: 1px solid #dcdcdc;
+  border-left: 1px solid #dcdcdc;
+  border-right: 1px solid #dcdcdc;
 }
 
-#canvas {
-  margin-bottom: -4px;
+#calendar .row {
+  border-top: 1px solid #dcdcdc;
+  position: relative;
+}
+
+#calendar .row.odd {
+  background-color: #f0f0f0;
+}
+
+#calendar .row.even {
+  background-color: #fafafa;
+}
+
+#calendar .row span {
+  display: inline-block;
+  width: 48px;
+  text-align: center;
+}
+
+#calendar .row .solar span {
+  height: 48px;
+  font-size: 20px;
+  border-radius: 5px;
+}
+
+#calendar .row .luna span {
+  font-size: 13px;
+}
+
+#calendar .row span.today {
+  color: #f6f6f6;
+  font-weight: bold;
+}
+
+#calendar .row .solar span.today {
+  background-color: #444750;
+}
+
+#calendar .row .luna {
+  position: absolute;
+  top: 25px;
 }
 
 #calendar.ng-hide-add,

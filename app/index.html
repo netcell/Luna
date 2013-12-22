@@ -56,17 +56,64 @@
           </div>
         </div>
       </div>
+      <!-- <div id="calendar" ng-show="!showCalendar">
+        <div class="row odd">
+          <div class="solar">
+            <span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span>
+          </div>
+          <div class="luna">
+            <span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span>
+          </div>
+        </div>
+        <div class="row even">
+          <div class="solar">
+            <span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span>
+          </div>
+          <div class="luna">
+            <span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span>
+          </div>
+        </div>
+        <div class="row odd">
+          <div class="solar">
+            <span>1</span><span class="today">1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span>
+          </div>
+          <div class="luna">
+            <span>1</span><span class="today">1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span>
+          </div>
+        </div>
+        <div class="row even">
+          <div class="solar">
+            <span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span>
+          </div>
+          <div class="luna">
+            <span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span>
+          </div>
+        </div>
+        <div class="row odd">
+          <div class="solar">
+            <span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span>
+          </div>
+          <div class="luna">
+            <span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span>
+          </div>
+        </div>
+        <div class="row even">
+          <div class="solar">
+            <span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span>
+          </div>
+          <div class="luna">
+            <span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span>
+          </div>
+        </div>
+      </div> -->
+
       <!-- <div class="cover" ng-show="showCalendar"></div> -->
       <div class="footer more no-user-select after-loading hidden" footer>
           <ul class="menu">
             <li class="link" ng-repeat="button in footer.buttons" ng-click="button.action()" ng-bind="button.name"></li>
           </ul>
       </div>
-      <div class="footer calendarbutton" ng-click="showCalendar=!showCalendar">Lịch</div>
-
-      <div id="calendar" ng-show="showCalendar">
-        <canvas id="canvas"></canvas>
-      </div>
+      <!-- <div class="footer calendarbutton" ng-click="showCalendar=!showCalendar">Lịch</div> -->
       <div class="cover" ng-if="hasPopup"></div>
       <div class="footer popup no-user-select" ng-if="hasPopup">
         <div class="box">
@@ -102,24 +149,6 @@
         <script type="text/javascript" src="/bower_components/angular-autosize/elastic.js"></script>
         <script src="bower_components/angular-touch/angular-touch.js"></script>
         <script src="bower_components/ngstorage/ngStorage.js"></script>
-        <!-- endbuild -->
-
-        
-        <script type="text/javascript">
-          WebFontConfig = {
-            custom: {
-            families: ['Source Sans Pro']
-            }
-           
-          };
-        </script>
-        <!-- build:js scripts/minilicham.js -->
-        <script src="scripts/minilicham/webfont.js"> </script>
-        <script src="scripts/minilicham/caat.js"> </script>
-        <script src="scripts/minilicham/main.js"> </script>
-        <script src="scripts/minilicham/date.js"> </script>
-        <script src="scripts/minilicham/calendar.js"> </script>
-        <script src="scripts/minilicham/ContainerFrameDate.js"> </script>
         <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
