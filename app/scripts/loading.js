@@ -17,13 +17,16 @@
     for (var i = loader.length - 1; i >= 0; i--) {
         $.when(loader).then(function(){
             loaded++;
-            console.log(loaded*100/loader.length);
             loadingPage = loadingPage.animate({
                 width: (loaded*100/loader.length) + "%"
-            },50);
+            },{
+                duration:50,
+                complete: function(){
+                    if (loaded==loader.length) {
+                        $('.loading-screen').fadeOut(500);
+                    }
+                }
+            });
         })
     };
-    $.when.apply($, loader).then(function() {
-        $('.loading-screen').fadeOut(500);
-    });
 })();
