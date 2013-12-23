@@ -16,13 +16,14 @@
     var loaded = 0;
     for (var i = loader.length - 1; i >= 0; i--) {
         $.when(loader).then(function(){
+            var l = loaded+1;
             loaded++;
             loadingPage = loadingPage.animate({
-                width: (loaded*100/loader.length) + "%"
+                width: (l*100/loader.length) + "%"
             },{
                 duration:50,
                 complete: function(){
-                    if (loaded==loader.length) {
+                    if (l==loader.length) {
                         $('.loading-screen').fadeOut(500);
                     }
                 }
