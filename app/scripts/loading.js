@@ -17,14 +17,13 @@
     for (var i = loader.length - 1; i >= 0; i--) {
         $.when(loader).then(function(){
             loaded++;
-            loadingPage.stop();
+            console.log(loaded*100/loader.length);
             loadingPage = loadingPage.animate({
                 width: (loaded*100/loader.length) + "%"
             },50);
         })
     };
     $.when.apply($, loader).then(function() {
-        loadingPage.stop();
         loadingPage = loadingPage.animate({
             width: 100 + "%"
         },{
