@@ -24,13 +24,6 @@
         })
     };
     $.when.apply($, loader).then(function() {
-        loadingPage = loadingPage.animate({
-            width: 100 + "%"
-        },{
-            duration: 50,
-            complete: function(){
-                $('.loading-screen').fadeOut(500);
-            }
-        });
+        $('.loading-screen').fadeOut(500);
     });
 })();
