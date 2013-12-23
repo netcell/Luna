@@ -16,15 +16,18 @@
     var loaded = 0;
     for (var i = loader.length - 1; i >= 0; i--) {
         $.get(loader[i],function(){
-            var l = ++loaded;
-            console.log(l)
             loadingPage = loadingPage.animate({
-                width: (l*100/loader.length) + "%"
+                width: (++loaded*100/loader.length) + "%"
             },{
                 duration:100,
                 complete: function(){
-                    if (l==loader.length) {
-                        $('.loading-screen').fadeOut(500);
+                    if (loaded==loader.length) {
+                       loadingPage.stop();
+                       loadingPage.animate({
+                            width: (++loaded*100/loader.length) + "%"
+                        },function(){
+                            $('.loading-screen').fadeOut(500);
+                        });
                     }
                 }
             });
