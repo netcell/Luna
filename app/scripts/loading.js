@@ -3,14 +3,7 @@
         $.get('http://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular.min.js'),
         $.get('fonts/SourceSansPro-ExtraLight.ttf'),
         $.get('fonts/SourceSansPro-Light.ttf'),
-        $.get('fonts/SourceSansPro-Semibold.ttf'),
-        $.get('views/account-over-used.html'),
-        $.get('views/confirmation.html'),
-        $.get('views/home.html'),
-        $.get('views/create.html'),
-        $.get('views/quick-create.html'),
-        $.get('views/under-construction.html'),
-        $.get('views/has.html')
+        $.get('fonts/SourceSansPro-Semibold.ttf')
     ];
     var loadingPage = $('.loader');
     var loaded = 0;
