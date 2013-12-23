@@ -19,7 +19,7 @@
             loaded++;
             loadingPage.stop();
             loadingPage = loadingPage.animate({
-                width: (loaded*100/loaded) + "%"
+                width: (loaded*100/loader.length) + "%"
             },50);
         })
     };
