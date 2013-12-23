@@ -17,6 +17,7 @@
     for (var i = loader.length - 1; i >= 0; i--) {
         $.get(loader[i],function(){
             var l = ++loaded;
+            console.log(l)
             loadingPage = loadingPage.animate({
                 width: (l*100/loader.length) + "%"
             },{
