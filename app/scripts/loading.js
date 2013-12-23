@@ -16,8 +16,4 @@
             },50);
         })
     };
-    $.when.apply($, loader).then(function() {
-        console.log('loaded')
-        $('.loading-screen').fadeOut(500);
-    });
 })();
