@@ -21,7 +21,7 @@
             loadingPage = loadingPage.animate({
                 width: (l*100/loader.length) + "%"
             },{
-                duration:50,
+                duration:100,
                 complete: function(){
                     if (l==loader.length) {
                         $('.loading-screen').fadeOut(500);
