@@ -1,6 +1,6 @@
 (function(){
     var loader = [
-        $.get('bower_components/angular/angular.min.js'),
+        $.get('http://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular.min.js'),
         $.get('fonts/SourceSansPro-ExtraLight.ttf'),
         $.get('fonts/SourceSansPro-Light.ttf'),
         $.get('fonts/SourceSansPro-Semibold.ttf'),
@@ -17,20 +17,14 @@
     for (var i = loader.length - 1; i >= 0; i--) {
         $.when(loader).then(function(){
             var l = ++loaded;
+            console.log(l);
             loadingPage = loadingPage.animate({
                 width: (l*100/loader.length) + "%"
             },50);
         })
     };
     $.when.apply($, loader).then(function() {
-        loadingPage.stop();
-        loadingPage = loadingPage.animate({
-            width: 100 + "%"
-        },{
-            duration: 50,
-            complete: function(){
-                $('.loading-screen').fadeOut(500);
-            }
-        });
+        console.log('loaded')
+        $('.loading-screen').fadeOut(500);
     });
 })();
