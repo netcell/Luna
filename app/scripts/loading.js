@@ -15,7 +15,7 @@
     var loadingPage = $('.loader');
     var loaded = 0;
     for (var i = loader.length - 1; i >= 0; i--) {
-        $.when(loader).then(function(){
+        $.when(loader[i]).then(function(){
             var l = loaded+1;
             loaded++;
             loadingPage = loadingPage.animate({
