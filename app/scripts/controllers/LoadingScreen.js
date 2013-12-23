@@ -3,9 +3,6 @@
 angular.module('lunaApp')
   .controller('LoadingscreenCtrl', function ($scope, $window, $q, $timeout, $http) {
     var loader = [
-        $http.get("fonts/SourceSansPro-ExtraLight.ttf"),
-        $http.get("fonts/SourceSansPro-Light.ttf"),
-        $http.get("fonts/SourceSansPro-Semibold.ttf"),
         $http.get('views/account-over-used.html'),
         $http.get('views/confirmation.html'),
         $http.get('views/home.html'),
