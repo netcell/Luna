@@ -1,21 +1,21 @@
 (function(){
     var loader = [
-        $.get('bower_components/angular/angular.min.js'),
-        $.get('fonts/SourceSansPro-ExtraLight.ttf'),
-        $.get('fonts/SourceSansPro-Light.ttf'),
-        $.get('fonts/SourceSansPro-Semibold.ttf'),
-        $.get('views/account-over-used.html'),
-        $.get('views/confirmation.html'),
-        $.get('views/home.html'),
-        $.get('views/create.html'),
-        $.get('views/quick-create.html'),
-        $.get('views/under-construction.html'),
-        $.get('views/has.html')
+        'bower_components/angular/angular.min.js',
+        'fonts/SourceSansPro-ExtraLight.ttf',
+        'fonts/SourceSansPro-Light.ttf',
+        'fonts/SourceSansPro-Semibold.ttf',
+        'views/account-over-used.html',
+        'views/confirmation.html',
+        'views/home.html',
+        'views/create.html',
+        'views/quick-create.html',
+        'views/under-construction.html',
+        'views/has.html'
     ];
     var loadingPage = $('.loader');
     var loaded = 0;
     for (var i = loader.length - 1; i >= 0; i--) {
-        $.when(loader[i]).then(function(){
+        $.get(loader[i],function(){
             var l = loaded+1;
             loaded++;
             loadingPage = loadingPage.animate({
