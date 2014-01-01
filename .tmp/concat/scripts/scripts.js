@@ -952,7 +952,7 @@ angular.module('lunaApp').factory('amduonglich', function () {
     lunarLeap = 0;
     lunarMonth = diff + 11;
     if (b11 - a11 > 365) {
-      leapMonthDiff = getLeapMonthOffset(a11, timeZone);
+      var leapMonthDiff = getLeapMonthOffset(a11, timeZone);
       if (diff >= leapMonthDiff) {
         lunarMonth = diff + 10;
         if (diff == leapMonthDiff) {
