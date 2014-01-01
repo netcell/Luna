@@ -12,7 +12,7 @@
     <link rel="icon" type="image/png" href="apple-touch-icon.png">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-        <link rel="stylesheet" href="styles/dd055e71.main.css"/>
+        <link rel="stylesheet" href="styles/dfcabd61.main.css"/>
 </head>
   <body ng-app="lunaApp">
     <!--[if lt IE 7]>
@@ -52,7 +52,7 @@
           </div>
         </div>
       </div>
-      <div id="calendar" ng-show="!showCalendar">
+      <div id="calendar" ng-show="showCalendar">
         <div class="row odd">
           <div class="solar">
             <span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span>
@@ -109,7 +109,7 @@
             <li class="link" ng-repeat="button in footer.buttons" ng-click="button.action()" ng-bind="button.name"></li>
           </ul>
       </div>
-      <div class="footer calendarbutton" ng-click="showCalendar=!showCalendar">Lịch</div>
+      <div class="footer calendarbutton" ng-show="showCalendar" ng-click="showCalendar=!showCalendar">Lịch</div>
       <div class="cover" ng-if="hasPopup"></div>
       <div class="footer popup no-user-select" ng-if="hasPopup">
         <div class="box">
@@ -138,7 +138,7 @@
 
         <script src="scripts/7ce03816.modules.js"></script>
 
-        <script src="scripts/86f49a1a.scripts.js"></script>
+        <script src="scripts/31f81970.scripts.js"></script>
 
         <!-- <script src="scripts/animations/content-module.js"></script> -->
 </body>
