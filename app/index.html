@@ -123,7 +123,7 @@
           </div>
         </div>
       </div>
-      <div class="loading-screen"><div class='loader'></div><div class="content">Đang tải ứng dụng</div></div>
+      <div class="loading-screen" ng-controller="LoadingscreenCtrl"><div class='loader'></div><div class="content">Đang tải ứng dụng</div></div>
     </div>
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -136,11 +136,11 @@
        // ga('send', 'pageview');
     </script>
 
-    <script type="text/javascript" src="bower_components/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <!-- build:js scripts/preloading.js -->
     <script type="text/javascript" src="/scripts/loading.js"></script>
     <!-- endbuild -->
-    <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular.min.js"></script>
 
         <!-- build:js scripts/modules.js -->
         <script src="bower_components/angular-cookies/angular-cookies.js"></script>
@@ -153,6 +153,7 @@
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
+        <script src="scripts/controllers/loadingScreen.js"></script>
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/directives/appDirective.js"></script>
         <script src="scripts/directives/textarea.js"></script>
