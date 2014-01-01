@@ -139,13 +139,13 @@ a:active {
 }
 
 .abs-center {
-  width: 768px;
+  width: 960px;
   margin: 0 auto;
 }
 
 .container {
   width: 100%;
-  min-width: 768px;
+  min-width: 960px;
   position: relative;
   min-height: 100%;
   overflow: hidden;
@@ -288,15 +288,7 @@ a:active {
 }
 
 .app .module .module-content-view {
-  width: 360px;
-}
-
-.app .module.near-left .module-content-view {
-  width: 420px;
-}
-
-.app .module.full-left .module-content-view {
-  width: 465px;
+  width: 90%;
 }
 
 .module-content-view.ng-enter,
@@ -724,6 +716,6 @@ select.size-full {
 
 /* Responsive: Portrait tablets and up */
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 960px) {
 
 }
