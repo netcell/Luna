@@ -56,7 +56,7 @@
           </div>
         </div>
       </div>
-      <div id="calendar" ng-show="!showCalendar">
+      <div id="calendar" ng-show="showCalendar">
         <div class="row odd">
           <div class="solar">
             <span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span>
@@ -113,7 +113,7 @@
             <li class="link" ng-repeat="button in footer.buttons" ng-click="button.action()" ng-bind="button.name"></li>
           </ul>
       </div>
-      <div class="footer calendarbutton" ng-click="showCalendar=!showCalendar">Lịch</div>
+      <div class="footer calendarbutton" ng-show="showCalendar" ng-click="showCalendar=!showCalendar">Lịch</div>
       <div class="cover" ng-if="hasPopup"></div>
       <div class="footer popup no-user-select" ng-if="hasPopup">
         <div class="box">
