@@ -20,6 +20,12 @@
 			
 			return this;
 		},
+
+		paint: function(director){
+			var canvas = $(document.getElementById('canvas')).offset();
+			director.y=canvas.top;
+			director.x=canvas.left;
+		},
 		
 		_down: function(e,x,y){
 			var isMove= this.parent.isMove;

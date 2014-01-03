@@ -45,8 +45,8 @@ angular.module('lunaApp', [
         //controller: 'DeleteCtrl'
       })
       .when('/event-list', {
-        templateUrl: 'views/event-list.html'//,
-        //controller: 'DeleteCtrl'
+        templateUrl: 'views/event-list.html',
+        controller: 'EventlistCtrl'
       })
       .otherwise({
         redirectTo: '/'
