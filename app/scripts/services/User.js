@@ -20,6 +20,19 @@ angular.module('lunaApp')
         $sessionStorage.User.email = email;
         return this;
       },
+      signIn: function(name){
+        $sessionStorage.User.signedIn = true;
+        $sessionStorage.User.name = name;
+      },
+      signOut: function(){
+        $sessionStorage.User.signedIn = false;
+        $sessionStorage.User.name = "";
+      },
+      getInfo: function(){
+        var User = $sessionStorage.User;
+        User.signedIn = true;
+        return User;
+      }
     };
     
   });

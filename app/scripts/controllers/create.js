@@ -3,6 +3,8 @@
 angular.module('lunaApp')
   .controller('CreateCtrl', function ($scope, $http, $location, Share, Validate, DateTime, User) {
     
+    $scope.User = User.getInfo();
+    console.log($scope.User);
     //Selected values
     $scope.selection = {};
     //List of Options
@@ -100,24 +102,20 @@ angular.module('lunaApp')
     });
 
     $scope.submit = function(){
-        if (!$scope.selection.email) 
-            $scope.main.alert('Bạn cần nhập địa chỉ email')
-        else if (!Validate.validateEmail($scope.selection.email))
-            $scope.main.alert('Bạn cần nhập đúng địa chỉ email')
-        else {
-            var form = {
-                udid:   Date.now()+"-"+(((1+Math.random())*0x10000)|0).toString(16),
-                desc:       $scope.selection.desc,
-                hour:       $scope.selection.hour.value,
-                minute:     $scope.selection.minute,
-                period:     $scope.selection.period.standard,
-                date:       $scope.selection.date,
-                month:      $scope.selection.month.standard,
-                repeat:     $scope.selection.repeat.index,
-                email:      $scope.selection.email,
-                pre:        $scope.selection.pre,
-                pre_kind:   $scope.selection.pre_kind
-            };
+        var form = {
+            udid:   Date.now()+"-"+(((1+Math.random())*0x10000)|0).toString(16),
+            desc:       $scope.selection.desc,
+            hour:       $scope.selection.hour.value,
+            minute:     $scope.selection.minute,
+            period:     $scope.selection.period.standard,
+            date:       $scope.selection.date,
+            month:      $scope.selection.month.standard,
+            repeat:     $scope.selection.repeat.index,
+            email:      $scope.selection.email,
+            pre:        $scope.selection.pre,
+            pre_kind:   $scope.selection.pre_kind
+        };
+        function sendInfo(){
             if (!form.repeat) {
                 form.pre = "00";
             }
@@ -141,9 +139,21 @@ angular.module('lunaApp')
                 $scope.main.pauseup([
                     "Bạn chưa điền nội dung nhắc nhở.",
                     "Bạn có chắc muốn tiếp tục tạo nhắc nhở không có nội dung không?"
-                    ],f);
+                ],f);
             } else f();
         }
+        if (!$scope.User.signedIn){
+            if (!$scope.selection.email) 
+                $scope.main.alert('Bạn cần nhập địa chỉ email')
+            else if (!Validate.validateEmail($scope.selection.email))
+                $scope.main.alert('Bạn cần nhập đúng địa chỉ email')
+            else {
+                sendInfo();
+            }
+        } else {
+            sendInfo();
+        }
+        
     }
     
   });

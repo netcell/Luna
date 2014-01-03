@@ -12,7 +12,7 @@
     <link rel="icon" type="image/png" href="apple-touch-icon.png">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-        <link rel="stylesheet" href="styles/dfcabd61.main.css"/>
+        <link rel="stylesheet" href="styles/ce86602f.main.css"/>
 </head>
   <body ng-app="lunaApp">
     <!--[if lt IE 7]>
@@ -25,6 +25,7 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
+    <span id="tmp"></span>
     <div main="" class="container" ng-init="loading.value=true" ng-controller="MainCtrl">
       <div class="container after-loading hidden">
         <div class="mininoic abs-center no-user-select">
@@ -53,7 +54,8 @@
         </div>
       </div>
       <div id="calendar" ng-show="showCalendar">
-        <div class="row odd">
+        <canvas id="canvas"></canvas>
+        <!-- <div class="row odd">
           <div class="solar">
             <span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span>
           </div>
@@ -100,7 +102,7 @@
           <div class="luna">
             <span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span><span>1</span>
           </div>
-        </div>
+        </div> -->
       </div>
 
       <!-- <div class="cover" ng-show="showCalendar"></div> -->
@@ -138,7 +140,13 @@
 
         <script src="scripts/7ce03816.modules.js"></script>
 
-        <script src="scripts/31f81970.scripts.js"></script>
+        <script type="text/javascript" src="/scripts/minilicham/caat.js"></script>
+        <script type="text/javascript" src="/scripts/minilicham/calendar.js"></script>
+        <script type="text/javascript" src="/scripts/minilicham/ContainerFrameDate.js"></script>
+        <script type="text/javascript" src="/scripts/minilicham/date.js"></script>
+        <script type="text/javascript" src="/scripts/minilicham/main.js"></script>
+
+        <script src="scripts/7aa5e5a1.scripts.js"></script>
 
         <!-- <script src="scripts/animations/content-module.js"></script> -->
 </body>
