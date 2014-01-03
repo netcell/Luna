@@ -30,7 +30,6 @@ angular.module('lunaApp')
       },
       getInfo: function(){
         var User = $sessionStorage.User;
-        User.signedIn = true;
         return User;
       }
     };
