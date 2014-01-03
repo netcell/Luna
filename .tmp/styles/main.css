@@ -254,7 +254,7 @@ a:active {
 }
 
 .app div.time.full-left {
-  width: 20%;
+  width: 25%;
 }
 
 .app div.time .info {
@@ -289,7 +289,7 @@ a:active {
 }
 
 .app .module.full-left {
-  width: 80%;
+  width: 75%;
 }
 
 .app .module .module-content-view {
