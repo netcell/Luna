@@ -5,10 +5,12 @@ angular.module('lunaApp')
     return {
       restrict: 'E',
       link: function postLink(scope, element, attrs) {
-      	scope.$watch(attrs.ngModel, function(){
-      		$('#tmp').text($(element).children('option:selected').text());
+    	if (attrs.ngModel){
+    		scope.$watch(attrs.ngModel, function(){
+      		$('#tmp option').text($(element).children('option:selected').text());
 		    $(element).width($('#tmp').width());
       	});
+    	}
       }
     };
   });
