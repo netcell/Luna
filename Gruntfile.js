@@ -308,8 +308,14 @@ module.exports = function (grunt) {
             stdout: true
         }
       },
-      'git-push-github': {
+      'git-push-github-master': {
         command: 'git push origin master',
+        options: {
+            stdout: true
+        }
+      },
+      'git-push-github-dev': {
+        command: 'git push origin dev',
         options: {
             stdout: true
         }
@@ -375,11 +381,18 @@ module.exports = function (grunt) {
     'shell:push-heroku'
   ]);
 
-  grunt.registerTask('github', [
+  grunt.registerTask('master', [
     'build',
     'shell:git-add',
     'shell:git-commit-github',
-    'shell:git-push-github'
+    'shell:git-push-github-master'
+  ]);
+
+  grunt.registerTask('dev', [
+    'build',
+    'shell:git-add',
+    'shell:git-commit-github',
+    'shell:git-push-github-dev'
   ]);
 
   grunt.registerTask('default', [

@@ -14,7 +14,6 @@ window.onload = function () {
         );
     }
     function run(images) {
-    	CAAT.DEBUG=1;
         var director = new CAAT.Director().initialize(CANVAS_WIDTH, CANVAS_HEIGHT, document.getElementById("canvas"));
         director.setImagesCache(images);
 		 var scene = director.createScene();

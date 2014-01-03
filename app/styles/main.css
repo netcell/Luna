@@ -6,11 +6,17 @@ html, body, div, ul, li, span, input, textarea, button, select {
   /*font-family: 'HelveticaNeue-UltraLight', 'Helvetica Neue UltraLight', 'Helvetica Neue', Arial, Helvetica, sans-serif;*/
   font-family: 'Source Sans Pro', sans-serif;
   letter-spacing: 1px;
+  font-size: 24px;
   font-weight: 200;
   color: #444750;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
+}
+
+#tmp {
+  visibility: hidden;
+  position: absolute;
 }
 
 @font-face {
@@ -118,13 +124,13 @@ a, a:hover, a:active {
 }
 
 .abs-center {
-  width: 768px;
+  width: 960px;
   margin: 0 auto;
 }
 
 .container {
   width: 100%;
-  min-width: 768px;
+  min-width: 960px;
   position: relative;
   min-height: 100%;
   overflow: hidden;
@@ -209,32 +215,32 @@ a, a:hover, a:active {
   margin-bottom: 80px;
 }
 
-.app .time {
+.app div.time {
   z-index: 2;
-  width: 50%;
+  width: 45%;
   height: 100%;
   text-align: right;
   float: left;
   -webkit-transition: all 0.5s ease-in-out;
 }
 
-.app .time.near-left {
-  width: 40%;
-}
-
-.app .time.full-left {
+.app div.time.near-left {
   width: 30%;
 }
 
-.app .time .info {
+.app div.time.full-left {
+  width: 20%;
+}
+
+.app div.time .info {
   margin-right: 1em;
 }
 
-.app .time .info .date-month {
+.app div.time .info .date-month {
   overflow: hidden;
 }
 
-.app .time .info .date-month div {
+.app div.time .info .date-month div {
   float: right;
   font-size: 72px;
   margin: auto 5px;
@@ -247,30 +253,22 @@ a, a:hover, a:active {
   left: 0;
   text-align: left;
   float: left;
-  width: 50%;
+  width: 55%;
   min-height: 185px;
   padding-left: 1em;
   position: relative;
 }
 
 .app .module.near-left {
-  width: 60%;
-}
-
-.app .module.full-left {
   width: 70%;
 }
 
+.app .module.full-left {
+  width: 80%;
+}
+
 .app .module .module-content-view {
-  width: 360px;
-}
-
-.app .module.near-left .module-content-view {
-  width: 420px;
-}
-
-.app .module.full-left .module-content-view {
-  width: 465px;
+  width: 95%;
 }
 
 .module-content-view.ng-enter, .module-content-view.ng-leave {
@@ -351,7 +349,13 @@ a, a:hover, a:active {
 }
 
 .app .module .form select {
+  text-align: center;
+  cursor: pointer;
   margin-bottom: -7px;
+  margin-right: 1em;
+  border-bottom: 1px solid #444750;
+  border-radius: 0px;
+  border-bottom-style: dashed;
 }
 
 .app .module .form .input.more-line-height {
@@ -368,71 +372,71 @@ a, a:hover, a:active {
   margin-right: 1em;
 }
 
-.app .module .form input.size-1,select.size-1 {
+.app .module .form input.size-1{
   width: 1em;
 }
 
-.app .module .form input.size-2,select.size-2 {
+.app .module .form input.size-2{
   width: 2em;
 }
 
-.app .module .form input.size-3,select.size-3 {
+.app .module .form input.size-3{
   width: 3em;
 }
 
-.app .module .form input.size-4,select.size-4 {
+.app .module .form input.size-4{
   width: 4em;
 }
 
-.app .module .form input.size-5,select.size-5 {
+.app .module .form input.size-5{
   width: 5em;
 }
 
-.app .module .form input.size-6,select.size-6 {
+.app .module .form input.size-6{
   width: 6em;
 }
 
-.app .module .form input.size-8,select.size-8 {
+.app .module .form input.size-8{
   width: 8em;
 }
 
-.app .module .form input.size-10,select.size-10 {
+.app .module .form input.size-10 {
   width: 10em;
 }
 
-.app .module .form input.size-12,select.size-12 {
+.app .module .form input.size-12 {
   width: 12em;
 }
 
-.app .module .form input.size-13,select.size-13 {
+.app .module .form input.size-13 {
   width: 13em;
 }
 
-.app .module .form input.size-14,select.size-14 {
+.app .module .form input.size-14 {
   width: 14em;
 }
 
-.app .module .form input.size-15,select.size-15 {
+.app .module .form input.size-15 {
   width: 15em;
 }
 
-.app .module .form input.size-16,select.size-16 {
+.app .module .form input.size-16 {
   width: 16em;
 }
 
-.app .module .form input.size-17,select.size-17 {
+.app .module .form input.size-17 {
   width: 17em;
 }
 
-.app .module .form input.size-18,select.size-18 {
+.app .module .form input.size-18 {
   width: 18em;
 }
 
-.app .module .form input.size-20,select.size-20 {
+.app .module .form input.size-20 {
   width: 20em;
 }
 
-.app .module .form input.size-full,select.size-full {
+.app .module .form input.size-full {
   width: 100%;
 }
 
@@ -596,65 +600,30 @@ a, a:hover, a:active {
 }
 
 .footer.calendarbutton {
-  line-height: 3em;
+  height: 50px;
   width: auto;
   padding: 1px 20px;
 }
 
+.footer.calendarbutton span {
+  line-height: 50px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
 #calendar {
+  height: 527px;
   box-shadow: -3px 2px 19px -7px #000;
   position: fixed;
-  bottom: 3em;
+  bottom: 2em;
   margin-bottom: 2px;
   overflow: hidden;
   border-radius: 0px 13px 0px 0px;
   -webkit-transition: all 0.3s ease-in-out!important;
-  border-bottom: 1px solid #dcdcdc;
-  border-left: 1px solid #dcdcdc;
-  border-right: 1px solid #dcdcdc;
 }
 
-#calendar .row {
-  border-top: 1px solid #dcdcdc;
+#canvas {
   position: relative;
-}
-
-#calendar .row.odd {
-  background-color: #f0f0f0;
-}
-
-#calendar .row.even {
-  background-color: #fafafa;
-}
-
-#calendar .row span {
-  display: inline-block;
-  width: 48px;
-  text-align: center;
-}
-
-#calendar .row .solar span {
-  height: 48px;
-  font-size: 20px;
-  border-radius: 5px;
-}
-
-#calendar .row .luna span {
-  font-size: 13px;
-}
-
-#calendar .row span.today {
-  color: #f6f6f6;
-  font-weight: bold;
-}
-
-#calendar .row .solar span.today {
-  background-color: #444750;
-}
-
-#calendar .row .luna {
-  position: absolute;
-  top: 25px;
 }
 
 #calendar.ng-hide-add, #calendar.ng-hide-remove {
@@ -666,10 +635,190 @@ a, a:hover, a:active {
   height: 0;
 }
 
+.controlpanel {
+  font-size: 18px;
+}
 
+.controlpanel ul,.controlpanel li,.controlpanel div {
+  font-size: inherit;
+}
 
+.controlpanel li {
+  display: inline-block;
+}
+
+.controlpanel table {
+  padding: 0;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.controlpanel table.list {
+  border-top: 2px solid #808080;
+  border-bottom: 2px solid #808080;
+}
+
+.controlpanel table tr {
+  padding: 0;
+  line-height: 2.5em;
+  border-bottom: 1px solid #B6B6B6;
+  -webkit-transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.controlpanel table.list tr:hover td {
+  background-color: #FFF;
+}
+
+.controlpanel table.menu tr.title {
+  line-height: 2em;
+  font-weight: bold;
+  color: #f6f6f6;
+  background-color: #585A5F;
+}
+
+.controlpanel table tr td {
+  overflow: hidden;
+  padding: 0;
+  text-align: center;
+}
+
+.controlpanel table.list tr td {
+  text-decoration: line-through;
+}
+
+.controlpanel table.list tr.on td {
+  text-decoration: none;
+}
+
+.controlpanel table tr.title td.select {
+  background-color: #f6f6f6;
+}
+
+.controlpanel table tr.title td.status {
+  background-color: #f6f6f6;
+}
+
+.controlpanel table td.desc {
+  padding-left: 12px;
+}
+
+.controlpanel table tr td.select {
+  width: 30px;
+}
+
+.controlpanel table tr td.select checker .outer {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #757575;
+  cursor: pointer;
+  -webkit-transition: all 0.3s ease;
+}
+
+.controlpanel table tr td.select checker .inner {
+  width: 14px;
+  height: 14px;
+  margin: 1px auto;
+  -webkit-transition: all 0.3s ease;
+}
+
+.controlpanel table tr td.select checker .outer.checked .inner {
+  background-color: #444750;
+}
+
+.controlpanel table tr td.desc {
+  text-align: left;
+}
+
+.controlpanel table tr td.repeat {
+  width: 100px;
+}
+
+.controlpanel table tr td.time {
+  width: 110px;
+}
+
+.controlpanel table tr td.pre {
+  width: 120px;
+}
+
+.controlpanel table tr td.status {
+  width: 45px;
+  text-align: right;
+  cursor: pointer;
+}
+
+.controlpanel table tr td.status .switcher-background {
+  margin-left: 9px;
+  width: 35px;
+  height: 20px;
+  border: 2px solid #6D6D6D;
+  overflow: hidden;
+  background-color: #B0B0B0;
+  -webkit-transition: all 0.5s ease;
+}
+
+.controlpanel table tr td.status .switcher-move {
+  width: 10px;
+  height: 20px;
+  background-color: #6D6D6D;
+  margin-left: 0px;
+  -webkit-transition: all 0.5s ease;
+}
+
+.controlpanel table tr td.status .switcher-background.on{
+  background-color: #f6f6f6;
+}
+
+.controlpanel table tr td.status .switcher-background.on .switcher-move {
+  margin-left: 21px;
+}
+
+.controlpanel .toolbar {
+  width: 100%;
+  background-color: #444750;
+  color: #f6f6f6;
+  font-weight: bold;
+  font-size: 18px;
+  height: 3em;
+  overflow: hidden;
+}
+
+.controlpanel .toolbar div {
+  cursor: pointer;
+  color: inherit;
+  font: inherit;
+  text-align: center;
+  height: 100%;
+  line-height: 3em;
+  display: inline-block;
+  overflow: hidden;
+  -webkit-transition: all 0.3s ease;
+}
+
+.controlpanel .toolbar span {
+  font: inherit;
+  color: inherit;
+}
+
+.controlpanel .toolbar .create {
+  width: 100%;
+}
+
+.controlpanel .toolbar .delete {
+  width: 50%;
+  margin-left: -50%;
+  background-color: #AD3030;
+}
+
+.controlpanel .toolbar.hasDeleteButton div {
+  width: 50%;
+}
+.controlpanel .toolbar.hasDeleteButton .delete {
+  margin-left: 0;
+}
 
 /* Responsive: Portrait tablets and up */
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 960px) {
   
 }
