@@ -7,26 +7,30 @@
 		isPaint: false,
 		isPress: false,
 		startX: [],
+		ch:0,
+		cw:0,
 		initialize: function(director,scene,width,height,myDate){
 			this.director=director;
 			this.scene=scene;
 			this.setBounds(0,0,width,height);
 			this.myDate=myDate;
-			this.CreateFrameDate(myDate)
+			this.CreateFrameDate(myDate);
+			this.cy=director.y;
+			this.cx=director.x;
 			
 			return this;
 		},
 		
-		mouseDown: function(e){
+		_down: function(e,x,y){
 			var isMove= this.parent.isMove;
 			if(!this.isPress&& !isMove){
 			this.isPress=true;
-			this.startX=e.x;
+			this.startX=x;
 			this.startXX=this.x;
 			}
 			//console.log(this.myDate)
 		},
-		mouseUp : function(e){
+		_up : function(e,x,y){
 			this.isPress=false;
 			var space= this.x-this.startXX;
 			if(Math.abs(space)<=100){
@@ -40,19 +44,19 @@
 			for(var i = 1;i<=DaysOfMonth;i++){
 				var _y=102+130+355;
 				var target = this.FrameDate[i];
-				if(target.AABB.contains(e.x,e.y)){
+				if(target.AABB.contains(x,y)){
 						target.setCurrentLunar();
 				}
 			}
 			//console.log(this.FrameDate[1].date)
 			
 		},
-		mouseDrag: function(e){
+		_drag: function(e,x,y){
 			if(this.parent&&this.parent.isMove){
 				var isMove= this.parent.isMove;
 			}
 			if(this.isPress&&!isMove){
-				this.x=e.screenPoint.x-this.startX;
+				this.x=x-this.startX;
 				//console.log(this.parent.ContainerFrameDate)
 				this.parent.ContainerFrameDate[0].setVisible(true)
 				this.parent.ContainerFrameDate[2].setVisible(true)
@@ -73,6 +77,33 @@
 			}
 			
 		},
+		touchStart: function (e) {
+            var self = this;
+            touch = e.changedTouches[0];
+            self._down(self, touch.pageX, touch.pageY);
+        },
+        touchMove: function (e) {
+            var self = this;
+            touch = e.getSourceEvent().changedTouches[0]; //console.log(touch.screenY);
+            self._drag(self, touch.pageX, touch.pageY);
+        },
+        touchEnd: function (e) {
+            var self = this;
+            touch = e.getSourceEvent().changedTouches[0];
+            self._up(self, touch.pageX, touch.pageY);
+        },
+        mouseDown: function (mouseEvent) {
+            var self = this;
+            self._down(self, mouseEvent.screenPoint.x,mouseEvent.screenPoint.y);
+        },
+        mouseUp: function (mouseEvent) {
+            var self = this;
+            self._up(self, mouseEvent.screenPoint.x, mouseEvent.screenPoint.y);
+        },
+        mouseDrag: function (mouseEvent) {
+            var self = this; 
+            self._drag(self, mouseEvent.screenPoint.x, mouseEvent.screenPoint.y);
+        },
 		
 		CreateFrameDate: function(myDate){
 			this.FrameDate=[];

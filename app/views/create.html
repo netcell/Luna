@@ -8,6 +8,12 @@
 		thời gian
 	</div>
 	<div class="input more-line-height">
+		<span class="label">
+			hàng
+		</span>
+		<select class="size-3" ng-model="selection.repeat" ng-options="repeat.value for repeat in options.repeats"></select>
+	</div>
+	<div class="input more-line-height">
 		<select class="size-2" ng-model="selection.hour" ng-options="hour.value for hour in options.hours"></select>
 		<span class="label">
 			giờ
@@ -28,11 +34,12 @@
 		</span>
 		<select class="size-5" id="create-month" ng-model="selection.month" ng-options="month.value for month in options.months"></select>
 	</div>
-	<div class="input more-line-height">
+	<div class="input more-line-height" ng-show="selection.repeat.index">
 		<span class="label">
-			hàng
+			báo trước
 		</span>
-		<select class="size-3" ng-model="selection.repeat" ng-options="repeat.value for repeat in options.repeats"></select>
+		<select class="size-2" ng-model="selection.pre" ng-options="value for value in options.pre"></select>
+		<select class="size-3" ng-model="selection.pre_kind" ng-options="kind.value for kind in options.pre_kind"></select>
 	</div>
 	<div class="seperator"></div>
 	<div class="input">

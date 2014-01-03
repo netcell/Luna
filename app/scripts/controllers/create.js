@@ -9,6 +9,19 @@ angular.module('lunaApp')
     $scope.options = {};
 
     $scope.options.hours = DateTime.hours;
+    $scope.options.pre_kind = [
+        { value: 'tiếng' , index: 0 },
+        { value: 'ngày', index: 1 }
+    ];
+    var pre = [
+        [
+            '00',
+            '01','02','03','04','05','06','07','08',
+            '09','10','11','12','13','14','15','16',
+            '17','18','19','20','21','22','23','24'
+        ],
+        [ '00', '01', '02', '03', '04', '05' ]
+    ];
     $scope.options.minutes = DateTime.minutes;
     $scope.options.dates = DateTime.dates;
     $scope.options.months = DateTime.months;
@@ -17,6 +30,9 @@ angular.module('lunaApp')
     //INIT
     $scope.selection.desc = "";
     $scope.selection.hour = DateTime.getCurrentHour(true);
+    $scope.selection.pre_kind = $scope.options.pre_kind[1];
+    $scope.options.pre = pre[$scope.selection.pre_kind.index];
+    $scope.selection.pre = '00';
     $scope.selection.minute = DateTime.getCurrentMinute(true);
 
     $scope.options.periods = DateTime.periods[$scope.selection.hour.periods];
@@ -27,7 +43,16 @@ angular.module('lunaApp')
     $scope.selection.repeat = $scope.options.repeats[0];
     $scope.selection.email = User.getEmail();
     
-    var init = 3;
+    var init = 4;
+
+    $scope.$watch('selection.pre_kind', function(newValue, oldValue, scope) {
+        if (init) {
+            init--;
+        } else {
+            $scope.options.pre = pre[newValue.index];
+            $scope.selection.pre = '00';
+        }
+    });
 
     $scope.$watch('selection.hour', function(newValue, oldValue, scope) {
     	if (init) {
@@ -82,15 +107,20 @@ angular.module('lunaApp')
         else {
             var form = {
                 udid:   Date.now()+"-"+(((1+Math.random())*0x10000)|0).toString(16),
-                desc:   $scope.selection.desc,
-                hour:   $scope.selection.hour.value,
-                minute: $scope.selection.minute,
-                period: $scope.selection.period.standard,
-                date:   $scope.selection.date,
-                month:  $scope.selection.month.standard,
-                repeat: $scope.selection.repeat.index,
-                email:  $scope.selection.email
+                desc:       $scope.selection.desc,
+                hour:       $scope.selection.hour.value,
+                minute:     $scope.selection.minute,
+                period:     $scope.selection.period.standard,
+                date:       $scope.selection.date,
+                month:      $scope.selection.month.standard,
+                repeat:     $scope.selection.repeat.index,
+                email:      $scope.selection.email,
+                pre:        $scope.selection.pre,
+                pre_kind:   $scope.selection.pre_kind
             };
+            if (!form.repeat) {
+                form.pre = "00";
+            }
             switch(form.date){
                 case 'rằm': form.date = 15; break;
                 case 'cuối': form.date = 100; break;
