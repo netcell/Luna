@@ -822,10 +822,7 @@ a:active {
   font-weight: bold;
   font-size: 18px;
   height: 3em;
-}
-
-.controlpanel .toolbar.hasDeleteButton div {
-  width: 50%;
+  overflow: hidden;
 }
 
 .controlpanel .toolbar div {
@@ -850,8 +847,17 @@ a:active {
 }
 
 .controlpanel .toolbar .delete {
-  width: 0;
+  width: 50%;
+  margin-left: -50%;
   background-color: #AD3030;
+}
+
+.controlpanel .toolbar.hasDeleteButton div {
+  width: 50%;
+}
+
+.controlpanel .toolbar.hasDeleteButton .delete {
+  margin-left: 0;
 }
 
 /* Responsive: Portrait tablets and up */
