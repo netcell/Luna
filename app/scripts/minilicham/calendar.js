@@ -236,6 +236,9 @@
 				ctx.fill();
 				ctx.closePath()
 			}
+			this.Next.mouseEnter = function(e){
+				document.body.style.cursor = 'pointer';
+			}
 			this.Next.mouseDown= function(e){
 				self.setIsMoveDirection(true,-1);
 				self.rePaint();
@@ -280,6 +283,9 @@
 				ctx.fill();
 				ctx.closePath()
 			}
+			this.Prev.mouseEnter = function(e){
+				document.body.style.cursor = 'pointer';
+			}
 			this.Prev.mouseDown= function(e){
 				self.setIsMoveDirection(true,1);
 				self.rePaint();
@@ -311,6 +317,9 @@
 					this.isPaint=true;
 					this.cacheAsBitmap(0,CAAT.Foundation.ActorContainer.CACHE_DEEP);
 				}
+			}
+			this.ButtonToday.mouseEnter = function(e){
+				document.body.style.cursor = 'pointer';
 			}
 			this.ButtonToday.mouseDown= function(e){
 				self.backPageTOday();
