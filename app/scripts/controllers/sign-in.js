@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('lunaApp')
-  .controller('SignInCtrl', function ($scope) {
+  .controller('SignInCtrl', function ($scope, User) {
   	$scope.footer.buttons = [
   		{
     		name:'quay lại',
@@ -11,6 +11,9 @@ angular.module('lunaApp')
     	}
     ];
     $scope.$on('$destroy', function(){
-		$scope.footer.buttons = [];
-	});
+  		$scope.footer.buttons = [];
+  	});
+    $scope.signIn = function(serviceName){
+      var signInExitCode = User.signIn(serviceName);
+    }
   });
