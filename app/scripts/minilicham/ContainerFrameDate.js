@@ -26,13 +26,19 @@
 			director.y=canvas.top;
 			director.x=canvas.left;
 		},
-		
+		_enter: function (e){
+			document.body.style.cursor = 'pointer';
+		}
 		_down: function(e,x,y){
 			var isMove= this.parent.isMove;
 			if(!this.isPress&& !isMove){
 			this.isPress=true;
 			this.startX=x;
 			this.startXX=this.x;
+			if (chooseDate) {
+				lunnarDate=convertSolar2Lunar(this.myDate.getDate(),this.myDate.getMonth()+1,this.myDate.getFullYear(),7.0);
+				chooseDate(lunnarDate);
+			}
 			}
 			//console.log(this.myDate)
 		},
@@ -109,6 +115,9 @@
         mouseDrag: function (mouseEvent) {
             var self = this; 
             self._drag(self, mouseEvent.screenPoint.x, mouseEvent.screenPoint.y);
+        },
+        mouseEnter:function (mouseEvent) {
+        	_enter(mouseEvent);
         },
 		
 		CreateFrameDate: function(myDate){
