@@ -6,7 +6,7 @@
 	CAAT.MyDate.prototype = {
 		styleFont: "Source Sans Pro",
 		isPaint: false,
-		FillStyleColor: "#818181",
+		FillStyleColor: "#dcdcdc",
 		initialize: function(director,scene,date,width,height){
 			this.director=director;
 			this.scene=scene;
@@ -28,7 +28,7 @@
 					ctx.globalAlpha=0.8
 					ctx.beginPath();
 					ctx.rect(0, 0, this.width, this.height);
-					ctx.fillStyle = "#818181";
+					ctx.fillStyle = "#dcdcdc";
 					ctx.fill();
 					ctx.closePath();
 					ctx.globalAlpha=1
@@ -47,18 +47,18 @@
 				if(this.date.getDay()==0) colorDate="red"
 				//console.log(this.date.getDay())
 				ctx.beginPath();
-				ctx.font = '30px '+this.styleFont;		
+				ctx.font = '200 30px '+this.styleFont;		
 				ctx.fillStyle = colorDate;
-				ctx.fillText(this.date.getDate(), -ctx.measureText(this.date.getDate()+"").width/2+ this.width/2, 40);
+				ctx.fillText(this.date.getDate(), -ctx.measureText(this.date.getDate()+"").width/2+ this.width/2, 35);
 				ctx.closePath();
 				ctx.beginPath();
-				ctx.font = '15px '+this.styleFont;	
+				ctx.font = '200 15px '+this.styleFont;	
 				if(ju[0]==1){
 				ctx.fillStyle = 'red';
-				ctx.fillText(ju[0]+"/"+ju[1], -ctx.measureText(ju[0]+"/"+ju[1]).width/2+ this.width/2, this.height-5);
+				ctx.fillText(ju[0]+"/"+ju[1], -ctx.measureText(ju[0]+"/"+ju[1]).width/2+ this.width/2, this.height-10);
 				}else{
 				ctx.fillStyle = '#525252';
-				ctx.fillText(ju[0], -ctx.measureText(ju[0]).width/2+ this.width/2, this.height-5);
+				ctx.fillText(ju[0], -ctx.measureText(ju[0]).width/2+ this.width/2, this.height-10);
 				}
 				ctx.closePath();
 				//console.log(ju[0])

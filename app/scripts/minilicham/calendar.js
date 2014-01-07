@@ -157,12 +157,12 @@
 				}
 				ctx.beginPath();
 				for(var i =0 ;i < 7;i++){	
-					ctx.font = '200 25px '+this.styleFont;
+					ctx.font = '200 23px '+this.styleFont;
 					ctx.fillStyle = 'white';
 					ctx.fillText(this.getStringDayFromIndex(i), i* this .width/7 + 20>>0,35);
 				}
 			
-				ctx.font = '200 25px '+this.styleFont;
+				ctx.font = '200 23px '+this.styleFont;
 				var str= (this.currentMonth+1)+"/"+this.currentYear
 				ctx.fillStyle = 'white';
 				ctx.fillText(str,this.width/2-ctx.measureText(str).width/2 + 80,510);
@@ -314,7 +314,7 @@
 				if(time<1&&this.isPaint){	
 				var ctx= director.ctx
 				ctx.beginPath();
-				ctx.font = '200 25px '+self.styleFont ;
+				ctx.font = '200 23px '+self.styleFont ;
 				ctx.fillStyle = 'white';
 				ctx.fillText("Hôm nay",5,40);
 				ctx.closePath();
