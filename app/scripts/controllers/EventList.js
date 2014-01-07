@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('lunaApp')
-  .controller('EventlistCtrl', function ($scope,User,$location, Events, Strings) {
+  .controller('EventlistCtrl', function ($http,$scope,User,$location, Events, Strings) {
     $scope.main.createPopup('Đang xử lý');
     User.signIn(function(exitCode){
       if (exitCode) {
