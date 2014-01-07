@@ -2,6 +2,15 @@
 
 angular.module('lunaApp')
   .controller('EventlistCtrl', function ($scope) {
+    $scope.main.createPopup('Đang xử lý');
+    User.signIn(function(exitCode){
+      if (exitCode) {
+        $scope.main.closePopup();
+      } else {
+        $location.path('/sign-in');
+        $scope.main.alert('Có lỗi trong quá trình đăng nhập. Xin hãy thử lại sau.');
+      }
+    })
   	$scope.events = [{
   		desc: 	"fdsafdsafdsafdsa",
   		repeat: "Năm",

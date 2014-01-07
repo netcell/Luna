@@ -2,8 +2,17 @@
 
 angular.module('lunaApp')
   .controller('ConfirmSignUpCtrl', function ($scope, $location, User) {
-  	$scope.originalEmail = User.getEmail();
-  	$scope.email = User.getEmail();
+  	$scope.main.createPopup('Đang xử lý');
+  	User.signIn(function(exitCode){
+  		if (exitCode) {
+  			$scope.originalEmail = User.getEmail();
+  			$scope.email = User.getEmail();
+  			$scope.main.closePopup();
+  		} else {
+  			$location.path('/sign-in');
+  			$scope.main.alert('Có lỗi trong quá trình đăng nhập. Xin hãy thử lại sau.');
+  		}
+  	})
     $scope.footer.buttons = [
         {
             name:'cập nhật',
