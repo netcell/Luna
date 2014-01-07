@@ -41,12 +41,16 @@ angular.module('lunaApp', [
         controller: 'DeleteCtrl'
       })
       .when('/sign-in', {
-        templateUrl: 'views/sign-in.html'//,
-        //controller: 'DeleteCtrl'
+        templateUrl: 'views/sign-in.html',
+        controller: 'SignInCtrl'
       })
       .when('/event-list', {
         templateUrl: 'views/event-list.html',
         controller: 'EventlistCtrl'
+      })
+      .when('/update-email/:required', {
+        templateUrl: 'views/update-email.html',
+        controller: 'UpdateEmailCtrl'
       })
       .otherwise({
         redirectTo: '/'

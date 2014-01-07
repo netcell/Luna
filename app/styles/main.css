@@ -308,6 +308,23 @@ a, a:hover, a:active {
   font-size: 48px;
 }
 
+.app .module .greeting .button a {
+  padding-right: 7px;
+}
+
+.app .module .greeting .button a.fb:hover {
+  background-color: #3b589e;
+}
+
+.app .module .greeting .button a.gmail:hover {
+  background-color: #dd493d;
+}
+
+.app .module .greeting .button img {
+  margin: 0px 7px 0px 10px;
+  border-radius: 5px;
+}
+
 .app .module .quick-create-home .label, .no-input {
   font-size: 20px;
 }
@@ -451,7 +468,7 @@ a, a:hover, a:active {
   margin: 0 0.5em;
 }
 
-.app .module img {
+.app .module .inform img {
   border: 1px solid #DBDBDB;
   border-radius: 6px;
 }
