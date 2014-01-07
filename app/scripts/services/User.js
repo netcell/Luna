@@ -4,6 +4,9 @@ angular.module('lunaApp')
   .factory('User', function ($location,$sessionStorage,$http) {
 
     function signIn(callback){
+      $sessionStorage.User.signedIn = false;
+      $sessionStorage.User.name = "";
+      $sessionStorage.User.email = "";
       $http.get('/account/user')
       .then(function(object){
         var data = object.data;

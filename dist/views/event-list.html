@@ -14,12 +14,20 @@
 	<table class="list">
 		<tbody>
 			<tr ng-repeat="event in events track by $index" ng-class="{on: on}">
-				<td class="select" ng-click="checked=!checked"><checker></td>
+				<td class="select">
+					<div class="outer" ng-class="{checked: event.checked}" ng-click="event.checked=!event.checked; countChecker();">
+						<div class="inner"></div>
+					</div>
+				</td>
 				<td class="desc">{{event.desc}}</td>
 				<td class="repeat">{{event.repeat}}</td>
 				<td class="time">{{event.time}}</td>
 				<td class="pre">{{event.pre}}</td>
-				<td class="status"><switcher ng-init="on=event.status"></td>
+				<td class="status">
+					<div class="switcher-background" ng-class="{on: event.status}" ng-click="event.switchStatus();">
+						<div class="switcher-move"></div>
+					</div>
+				</td>
 			</tr>
 		</tbody>
 	</table>

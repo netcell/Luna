@@ -716,7 +716,7 @@ a, a:hover, a:active {
   width: 30px;
 }
 
-.controlpanel table tr td.select checker .outer {
+.controlpanel table tr td.select .checker-outer {
   width: 20px;
   height: 20px;
   border: 2px solid #757575;
@@ -724,14 +724,14 @@ a, a:hover, a:active {
   -webkit-transition: all 0.3s ease;
 }
 
-.controlpanel table tr td.select checker .inner {
+.controlpanel table tr td.select .checker-inner {
   width: 14px;
   height: 14px;
   margin: 1px auto;
   -webkit-transition: all 0.3s ease;
 }
 
-.controlpanel table tr td.select checker .outer.checked .inner {
+.controlpanel table tr td.select .checker-outer.checked .inner {
   background-color: #444750;
 }
 
