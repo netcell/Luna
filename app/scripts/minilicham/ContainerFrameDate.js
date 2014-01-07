@@ -29,6 +29,9 @@
 		_enter: function (e){
 			document.body.style.cursor = 'pointer';
 		},
+		_exit: function (e){
+                        document.body.style.cursor = 'default';
+		},
 		_down: function(e,x,y){
 			var isMove= this.parent.isMove;
 			if(!this.isPress&& !isMove){
@@ -118,6 +121,9 @@
         },
         mouseEnter:function (mouseEvent) {
         	_enter(mouseEvent);
+        },
+        mouseExit:function (mouseEvent) {
+        	_exit(mouseEvent)
         },
 		
 		CreateFrameDate: function(myDate){
