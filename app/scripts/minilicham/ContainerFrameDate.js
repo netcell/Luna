@@ -17,26 +17,35 @@
                         this.CreateFrameDate(myDate);
                         this.cy=director.y;
                         this.cx=director.x;
-                        
+                        document.onmousedown = function(evt) {
+			    evt = evt || window.event;
+			    var target = evt.target || evt.srcElement;
+			    var tagName = target.nodeName.toLowerCase();
+			    if (tagName == "span") {
+			        for (var i=1;i<this.FrameDate.length;i++)
+					{
+							this.FrameDate[i].setIsMouseDown(false);
+					}
+			    } 
+			};
                         return this;
                 },
 
                	_move: function(e,x,y){
                		var cursor='default';
                		for (var i=1;i<this.FrameDate.length;i++)
-							{
-								if((this.FrameDate[i].x+70>x&&this.FrameDate[i].x<x)&&(this.FrameDate[i].y+70>y&&this.FrameDate[i].y<y))
-								{
-									cursor = 'pointer';
-									this.FrameDate[i].setIsMouseDown(true);
-									console.log(x,y);
-								} else if (this.FrameDate[i].isMouseDown){
-									this.FrameDate[i].setIsMouseDown(false);
-								}
+			{
+				if((this.FrameDate[i].x+70>x&&this.FrameDate[i].x<x)&&(this.FrameDate[i].y+70>y&&this.FrameDate[i].y<y))
+				{
+					cursor = 'pointer';
+					this.FrameDate[i].setIsMouseDown(true);
+				} else if (this.FrameDate[i].isMouseDown){
+					this.FrameDate[i].setIsMouseDown(false);
+				}
 
-							}
-					document.body.style.cursor = cursor;
-				},
+			}
+			document.body.style.cursor = cursor;
+		},
 
                 _down: function(e,x,y){
                         var isMove= this.parent.isMove;
