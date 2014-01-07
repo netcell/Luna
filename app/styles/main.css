@@ -683,8 +683,7 @@ a, a:hover, a:active {
 .controlpanel table.menu tr.title {
   line-height: 2em;
   font-weight: bold;
-  color: #f6f6f6;
-  background-color: #585A5F;
+  color: #444750;
 }
 
 .controlpanel table tr td {
@@ -786,7 +785,7 @@ a, a:hover, a:active {
 
 .controlpanel .toolbar {
   width: 100%;
-  background-color: #444750;
+  background-color: #696969;
   color: #f6f6f6;
   font-weight: bold;
   font-size: 18px;

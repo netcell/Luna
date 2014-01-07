@@ -1,22 +1,21 @@
 'use strict';
 
 angular.module('lunaApp')
-  .controller('UpdateEmailCtrl', function ($scope,$routeParams) {
-    $scope.required = $routeParams.required == "required";
+  .controller('UpdateEmailCtrl', function ($scope,Strings) {
     $scope.footer.buttons = [
         {
             name:'cập nhật',
             action: function(){
                 $scope.submit();
             }
-        }
+        },{
+        
+	        name:'quay lại',
+	        action: function(){
+	            $scope.main.back();
+	        }
+    	}
     ];
-    if (!$scope.required) $scope.footer.buttons.push({
-        name:'quay lại',
-        action: function(){
-            $scope.main.back();
-        }
-    })
 
     $scope.$on('$destroy', function(){
         $scope.footer.buttons = [];
@@ -31,7 +30,7 @@ angular.module('lunaApp')
                 	$scope.main.closePopup();
                 	$location.path("/event-list");
                 }, function(err){
-                    $scope.main.alert('hệ thống đang bận, xin thử lại sau ít phút');
+                    $scope.main.alert(Strings.CONNECTION_ERROR);
                 });
             } else {
                 $scope.main.alert('Bạn cần nhập đúng địa chỉ email.');    

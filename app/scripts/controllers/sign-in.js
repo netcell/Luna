@@ -6,8 +6,8 @@ angular.module('lunaApp')
   		{
     		name:'quay lại',
     		action: function(){
-                $scope.main.back();
-            }
+            $scope.main.back();
+        }
     	}
     ];
     $scope.$on('$destroy', function(){
