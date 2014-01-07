@@ -62,7 +62,7 @@ angular.module('lunaApp', [
       })
   })
   .constant('Strings', {
-      CONNECTION_ERROR: 'Hệ thống đang bận, hoặc kết nối internet của bạn có vấn đề. Xin hãy kiểm tra và thử lại sau ít phút.'
+      CONNECTION_ERROR: ['Hệ thống đang bận, hoặc kết nối internet của bạn có vấn đề.','Xin hãy kiểm tra và thử lại sau ít phút.']
   })
   .run(function($rootScope, $templateCache) {
       $templateCache.removeAll();

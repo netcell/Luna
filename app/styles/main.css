@@ -731,7 +731,7 @@ a, a:hover, a:active {
   -webkit-transition: all 0.3s ease;
 }
 
-.controlpanel table tr td.select .checker-outer.checked .inner {
+.controlpanel table tr td.select .checker-outer.checked .checker-inner {
   background-color: #444750;
 }
 

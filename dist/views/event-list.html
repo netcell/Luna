@@ -13,7 +13,7 @@
 	</table>
 	<table class="list">
 		<tbody>
-			<tr ng-repeat="event in events track by $index" ng-class="{on: on}">
+			<tr ng-repeat="event in events track by $index" ng-class="{on: event.status}">
 				<td class="select">
 					<div class="checker-outer" ng-class="{checked: event.checked}" ng-click="event.checked=!event.checked; countChecker();">
 						<div class="checker-inner"></div>
