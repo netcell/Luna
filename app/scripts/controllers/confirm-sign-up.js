@@ -31,7 +31,7 @@ angular.module('lunaApp')
                 $scope.main.alert('Bạn cần nhập đúng địa chỉ email.');    
             }
         } else {
-            $scope.main.alert('Bạn cần nhập địa chỉ email.');
+            $location.path("/event-list");
         }
     }
   });
