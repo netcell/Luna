@@ -7,7 +7,22 @@ angular.module('lunaApp')
       if (exitCode) {
         Events.getEventList(function(exitCode,list){
           if (exitCode) {
-            $scope.events = list;
+            $scope.events = [];
+            for (var i = list.length - 1; i >= 0; i--) {
+              var row = list[i];
+              var e = {
+                desc: row.message,
+                repeat: ['Ngày','Tháng','Năm'][row.repeatType],
+                time: row.hour+':'+row.minute,
+                pre: row.pre+" "+['tiếng', 'ngày'][row.pre_kind],
+                status: row.status == 1
+              };
+              
+              if (row.repeatType ===1) e.time += " "+row.date;
+              else if (row.repeatType ===2) e.time += " "+row.date+"/"+row.date;
+
+              $scope.events.push(e)
+            };
             $scope.main.closePopup();
           } else {
             $scope.main.alert(Strings.CONNECTION_ERROR);
