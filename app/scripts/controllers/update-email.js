@@ -11,7 +11,7 @@ angular.module('lunaApp')
             }
         }
     ];
-    if (!required) $scope.footer.buttons.push({
+    if (!$scope.required) $scope.footer.buttons.push({
         name:'quay lại',
         action: function(){
             $scope.main.back();
@@ -25,9 +25,9 @@ angular.module('lunaApp')
     $scope.submit = function(){
     	if ($scope.email){
             if (Validate.validateEmail($scope.email)) {
-                User.setEmail($scope.email);
                 $scope.main.createPopup('Đang xử lý');
                 $http.get('/account/update-email/'+$scope.email).then(function(res){
+                	User.setEmail($scope.email);
                 	$scope.main.closePopup();
                 	$location.path("/event-list");
                 }, function(err){
