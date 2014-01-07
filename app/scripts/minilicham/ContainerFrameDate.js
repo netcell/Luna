@@ -24,7 +24,7 @@
 			    var tagName = target.nodeName.toLowerCase();
 			    if (tagName == "canvas") {
 			       
-			    } else if(document.getElementById("canvas").height!=0){
+			    } else {
 			    	 for (var i=1;i<self.FrameDate.length;i++)
 					{
 							self.FrameDate[i].setIsMouseDown(false);
