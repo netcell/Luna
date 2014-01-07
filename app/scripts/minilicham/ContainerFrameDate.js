@@ -26,12 +26,6 @@
 			director.y=canvas.top;
 			director.x=canvas.left;
 		},
-		_enter: function (e){
-			document.body.style.cursor = 'pointer';
-		},
-		_exit: function (e){
-                        document.body.style.cursor = 'default';
-		},
 		_down: function(e,x,y){
 			var isMove= this.parent.isMove;
 			if(!this.isPress&& !isMove){
@@ -119,14 +113,7 @@
             var self = this; 
             self._drag(self, mouseEvent.screenPoint.x, mouseEvent.screenPoint.y);
         },
-	mouseEnter:function (mouseEvent) {
-        	var self = this; 
-        	self._enter(mouseEvent);
-        },
-        mouseExit:function (mouseEvent) {
-        	var self = this; 
-        	self._exit(mouseEvent)
-        },
+
 		
 		CreateFrameDate: function(myDate){
 			this.FrameDate=[];
