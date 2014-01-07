@@ -50,12 +50,12 @@ angular.module('lunaApp')
           deleteIndexList.push(i);
         }
       };
-      return deleteList;
+      return $scope.deleteList;
     }
 
     $scope.delete= function(){
       $scope.main.createPopup('Đang xử lý');
-      $http.post('/account/delete-event', deleteList)
+      $http.post('/account/delete-event', $scope.deleteList)
       .then(function(){
         for (var i = 0, length = deleteIndexList.length; i < length; i++) {
           $scope.events.splice(i,1);
