@@ -23233,9 +23233,8 @@ CAAT.Module({
                 }
 
                 var offset = this.getOffset(this.canvas);
-
-                posx -= offset.x;
-                posy -= offset.y;
+                posx -= (offset.x+window.scrollX+this.canvas.offsetLeft);
+                posy -= (offset.y+window.scrollY+this.canvas.offsetTop);
 
                 posx*= this.SCREEN_RATIO;
                 posy*= this.SCREEN_RATIO;

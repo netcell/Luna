@@ -12,7 +12,7 @@
     <link rel="icon" type="image/png" href="apple-touch-icon.png">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-        <link rel="stylesheet" href="styles/4be2af86.main.css"/>
+        <link rel="stylesheet" href="styles/9c300146.main.css"/>
 </head>
   <body ng-app="lunaApp">
     <!--[if lt IE 7]>
@@ -52,9 +52,9 @@
           </div>
         </div>
       </div>
-      <!-- <div id="calendar" ng-show="showCalendar">
-        <canvas id="canvas"></canvas>
-      </div> -->
+      <!-- <div id="calendar" ng-show="showCalendar"> -->
+      <canvas id="canvas" ng-show="showCalendar"></canvas>
+      <!-- </div> -->
 
       
       <div class="footer more no-user-select after-loading hidden" footer="">
@@ -62,7 +62,7 @@
             <li class="link" ng-repeat="button in footer.buttons" ng-click="button.action()" ng-bind="button.name"></li>
           </ul>
       </div>
-      <!-- <div class="footer calendarbutton"><span ng-click="showCalendar=!showCalendar">Lịch</span></div> -->
+      <div class="footer calendarbutton"><span ng-click="showCalendar=!showCalendar">Lịch</span></div>
       <div class="cover" ng-if="hasPopup"></div>
       <div class="footer popup no-user-select" ng-if="hasPopup">
         <div class="box">
@@ -89,14 +89,10 @@
     <script src="scripts/69e417c1.preloading.js"></script>
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular.min.js"></script>
 
-        <script src="scripts/30e0e9ce.modules.js"></script>
+        <script src="scripts/20b658cf.modules.js"></script>
 
 
-        <script src="scripts/68c80b61.scripts.js"></script>
-        <!-- <script type="text/javascript" src="/scripts/minilicham/calendar.js"></script>
-        <script type="text/javascript" src="/scripts/minilicham/ContainerFrameDate.js"></script>
-        <script type="text/javascript" src="/scripts/minilicham/date.js"></script>
-        <script type="text/javascript" src="/scripts/minilicham/main.js"></script>-->
+        <script src="scripts/c8aca2b3.scripts.js"></script>
 
         <!-- <script src="scripts/animations/content-module.js"></script> -->
 </body>
