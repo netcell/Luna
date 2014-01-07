@@ -243,6 +243,8 @@
                         	document.body.style.cursor = 'default';
                     	}
 			this.Next.mouseDown= function(e){
+				self.StartMoveTime=self.director.time;
+                		self.SpaceSWent=100;
 				self.setIsMoveDirection(true,-1);
 				self.rePaint();
 			}
@@ -293,6 +295,8 @@
                         	document.body.style.cursor = 'default';
                     	}
 			this.Prev.mouseDown= function(e){
+				self.StartMoveTime=self.director.time;
+        		   	self.SpaceSWent=100;
 				self.setIsMoveDirection(true,1);
 				self.rePaint();
 			}
