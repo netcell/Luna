@@ -119,11 +119,13 @@
             var self = this; 
             self._drag(self, mouseEvent.screenPoint.x, mouseEvent.screenPoint.y);
         },
-        mouseEnter:function (mouseEvent) {
-        	_enter(mouseEvent);
+	mouseEnter:function (mouseEvent) {
+        	var self = this; 
+        	self._enter(mouseEvent);
         },
         mouseExit:function (mouseEvent) {
-        	_exit(mouseEvent)
+        	var self = this; 
+        	self._exit(mouseEvent)
         },
 		
 		CreateFrameDate: function(myDate){
