@@ -1,131 +1,347 @@
+﻿
 (function(){
-	CAAT.MyDate = function () {
-        CAAT.MyDate.superclass.constructor.call(this);
+	CAAT.MyCalendar = function () {
+        CAAT.MyCalendar.superclass.constructor.call(this);
         return this;
     };
-	CAAT.MyDate.prototype = {
-		styleFont: "Source Sans Pro",
+	CAAT.MyCalendar.prototype = {
+		FrameDate: [],
+		currentMonth: null,
+		currentYear: null,
+		currentDate: null,
 		isPaint: false,
-		FillStyleColor: "#818181",
-		initialize: function(director,scene,date,width,height){
+		styleFont: "Source Sans Pro",
+		initialize: function(director,scene){
 			this.director=director;
 			this.scene=scene;
-			this.setBounds(0,0,width,height);
-			this.date= date;
-			//console.log(this.date)
-			this.today= new Date();
-			this.enableEvents(false);
-			//console.log(this.x)
-			//console.log(this.date.getDay())
+			this.setBounds(0, 0, this.director.width, this.director.height)
+			.setFillStyle("white")
+			this.Today=new Date();
+			
+				this.currentMonth=this.Today.getMonth();
+			this.currentYear=this.Today.getFullYear();
+			this.currentDate= this.Today;
+			//
+			this.CreateContainerFrameDate(1,this.Today);
+			var myDate=this.getIndexMonthGoto(0);
+			this.CreateContainerFrameDate(0,myDate);
+			var myDate=this.getIndexMonthGoto(2);
+			this.CreateContainerFrameDate(2,myDate);
+			this.ContainerFrameDate[0].x=-this.width
+			this.ContainerFrameDate[2].x=this.width
+			this.ContainerFrameDate[0].setVisible(false)
+			this.ContainerFrameDate[2].setVisible(false)
+			//
+			
+			//this.CreateFrameDate(this.Today);
+		
+			this.CreateButtonNext();
+			this.CreateButtonPrev();
+			this.currentLunar= convertSolar2Lunar(this.Today.getDate(),this.Today.getMonth()+1,this.Today.getFullYear(),7.0);
+			//var giohoangdao= getGioHoangDao_Duong(16,12,2013);
+			//console.log(giohoangdao)
+			this.CreateButtonToday();
+		
 			return this;
 		},
+		ContainerFrameDate : [],
+		indexFrameDate: 1,
+		backPageTOday: function(){
+			for(var i = 0;i<this.ContainerFrameDate.length;i++){
+					this.removeChild(this.ContainerFrameDate[i])
+			}
+			this.currentMonth=this.Today.getMonth();
+			this.currentYear=this.Today.getFullYear();
+			this.currentDate= this.Today;
+			this.CreateContainerFrameDate(1,this.Today);
+			var myDate=this.getIndexMonthGoto(0);
+			this.CreateContainerFrameDate(0,myDate);
+			var myDate=this.getIndexMonthGoto(2);
+			this.CreateContainerFrameDate(2,myDate);
+			this.ContainerFrameDate[0].x=-this.width
+			this.ContainerFrameDate[2].x=this.width
+			this.ContainerFrameDate[0].setVisible(false)
+			this.ContainerFrameDate[2].setVisible(false)
+		},
+		CreateContainerFrameDate: function(id,myDate){
+			
+			this.ContainerFrameDate[id] = new CAAT.ContainerFrameDate().initialize(this.director,this.scene,this.width,476,myDate)
+			this.addChild(this.ContainerFrameDate[id]);
+		},
+		setIsMoveDirection: function(isMove,direction){
+			this.direction=direction;
+			this.isMove=isMove;
+			return this;
+		},
+		removeContainerFrameDateMinusIndex: function(index){
+			for(var i = 0;i<this.ContainerFrameDate.length;i++){
+				if(i!=index){
+					this.removeChild(this.ContainerFrameDate[i])
+				}
+			}
+			this.ContainerFrameDate[1]=this.ContainerFrameDate[index];
+			this.currentMonth=this.ContainerFrameDate[1].myDate.getMonth()
+			this.currentYear=this.ContainerFrameDate[1].myDate.getFullYear()
+			var myDate=this.getIndexMonthGoto(0);
+			this.CreateContainerFrameDate(0,myDate);
+			var myDate=this.getIndexMonthGoto(2);
+			this.CreateContainerFrameDate(2,myDate);
+			this.ContainerFrameDate[0].x=-this.width
+			this.ContainerFrameDate[2].x=this.width
+			this.ContainerFrameDate[0].setVisible(false)
+			this.ContainerFrameDate[2].setVisible(false)
+			this.rePaint();
+		},
+		isMove: false,
+		direction: 0,
+		StartMoveTime: 0,
+		endDuringTime: 0.5,
+		SpaceSWent:100,
 		paint: function(director,time){
-			CAAT.MyDate.superclass.paint.call(this, director, time);
 			var ctx= director.ctx;
-			if(time<1&&this.isPaint){	
-				var ju= convertSolar2Lunar(this.date.getDate(),this.date.getMonth()+1,this.date.getFullYear(),7.0)
-				if(this.today.getMonth()==this.date.getMonth()&&this.today.getFullYear()==this.date.getFullYear()&&this.today.getDate()==this.date.getDate()) {
-					ctx.globalAlpha=0.8
-					ctx.beginPath();
-					ctx.rect(0, 0, this.width, this.height);
-					ctx.fillStyle = "#818181";
-					ctx.fill();
-					ctx.closePath();
-					ctx.globalAlpha=1
+			//ctx.font = '200 15px '+this.styleFont ;
+			CAAT.MyCalendar.superclass.paint.call(this, director, time);
+			if(this.isMove){
+				// tinh speed
+				
+				var duringTime = this.director.time/1000-this.StartMoveTime/1000;
+				var speed= (duringTime* (this.width-Math.abs(this.x))/this.endDuringTime)  - this.SpaceSWent>>0;
+				this.SpaceSWent=(duringTime* (this.width-Math.abs(this.x))/this.endDuringTime)>>0;
+				//
+				this.ContainerFrameDate[0].setVisible(true)
+				this.ContainerFrameDate[2].setVisible(true)
+				this.ContainerFrameDate[0].x+=this.direction*speed
+				this.ContainerFrameDate[1].x+=this.direction*speed
+				this.ContainerFrameDate[2].x+=this.direction*speed
+				if(this.ContainerFrameDate[0].x>=0 || this.ContainerFrameDate[2].x<=0){
+					this.isMove=false;
+					//this.StartMoveTime=0;
+					this.SpaceSWent=0;
+					if(this.ContainerFrameDate[0].x>=0){
+						this.removeContainerFrameDateMinusIndex(0)
+					}else{
+						this.removeContainerFrameDateMinusIndex(2);
+					}
+					this.ContainerFrameDate[1].x=0;
 				}
-				if(this.isMouseDown){
-					ctx.globalAlpha=0.5
-					ctx.beginPath();
-					ctx.rect(0, 0, this.width, this.height);
-					ctx.fillStyle = "blue";
-					ctx.fill();
-					ctx.closePath();
-					ctx.globalAlpha=1
-				}
-				var colorDate="#525252";
-				if(this.date.getDay()==6) colorDate="green"
-				if(this.date.getDay()==0) colorDate="red"
-				//console.log(this.date.getDay())
+			}
+			if(time<1&&this.isPaint){
+				
+				ctx.globalAlpha=0.3
 				ctx.beginPath();
-				ctx.font = '30px '+this.styleFont;		
-				ctx.fillStyle = colorDate;
-				ctx.fillText(this.date.getDate(), -ctx.measureText(this.date.getDate()+"").width/2+ this.width/2, 40);
+				ctx.font = '200 90px '+this.styleFont;
+				ctx.rect(0, 0, this.width, this.height);
+				ctx.fillStyle = "#f6f6f6";
+				ctx.fill();
+				ctx.lineWidth = 1;
+				ctx.lineJoin = 'round';
+				ctx.strokeStyle = "black";
+				ctx.stroke();
+				ctx.closePath();
+				ctx.globalAlpha=1
+				ctx.beginPath();
+				ctx.rect(0, 0, this.width, 50);	
+				ctx.rect(0, 476, this.width, 80);	
+				ctx.fillStyle = "#444750";
+				ctx.fill();
 				ctx.closePath();
 				ctx.beginPath();
-				ctx.font = '15px '+this.styleFont;	
-				if(ju[0]==1){
-				ctx.fillStyle = 'red';
-				ctx.fillText(ju[0]+"/"+ju[1], -ctx.measureText(ju[0]+"/"+ju[1]).width/2+ this.width/2, this.height-5);
-				}else{
-				ctx.fillStyle = '#525252';
-				ctx.fillText(ju[0], -ctx.measureText(ju[0]).width/2+ this.width/2, this.height-5);
-				}
+				for(var i=0;i<3;i++){
+				ctx.beginPath();
+				ctx.rect(0,i*71*2+121, this.width, 71);	
+				ctx.fillStyle = "#f6f6f6";
+				ctx.fill();
+				ctx.strokeStyle = "#d6d6d6";
+				ctx.stroke();
 				ctx.closePath();
-				//console.log(ju[0])
+				}
+				ctx.beginPath();
+				for(var i =0 ;i < 7;i++){	
+					ctx.font = '200 25px '+this.styleFont;
+					ctx.fillStyle = 'white';
+					ctx.fillText(this.getStringDayFromIndex(i), i* this .width/7 + 20>>0,35);
+				}
+			
+				ctx.font = '200 25px '+this.styleFont;
+				var str= (this.currentMonth+1)+"/"+this.currentYear
+				ctx.fillStyle = 'white';
+				ctx.fillText(str,this.width/2-ctx.measureText(str).width/2 + 80,510);
+				ctx.closePath();
+					
 			}
 			if(!this.isPaint){
 				this.isPaint=true;
 				this.cacheAsBitmap(0,CAAT.Foundation.ActorContainer.CACHE_DEEP);
 			}
+			
 		},
-		isMouseDown: false,
-		/*mouseDown: function(e){
-			this.parent.parent.setCurrentLunar(this.date);
+		setCurrentLunar: function(date){
+			var dateLunar=convertSolar2Lunar(date.getDate(),date.getMonth()+1,date.getFullYear(),7.0)
+			this.currentDate=date
+			this.currentLunar=dateLunar;
 			this.rePaint();
-		},*/
+			return this;
+		},
+		setCurrentDate: function(date){
+			this.currentDate=date
+		},
+		getStringDayFromIndex: function(index){
+			switch (index){
+				case 0: return "CN";
+				case 1: return "T2";
+				case 2: return "T3";
+				case 3: return "T4";
+				case 4: return "T5";
+				case 5: return "T6";
+				case 6: return "T7";
+			}
+		},
+		getStringMonthFromIndex: function(index){
+			switch (index){
+				case 1: return "tháng một";
+				case 2: return "tháng hai";
+				case 3: return "tháng ba";
+				case 4: return "tháng tư";
+				case 5: return "tháng năm";
+				case 6: return "tháng sáu";
+				case 7: return "tháng bảy";
+				case 8: return "tháng tám";
+				case 9: return "tháng chín";
+				case 10: return "tháng mười";
+				case 11: return "tháng mười một";
+				case 12: return "tháng mười hai";
+			}
+		},
+		calculateCanChi: function(year){
+			var Can=["canh", "tân", "nhâm", "quý", "giáp", "ất", "bính", "đinh", "mậu", "kỷ"];
+			var Chi=["thân","dậu","tuất","hợi","tý","sửu","dần","mão","thìn","tỵ","ngọ","mùi"];
+			var str=" năm " + Can[year%10]+ " " + Chi[year%12];
+			return str;
+				
+		},
+		
+		CreateButtonNext: function(){
+			var self= this;
+			this.Next= new CAAT.Foundation.ActorContainer()
+				.setBounds(0,0,50,50)
+				.setPosition(this.width-50,476)
+				.setFillStyle("red")
+			this.Next.paint= function(director,time){
+				var ctx= director.ctx;
+				ctx.beginPath();
+				ctx.moveTo(10+3+5,10+3)
+				ctx.lineTo(10+3-3+25,25)
+				ctx.lineTo(10+3+5,40-3)
+				ctx.fillStyle="white"
+				ctx.fill();
+				ctx.closePath()
+			}
+			this.Next.mouseEnter = function(e){
+				document.body.style.cursor = 'pointer';
+			}
+			this.Next.mouseExit= function(mouseEvent) {
+                        	document.body.style.cursor = 'default';
+                    	}
+			this.Next.mouseDown= function(e){
+				self.setIsMoveDirection(true,-1);
+				self.rePaint();
+			}
+			this.addChild(this.Next);
+		},
+		getIndexMonthGoto: function(number){
+			var self=this;
+			var year=self.currentYear;
+			var month= self.currentMonth;
+			if(number==2){
+				month= self.currentMonth+1;
+				if(month>=12){
+					month=0;
+					year+=1
+				}
+				var myDate= new Date(year,month,1)
+			}
+			if(number==0){
+				month= self.currentMonth-1;
+				if(month<0){
+					month=11;
+					year-=1
+				}
+				var myDate= new Date(year,month,1)
+			}
+			return myDate;
+		},
+		CreateButtonPrev: function(){
+			var self= this;
+			this.Prev= new CAAT.Foundation.ActorContainer()
+				.setBounds(0,0,50,50)
+				.setPosition(0,476)
+				.setFillStyle("red")
+			this.Prev.paint= function(director,time){
+				var ctx= director.ctx;
+				ctx.beginPath();
+				ctx.moveTo(45-10-3,10+3)
+				ctx.lineTo(25-10-3+3,25)
+				ctx.lineTo(45-10-3,40-3)
+				ctx.fillStyle="white"
+				ctx.fill();
+				ctx.closePath()
+			}
+			this.Prev.mouseEnter = function(e){
+				document.body.style.cursor = 'pointer';
+			}
+			this.Prev.mouseExit= function(mouseEvent) {
+                        	document.body.style.cursor = 'default';
+                    	}
+			this.Prev.mouseDown= function(e){
+				self.setIsMoveDirection(true,1);
+				self.rePaint();
+			}
+			this.addChild(this.Prev);
+		},
 		rePaint: function(){
 			this.stopCacheAsBitmap();
 			this.cacheAsBitmap(0);
 		},
-		setIsMouseDown: function(on){
-			this.isMouseDown=on;
-			this.rePaint();
-		},
-		setCurrentLunar: function(){
-			if(this.parent.parent){
-			this.parent.parent.setCurrentLunar(this.date);
+		CreateButtonToday: function(){
+			var self=this;
+			//ctx.rect(0, 970+moveY, this.width, 80);	
+			this.ButtonToday= new CAAT.Foundation.ActorContainer()
+				.setBounds(0,0,155,50)
+				.setPosition(120,470)
+			this.ButtonToday.isPaint=false;
+			this.ButtonToday.paint= function(director,time){
+				CAAT.MyCalendar.superclass.paint.call(this, director, time);
+				if(time<1&&this.isPaint){	
+				var ctx= director.ctx
+				ctx.beginPath();
+				ctx.font = '200 25px '+self.styleFont ;
+				ctx.fillStyle = 'white';
+				ctx.fillText("Hôm nay",5,40);
+				ctx.closePath();
+				}
+				if(!this.isPaint){
+					this.isPaint=true;
+					this.cacheAsBitmap(0,CAAT.Foundation.ActorContainer.CACHE_DEEP);
+				}
 			}
-			this.rePaint();
-		//	console.log(1);
+			this.ButtonToday.mouseEnter = function(e){
+				document.body.style.cursor = 'pointer';
+			}
+			this.ButtonToday.mouseExit= function(mouseEvent) {
+                        	document.body.style.cursor = 'default';
+                    	}
+			this.ButtonToday.mouseDown= function(e){
+				self.backPageTOday();
+				self.currentLunar= convertSolar2Lunar(self.Today.getDate(),self.Today.getMonth()+1,self.Today.getFullYear(),7.0);
+				self.rePaint();
+			}
+			this.addChild(this.ButtonToday);
 		},
 		
 	}
-	extend(CAAT.MyDate, CAAT.Foundation.ActorContainer);
+	extend(CAAT.MyCalendar, CAAT.Foundation.ActorContainer);
 })();
-var GIO_HD = new Array("110100101100", "001101001011", "110011010010", "101100110100", "001011001101", "010010110011");
-var CHI = new Array("T\375", "S\u1EEDu", "D\u1EA7n", "M\343o", "Th\354n", "T\u1EF5", "Ng\u1ECD", "M\371i", "Th\342n", "D\u1EADu", "Tu\u1EA5t", "H\u1EE3i");
+function getDaysOfMonth(year, month) {
+	return new Date(year, month + 1, 0).getDate();
 
-function getGioHoangDao_Duong(dd,mm,yyyy) {
-  var jd=jdFromDate(dd,mm,yyyy);
-  var chiOfDay = (jd+1) % 12;
-  var gioHD = GIO_HD[chiOfDay % 6]; // same values for Ty' (1) and Ngo. (6), for Suu and Mui etc.
-  var ret = "";
-  var count = 0;
-  for (var i = 0; i < 12; i++) {
-    if (gioHD.charAt(i) == '1') {
-      ret += CHI[i];
-      ret += ' ('+(i*2+23)%24+'-'+(i*2+1)%24+')';
-      if (count++ < 5) ret += ', ';
-      if (count == 3) ret += '\n';
-    }
-  }
-  return ret;
-}
-
-function getGioHoangDao_Am(dd,mm,yyyy,leap) {
-  var ngayduong=getSolarDateFromLunarDate(dd,mm,yyyy,leap,7);
-  var jd=jdFromDate(ngayduong[0],ngayduong[1],ngayduong[2]);
-  var chiOfDay = (jd+1) % 12;
-  var gioHD = GIO_HD[chiOfDay % 6]; // same values for Ty' (1) and Ngo. (6), for Suu and Mui etc.
-  var ret = "";
-  var count = 0;
-  for (var i = 0; i < 12; i++) {
-    if (gioHD.charAt(i) == '1') {
-      ret += CHI[i];
-      ret += ' ('+(i*2+23)%24+'-'+(i*2+1)%24+')';
-      if (count++ < 5) ret += ', ';
-      if (count == 3) ret += '\n';
-    }
-  }
-  return ret;
 }
