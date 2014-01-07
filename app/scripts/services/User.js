@@ -18,6 +18,7 @@ angular.module('lunaApp')
         $sessionStorage.User.signedIn = false;
         $sessionStorage.User.name = "";
         $sessionStorage.User.email = "";
+        $location.path('/sign-in');
         callback(0);
       });
     };
