@@ -3,17 +3,12 @@
 angular.module('lunaApp')
   .factory('User', function ($location,$sessionStorage,$http) {
 
-    function signIn(serviceName){
-      $http.get('/auth/'+serviceName.toLowerCase())
+    function signIn(){
+      $http.get('/account/user')
       .then(function(data){
         $sessionStorage.User.signedIn = true;
         $sessionStorage.User.name = data.name;
         $sessionStorage.User.email = data.email;
-        if (data.signUp) {
-          $location.path('/confirm-sign-up');
-        } else {
-          $location.path('/event-list');
-        }
       }, function(err){
         $sessionStorage.User.signedIn = false;
         $sessionStorage.User.name = "";
@@ -51,8 +46,8 @@ angular.module('lunaApp')
         $sessionStorage.User.email = email;
         return this;
       },
-      signIn: function(serviceName){
-        signIn(serviceName);
+      signIn: function(){
+        signIn();
       },
       signOut: function(){
         signOut();

@@ -13,7 +13,4 @@ angular.module('lunaApp')
     $scope.$on('$destroy', function(){
   		$scope.footer.buttons = [];
   	});
-    $scope.signIn = function(serviceName){
-      var signInExitCode = User.signIn(serviceName);
-    }
   });
