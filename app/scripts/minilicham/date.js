@@ -1,4 +1,4 @@
-﻿(function(){
+(function(){
 	CAAT.MyDate = function () {
         CAAT.MyDate.superclass.constructor.call(this);
         return this;
@@ -6,7 +6,7 @@
 	CAAT.MyDate.prototype = {
 		styleFont: "Source Sans Pro",
 		isPaint: false,
-		FillStyleColor: "#dcdcdc",
+		FillStyleColor: "#818181",
 		initialize: function(director,scene,date,width,height){
 			this.director=director;
 			this.scene=scene;
@@ -28,7 +28,7 @@
 					ctx.globalAlpha=0.8
 					ctx.beginPath();
 					ctx.rect(0, 0, this.width, this.height);
-					ctx.fillStyle = "#dcdcdc";
+					ctx.fillStyle = "#818181";
 					ctx.fill();
 					ctx.closePath();
 					ctx.globalAlpha=1
@@ -47,18 +47,18 @@
 				if(this.date.getDay()==0) colorDate="red"
 				//console.log(this.date.getDay())
 				ctx.beginPath();
-				ctx.font = '200 30px '+this.styleFont;		
+				ctx.font = '30px '+this.styleFont;		
 				ctx.fillStyle = colorDate;
-				ctx.fillText(this.date.getDate(), -ctx.measureText(this.date.getDate()+"").width/2+ this.width/2, 35);
+				ctx.fillText(this.date.getDate(), -ctx.measureText(this.date.getDate()+"").width/2+ this.width/2, 40);
 				ctx.closePath();
 				ctx.beginPath();
-				ctx.font = '200 15px '+this.styleFont;	
+				ctx.font = '15px '+this.styleFont;	
 				if(ju[0]==1){
 				ctx.fillStyle = 'red';
-				ctx.fillText(ju[0]+"/"+ju[1], -ctx.measureText(ju[0]+"/"+ju[1]).width/2+ this.width/2, this.height-10);
+				ctx.fillText(ju[0]+"/"+ju[1], -ctx.measureText(ju[0]+"/"+ju[1]).width/2+ this.width/2, this.height-5);
 				}else{
 				ctx.fillStyle = '#525252';
-				ctx.fillText(ju[0], -ctx.measureText(ju[0]).width/2+ this.width/2, this.height-10);
+				ctx.fillText(ju[0], -ctx.measureText(ju[0]).width/2+ this.width/2, this.height-5);
 				}
 				ctx.closePath();
 				//console.log(ju[0])
@@ -77,8 +77,8 @@
 			this.stopCacheAsBitmap();
 			this.cacheAsBitmap(0);
 		},
-		setIsMouseDown: function(){
-			this.isMouseDown=false;
+		setIsMouseDown: function(on){
+			this.isMouseDown=on;
 			this.rePaint();
 		},
 		setCurrentLunar: function(){
