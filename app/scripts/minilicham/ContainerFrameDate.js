@@ -133,6 +133,13 @@
         	var self = this; 
             self._move(self, mouseEvent.screenPoint.x, mouseEvent.screenPoint.y);
         },
+        mouseExit:function(mouseEvent){
+        	for (var i=1;i<this.FrameDate.length;i++)
+			{
+					this.FrameDate[i].setIsMouseDown(false);
+			}
+        	document.body.style.cursor = 'default';
+        },
 
                 
                 CreateFrameDate: function(myDate){
