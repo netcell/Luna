@@ -239,6 +239,9 @@
 			this.Next.mouseEnter = function(e){
 				document.body.style.cursor = 'pointer';
 			}
+			this.Next.mouseExit= function(mouseEvent) {
+                        	document.body.style.cursor = 'default';
+                    	}
 			this.Next.mouseDown= function(e){
 				self.setIsMoveDirection(true,-1);
 				self.rePaint();
@@ -286,6 +289,9 @@
 			this.Prev.mouseEnter = function(e){
 				document.body.style.cursor = 'pointer';
 			}
+			this.Prev.mouseExit= function(mouseEvent) {
+                        	document.body.style.cursor = 'default';
+                    	}
 			this.Prev.mouseDown= function(e){
 				self.setIsMoveDirection(true,1);
 				self.rePaint();
@@ -321,6 +327,9 @@
 			this.ButtonToday.mouseEnter = function(e){
 				document.body.style.cursor = 'pointer';
 			}
+			this.ButtonToday.mouseExit= function(mouseEvent) {
+                        	document.body.style.cursor = 'default';
+                    	}
 			this.ButtonToday.mouseDown= function(e){
 				self.backPageTOday();
 				self.currentLunar= convertSolar2Lunar(self.Today.getDate(),self.Today.getMonth()+1,self.Today.getFullYear(),7.0);
