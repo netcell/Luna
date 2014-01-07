@@ -14,8 +14,7 @@ angular.module('lunaApp')
       $http.get('/account/user')
       .then(function(object){
         var data = object.data;
-        console.log(object);
-        if (!data) {
+        if (data==="0") {
           console.log(data);
           clearUser();
           $location.path('/sign-in');
