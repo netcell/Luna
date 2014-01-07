@@ -1,12 +1,12 @@
 'use strict';
 
 angular.module('lunaApp')
-  .controller('SignInCtrl', function ($scope, User) {
+  .controller('SignInCtrl', function ($scope, $location, User) {
   	$scope.footer.buttons = [
   		{
     		name:'quay lại',
     		action: function(){
-            $scope.main.back();
+            $location.path('/');
         }
     	}
     ];
