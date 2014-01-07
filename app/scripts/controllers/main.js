@@ -20,9 +20,9 @@ angular.module('lunaApp')
 
     var popupOn = function(){
       $scope.hasPopup = false;
-      $timeout(function(){
+      //$timeout(function(){
         $scope.hasPopup = true;
-      }, 100);
+      //}, 100);
     }
 
     $scope.main.createPopup = function(text, buttons){

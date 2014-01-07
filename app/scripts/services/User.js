@@ -10,7 +10,6 @@ angular.module('lunaApp')
         $sessionStorage.User.signedIn = true;
         $sessionStorage.User.name = data.name;
         $sessionStorage.User.email = data.email;
-        console.log(data);
         callback(1);
       }, function(err){
         $sessionStorage.User.signedIn = false;
