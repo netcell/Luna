@@ -132,7 +132,7 @@ function getLeapMonthOffset(a11, timeZone){
 }
 //Đổi ngày dương dd/mm/yyyy ra ngày âm
 function convertSolar2Lunar(dd, mm, yy, timeZone) {
-	var diff, k, dayNumber, monthStart, a11, b11, lunarDay, lunarMonth, lunarYear, lunarLeap;
+	var diff, leapMonthDiff, k, dayNumber, monthStart, a11, b11, lunarDay, lunarMonth, lunarYear, lunarLeap;
 	dayNumber = jdFromDate(dd, mm, yy);
 	k = INT((dayNumber - 2415021.076998695) / 29.530588853);
 	monthStart = getNewMoonDay(k+1, timeZone);
