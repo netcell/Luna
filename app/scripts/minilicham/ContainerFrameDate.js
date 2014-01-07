@@ -23,8 +23,9 @@
 			    var target = evt.target || evt.srcElement;
 			    var tagName = target.nodeName.toLowerCase();
 			    if (tagName == "canvas") {
-			       
+			       console.log("canvas")
 			    } else {
+			    	console.log("non-canvas")
 			    	 for (var i=1;i<self.FrameDate.length;i++)
 					{
 							self.FrameDate[i].setIsMouseDown(false);
