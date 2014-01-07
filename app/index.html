@@ -56,9 +56,9 @@
           </div>
         </div>
       </div>
-      <!-- <div id="calendar" ng-show="showCalendar">
-        <canvas id="canvas"></canvas>
-      </div> -->
+      <!-- <div id="calendar" ng-show="showCalendar"> -->
+      <canvas id="canvas" ng-show="showCalendar"></canvas>
+      <!-- </div> -->
 
       
       <div class="footer more no-user-select after-loading hidden" footer>
@@ -66,7 +66,7 @@
             <li class="link" ng-repeat="button in footer.buttons" ng-click="button.action()" ng-bind="button.name"></li>
           </ul>
       </div>
-      <!-- <div class="footer calendarbutton"><span ng-click="showCalendar=!showCalendar">Lịch</span></div> -->
+      <div class="footer calendarbutton"><span ng-click="showCalendar=!showCalendar">Lịch</span></div>
       <div class="cover" ng-if="hasPopup"></div>
       <div class="footer popup no-user-select" ng-if="hasPopup">
         <div class="box">
