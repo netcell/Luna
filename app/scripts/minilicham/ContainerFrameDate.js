@@ -26,10 +26,13 @@
                		var cursor='default';
                		for (var i=1;i<this.FrameDate.length;i++)
 							{
-								if((this.FrameDate[i].x+50>x&&this.FrameDate[i].x<x)&&(this.FrameDate[i].y+50>y&&this.FrameDate[i].y<y))
+								if((this.FrameDate[i].x+70>x&&this.FrameDate[i].x<x)&&(this.FrameDate[i].y+70>y&&this.FrameDate[i].y<y))
 								{
 									cursor = 'pointer';
-									break;	}
+									this.FrameDate[i].setIsMouseDown(true);
+								} else if (this.FrameDate[i].isMouseDown){
+									this.FrameDate[i].setIsMouseDown(false);
+								}
 
 							}
 					document.body.style.cursor = cursor;
