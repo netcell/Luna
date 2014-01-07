@@ -646,30 +646,24 @@ a:active {
   cursor: pointer;
 }
 
-#calendar {
+#canvas {
   height: 527px;
   -webkit-box-shadow: -3px 2px 19px -7px #000;
   box-shadow: -3px 2px 19px -7px #000;
   position: fixed;
-  bottom: 2em;
+  bottom: 3em;
   margin-bottom: 2px;
-  overflow: hidden;
-  border-radius: 0px 13px 0px 0px;
-  -webkit-transition: all 0.3s ease-in-out!important;
+  -webkit-transition: all 0.2s ease-in-out!important;
 }
 
-#canvas {
-  position: relative;
-}
-
-#calendar.ng-hide-add,
-#calendar.ng-hide-remove {
+#canvas.ng-hide-add,
+#canvas.ng-hide-remove {
   -webkit-transition: 0.5s linear all;
   transition: 0.5s linear all;
   display: block!important;
 }
 
-#calendar.ng-hide {
+#canvas.ng-hide {
   height: 0;
 }
 
