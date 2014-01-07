@@ -4,9 +4,11 @@ angular.module('lunaApp')
   .controller('ConfirmSignUpCtrl', function ($scope, $location, User) {
   	$scope.main.createPopup('Đang xử lý');
   	User.signIn(function(exitCode){
+  		console.log(exitCode);
   		if (exitCode) {
   			$scope.originalEmail = User.getEmail();
   			$scope.email = User.getEmail();
+  			console.log(exitCode);
   			$scope.main.closePopup();
   		} else {
   			$location.path('/sign-in');
