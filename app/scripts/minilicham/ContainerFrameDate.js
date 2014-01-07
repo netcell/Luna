@@ -28,7 +28,7 @@
 		},
 		_enter: function (e){
 			document.body.style.cursor = 'pointer';
-		}
+		},
 		_down: function(e,x,y){
 			var isMove= this.parent.isMove;
 			if(!this.isPress&& !isMove){
