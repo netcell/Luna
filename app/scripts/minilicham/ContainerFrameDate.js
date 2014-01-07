@@ -18,17 +18,17 @@
                         this.cy=director.y;
                         this.cx=director.x;
                         var self=this;
-                        document.onmousedown = function(evt) {
+ 			document.getElementById("canvas").addEventListener ("mouseout", function(evt) {
 			    evt = evt || window.event;
 			    var target = evt.target || evt.srcElement;
 			    var tagName = target.nodeName.toLowerCase();
 			    if (tagName == "span") {
 			        for (var i=1;i<self.FrameDate.length;i++)
 					{
-						self.FrameDate[i].setIsMouseDown(false);
+							self.FrameDate[i].setIsMouseDown(false);
 					}
 			    } 
-			};
+			}, false);
                         return this;
                 },
 
