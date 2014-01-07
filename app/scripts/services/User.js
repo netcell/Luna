@@ -5,7 +5,8 @@ angular.module('lunaApp')
 
     function signIn(callback){
       $http.get('/account/user')
-      .then(function(data){
+      .then(function(object){
+        var data = object.data;
         $sessionStorage.User.signedIn = true;
         $sessionStorage.User.name = data.name;
         $sessionStorage.User.email = data.email;
