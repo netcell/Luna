@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('lunaApp')
-  .controller('ConfirmSignUpCtrl', function ($scope, User) {
+  .controller('ConfirmSignUpCtrl', function ($scope, $location, User) {
+  	$scope.originalEmail = User.getEmail();
   	$scope.email = User.getEmail();
     $scope.footer.buttons = [
         {
@@ -17,7 +18,9 @@ angular.module('lunaApp')
     });
 
     $scope.submit = function(){
-    	if ($scope.email){
+    	$scope.email = $scope.email.replace(" ", "");
+    	if ($scope.email != $scope.originalEmail 
+    		&& $scope.email && !/^\s*$/.test($scope.email)){
             if (Validate.validateEmail($scope.email)) {
                 $scope.main.createPopup('Đang xử lý');
                 $http.get('/account/update-email/'+$scope.email).then(function(res){

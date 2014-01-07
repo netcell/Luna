@@ -48,6 +48,11 @@ angular.module('lunaApp', [
         templateUrl: 'views/event-list.html',
         controller: 'EventlistCtrl'
       })
+
+      .when('/confirm-sign-up', {
+        templateUrl: 'views/confirm-sign-up.html',
+        controller: 'ConfirmSignUpCtrl'
+      })
       .when('/update-email/:required', {
         templateUrl: 'views/update-email.html',
         controller: 'UpdateEmailCtrl'

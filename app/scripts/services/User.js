@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('lunaApp')
-  .factory('User', function ($location,$sessionStorage) {
+  .factory('User', function ($location,$sessionStorage,$http) {
 
     function signIn(serviceName){
       $http.get('/auth/'+serviceName.toLowerCase())

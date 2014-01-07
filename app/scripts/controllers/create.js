@@ -143,7 +143,7 @@ angular.module('lunaApp')
             } else f();
         }
         if (!$scope.User.signedIn){
-            if (!$scope.selection.email) 
+            if (!$scope.selection.email || /^\s*$/.test($scope.selection.email)) 
                 $scope.main.alert('Bạn cần nhập địa chỉ email')
             else if (!Validate.validateEmail($scope.selection.email))
                 $scope.main.alert('Bạn cần nhập đúng địa chỉ email')
