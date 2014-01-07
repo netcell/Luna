@@ -1,4 +1,3 @@
-
 (function(){
         CAAT.ContainerFrameDate = function () {
         CAAT.ContainerFrameDate.superclass.constructor.call(this);
@@ -30,6 +29,7 @@
 								{
 									cursor = 'pointer';
 									this.FrameDate[i].setIsMouseDown(true);
+									console.log(x,y);
 								} else if (this.FrameDate[i].isMouseDown){
 									this.FrameDate[i].setIsMouseDown(false);
 								}
