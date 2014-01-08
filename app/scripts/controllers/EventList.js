@@ -89,6 +89,10 @@ angular.module('lunaApp')
       return $scope.deleteList;
     }
 
+    $scope.create = function(){
+      $location.path('/create');
+    }
+
     $scope.delete= function(){
       $scope.main.pauseup(
         "Bạn có chắc muốn xóa các nhắc nhở đã chọn không?"
