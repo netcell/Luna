@@ -22,6 +22,7 @@ angular.module('lunaApp')
                 console.log(row);
                 console.log(e);
                 this.status=1-this.status;
+                console.log(this.id);
                 $http.get('/account/status-event/'+this.id+"/"+this.status);
               },
               edit: function(){
