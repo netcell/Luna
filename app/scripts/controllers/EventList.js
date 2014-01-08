@@ -10,11 +10,12 @@ angular.module('lunaApp')
           for (var i = list.length - 1; i >= 0; i--) {
             var row = list[i];
             row.minute = parseInt(row.minute)<10?"0"+row.minute:""+row.minute;
+            row.message.length>25?row.message.substr(0,23)+"...":row.message;
             var e = {
               row: JSON.parse(JSON.stringify(row)),
               id: row.id,
               checked: false,
-              desc: row.message?row.message.substr(0,25):'Không có nội dung',
+              desc: row.message?row.message:'Không có nội dung',
               repeat: ['Ngày','Tháng','Năm'][row.repeatType],
               time: row.hour+':'+row.minute,
               pre: row.pre?row.pre+" "+['tiếng', 'ngày'][row.pre_kind]:'Không',
