@@ -20,9 +20,13 @@ angular.module('lunaApp')
               switchStatus: function(){
                 this.status=1-this.status;
                 $http.get('/account/status-event/'+row.id+"/"+this.status);
+              },
+              edit: function(){
+                Share.send("event-to-edit",row);
+                $location.path('/create');
               }
             };
-            
+            $scope.main.alert(row.id);
             if (row.repeatType ===1) e.time += " "+row.date;
             else if (row.repeatType ===2) e.time += " "+row.date+"/"+row.date;
 

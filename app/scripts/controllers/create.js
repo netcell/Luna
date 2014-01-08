@@ -4,7 +4,7 @@ angular.module('lunaApp')
   .controller('CreateCtrl', function ($scope, $http, $location, Share, Validate, DateTime, User) {
     
     $scope.User = User.getInfo();
-    console.log($scope.User);
+
     //Selected values
     $scope.selection = {};
     //List of Options
@@ -29,6 +29,8 @@ angular.module('lunaApp')
     $scope.options.months = DateTime.months;
     $scope.options.repeats = DateTime.repeats;
 
+    var data = Share.receive("event-to-edit");
+    
     //INIT
     $scope.selection.desc = "";
     $scope.selection.hour = DateTime.getCurrentHour(true);
