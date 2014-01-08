@@ -485,7 +485,7 @@ a, a:hover, a:active {
   top: 0;
   left: 0;
   background-color: #000;
-  opacity: 0.7;
+  opacity: 0.5;
 }
 
 .footer {
@@ -535,7 +535,7 @@ a, a:hover, a:active {
 }
 
 .cover.ng-leave, .cover.ng-enter.ng-enter-active{
-  opacity: 0.7;
+  opacity: 0.5;
 }
 
 .footer.ng-enter, .footer.ng-leave.ng-leave-active{
@@ -823,8 +823,13 @@ a, a:hover, a:active {
 .controlpanel .toolbar.hasDeleteButton div {
   width: 50%;
 }
+
 .controlpanel .toolbar.hasDeleteButton .delete {
   margin-left: 0;
+}
+
+textarea {
+  -webkit-user-select: auto;
 }
 
 /* Responsive: Portrait tablets and up */

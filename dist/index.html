@@ -12,7 +12,7 @@
     <link rel="icon" type="image/png" href="apple-touch-icon.png">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-        <link rel="stylesheet" href="styles/a67d91f0.main.css"/>
+        <link rel="stylesheet" href="styles/8bbf7eab.main.css"/>
 </head>
   <body ng-app="lunaApp">
     <!--[if lt IE 7]>
@@ -52,17 +52,15 @@
           </div>
         </div>
       </div>
-      <!-- <div id="calendar" ng-show="showCalendar"> -->
-      <canvas id="canvas" ng-show="showCalendar"></canvas>
-      <!-- </div> -->
-
       
       <div class="footer more no-user-select after-loading hidden" footer="">
           <ul class="menu">
             <li class="link" ng-repeat="button in footer.buttons" ng-click="button.action()" ng-bind="button.name"></li>
           </ul>
       </div>
-      <div class="footer calendarbutton"><span class="link" ng-click="showCalendar=!showCalendar">Lịch</span><span class="link" ng-if="username" ng-click="accountMenu()">{{username}}</span></div>
+      <div class="cover" ng-click="main.showCalendar=false" ng-if="main.showCalendar"></div>
+      <canvas id="canvas" ng-show="main.showCalendar"></canvas>
+      <div class="footer calendarbutton"><span class="link" ng-click="main.showCalendar=!main.showCalendar">Lịch</span><span class="link" ng-if="username" ng-click="accountMenu()">{{username}}</span></div>
       <div class="cover" ng-if="hasPopup"></div>
       <div class="footer popup no-user-select" ng-if="hasPopup">
         <div class="box">
@@ -92,7 +90,7 @@
         <script src="scripts/20b658cf.modules.js"></script>
 
 
-        <script src="scripts/37b54132.scripts.js"></script>
+        <script src="scripts/3532b96f.scripts.js"></script>
 
         <!-- <script src="scripts/animations/content-module.js"></script> -->
 </body>

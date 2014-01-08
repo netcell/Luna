@@ -9,6 +9,7 @@ angular.module('lunaApp')
           $scope.events = [];
           for (var i = list.length - 1; i >= 0; i--) {
             var row = list[i];
+            row.minute = parseInt(row.minute)<10?"0"+row.minute:""+row.minute;
             var e = {
               row: JSON.parse(JSON.stringify(row)),
               id: row.id,
@@ -62,7 +63,7 @@ angular.module('lunaApp')
                 $location.path('/create');
               }
             };
-            if (row.repeatType ===1) e.time += " "+row.date;
+            if (row.repeatType ===1) e.time += " ngày "+row.date;
             else if (row.repeatType ===2) e.time += " "+row.date+"/"+row.date;
 
             $scope.events.push(e)

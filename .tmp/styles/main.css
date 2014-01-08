@@ -515,7 +515,7 @@ a:active {
   top: 0;
   left: 0;
   background-color: #000;
-  opacity: 0.7;
+  opacity: 0.5;
 }
 
 .footer {
@@ -569,7 +569,7 @@ a:active {
 
 .cover.ng-leave,
 .cover.ng-enter.ng-enter-active {
-  opacity: 0.7;
+  opacity: 0.5;
 }
 
 .footer.ng-enter,
@@ -867,6 +867,10 @@ a:active {
 
 .controlpanel .toolbar.hasDeleteButton .delete {
   margin-left: 0;
+}
+
+textarea {
+  -webkit-user-select: auto;
 }
 
 /* Responsive: Portrait tablets and up */
