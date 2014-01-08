@@ -104,10 +104,6 @@ angular.module('lunaApp')
     $scope.deleteText = "xóa nhắc nhở";
     $scope.activeText = data.status?"tắt nhắc nhở":"bật nhắc nhở";
 
-    $scope.$watch('data.status', function(){
-        $scope.activeText = data.status?"tắt nhắc nhở":"bật nhắc nhở";        
-    })
-
     $scope.delete = function(){
         data.delete();
     };
@@ -202,7 +198,14 @@ angular.module('lunaApp')
                 name:$scope.activeText,
                 action: $scope.switchStatus
             }
-        );     
+        );
+        $scope.$watch('data.status', function(){
+            $scope.activeText = data.status?"tắt nhắc nhở":"bật nhắc nhở";
+            $scope.footer.buttons[2] = {
+                name:$scope.activeText,
+                action: $scope.switchStatus
+            };
+        })
     }
 
     $scope.footer.buttons.push(
