@@ -46,7 +46,7 @@ angular.module('lunaApp')
                   ,function(){
                     $scope.main.createPopup('Đang xử lý');
                     $http.post('/account/delete-event', [id])
-                    .then(function(){
+                    .then(function(object){
                       if (object.data==="0") {
                         $scope.main.alert(Strings.CONNECTION_ERROR);
                       } else {
