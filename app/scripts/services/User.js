@@ -27,7 +27,7 @@ angular.module('lunaApp')
         }
       }, function(err){
         clearUser();
-        $location.path('/sign-in');
+        if (!silent) $location.path('/sign-in');
         callback(0);
       });
     };
