@@ -59,7 +59,7 @@ angular.module('lunaApp', [
       })
       .when('/account', {
         templateUrl: 'views/account.html',
-        controller: 'UpdateEmailCtrl'
+        controller: 'AccountCtrl'
       })
       .otherwise({
         redirectTo: '/'
