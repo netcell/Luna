@@ -2,7 +2,11 @@
 
 angular.module('lunaApp')
   .controller('HomeCtrl', function ($scope,$location,User) {
-    if (User.getInfo().signedIn) $location.path('/event-list');
+    $scope.main.createPopup('Đang xử lý');
+    User.signedIn(function(){
+        if (User.getInfo().signedIn) $location.path('/event-list');
+        $scope.main.closePopup();
+    });
     $scope.footer.buttons = [
     	{
     		name:'xóa nhắc nhở',

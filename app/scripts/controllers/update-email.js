@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('lunaApp')
-  .controller('UpdateEmailCtrl', function ($scope,Strings) {
+  .controller('UpdateEmailCtrl', function ($scope,Strings,User) {
+
     $scope.footer.buttons = [
         {
             name:'cập nhật',

@@ -53,8 +53,12 @@ angular.module('lunaApp', [
         templateUrl: 'views/confirm-sign-up.html',
         controller: 'ConfirmSignUpCtrl'
       })
-      .when('/update-email/:required', {
+      .when('/update-email', {
         templateUrl: 'views/update-email.html',
+        controller: 'UpdateEmailCtrl'
+      })
+      .when('/account', {
+        templateUrl: 'views/account.html',
         controller: 'UpdateEmailCtrl'
       })
       .otherwise({
