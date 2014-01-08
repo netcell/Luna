@@ -18,6 +18,9 @@ angular.module('lunaApp')
               pre: row.pre?row.pre+" "+['tiếng', 'ngày'][row.pre_kind]:'Không',
               status: row.status,
               switchStatus: function(){
+                console.table(this);
+                console.table(row);
+                console.table(e);
                 this.status=1-this.status;
                 $http.get('/account/status-event/'+this.id+"/"+this.status);
               },
