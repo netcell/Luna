@@ -44,8 +44,8 @@ angular.module('lunaApp')
 
       convert24to12: function(hour){
         return {
-          hour:   this.hours[(hour-1)%12];
-          period: this.periods[h.periods][hour<13?0:1];
+          hour:   this.hours[(hour-1)%12],
+          period: this.periods[hour.periods][hour<13?0:1]
         }
       },
 
