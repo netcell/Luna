@@ -70,6 +70,5 @@ angular.module('lunaApp', [
   })
   .run(function($rootScope, $templateCache, User) {
       $templateCache.removeAll();
-      $scope.main.createPopup('Đang xử lý');
       User.signIn(function(){});
   });
