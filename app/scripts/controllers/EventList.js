@@ -10,7 +10,7 @@ angular.module('lunaApp')
           for (var i = list.length - 1; i >= 0; i--) {
             var row = list[i];
             row.minute = parseInt(row.minute)<10?"0"+row.minute:""+row.minute;
-            row.message.length>25?row.message.substr(0,23)+"...":row.message;
+            row.message = row.message.length>25?row.message.substr(0,23)+"...":row.message;
             var e = {
               row: JSON.parse(JSON.stringify(row)),
               id: row.id,
