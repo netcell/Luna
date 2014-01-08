@@ -14,7 +14,7 @@ angular.module('lunaApp')
               row: JSON.parse(JSON.stringify(row)),
               id: row.id,
               checked: false,
-              desc: row.message?row.message:'Không có nội dung',
+              desc: row.message?row.message.substr(0,25):'Không có nội dung',
               repeat: ['Ngày','Tháng','Năm'][row.repeatType],
               time: row.hour+':'+row.minute,
               pre: row.pre?row.pre+" "+['tiếng', 'ngày'][row.pre_kind]:'Không',
