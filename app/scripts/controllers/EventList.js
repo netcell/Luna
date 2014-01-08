@@ -64,7 +64,7 @@ angular.module('lunaApp')
               }
             };
             if (row.repeatType ===1) e.time += " ngày "+row.date;
-            else if (row.repeatType ===2) e.time += " "+row.date+"/"+row.date;
+            else if (row.repeatType ===2) e.time += " "+row.date+"/"+row.month;
 
             $scope.events.push(e)
           };
