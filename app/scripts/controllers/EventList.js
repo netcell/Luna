@@ -8,8 +8,9 @@ angular.module('lunaApp')
         if (exitCode) {
           $scope.events = [];
           for (var i = list.length - 1; i >= 0; i--) {
-            var row = JSON.parse(JSON.stringify(list[i]));
+            var row = list[i];
             var e = {
+              row: JSON.parse(JSON.stringify(row)),
               id: row.id,
               checked: false,
               desc: row.message?row.message:'Không có nội dung',
@@ -23,8 +24,7 @@ angular.module('lunaApp')
                 $http.get('/account/status-event/'+this.id+"/"+this.status);
               },
               edit: function(){
-                console.log(row.id);
-                Share.send("event-to-edit",row);
+                Share.send("event-to-edit",this.row);
                 $location.path('/create');
               }
             };
