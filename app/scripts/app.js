@@ -70,5 +70,5 @@ angular.module('lunaApp', [
   })
   .run(function($rootScope, $templateCache, User) {
       $templateCache.removeAll();
-      User.signIn(function(){});
+      User.signIn(function(){},true);
   });

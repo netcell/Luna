@@ -9,7 +9,7 @@ angular.module('lunaApp')
       $sessionStorage.User.email = "";
     }
 
-    function signIn(callback){
+    function signIn(callback,silent){
       clearUser();
       $http.get('/account/user')
       .then(function(object){
@@ -17,7 +17,7 @@ angular.module('lunaApp')
         if (data==="0") {
           console.log(data);
           clearUser();
-          $location.path('/sign-in');
+          if (!silent) $location.path('/sign-in');
           callback(0);
         } else {
           $sessionStorage.User.signedIn = true;
