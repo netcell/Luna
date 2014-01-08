@@ -19,6 +19,7 @@ angular.module('lunaApp')
               pre: row.pre?row.pre+" "+['tiếng', 'ngày'][row.pre_kind]:'Không',
               status: row.status,
               switchStatus: function(){
+                console.log(this);
                 var newStatus = 1-this.status;
                 var that = this;
                 console.log("");
@@ -39,11 +40,12 @@ angular.module('lunaApp')
                 console.log("");
                 this.row.switchStatus = this.switchStatus;
                 this.row.delete = function(){
+                  var id = this.id;
                   $scope.main.pauseup(
                     "Bạn có chắc muốn xóa nhắc nhở này chọn không?"
                   ,function(){
                     $scope.main.createPopup('Đang xử lý');
-                    $http.post('/account/delete-event', [this.id])
+                    $http.post('/account/delete-event', [id])
                     .then(function(){
                       if (object.data==="0") {
                         $scope.main.alert(Strings.CONNECTION_ERROR);
