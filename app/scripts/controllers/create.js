@@ -58,7 +58,7 @@ angular.module('lunaApp')
 
     $scope.selection.date = data.date?DateTime.objectLunarDate(parseInt(data.date)):DateTime.getCurrentLunarDate(true);
     $scope.selection.month = data.month?DateTime.objectLunarMonth(parseInt(data.month)):DateTime.getCurrentLunarMonth(true);
-    $scope.selection.repeat = $scope.options.repeats[data.repeat?parseInt(data.repeat):0];
+    $scope.selection.repeat = $scope.options.repeats[data.repeatType?parseInt(data.repeatType):0];
     $scope.selection.email = User.getEmail();
     
     var init = 4;
