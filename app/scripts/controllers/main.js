@@ -1,8 +1,16 @@
 'use strict';
 
 angular.module('lunaApp')
-  .controller('MainCtrl', function ($scope, amduonglich, $window, DateTime, $timeout) {
-  	$scope.time = {};
+  .controller('MainCtrl', function ($location, $scope, User, amduonglich, $window, DateTime, $timeout) {
+
+    User.signIn(function(){
+      $scope.username = User.getInfo().name;
+      $scope.accountMenu = function(){
+        $location.path('/account');
+      }
+    },true);
+
+    $scope.time = {};
   	
 		$scope.time.current_day = DateTime.getCurrentDay(true);
 

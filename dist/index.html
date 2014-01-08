@@ -62,7 +62,7 @@
             <li class="link" ng-repeat="button in footer.buttons" ng-click="button.action()" ng-bind="button.name"></li>
           </ul>
       </div>
-      <div class="footer calendarbutton"><span ng-click="showCalendar=!showCalendar">Lịch</span></div>
+      <div class="footer calendarbutton"><span class="link" ng-click="showCalendar=!showCalendar">Lịch</span><span class="link" ng-if="username" ng-click="accountMenu()">{{username}}</span></div>
       <div class="cover" ng-if="hasPopup"></div>
       <div class="footer popup no-user-select" ng-if="hasPopup">
         <div class="box">
@@ -92,7 +92,7 @@
         <script src="scripts/20b658cf.modules.js"></script>
 
 
-        <script src="scripts/8341a7a9.scripts.js"></script>
+        <script src="scripts/7fc690ea.scripts.js"></script>
 
         <!-- <script src="scripts/animations/content-module.js"></script> -->
 </body>
