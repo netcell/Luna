@@ -104,8 +104,12 @@ angular.module('lunaApp')
     $scope.deleteText = "xóa nhắc nhở";
     $scope.activeText = data.status?"tắt nhắc nhở":"bật nhắc nhở";
 
-    $scope.delete = data.delete;
-    $scope.switchStatus = data.switchStatus;
+    $scope.delete = function(){
+        data.delete();
+    };
+    $scope.switchStatus = function(){
+        data.switchStatus();
+    }
 
     $scope.footer.buttons = [
         {
