@@ -62,6 +62,8 @@ angular.module('lunaApp')
         for (var i = 0, length = deleteIndexList.length; i < length; i++) {
           $scope.events.splice(deleteIndexList[i],1);
         };
+        $scope.deleteList = [];
+        deleteIndexList = [];
         $scope.main.closePopup();
       }, function(){
         $scope.main.alert(Strings.CONNECTION_ERROR);
