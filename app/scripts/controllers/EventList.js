@@ -18,14 +18,12 @@ angular.module('lunaApp')
               pre: row.pre?row.pre+" "+['tiếng', 'ngày'][row.pre_kind]:'Không',
               status: row.status,
               switchStatus: function(){
-                console.log(this);
-                console.log(row);
-                console.log(e);
                 this.status=1-this.status;
-                console.log(this.id);
+                console.log("");
                 $http.get('/account/status-event/'+this.id+"/"+this.status);
               },
               edit: function(){
+                console.log(row.id);
                 Share.send("event-to-edit",row);
                 $location.path('/create');
               }
