@@ -60,7 +60,7 @@ angular.module('lunaApp')
       $http.post('/account/delete-event', $scope.deleteList)
       .then(function(){
         for (var i = 0, length = deleteIndexList.length; i < length; i++) {
-          $scope.events.splice(i,1);
+          $scope.events.splice(deleteIndexList[i],1);
         };
         $scope.main.closePopup();
       }, function(){
