@@ -19,11 +19,12 @@ angular.module('lunaApp')
               pre: row.pre?row.pre+" "+['tiếng', 'ngày'][row.pre_kind]:'Không',
               status: row.status,
               switchStatus: function(){
+                var newStatus = 1-this.status;
                 console.log("");
                 $scope.main.createPopup('Đang xử lý');
-                $http.get('/account/status-event/'+this.id+"/"+this.status)
+                $http.get('/account/status-event/'+this.id+"/"+newStatus)
                 .then(function(){
-                  this.status=1-this.status;
+                  this.status=newStatus;
                   $scope.main.closePopup();
                 },function(){
                   $scope.main.alert(Strings.CONNECTION_ERROR);
