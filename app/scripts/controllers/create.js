@@ -104,6 +104,10 @@ angular.module('lunaApp')
     $scope.deleteText = "xóa nhắc nhở";
     $scope.activeText = data.status?"tắt nhắc nhở":"bật nhắc nhở";
 
+    $scope.$watch('data.status', function(){
+        $scope.activeText = data.status?"tắt nhắc nhở":"bật nhắc nhở";        
+    })
+
     $scope.delete = function(){
         data.delete();
     };
