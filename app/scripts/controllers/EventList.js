@@ -8,7 +8,7 @@ angular.module('lunaApp')
         if (exitCode) {
           $scope.events = [];
           for (var i = list.length - 1; i >= 0; i--) {
-            var row = list[i];
+            var row = JSON.parse(JSON.stringify(list[i]));
             var e = {
               id: row.id,
               checked: false,
@@ -19,7 +19,7 @@ angular.module('lunaApp')
               status: row.status,
               switchStatus: function(){
                 this.status=1-this.status;
-                $http.get('/account/status-event/'+row.id+"/"+this.status);
+                $http.get('/account/status-event/'+this.id+"/"+this.status);
               },
               edit: function(){
                 Share.send("event-to-edit",row);
