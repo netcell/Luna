@@ -6,7 +6,7 @@ angular.module('lunaApp')
     User.signIn(function(){
         if (User.getInfo().signedIn) $location.path('/event-list');
         $scope.main.closePopup();
-    });
+    },true);
     $scope.footer.buttons = [
     	{
     		name:'xóa nhắc nhở',
