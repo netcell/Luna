@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('lunaApp')
-  .controller('UpdateEmailCtrl', function ($scope,Strings,User, Validate) {
+  .controller('UpdateEmailCtrl', function ($http,$scope,Strings,User, Validate) {
 
     $scope.footer.buttons = [
         {

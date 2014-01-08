@@ -3,7 +3,7 @@
 angular.module('lunaApp')
   .controller('HomeCtrl', function ($scope,$location,User) {
     $scope.main.createPopup('Đang xử lý');
-    User.signedIn(function(){
+    User.signIn(function(){
         if (User.getInfo().signedIn) $location.path('/event-list');
         $scope.main.closePopup();
     });
