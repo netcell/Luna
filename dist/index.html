@@ -6,13 +6,13 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Âm dương lịch</title>
+    <title>Âm Dương Lịch</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <link rel="icon" type="image/png" href="apple-touch-icon.png">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-        <link rel="stylesheet" href="styles/ed54ce8a.main.css"/>
+        <link rel="stylesheet" href="styles/371c0b1b.main.css"/>
 </head>
   <body ng-app="lunaApp">
     <!--[if lt IE 7]>
@@ -25,6 +25,7 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
+    <img class="screenshot" src="images/Screenshot.png">
     <div main="" class="container" ng-init="loading.value=true" ng-controller="MainCtrl">
       <div class="container after-loading hidden">
         <div class="mininoic abs-center no-user-select">
@@ -60,7 +61,20 @@
       </div>
       <div class="cover" ng-click="main.showCalendar=false" ng-if="main.showCalendar"></div>
       <canvas id="canvas" ng-show="main.showCalendar"></canvas>
-      <div class="footer calendarbutton"><span class="link" ng-click="main.showCalendar=!main.showCalendar">lịch</span><span class="link" ng-if="username" ng-click="accountMenu()">{{username.toLowerCase()}}</span><span class="link" ng-click="feedback()">góp ý</span></div>
+      <div class="footer calendarbutton">
+        <span class="link" ng-click="main.showCalendar=!main.showCalendar">
+          lịch
+        </span>
+        <span class="link" ng-if="username" ng-click="accountMenu()">
+          {{username.toLowerCase()}}
+        </span>
+        <span class="link" ng-click="feedback()">
+          góp ý
+        </span>
+        <a class="link" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Famduonglich.com" target="_blank" style="font-size: 18px">
+          <img src="images/fb.png" alt="" height="14"> chia sẻ
+        </a>
+      </div>
       <div class="cover" ng-if="hasPopup"></div>
       <div class="footer popup no-user-select" ng-if="hasPopup">
         <div class="box">

@@ -23,6 +23,12 @@ select {
   text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
 }
 
+.screenshot {
+  visibility: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
 #tmp {
   visibility: hidden;
   position: absolute;
@@ -657,13 +663,15 @@ a:active {
   padding: 1px 20px;
 }
 
-.footer.calendarbutton span {
+.footer.calendarbutton span,
+.footer.calendarbutton a {
   line-height: 50px;
   font-size: 18px;
   cursor: pointer;
 }
 
-.footer.calendarbutton span.link:hover {
+.footer.calendarbutton span.link:hover,
+.footer.calendarbutton a.link:hover {
   text-decoration: underline;
 }
 
