@@ -26,7 +26,7 @@ angular.module('lunaApp')
       },
 
       objectLunarDate: function(date){
-        return this.dates[date+1];
+        return this.dates[date-1];
       },
 
       getCurrentLunarMonth: function(asObject){
