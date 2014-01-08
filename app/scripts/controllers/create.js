@@ -51,7 +51,7 @@ angular.module('lunaApp')
     $scope.options.periods = DateTime.periods[$scope.selection.hour.periods];
     $scope.selection.period = p?p:DateTime.getCurrentPeriod(true);
 
-    $scope.selection.pre_kind = $scope.options.pre_kind[data.pre_kind?parseInt(data.pre_kind):1];
+    $scope.selection.pre_kind = $scope.options.pre_kind[data.pre?parseInt(data.pre_kind):1];
     $scope.options.pre = pre[$scope.selection.pre_kind.index];
     $scope.selection.pre = data.pre?data.pre:'00';
     $scope.selection.minute = data.minute?data.minute:DateTime.getCurrentMinute(true);
