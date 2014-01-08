@@ -20,13 +20,17 @@ angular.module('lunaApp')
               status: row.status,
               switchStatus: function(){
                 var newStatus = 1-this.status;
+                var that = this;
                 console.log("");
                 $scope.main.createPopup('Đang xử lý');
                 $http.get('/account/status-event/'+this.id+"/"+newStatus)
-                .then(function(data){
-                  console.log(data)
-                  this.status=newStatus;
-                  $scope.main.closePopup();
+                .then(function(object){
+                  if (object.data==="0") {
+                    $scope.main.alert(Strings.CONNECTION_ERROR);
+                  } else {
+                    that.status=newStatus;
+                    $scope.main.closePopup();
+                  }
                 },function(){
                   $scope.main.alert(Strings.CONNECTION_ERROR);
                 });
@@ -41,8 +45,12 @@ angular.module('lunaApp')
                     $scope.main.createPopup('Đang xử lý');
                     $http.post('/account/delete-event', [this.id])
                     .then(function(){
-                      $scope.main.closePopup();
-                      $location.path('/event-list');
+                      if (object.data==="0") {
+                        $scope.main.alert(Strings.CONNECTION_ERROR);
+                      } else {
+                        $scope.main.closePopup();
+                        $location.path('/event-list');
+                      }
                     }, function(){
                       $scope.main.alert(Strings.CONNECTION_ERROR);
                     });
