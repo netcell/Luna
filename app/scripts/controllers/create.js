@@ -111,41 +111,6 @@ angular.module('lunaApp')
         data.switchStatus();
     }
 
-    $scope.footer.buttons = [
-        {
-            name:$scope.submitText,
-            action: $scope.submit
-        }
-    ];
-
-    if (data) {
-        $scope.footer.buttons.push(
-            {
-                name:$scope.deleteText,
-                action: $scope.delete
-            }
-        );
-        $scope.footer.buttons.push(
-            {
-                name:$scope.activeText,
-                action: $scope.switchStatus
-            }
-        );     
-    }
-
-    $scope.footer.buttons.push(
-        {
-            name:'quay lại',
-            action: function(){
-                $scope.main.back();
-            }
-        }
-    );
-
-    $scope.$on('$destroy', function(){
-        $scope.footer.buttons = [];
-    });
-
     $scope.submit = function(){
         var form = {
             udid:   Date.now()+"-"+(((1+Math.random())*0x10000)|0).toString(16),
@@ -213,5 +178,40 @@ angular.module('lunaApp')
         }
         
     }
+
+    $scope.footer.buttons = [
+        {
+            name:$scope.submitText,
+            action: $scope.submit
+        }
+    ];
+
+    if (data) {
+        $scope.footer.buttons.push(
+            {
+                name:$scope.deleteText,
+                action: $scope.delete
+            }
+        );
+        $scope.footer.buttons.push(
+            {
+                name:$scope.activeText,
+                action: $scope.switchStatus
+            }
+        );     
+    }
+
+    $scope.footer.buttons.push(
+        {
+            name:'quay lại',
+            action: function(){
+                $scope.main.back();
+            }
+        }
+    );
+
+    $scope.$on('$destroy', function(){
+        $scope.footer.buttons = [];
+    });
     
   });
