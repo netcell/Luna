@@ -25,8 +25,16 @@ angular.module('lunaApp')
         return this.dates[amduonglich.getCurrentLunarDate()[0]+1];
       },
 
+      objectLunarDate: function(date){
+        return this.dates[date+1];
+      },
+
       getCurrentLunarMonth: function(asObject){
         return this.months[amduonglich.getCurrentLunarDate()[1]-1];
+      },
+
+      objectLunarMonth: function(date){
+        return this.months[date-1];
       },
 
       getCurrentHour: function(asObject){
@@ -34,8 +42,11 @@ angular.module('lunaApp')
         return this.hours[(h-1)%12];
       },
 
-      convert24to12: function(){
-        var h = hour;
+      convert24to12: function(hour){
+        return {
+          hour:   this.hours[(hour-1)%12];
+          period: this.periods[h.periods][hour<13?0:1];
+        }
       },
 
       getCurrentMinute: function(asObject){

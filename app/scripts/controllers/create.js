@@ -33,18 +33,32 @@ angular.module('lunaApp')
     
     //INIT
     $scope.selection.desc = data.message?data.message:"";
-    $scope.selection.hour = DateTime.getCurrentHour(true);
-    $scope.selection.pre_kind = $scope.options.pre_kind[1];
-    $scope.options.pre = pre[$scope.selection.pre_kind.index];
-    $scope.selection.pre = '00';
-    $scope.selection.minute = DateTime.getCurrentMinute(true);
+    
+    var h = false;
+    var p = false;
 
+    if (data.hour) {
+        var hp = DateTime.convert24to12(parseInt(data.hour));
+        h = hp.hour;
+        p = hp.period;
+    }
+
+    if (data.minute) {
+        data.minute += parseInt(data.minute)<10?"0"+data.minute:""+data.minute;
+    }
+
+    $scope.selection.hour = h?h:DateTime.getCurrentHour(true);
     $scope.options.periods = DateTime.periods[$scope.selection.hour.periods];
-    $scope.selection.period = DateTime.getCurrentPeriod(true);
+    $scope.selection.period = p?p:DateTime.getCurrentPeriod(true);
 
-    $scope.selection.date = DateTime.getCurrentLunarDate(true);
-    $scope.selection.month = DateTime.getCurrentLunarMonth(true);
-    $scope.selection.repeat = $scope.options.repeats[0];
+    $scope.selection.pre_kind = $scope.options.pre_kind[data.pre_kind?parseInt(data.pre_kind):1];
+    $scope.options.pre = pre[$scope.selection.pre_kind.index];
+    $scope.selection.pre = data.pre?data.pre:'00';
+    $scope.selection.minute = data.minute?data.minute:DateTime.getCurrentMinute(true);
+
+    $scope.selection.date = data.date?DateTime.objectLunarDate(parseInt(data.date)):DateTime.getCurrentLunarDate(true);
+    $scope.selection.month = data.month?DateTime.objectLunarMonth(parseInt(data.month)):DateTime.getCurrentLunarMonth(true);
+    $scope.selection.repeat = $scope.options.repeats[data.repeat?parseInt(data.repeat):0];
     $scope.selection.email = User.getEmail();
     
     var init = 4;
