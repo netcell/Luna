@@ -44,7 +44,7 @@ angular.module('lunaApp')
     }
 
     if (data.minute) {
-        data.minute += parseInt(data.minute)<10?"0"+data.minute:""+data.minute;
+        data.minute = parseInt(data.minute)<10?"0"+data.minute:""+data.minute;
     }
 
     $scope.selection.hour = h?h:DateTime.getCurrentHour(true);
