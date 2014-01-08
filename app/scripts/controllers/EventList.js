@@ -23,7 +23,8 @@ angular.module('lunaApp')
                 console.log("");
                 $scope.main.createPopup('Đang xử lý');
                 $http.get('/account/status-event/'+this.id+"/"+newStatus)
-                .then(function(){
+                .then(function(data){
+                  console.log(data)
                   this.status=newStatus;
                   $scope.main.closePopup();
                 },function(){
