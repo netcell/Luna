@@ -61,8 +61,8 @@ angular.module('lunaApp')
         $sessionStorage.User.email = email;
         return this;
       },
-      signIn: function(callback){
-        signIn(callback);
+      signIn: function(callback,silent){
+        signIn(callback,silent);
       },
       signOut: function(){
         signOut();

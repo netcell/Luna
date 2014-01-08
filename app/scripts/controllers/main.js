@@ -33,6 +33,8 @@ angular.module('lunaApp')
       //}, 100);
     }
 
+    $scope.main.onDateChosen = CAAT.chooseDate;
+
     $scope.main.createPopup = function(text, buttons){
       if( Object.prototype.toString.call( text ) === '[object Array]' ) {
              $scope.popupTexts =  text;
