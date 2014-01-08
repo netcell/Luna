@@ -19,7 +19,7 @@ angular.module('lunaApp')
               checked: false,
               desc: desc,
               repeat: ['Ngày','Tháng','Năm'][row.repeatType],
-              time: row.hour+':'+row.minute,
+              time: (row.hour=="24"?"00":(row.hour<10?"0"+row.hour:row.hour))+':'+row.minute,
               pre: row.pre?row.pre+" "+['tiếng', 'ngày'][row.pre_kind]:'Không',
               status: row.status,
               switchStatus: function(){
