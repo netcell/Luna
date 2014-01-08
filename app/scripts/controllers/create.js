@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('lunaApp')
-  .controller('CreateCtrl', function ($scope, $http, $location, Share, Validate, DateTime, User) {
+  .controller('CreateCtrl', function (Strings, $scope, $http, $location, Share, Validate, DateTime, User) {
     
     $scope.User = User.getInfo();
 
@@ -98,20 +98,45 @@ angular.module('lunaApp')
 	    }
     });
 
+    $scope.data = data;
+
+    $scope.submitText = data?"cập nhật":"tạo nhắc nhở";
+    $scope.deleteText = "xóa nhắc nhở";
+    $scope.activeText = data.status?"tắt nhắc nhở":"bật nhắc nhở";
+
+    $scope.delete = data.delete;
+    $scope.switchStatus = data.switchStatus;
+
     $scope.footer.buttons = [
         {
-            name:'đặt nhắc nhở',
-            action: function(){
-                $scope.submit();
+            name:$scope.submitText,
+            action: $scope.submit
+        }
+    ];
+
+    if (data) {
+        $scope.footer.buttons.push(
+            {
+                name:$scope.deleteText,
+                action: $scope.delete
             }
-        },
+        );
+        $scope.footer.buttons.push(
+            {
+                name:$scope.activeText,
+                action: $scope.switchStatus
+            }
+        );     
+    }
+
+    $scope.footer.buttons.push(
         {
             name:'quay lại',
             action: function(){
                 $scope.main.back();
             }
         }
-    ];
+    );
 
     $scope.$on('$destroy', function(){
         $scope.footer.buttons = [];
@@ -136,18 +161,31 @@ angular.module('lunaApp')
                 form.pre = "00";
             }
             switch(form.date){
-                case 'rằm': form.date = 15; break;
-                case 'cuối': form.date = 100; break;
+                case '30': form.date = 100; break;
             };
             User.setEmail($scope.selection.email);
             var f = function(){
                 $scope.main.createPopup('Đang xử lý');
-                $http.post('/user/quick-create', form).then(function(res){
+                if (data) $http.post('/account/edit-event/'+data.id, form)
+                    .then(function(res){
+                        $scope.main.closePopup();
+                        $location.path("/event-list");
+                    }, function(err){
+                        $scope.main.alert(Strings.CONNECTION_ERROR);
+                    });
+                else if ($scope.User.signedIn) $http.post('/account/create-event/', form)
+                    .then(function(res){
+                        $scope.main.closePopup();
+                        $location.path("/event-list");
+                    }, function(err){
+                        $scope.main.alert(Strings.CONNECTION_ERROR);
+                    });
+                else $http.post('/user/quick-create', form).then(function(res){
                     $scope.main.closePopup();
                     Share.send("form-create",form);
                     $location.path("/confirmation/create");
                 }, function(err){
-                    $scope.main.alert('Hệ thống đang bận, xin thử lại sau ít phút');
+                    $scope.main.alert(Strings.CONNECTION_ERROR);
                 });
             }
             if (!form.desc || /^\s*$/.test(form.desc)) {

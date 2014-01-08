@@ -10,7 +10,7 @@ angular.module('lunaApp')
         temp[id]=data;
       },
       receive: function(id) {
-        var data = temp[id]||{};
+        var data = temp[id]||false;
         delete temp[id];
         return data;
       }

@@ -57,8 +57,13 @@
 		<p>Bạn có thể <a href="#/delete" class="underline link">bấm vào đây</a> để chọn xóa một hoặc nhiều nhắc nhở đã tạo.</p>
 	</div>
 	<div class="button">
-		<a ng-click="submit()" class="underline link">đặt nhắc nhở</a>
+		<a ng-click="submit()" class="underline link">{{submitText}}</a>
 		<span>hoặc</span> 
 		<a ng-click="main.back()" class="underline link">quay lại</a> 
+	</div>
+	<div class="button" ng-if="data">
+		<a ng-click="submit()" class="underline link">{{deleteText}}</a>
+		<span>hoặc</span> 
+		<a ng-click="main.back()" class="underline link">{{activeText}}</a> 
 	</div>
 </div>

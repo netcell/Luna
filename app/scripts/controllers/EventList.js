@@ -25,6 +25,21 @@ angular.module('lunaApp')
               },
               edit: function(){
                 console.log("");
+                this.row.switchStatus = this.switchStatus;
+                this.row.delete = function(){
+                  $scope.main.pauseup(
+                    "Bạn có chắc muốn xóa nhắc nhở này chọn không?"
+                  ,function(){
+                    $scope.main.createPopup('Đang xử lý');
+                    $http.post('/account/delete-event', [this.id])
+                    .then(function(){
+                      $scope.main.closePopup();
+                      $location.path('/event-list');
+                    }, function(){
+                      $scope.main.alert(Strings.CONNECTION_ERROR);
+                    });
+                  });
+                }
                 Share.send("event-to-edit",this.row);
                 $location.path('/create');
               }
@@ -57,17 +72,21 @@ angular.module('lunaApp')
     }
 
     $scope.delete= function(){
-      $scope.main.createPopup('Đang xử lý');
-      $http.post('/account/delete-event', $scope.deleteList)
-      .then(function(){
-        for (var i = 0, length = deleteIndexList.length; i < length; i++) {
-          $scope.events.splice(deleteIndexList[i],1);
-        };
-        $scope.deleteList = [];
-        deleteIndexList = [];
-        $scope.main.closePopup();
-      }, function(){
-        $scope.main.alert(Strings.CONNECTION_ERROR);
+      $scope.main.pauseup(
+        "Bạn có chắc muốn xóa các nhắc nhở đã chọn không?"
+      ,function(){
+        $scope.main.createPopup('Đang xử lý');
+        $http.post('/account/delete-event', $scope.deleteList)
+        .then(function(){
+          for (var i = 0, length = deleteIndexList.length; i < length; i++) {
+            $scope.events.splice(deleteIndexList[i],1);
+          };
+          $scope.deleteList = [];
+          deleteIndexList = [];
+          $scope.main.closePopup();
+        }, function(){
+          $scope.main.alert(Strings.CONNECTION_ERROR);
+        });
       });
     }
   });
