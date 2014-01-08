@@ -24,6 +24,7 @@ angular.module('lunaApp')
                 $http.get('/account/status-event/'+this.id+"/"+this.status);
               },
               edit: function(){
+                console.log("");
                 Share.send("event-to-edit",this.row);
                 $location.path('/create');
               }
