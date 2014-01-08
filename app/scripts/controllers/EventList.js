@@ -69,6 +69,9 @@ angular.module('lunaApp')
 
             $scope.events.push(e)
           };
+          $('html, body').animate({
+            scrollTop: $(".app").offset().top
+          }, 500);
           $scope.main.closePopup();
         } else {
           $scope.main.alert(Strings.CONNECTION_ERROR);
