@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('lunaApp')
-  .controller('HomeCtrl', function ($scope,$location) {
+  .controller('HomeCtrl', function ($scope,$location,User) {
+    if (User.getInfo().signedIn) $location.path('/event-list');
     $scope.footer.buttons = [
     	{
     		name:'xóa nhắc nhở',

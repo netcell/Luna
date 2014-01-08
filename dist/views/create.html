@@ -62,8 +62,8 @@
 		<a ng-click="main.back()" class="underline link">quay lại</a> 
 	</div>
 	<div class="button" ng-if="data">
-		<a ng-click="submit()" class="underline link">{{deleteText}}</a>
+		<a ng-click="delete()" class="underline link">{{deleteText}}</a>
 		<span>hoặc</span> 
-		<a ng-click="main.back()" class="underline link">{{activeText}}</a> 
+		<a ng-click="switchStatus()" class="underline link">{{activeText}}</a> 
 	</div>
 </div>
