@@ -35,7 +35,7 @@
         <div class="app-name abs-center no-user-select pointer"><a href="/#">âm dương lịch</a><div class="fun-fact"><div class="quote">&ldquo;</div><div class="content">Lịch Việt dựa trên cả mặt trăng và mặt trời nên được gọi đầy đủ là Âm Dương Lịch</div><div class="quote">&rdquo;</div></div></div>
         
         <div class="app abs-center no-user-select" ng-init="grid.value=1" app-directive="">
-          <div class="time">
+          <div class="time" ng-click="main.showCalendar=!main.showCalendar">
             <div class="info">
               <div class="day" ng-bind="time.current_day"></div>
               <div class="date-month">
