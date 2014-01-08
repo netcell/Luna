@@ -27,14 +27,12 @@ angular.module('lunaApp')
                 this.status = 1-this.status;
                 var that = this;
                 console.log("");
-                $scope.main.createPopup('Đang xử lý');
                 $http.get('/account/status-event/'+this.id+"/"+this.status)
                 .then(function(object){
                   if (object.data==="0") {
                     this.status = 1-this.status;
                     $scope.main.alert(Strings.CONNECTION_ERROR);
                   } else {
-                    $scope.main.closePopup();
                   }
                 },function(){
                   this.status = 1-this.status;
@@ -105,23 +103,16 @@ angular.module('lunaApp')
       $scope.main.pauseup(
         "Bạn có chắc muốn xóa các nhắc nhở đã chọn không?"
       ,function(){
-        var temp = JSON.parse(JSON.stringify($scope.events));
-        for (var i = 0, length = deleteIndexList.length; i < length; i++) {
-          $scope.events.splice(deleteIndexList[i],1);
-        };
-        $scope.deleteList = [];
-        deleteIndexList = [];
+        $scope.main.createPopup('Đang xử lý');
         $http.post('/account/delete-event', $scope.deleteList)
-        .then(function(object){
-          temp = [];
-          if (object.data==="1"){
-            $scope.main.closePopup();
-          } else {
-            $scope.main.alert(Strings.CONNECTION_ERROR);
-          }
+        .then(function(){
+          for (var i = 0, length = deleteIndexList.length; i < length; i++) {
+            $scope.events.splice(deleteIndexList[i],1);
+          };
+          $scope.deleteList = [];
+          deleteIndexList = [];
+          $scope.main.closePopup();
         }, function(){
-          $scope.events = JSON.parse(JSON.stringify(temp));
-          temp = [];
           $scope.main.alert(Strings.CONNECTION_ERROR);
         });
       });
