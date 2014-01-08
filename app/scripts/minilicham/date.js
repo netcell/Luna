@@ -1,4 +1,4 @@
-﻿(function(){
+(function(){
 	CAAT.MyDate = function () {
         CAAT.MyDate.superclass.constructor.call(this);
         return this;
@@ -12,11 +12,8 @@
 			this.scene=scene;
 			this.setBounds(0,0,width,height);
 			this.date= date;
-			//console.log(this.date)
 			this.today= new Date();
 			this.enableEvents(false);
-			//console.log(this.x)
-			//console.log(this.date.getDay())
 			return this;
 		},
 		paint: function(director,time){
@@ -27,18 +24,19 @@
 				if(this.today.getMonth()==this.date.getMonth()&&this.today.getFullYear()==this.date.getFullYear()&&this.today.getDate()==this.date.getDate()) {
 					ctx.globalAlpha=0.8
 					ctx.beginPath();
-					ctx.rect(0, 0, this.width, this.height);
+					ctx.arc(this.width/2, this.height/2, this.width/2, 0, 2 * Math.PI, false);
 					ctx.fillStyle = "#dcdcdc";
 					ctx.fill();
 					ctx.closePath();
 					ctx.globalAlpha=1
 				}
 				if(this.isMouseDown){
-					ctx.globalAlpha=0.5
+					ctx.globalAlpha=1
 					ctx.beginPath();
-					ctx.rect(0, 0, this.width, this.height);
-					ctx.fillStyle = "blue";
-					ctx.fill();
+					ctx.arc(this.width/2, this.height/2, this.width/2-4, 0, 2 * Math.PI, false);
+					ctx.lineWidth = 5;
+					ctx.strokeStyle = "#444750";
+					ctx.stroke();
 					ctx.closePath();
 					ctx.globalAlpha=1
 				}
@@ -77,8 +75,8 @@
 			this.stopCacheAsBitmap();
 			this.cacheAsBitmap(0);
 		},
-		setIsMouseDown: function(){
-			this.isMouseDown=false;
+		setIsMouseDown: function(on){
+			this.isMouseDown=on;
 			this.rePaint();
 		},
 		setCurrentLunar: function(){

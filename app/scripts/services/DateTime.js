@@ -22,16 +22,33 @@ angular.module('lunaApp')
       },
 
       getCurrentLunarDate: function(asObject){
-        return this.dates[amduonglich.getCurrentLunarDate()[0]+1];
+        return this.dates[amduonglich.getCurrentLunarDate()[0]-1];
+      },
+
+      objectLunarDate: function(date){
+        return this.dates[date-1];
       },
 
       getCurrentLunarMonth: function(asObject){
         return this.months[amduonglich.getCurrentLunarDate()[1]-1];
       },
 
+      objectLunarMonth: function(date){
+        return this.months[date-1];
+      },
+
       getCurrentHour: function(asObject){
         var h = new Date().getHours() || 24;
         return this.hours[(h-1)%12];
+      },
+
+      convert24to12: function(hour){
+        hour = parseInt(hour);
+        var objhour = this.hours[(hour-1)%12];
+        return {
+          hour: objhour,
+          period: this.periods[objhour.periods][hour<13?0:1]
+        }
       },
 
       getCurrentMinute: function(asObject){

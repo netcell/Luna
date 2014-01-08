@@ -157,7 +157,7 @@
 				}
 				ctx.beginPath();
 				for(var i =0 ;i < 7;i++){	
-					ctx.font = '200 25px '+this.styleFont;
+					ctx.font = '200 23px '+this.styleFont;
 					ctx.fillStyle = 'white';
 					ctx.fillText(this.getStringDayFromIndex(i), i* this .width/7 + 20>>0,35);
 				}
@@ -236,7 +236,15 @@
 				ctx.fill();
 				ctx.closePath()
 			}
+			this.Next.mouseEnter = function(e){
+				document.body.style.cursor = 'pointer';
+			}
+			this.Next.mouseExit= function(mouseEvent) {
+                        	document.body.style.cursor = 'default';
+                    	}
 			this.Next.mouseDown= function(e){
+				self.StartMoveTime=self.director.time;
+                		self.SpaceSWent=100;
 				self.setIsMoveDirection(true,-1);
 				self.rePaint();
 			}
@@ -280,7 +288,15 @@
 				ctx.fill();
 				ctx.closePath()
 			}
+			this.Prev.mouseEnter = function(e){
+				document.body.style.cursor = 'pointer';
+			}
+			this.Prev.mouseExit= function(mouseEvent) {
+                        	document.body.style.cursor = 'default';
+                    	}
 			this.Prev.mouseDown= function(e){
+				self.StartMoveTime=self.director.time;
+        		   	self.SpaceSWent=100;
 				self.setIsMoveDirection(true,1);
 				self.rePaint();
 			}
@@ -312,6 +328,12 @@
 					this.cacheAsBitmap(0,CAAT.Foundation.ActorContainer.CACHE_DEEP);
 				}
 			}
+			this.ButtonToday.mouseEnter = function(e){
+				document.body.style.cursor = 'pointer';
+			}
+			this.ButtonToday.mouseExit= function(mouseEvent) {
+                        	document.body.style.cursor = 'default';
+                    	}
 			this.ButtonToday.mouseDown= function(e){
 				self.backPageTOday();
 				self.currentLunar= convertSolar2Lunar(self.Today.getDate(),self.Today.getMonth()+1,self.Today.getFullYear(),7.0);

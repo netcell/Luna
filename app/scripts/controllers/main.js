@@ -1,8 +1,19 @@
 'use strict';
 
 angular.module('lunaApp')
-  .controller('MainCtrl', function ($scope, amduonglich, $window, DateTime, $timeout) {
-  	$scope.time = {};
+  .controller('MainCtrl', function ($location, $scope, User, amduonglich, $window, DateTime, $timeout) {
+
+    User.signIn(function(){
+      $scope.username = User.getInfo().name;
+      $scope.accountMenu = function(){
+        $location.path('/account');
+      }
+      $scope.feedback = function(){
+        $location.path('/feedback');
+      }
+    },true);
+
+    $scope.time = {};
   	
 		$scope.time.current_day = DateTime.getCurrentDay(true);
 
@@ -20,10 +31,12 @@ angular.module('lunaApp')
 
     var popupOn = function(){
       $scope.hasPopup = false;
-      $timeout(function(){
+      //$timeout(function(){
         $scope.hasPopup = true;
-      }, 100);
+      //}, 100);
     }
+
+    //$scope.main.onDateChosen = CAAT.chooseDate;
 
     $scope.main.createPopup = function(text, buttons){
       if( Object.prototype.toString.call( text ) === '[object Array]' ) {

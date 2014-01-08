@@ -1,7 +1,48 @@
 'use strict';
 
 angular.module('lunaApp')
-  .factory('User', function ($sessionStorage) {
+  .factory('User', function ($location,$sessionStorage,$http) {
+
+    function clearUser(){
+      $sessionStorage.User.signedIn = false;
+      $sessionStorage.User.name = "";
+      $sessionStorage.User.email = "";
+    }
+
+    function signIn(callback,silent){
+      clearUser();
+      $http.get('/account/user')
+      .then(function(object){
+        var data = object.data;
+        if (data==="0") {
+          console.log(data);
+          clearUser();
+          if (!silent) $location.path('/sign-in');
+          callback(0);
+        } else {
+          $sessionStorage.User.signedIn = true;
+          $sessionStorage.User.name = data.name;
+          $sessionStorage.User.email = data.email;
+          callback(1);
+        }
+      }, function(err){
+        clearUser();
+        if (!silent) $location.path('/sign-in');
+        callback(0);
+      });
+    };
+
+    function signOut(){
+      $sessionStorage.User.signedIn = false;
+      $sessionStorage.User.name = "";
+      $sessionStorage.User.email = "";
+      $http.get('/logout')
+      .then(function(){
+        return 1;
+      }, function(){
+        return 2;
+      });
+    };
 
     function clone(obj){
       return JSON.parse(JSON.stringify(obj));
@@ -20,13 +61,11 @@ angular.module('lunaApp')
         $sessionStorage.User.email = email;
         return this;
       },
-      signIn: function(name){
-        $sessionStorage.User.signedIn = true;
-        $sessionStorage.User.name = name;
+      signIn: function(callback,silent){
+        signIn(callback,silent);
       },
       signOut: function(){
-        $sessionStorage.User.signedIn = false;
-        $sessionStorage.User.name = "";
+        signOut();
       },
       getInfo: function(){
         var User = $sessionStorage.User;

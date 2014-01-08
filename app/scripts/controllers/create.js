@@ -1,10 +1,10 @@
 'use strict';
 
 angular.module('lunaApp')
-  .controller('CreateCtrl', function ($scope, $http, $location, Share, Validate, DateTime, User) {
+  .controller('CreateCtrl', function (Strings, $scope, $http, $location, Share, Validate, DateTime, User) {
     
     $scope.User = User.getInfo();
-    console.log($scope.User);
+
     //Selected values
     $scope.selection = {};
     //List of Options
@@ -29,20 +29,36 @@ angular.module('lunaApp')
     $scope.options.months = DateTime.months;
     $scope.options.repeats = DateTime.repeats;
 
+    var data = Share.receive("event-to-edit");
+    
     //INIT
-    $scope.selection.desc = "";
-    $scope.selection.hour = DateTime.getCurrentHour(true);
-    $scope.selection.pre_kind = $scope.options.pre_kind[1];
-    $scope.options.pre = pre[$scope.selection.pre_kind.index];
-    $scope.selection.pre = '00';
-    $scope.selection.minute = DateTime.getCurrentMinute(true);
+    $scope.selection.desc = data.message?data.message:"";
+    
+    var h = false;
+    var p = false;
 
+    if (data.hour) {
+        var hp = DateTime.convert24to12(data.hour);
+        h = hp.hour;
+        p = hp.period;
+    }
+
+    if (data.pre) {
+        data.pre = parseInt(data.pre)<10?"0"+data.pre:""+data.pre;
+    }
+
+    $scope.selection.hour = h?h:DateTime.getCurrentHour(true);
     $scope.options.periods = DateTime.periods[$scope.selection.hour.periods];
-    $scope.selection.period = DateTime.getCurrentPeriod(true);
+    $scope.selection.period = p?p:DateTime.getCurrentPeriod(true);
 
-    $scope.selection.date = DateTime.getCurrentLunarDate(true);
-    $scope.selection.month = DateTime.getCurrentLunarMonth(true);
-    $scope.selection.repeat = $scope.options.repeats[0];
+    $scope.selection.pre_kind = $scope.options.pre_kind[data.pre?parseInt(data.pre_kind):1];
+    $scope.options.pre = pre[$scope.selection.pre_kind.index];
+    $scope.selection.pre = data.pre?data.pre:'00';
+    $scope.selection.minute = data.minute?data.minute:DateTime.getCurrentMinute(true);
+
+    $scope.selection.date = data.date?DateTime.objectLunarDate(parseInt(data.date)):DateTime.getCurrentLunarDate(true);
+    $scope.selection.month = data.month?DateTime.objectLunarMonth(parseInt(data.month)):DateTime.getCurrentLunarMonth(true);
+    $scope.selection.repeat = $scope.options.repeats[data.repeatType?parseInt(data.repeatType):0];
     $scope.selection.email = User.getEmail();
     
     var init = 4;
@@ -82,20 +98,49 @@ angular.module('lunaApp')
 	    }
     });
 
+    $scope.data = data;
+
+    $scope.submitText = data?"cập nhật":"tạo nhắc nhở";
+    $scope.deleteText = "xóa nhắc nhở";
+    $scope.activeText = data.status?"tắt nhắc nhở":"bật nhắc nhở";
+
+    $scope.delete = function(){
+        data.delete();
+    };
+    $scope.switchStatus = function(){
+        data.switchStatus();
+    }
+
     $scope.footer.buttons = [
         {
-            name:'đặt nhắc nhở',
-            action: function(){
-                $scope.submit();
+            name:$scope.submitText,
+            action: $scope.submit
+        }
+    ];
+
+    if (data) {
+        $scope.footer.buttons.push(
+            {
+                name:$scope.deleteText,
+                action: $scope.delete
             }
-        },
+        );
+        $scope.footer.buttons.push(
+            {
+                name:$scope.activeText,
+                action: $scope.switchStatus
+            }
+        );     
+    }
+
+    $scope.footer.buttons.push(
         {
             name:'quay lại',
             action: function(){
                 $scope.main.back();
             }
         }
-    ];
+    );
 
     $scope.$on('$destroy', function(){
         $scope.footer.buttons = [];
@@ -120,18 +165,31 @@ angular.module('lunaApp')
                 form.pre = "00";
             }
             switch(form.date){
-                case 'rằm': form.date = 15; break;
-                case 'cuối': form.date = 100; break;
+                case '30': form.date = 100; break;
             };
             User.setEmail($scope.selection.email);
             var f = function(){
                 $scope.main.createPopup('Đang xử lý');
-                $http.post('/user/quick-create', form).then(function(res){
+                if (data) $http.post('/account/edit-event/'+data.id, form)
+                    .then(function(res){
+                        $scope.main.closePopup();
+                        $location.path("/event-list");
+                    }, function(err){
+                        $scope.main.alert(Strings.CONNECTION_ERROR);
+                    });
+                else if ($scope.User.signedIn) $http.post('/account/create-event/', form)
+                    .then(function(res){
+                        $scope.main.closePopup();
+                        $location.path("/event-list");
+                    }, function(err){
+                        $scope.main.alert(Strings.CONNECTION_ERROR);
+                    });
+                else $http.post('/user/quick-create', form).then(function(res){
                     $scope.main.closePopup();
                     Share.send("form-create",form);
                     $location.path("/confirmation/create");
                 }, function(err){
-                    $scope.main.alert('Hệ thống đang bận, xin thử lại sau ít phút');
+                    $scope.main.alert(Strings.CONNECTION_ERROR);
                 });
             }
             if (!form.desc || /^\s*$/.test(form.desc)) {
@@ -143,7 +201,7 @@ angular.module('lunaApp')
             } else f();
         }
         if (!$scope.User.signedIn){
-            if (!$scope.selection.email) 
+            if (!$scope.selection.email || /^\s*$/.test($scope.selection.email)) 
                 $scope.main.alert('Bạn cần nhập địa chỉ email')
             else if (!Validate.validateEmail($scope.selection.email))
                 $scope.main.alert('Bạn cần nhập đúng địa chỉ email')

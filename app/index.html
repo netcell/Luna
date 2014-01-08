@@ -6,9 +6,15 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Âm dương lịch</title>
+    <title>Âm Dương Lịch</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
+    <meta property="og:title" content="Âm Dương Lịch" />
+    <meta property="og:site_name" content="Âm Dương Lịch" />
+    <meta property="og:description" content="Đặt nhắc nhở theo lịch truyền thống Việt Nam" />
+    <meta property="og:url" content="http://amduonglich.com" />
+    <meta property="og:image" content="http://amduonglich.com/images/Screenshot.png" />
+    <meta property="fb:app_id" content="1384328445159118" />
     <link rel="icon" 
         type="image/png" 
         href="apple-touch-icon.png" />
@@ -39,7 +45,7 @@
         <div class="app-name abs-center no-user-select pointer"><a href="/#">âm dương lịch</a><div class="fun-fact"><div class="quote">&ldquo;</div><div class="content">Lịch Việt dựa trên cả mặt trăng và mặt trời nên được gọi đầy đủ là Âm Dương Lịch</div><div class="quote">&rdquo;</div></div></div>
         
         <div class="app abs-center no-user-select" ng-init="grid.value=1" app-directive>
-          <div class="time">
+          <div class="time" ng-click="main.showCalendar=!main.showCalendar">
             <div class="info">
               <div class="day" ng-bind='time.current_day'></div>
               <div class="date-month">
@@ -56,17 +62,28 @@
           </div>
         </div>
       </div>
-      <!-- <div id="calendar" ng-show="showCalendar"> -->
-      <canvas id="canvas" ng-show="showCalendar"></canvas>
-      <!-- </div> -->
-
       
       <div class="footer more no-user-select after-loading hidden" footer>
           <ul class="menu">
             <li class="link" ng-repeat="button in footer.buttons" ng-click="button.action()" ng-bind="button.name"></li>
           </ul>
       </div>
-      <div class="footer calendarbutton"><span ng-click="showCalendar=!showCalendar">Lịch</span></div>
+      <div class="cover" ng-click="main.showCalendar=false" ng-if="main.showCalendar"></div>
+      <canvas id="canvas" ng-show="main.showCalendar"></canvas>
+      <div class="footer calendarbutton">
+        <span class="link" ng-click="main.showCalendar=!main.showCalendar">
+          lịch
+        </span>
+        <span class="link" ng-if="username" ng-click="accountMenu()">
+          {{username.toLowerCase()}}
+        </span>
+        <span class="link" ng-click="feedback()">
+          góp ý
+        </span>
+        <a class="link" href="https://www.facebook.com/sharer/sharer.php?u=http://amduonglich.com" target="_blank"  style="font-size: 18px">
+          <img src="images/fb.png" alt="" height=14> chia sẻ
+        </a>
+      </div>
       <div class="cover" ng-if="hasPopup"></div>
       <div class="footer popup no-user-select" ng-if="hasPopup">
         <div class="box">
@@ -139,6 +156,13 @@
         <script type="text/javascript" src="/scripts/minilicham/ContainerFrameDate.js"></script>
         <script type="text/javascript" src="/scripts/minilicham/date.js"></script>
         <script type="text/javascript" src="/scripts/minilicham/main.js"></script>
+        <script src="scripts/controllers/sign-in.js"></script>
+        <script src="scripts/controllers/update-email.js"></script>
+        <script src="scripts/controllers/confirm-sign-up.js"></script>
+        <script src="scripts/services/Events.js"></script>
+        <script src="scripts/controllers/account.js"></script>
+        <script src="scripts/controllers/feedback.js"></script>
+        <script src="scripts/directives/autoscroll.js"></script>
         <!-- endbuild -->
 
         <!-- <script src="scripts/animations/content-module.js"></script> -->

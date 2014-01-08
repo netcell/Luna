@@ -1,12 +1,13 @@
 'use strict';
 
 angular.module('lunaApp')
-  .directive('main', function () {
+  .directive('autoscroll', function () {
     return {
       restrict: 'A',
       link: function postLink(scope, element, attrs) {
-      	scope.$watch('hasPopup', function(){
-      	})
+        $('html, body').animate({
+  	        scrollTop: $(".app").offset().top
+  	    }, 500);
       }
     };
   });
