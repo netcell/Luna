@@ -22,7 +22,7 @@ angular.module('lunaApp')
       },
 
       getCurrentLunarDate: function(asObject){
-        return this.dates[amduonglich.getCurrentLunarDate()[0]+1];
+        return this.dates[amduonglich.getCurrentLunarDate()[0]-1];
       },
 
       objectLunarDate: function(date){
