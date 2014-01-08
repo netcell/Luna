@@ -32,7 +32,7 @@ angular.module('lunaApp')
     var data = Share.receive("event-to-edit");
     
     //INIT
-    $scope.selection.desc = "";
+    $scope.selection.desc = data.message?data.message:"";
     $scope.selection.hour = DateTime.getCurrentHour(true);
     $scope.selection.pre_kind = $scope.options.pre_kind[1];
     $scope.options.pre = pre[$scope.selection.pre_kind.index];
