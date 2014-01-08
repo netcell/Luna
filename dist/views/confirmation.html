@@ -3,10 +3,10 @@
 	<div class="seperator"></div>
 	<div><span class="bold">Chúng tôi đã gửi một email tới hòm thư {{email}}.</span> Nếu sau 5 phút nữa bạn vẫn chưa nhận được email, xin hãy <a ng-click="submit()" class="underline link">bấm vào đây</a>.</div>
 	<div class="seperator"></div>
-	<div class="bold">Để hoàn thành việc {{action}} nhắc nhở bạn hãy bấm vào đường link xác nhận trong email như trong hình:</div>
+	<div class="bold">Để hoàn thành việc {{action}} bạn hãy bấm vào đường link xác nhận trong email như trong hình:</div>
 	<div class="seperator"></div>
 	<div><img style="width:100%" src="{{image}}"></div>
-	<div class="info">
+	<div class="info" ng-if="subaction">
 		<p>Bạn có thể <a class="link underline" href="#{{subaction.link}}" class="underline link">bấm vào đây</a> để {{subaction.text}} nếu cần.</p>
 	</div>
 </div>

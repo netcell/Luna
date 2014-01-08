@@ -27,9 +27,13 @@ angular.module('lunaApp')
             if (Validate.validateEmail($scope.email)) {
                 $scope.main.createPopup('Đang xử lý');
                 $http.get('/account/update-email/'+$scope.email).then(function(res){
-                	User.setEmail($scope.email);
-                	$scope.main.closePopup();
-                	$location.path("/event-list");
+                	if (res.data !== "1") {
+                        $scope.main.alert(Strings.CONNECTION_ERROR);
+                    } else {
+                        User.setEmail($scope.email);
+                        $scope.main.closePopup();
+                        $location.path("/confirmation/email");
+                    }
                 }, function(err){
                     $scope.main.alert(Strings.CONNECTION_ERROR);
                 });
