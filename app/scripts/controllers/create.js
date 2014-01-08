@@ -43,10 +43,6 @@ angular.module('lunaApp')
         p = hp.period;
     }
 
-    if (data.minute) {
-        data.minute = parseInt(data.minute)<10?"0"+data.minute:""+data.minute;
-    }
-
     if (data.pre) {
         data.pre = parseInt(data.pre)<10?"0"+data.pre:""+data.pre;
     }
