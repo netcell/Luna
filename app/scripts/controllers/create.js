@@ -157,7 +157,7 @@ angular.module('lunaApp')
                     $scope.main.alert(Strings.CONNECTION_ERROR);
                 });
             }
-            if (!form.desc || /^\s*$/.test(form.desc)) {
+            if (!data && (!form.desc || /^\s*$/.test(form.desc))) {
                 form.desc = "";
                 $scope.main.pauseup([
                     "Bạn chưa điền nội dung nhắc nhở.",
