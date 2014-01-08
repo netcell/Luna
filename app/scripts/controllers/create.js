@@ -38,7 +38,7 @@ angular.module('lunaApp')
     var p = false;
 
     if (data.hour) {
-        var hp = DateTime.convert24to12(parseInt(data.hour));
+        var hp = DateTime.convert24to12(data.hour);
         h = hp.hour;
         p = hp.period;
     }
