@@ -24,19 +24,20 @@ angular.module('lunaApp')
               status: row.status,
               switchStatus: function(){
                 console.log(this);
-                var newStatus = 1-this.status;
+                this.status = 1-this.status;
                 var that = this;
                 console.log("");
                 $scope.main.createPopup('Đang xử lý');
-                $http.get('/account/status-event/'+this.id+"/"+newStatus)
+                $http.get('/account/status-event/'+this.id+"/"+this.status)
                 .then(function(object){
                   if (object.data==="0") {
+                    this.status = 1-this.status;
                     $scope.main.alert(Strings.CONNECTION_ERROR);
                   } else {
-                    that.status=newStatus;
                     $scope.main.closePopup();
                   }
                 },function(){
+                  this.status = 1-this.status;
                   $scope.main.alert(Strings.CONNECTION_ERROR);
                 });
               },
@@ -104,16 +105,23 @@ angular.module('lunaApp')
       $scope.main.pauseup(
         "Bạn có chắc muốn xóa các nhắc nhở đã chọn không?"
       ,function(){
-        $scope.main.createPopup('Đang xử lý');
+        var temp = JSON.parse(JSON.stringify($scope.events));
+        for (var i = 0, length = deleteIndexList.length; i < length; i++) {
+          $scope.events.splice(deleteIndexList[i],1);
+        };
+        $scope.deleteList = [];
+        deleteIndexList = [];
         $http.post('/account/delete-event', $scope.deleteList)
-        .then(function(){
-          for (var i = 0, length = deleteIndexList.length; i < length; i++) {
-            $scope.events.splice(deleteIndexList[i],1);
-          };
-          $scope.deleteList = [];
-          deleteIndexList = [];
-          $scope.main.closePopup();
+        .then(function(object){
+          temp = [];
+          if (object.data==="1"){
+            $scope.main.closePopup();
+          } else {
+            $scope.main.alert(Strings.CONNECTION_ERROR);
+          }
         }, function(){
+          $scope.events = JSON.parse(JSON.stringify(temp));
+          temp = [];
           $scope.main.alert(Strings.CONNECTION_ERROR);
         });
       });
