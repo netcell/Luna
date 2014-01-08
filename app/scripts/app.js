@@ -61,6 +61,10 @@ angular.module('lunaApp', [
         templateUrl: 'views/account.html',
         controller: 'AccountCtrl'
       })
+      .when('/feedback', {
+        templateUrl: 'views/feedback.html',
+        controller: 'FeedbackCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       })

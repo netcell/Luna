@@ -8,6 +8,9 @@ angular.module('lunaApp')
       $scope.accountMenu = function(){
         $location.path('/account');
       }
+      $scope.feedback = function(){
+        $location.path('/feedback');
+      }
     },true);
 
     $scope.time = {};

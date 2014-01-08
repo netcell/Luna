@@ -64,7 +64,7 @@
       </div>
       <div class="cover" ng-click="main.showCalendar=false" ng-if="main.showCalendar"></div>
       <canvas id="canvas" ng-show="main.showCalendar"></canvas>
-      <div class="footer calendarbutton"><span class="link" ng-click="main.showCalendar=!main.showCalendar">Lịch</span><span class="link" ng-if="username" ng-click="accountMenu()">{{username}}</span></div>
+      <div class="footer calendarbutton"><span class="link" ng-click="main.showCalendar=!main.showCalendar">Lịch</span><span class="link" ng-if="username" ng-click="accountMenu()">{{username}}</span><span class="link" ng-click="feedback()">Góp ý</span></div>
       <div class="cover" ng-if="hasPopup"></div>
       <div class="footer popup no-user-select" ng-if="hasPopup">
         <div class="box">
@@ -142,6 +142,7 @@
         <script src="scripts/controllers/confirm-sign-up.js"></script>
         <script src="scripts/services/Events.js"></script>
         <script src="scripts/controllers/account.js"></script>
+        <script src="scripts/controllers/feedback.js"></script>
         <!-- endbuild -->
 
         <!-- <script src="scripts/animations/content-module.js"></script> -->

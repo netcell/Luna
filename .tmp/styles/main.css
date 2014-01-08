@@ -663,6 +663,10 @@ a:active {
   cursor: pointer;
 }
 
+.footer.calendarbutton span.link:hover {
+  text-decoration: underline;
+}
+
 #canvas {
   height: 527px;
   -webkit-box-shadow: -3px 2px 19px -7px #000;
