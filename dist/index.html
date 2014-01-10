@@ -30,6 +30,15 @@
       <script src="bower_components/json3/lib/json3.min.js"></script>
     <![endif]-->
 
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=1384328445159118";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
     <!-- Add your site or application content here -->
     <div main="" class="container" ng-init="loading.value=true" ng-controller="MainCtrl">
       <div class="container after-loading hidden">
@@ -79,6 +88,7 @@
         <a class="link" href="https://www.facebook.com/sharer/sharer.php?u=http://amduonglich.com" target="_blank" style="font-size: 18px">
           <img src="images/fb.png" alt="" height="14"> chia sẻ
         </a>
+        <span><div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div></span>
       </div>
       <div class="cover" ng-if="hasPopup"></div>
       <div class="footer popup no-user-select" ng-if="hasPopup">
