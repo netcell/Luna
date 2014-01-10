@@ -57,11 +57,11 @@ angular.module('lunaApp', [
         templateUrl: 'views/update-email.html',
         controller: 'UpdateEmailCtrl'
       })
+      // .when('/account', {
+      //   templateUrl: 'views/account.html',
+      //   controller: 'AccountCtrl'
+      // })
       .when('/account', {
-        templateUrl: 'views/account.html',
-        controller: 'AccountCtrl'
-      })
-      .when('/settings', {
         templateUrl: 'views/settings.html',
         controller: 'AccountCtrl'
       })

@@ -13,7 +13,9 @@ select {
   padding: 0;
   margin: 0;
   list-style: none;
-  /*font-family: 'HelveticaNeue-UltraLight', 'Helvetica Neue UltraLight', 'Helvetica Neue', Arial, Helvetica, sans-serif;*/
+  /*font-family: 'HelveticaNeue-UltraLight', 'Helvetica Neue UltraLight', 'Helvetica Neue', Arial, Helvetica, sans-*/
+  /*font-family:'HelveticaNeue-UltraLight', 'Helvetica Neue UltraLight', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+*/
   font-family: 'Source Sans Pro', sans-serif;
   letter-spacing: 1px;
   font-weight: 200;
@@ -97,7 +99,6 @@ select {
   text-indent: 0.01px;
   /* Removes default arrow from firefox*/
   text-overflow: "";
-  /* Removes default arrow from firefox*/
   padding: 0;
   resize: none;
   font-style: italic;
@@ -165,6 +166,7 @@ a:active {
 .after-loading {
   opacity: 1;
   -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
 }
 
 .after-loading.ng-enter {
@@ -200,6 +202,7 @@ a:active {
   width: 500px;
   margin: auto;
   -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 .fun-fact {
@@ -211,6 +214,7 @@ a:active {
   font-size: 20px;
   height: 60px;
   -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 .fun-fact div {
@@ -225,7 +229,6 @@ a:active {
   white-space: -o-pre-wrap;
   /* Opera 7 */
   word-wrap: break-word;
-  /* IE */
 }
 
 .fun-fact .content {
@@ -253,6 +256,7 @@ a:active {
   text-align: right;
   float: left;
   -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
 }
 
 .app div.time.near-left {
@@ -279,6 +283,7 @@ a:active {
 
 .app .module {
   -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
   border-left: 2px solid #6e7584;
   overflow: hidden;
   left: 0;
@@ -305,6 +310,7 @@ a:active {
 .module-content-view.ng-enter,
 .module-content-view.ng-leave {
   -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
 }
 
 .module-content-view.ng-enter {
@@ -535,7 +541,7 @@ a:active {
   vertical-align: center;
   overflow: hidden;
   -webkit-transition: all 0.3s ease-in-out;
-  overflow: hidden;
+  transition: all 0.3s ease-in-out;
 }
 
 .footer .link {
@@ -566,6 +572,7 @@ a:active {
 .cover.ng-enter,
 .cover.ng-leave {
   -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 .cover.ng-enter,
@@ -590,6 +597,7 @@ a:active {
 
 .popup {
   -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
   bottom: 0;
 }
 
@@ -683,6 +691,7 @@ a:active {
   bottom: 3em;
   margin-bottom: 2px;
   -webkit-transition: all 0.2s ease-in-out!important;
+  transition: all 0.2s ease-in-out!important;
 }
 
 #canvas.ng-hide-add,
@@ -734,6 +743,7 @@ a:active {
   line-height: 2.5em;
   border-bottom: 1px solid #B6B6B6;
   -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
   cursor: pointer;
 }
 
@@ -783,6 +793,7 @@ a:active {
   border: 2px solid #757575;
   cursor: pointer;
   -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .controlpanel table tr td.select .checker-inner {
@@ -790,6 +801,7 @@ a:active {
   height: 14px;
   margin: 1px auto;
   -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .controlpanel table tr td.select .checker-outer.checked .checker-inner {
@@ -826,6 +838,7 @@ a:active {
   overflow: hidden;
   background-color: #B0B0B0;
   -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
 }
 
 .controlpanel table tr td.status .switcher-move {
@@ -834,6 +847,7 @@ a:active {
   background-color: #6D6D6D;
   margin-left: 0px;
   -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
 }
 
 .controlpanel table tr td.status .switcher-background.on {
@@ -864,6 +878,7 @@ a:active {
   display: inline-block;
   overflow: hidden;
   -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .controlpanel .toolbar span {

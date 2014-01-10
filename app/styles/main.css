@@ -1,856 +1,768 @@
 /* Clear */
-html, body, div, ul, li, span, input, textarea, button, select {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  /*font-family: 'HelveticaNeue-UltraLight', 'Helvetica Neue UltraLight', 'Helvetica Neue', Arial, Helvetica, sans-serif;*/
-  font-family: 'Source Sans Pro', sans-serif;
-  letter-spacing: 1px;
-  font-weight: 200;
-  color: #444750;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
+html, body, div, ul, li, span, input, textarea, button, select{
+padding:0;
+margin:0;
+list-style:none;
+/*font-family: 'HelveticaNeue-UltraLight', 'Helvetica Neue UltraLight', 'Helvetica Neue', Arial, Helvetica, sans-*/
+/*font-family:'HelveticaNeue-UltraLight', 'Helvetica Neue UltraLight', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+*/
+  font-family:'Source Sans Pro', sans-serif;
+letter-spacing:1px;
+font-weight:200;
+color:#444750;
+-webkit-font-smoothing:antialiased;
+-moz-osx-font-smoothing:grayscale;
+text-shadow:1px 1px 1px rgba(0,0,0,0.004);
 }
-
-.screenshot {
-  visibility: hidden;
-  position: absolute;
-  z-index: -1;
+.screenshot{
+visibility:hidden;
+position:absolute;
+z-index:-1;
 }
-
-#tmp {
-  visibility: hidden;
-  position: absolute;
+#tmp{
+visibility:hidden;
+position:absolute;
 }
-
-@font-face {
-  font-family: 'Source Sans Pro';
+@font-face{
+font-family: 'Source Sans Pro';
   font-style: normal;
   font-weight: 200;
   src: local('Source Sans Pro ExtraLight'), local('SourceSansPro-ExtraLight'), url(../fonts/SourceSansPro-ExtraLight.ttf) format('woff');
 }
-@font-face {
-  font-family: 'Source Sans Pro';
+@font-face{
+font-family: 'Source Sans Pro';
   font-style: normal;
   font-weight: bold;
   src: local('Source Sans Pro Semibold'), local('SourceSansPro-Semibold'), url(../fonts/SourceSansPro-Semibold.ttf) format('woff');
 }
-@font-face {
-  font-family: 'Source Sans Pro';
+@font-face{
+font-family: 'Source Sans Pro';
   font-style: italic;
   font-weight: 200;
   src: local('Source Sans Pro ExtraLight Italic'), local('SourceSansPro-ExtraLightIt'), url(../fonts/SourceSansPro-ExtraLightItalic.ttf) format('woff');
 }
-
-.loading-screen {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #f6f6f6;
+.loading-screen{
+position:fixed;
+top:0;
+bottom:0;
+width:100%;
+height:100%;
+background-color:#f6f6f6;
 }
-
-.loading-screen .loader {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  height: 100%;
-  width: 0%;
-  background-color: #e3e3e3;
+.loading-screen .loader{
+position:absolute;
+top:0;
+bottom:0;
+height:100%;
+width:0%;
+background-color:#e3e3e3;
 }
-
-.loading-screen .content {
-  text-align: center;
-  position: absolute;
-  width: 100%;
-  top: 50%;
-  font-size: 24px;
+.loading-screen .content{
+text-align:center;
+position:absolute;
+width:100%;
+top:50%;
+font-size:24px;
 }
-
-.hidden {
-  display: none;
+.hidden{
+display:none;
 }
-
-textarea, input, select {
-  outline: none;
-  border: none;
-  -webkit-appearance: none;  /*Removes default chrome and safari style*/
-     -moz-appearance: none;  /*Removes default style Firefox*/
-  text-indent: 0.01px;          /* Removes default arrow from firefox*/
-  text-overflow: "";            /* Removes default arrow from firefox*/
-  padding: 0;
-  resize: none;
-  font-style: italic;
-  background-color: #f6f6f6;
-  font-size: inherit;
-  overflow: auto;
-  text-decoration: inherit;
+textarea, input, select{
+outline:none;
+border:none;
+-webkit-appearance:none;
+/*Removes default chrome and safari style*/
+-moz-appearance:none;
+/*Removes default style Firefox*/
+text-indent:0.01px;
+/* Removes default arrow from firefox*/
+text-overflow:"";
+padding:0;
+resize:none;
+font-style:italic;
+background-color:#f6f6f6;
+font-size:inherit;
+overflow:auto;
+text-decoration:inherit;
 }
-
-.no-user-select {
-  -webkit-user-select: none;
-  cursor: default;
+.no-user-select{
+-webkit-user-select:none;
+cursor:default;
 }
-
-.link {
-  cursor: pointer;
+.link{
+cursor:pointer;
 }
-
-.link:hover {
-  background-color: #444750;
-  color: #f6f6f6;
-  font-weight: bold;
+.link:hover{
+background-color:#444750;
+color:#f6f6f6;
+font-weight:bold;
 }
-
-* {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
+*{
+-webkit-box-sizing:border-box;
+-moz-box-sizing:border-box;
+box-sizing:border-box;
 }
-
-html, body {
-  background-color: #f6f6f6;
-  height: 100%;
+html, body{
+background-color:#f6f6f6;
+height:100%;
 }
-
-a, a:hover, a:active {
-  text-decoration: none;
-  color: inherit;
+a, a:hover, a:active{
+text-decoration:none;
+color:inherit;
 }
-
-.underline {
-  text-decoration: underline;
+.underline{
+text-decoration:underline;
 }
-
-.underline.link:hover {
-  text-decoration: none;
+.underline.link:hover{
+text-decoration:none;
 }
-
-.abs-center {
-  width: 960px;
-  margin: 0 auto;
+.abs-center{
+width:960px;
+margin:0 auto;
 }
-
-.container {
-  width: 100%;
-  min-width: 960px;
-  position: relative;
-  min-height: 100%;
-  overflow: hidden;
+.container{
+width:100%;
+min-width:960px;
+position:relative;
+min-height:100%;
+overflow:hidden;
 }
-
-.after-loading {
-  opacity: 1;
-  -webkit-transition: all 0.5s ease-in-out;
+.after-loading{
+opacity:1;
+-webkit-transition:all 0.5s ease-in-out;
+   -moz-transition:all 0.5s ease-in-out;
+     -o-transition:all 0.5s ease-in-out;
+        transition:all 0.5s ease-in-out;
 }
-
-.after-loading.ng-enter {
-  opacity: 0;
+.after-loading.ng-enter{
+opacity:0;
 }
-
-.mininoic {
-  padding-top: 40px;
-  text-align: center;
-  font-size: 18px;
+.mininoic{
+padding-top:40px;
+text-align:center;
+font-size:18px;
 }
-
-.mininoic .desc {
-  margin-top: 10px;
+.mininoic .desc{
+margin-top:10px;
 }
-
-.mininoic .desc .underline {
-  font-weight: bold;
+.mininoic .desc .underline{
+font-weight:bold;
 }
-
-.mininoic .logo {
-  width: 31px;
-  height: 38px;
-  margin: 0 auto;
-  background: url(../images/logo.png) no-repeat center center;
-  cursor: pointer;
+.mininoic .logo{
+width:31px;
+height:38px;
+margin:0 auto;
+background:url(../images/logo.png) no-repeat center center;
+cursor:pointer;
 }
-
-.app-name {
-  padding-top: 25px;
-  font-size: 55px;
-  text-align: center;
-  width: 500px;
-  margin: auto;
-  -webkit-transition: all 0.2s ease;
+.app-name{
+padding-top:25px;
+font-size:55px;
+text-align:center;
+width:500px;
+margin:auto;
+-webkit-transition:all 0.2s ease;
+   -moz-transition:all 0.2s ease;
+     -o-transition:all 0.2s ease;
+        transition:all 0.2s ease;
 }
-
-.fun-fact {
-  overflow: hidden;
-  margin: 0.3em;
-  margin-left: 26px;
-  line-height: 30px; 
-  text-align: center;
-  font-size: 20px;
-  height: 60px;
-  -webkit-transition: all 0.2s ease;
+.fun-fact{
+overflow:hidden;
+margin:0.3em;
+margin-left:26px;
+line-height:30px;
+ 
+  text-align:center;
+font-size:20px;
+height:60px;
+-webkit-transition:all 0.2s ease;
+   -moz-transition:all 0.2s ease;
+     -o-transition:all 0.2s ease;
+        transition:all 0.2s ease;
 }
-
-.fun-fact div {
-  float:left;
-  height: 60px;
-  white-space: pre-wrap;      /* CSS3 */   
-   white-space: -moz-pre-wrap; /* Firefox */    
-   white-space: -pre-wrap;     /* Opera <7 */   
-   white-space: -o-pre-wrap;   /* Opera 7 */    
-   word-wrap: break-word;      /* IE */
+.fun-fact div{
+float:left;
+height:60px;
+white-space:pre-wrap;
+/* CSS3 */
+white-space:-moz-pre-wrap;
+/* Firefox */
+white-space:-pre-wrap;
+/* Opera <7 */
+white-space:-o-pre-wrap;
+/* Opera 7 */
+word-wrap:break-word;
 }
-
-.fun-fact .content {
-  overflow: hidden;
-  width: 388px;
+.fun-fact .content{
+overflow:hidden;
+width:388px;
 }
-
-.fun-fact .quote {
-  font-size: 86px;
-  line-height: 70px;
-  color: #BEBEBE;
+.fun-fact .quote{
+font-size:86px;
+line-height:70px;
+color:#BEBEBE;
 }
-
-.app {
-  overflow: hidden;
-  margin-top: 70px;
-  font-size: 36px;
-  margin-bottom: 80px;
+.app{
+overflow:hidden;
+margin-top:70px;
+font-size:36px;
+margin-bottom:80px;
 }
-
-.app div.time {
-  z-index: 2;
-  width: 45%;
-  height: 100%;
-  text-align: right;
-  float: left;
-  -webkit-transition: all 0.5s ease-in-out;
+.app div.time{
+z-index:2;
+width:45%;
+height:100%;
+text-align:right;
+float:left;
+-webkit-transition:all 0.5s ease-in-out;
+   -moz-transition:all 0.5s ease-in-out;
+     -o-transition:all 0.5s ease-in-out;
+        transition:all 0.5s ease-in-out;
 }
-
-.app div.time.near-left {
-  width: 30%;
+.app div.time.near-left{
+width:30%;
 }
-
-.app div.time.full-left {
-  width: 25%;
+.app div.time.full-left{
+width:25%;
 }
-
-.app div.time .info {
-  margin-right: 1em;
+.app div.time .info{
+margin-right:1em;
 }
-
-.app div.time .info .date-month {
-  overflow: hidden;
+.app div.time .info .date-month{
+overflow:hidden;
 }
-
-.app div.time .info .date-month div {
-  float: right;
-  font-size: 72px;
-  margin: auto 5px;
+.app div.time .info .date-month div{
+float:right;
+font-size:72px;
+margin:auto 5px;
 }
-
-.app .module {
-  -webkit-transition: all 0.5s ease-in-out;
-  border-left: 2px solid #6e7584;
-  overflow: hidden;
-  left: 0;
-  text-align: left;
-  float: left;
-  width: 55%;
-  min-height: 235px;
-  padding-left: 1em;
-  position: relative;
+.app .module{
+-webkit-transition:all 0.5s ease-in-out;
+   -moz-transition:all 0.5s ease-in-out;
+     -o-transition:all 0.5s ease-in-out;
+        transition:all 0.5s ease-in-out;
+border-left:2px solid #6e7584;
+overflow:hidden;
+left:0;
+text-align:left;
+float:left;
+width:55%;
+min-height:235px;
+padding-left:1em;
+position:relative;
 }
-
-.app .module.near-left {
-  width: 70%;
+.app .module.near-left{
+width:70%;
 }
-
-.app .module.full-left {
-  width: 75%;
+.app .module.full-left{
+width:75%;
 }
-
-.app .module .module-content-view {
-  width: 95%;
+.app .module .module-content-view{
+width:95%;
 }
-
-.module-content-view.ng-enter, .module-content-view.ng-leave {
-  -webkit-transition: all 0.5s ease-in-out;
+.module-content-view.ng-enter, .module-content-view.ng-leave{
+-webkit-transition:all 0.5s ease-in-out;
+   -moz-transition:all 0.5s ease-in-out;
+     -o-transition:all 0.5s ease-in-out;
+        transition:all 0.5s ease-in-out;
 }
-
-.module-content-view.ng-enter {
-  position: relative;
-  opacity: 0;
-  margin-left: -50%;
+.module-content-view.ng-enter{
+position:relative;
+opacity:0;
+margin-left:-50%;
 }
-
-.module-content-view.ng-leave {
-  position: absolute;
-  opacity: 1;
-  margin-left: 0;
+.module-content-view.ng-leave{
+position:absolute;
+opacity:1;
+margin-left:0;
 }
-
-.module-content-view.ng-leave.ng-leave-active {
-  opacity: 0;
-  margin-left: 100%;
+.module-content-view.ng-leave.ng-leave-active{
+opacity:0;
+margin-left:100%;
 }
-
-.module-content-view.ng-enter.ng-enter-active {
-  opacity: 1;
-  margin-left: 0;
+.module-content-view.ng-enter.ng-enter-active{
+opacity:1;
+margin-left:0;
 }
-
-.app .module .bold {
-  font-weight: bold;
+.app .module .bold{
+font-weight:bold;
 }
-
-.app .module .greeting {
-  line-height: 56px;
+.app .module .greeting{
+line-height:56px;
 }
-
-.app .module .greeting .button {
-  font-size: 48px;
+.app .module .greeting .button{
+font-size:48px;
 }
-
-.app .module .greeting .button a {
-  padding-right: 7px;
+.app .module .greeting .button a{
+padding-right:7px;
 }
-
-.app .module .greeting .button a.fb:hover {
-  background-color: #3b589e;
+.app .module .greeting .button a.fb:hover{
+background-color:#3b589e;
 }
-
-.app .module .greeting .button a.gmail:hover {
-  background-color: #dd493d;
+.app .module .greeting .button a.gmail:hover{
+background-color:#dd493d;
 }
-
-.app .module .greeting .button img {
-  margin: 0px 7px 0px 10px;
-  border-radius: 5px;
+.app .module .greeting .button img{
+margin:0px 7px 0px 10px;
+-webkit-border-radius:5px;
+   -moz-border-radius:5px;
+        border-radius:5px;
 }
-
-.app .module .quick-create-home .label, .no-input {
-  font-size: 20px;
+.app .module .quick-create-home .label, .no-input{
+font-size:20px;
 }
-
-.app .module .quick-create-home .no-input .link {
-  font-weight: bold;
+.app .module .quick-create-home .no-input .link{
+font-weight:bold;
 }
-
-.app .module .quick-create-home .no-input.sign-in {
-  margin-top: 3em;
+.app .module .quick-create-home .no-input.sign-in{
+margin-top:3em;
 }
-
-.app .module .quick-create-home .input textarea {  
-  padding: 0.3em 0;
-  font-size: 36px;
-  width: 100%;
+.app .module .quick-create-home .input textarea{
+padding:0.3em 0;
+font-size:36px;
+width:100%;
 }
-
-.app .module .form {
-  font-size: 24px;
+.app .module .form{
+font-size:24px;
 }
-
-.app .module .form .title {
-  font-weight: bold;
+.app .module .form .title{
+font-weight:bold;
 }
-
-.app .module .form label, .label, .title {
-  margin-right: 1em;
+.app .module .form label, .label, .title{
+margin-right:1em;
 }
-
-.app .module .form textarea {
-  padding: 0.3em auto;
-  width: 100%;
+.app .module .form textarea{
+padding:0.3em auto;
+width:100%;
 }
-
-.app .module .seperator {
-  height: 1em;
+.app .module .seperator{
+height:1em;
 }
-
-.app .module .form select {
-  text-align: center;
-  cursor: pointer;
-  margin-bottom: -7px;
-  margin-right: 1em;
-  border-bottom: 1px solid #444750;
-  border-radius: 0px;
-  border-bottom-style: dashed;
+.app .module .form select{
+text-align:center;
+cursor:pointer;
+margin-bottom:-7px;
+margin-right:1em;
+border-bottom:1px solid #444750;
+-webkit-border-radius:0px;
+   -moz-border-radius:0px;
+        border-radius:0px;
+border-bottom-style:dashed;
 }
-
-.app .module .form .input.more-line-height {
-  margin-top: 0.5em;
+.app .module .form .input.more-line-height{
+margin-top:0.5em;
 }
-
-.disabled {
-  text-decoration: line-through;
+.disabled{
+text-decoration:line-through;
 }
-
-.app .module .info {
-  font-size: 20px;
-  text-align: justify;
-  margin-right: 1em;
+.app .module .info{
+font-size:20px;
+text-align:justify;
+margin-right:1em;
 }
-
 .app .module .form input.size-1{
-  width: 1em;
+width:1em;
 }
-
 .app .module .form input.size-2{
-  width: 2em;
+width:2em;
 }
-
 .app .module .form input.size-3{
-  width: 3em;
+width:3em;
 }
-
 .app .module .form input.size-4{
-  width: 4em;
+width:4em;
 }
-
 .app .module .form input.size-5{
-  width: 5em;
+width:5em;
 }
-
 .app .module .form input.size-6{
-  width: 6em;
+width:6em;
 }
-
 .app .module .form input.size-8{
-  width: 8em;
+width:8em;
 }
-
-.app .module .form input.size-10 {
-  width: 10em;
+.app .module .form input.size-10{
+width:10em;
 }
-
-.app .module .form input.size-12 {
-  width: 12em;
+.app .module .form input.size-12{
+width:12em;
 }
-
-.app .module .form input.size-13 {
-  width: 13em;
+.app .module .form input.size-13{
+width:13em;
 }
-
-.app .module .form input.size-14 {
-  width: 14em;
+.app .module .form input.size-14{
+width:14em;
 }
-
-.app .module .form input.size-15 {
-  width: 15em;
+.app .module .form input.size-15{
+width:15em;
 }
-
-.app .module .form input.size-16 {
-  width: 16em;
+.app .module .form input.size-16{
+width:16em;
 }
-
-.app .module .form input.size-17 {
-  width: 17em;
+.app .module .form input.size-17{
+width:17em;
 }
-
-.app .module .form input.size-18 {
-  width: 18em;
+.app .module .form input.size-18{
+width:18em;
 }
-
-.app .module .form input.size-20 {
-  width: 20em;
+.app .module .form input.size-20{
+width:20em;
 }
-
-.app .module .form input.size-full {
-  width: 100%;
+.app .module .form input.size-full{
+width:100%;
 }
-
-.app .module .form .button {
-  margin-top: 1em;
+.app .module .form .button{
+margin-top:1em;
 }
-
-.app .module .form .link {
-  font-weight: bold;
+.app .module .form .link{
+font-weight:bold;
 }
-
-.app .module .form .button span {
-  margin: 0 0.5em;
+.app .module .form .button span{
+margin:0 0.5em;
 }
-
-.app .module .inform img {
-  border: 1px solid #DBDBDB;
-  border-radius: 6px;
+.app .module .inform img{
+border:1px solid #DBDBDB;
+-webkit-border-radius:6px;
+   -moz-border-radius:6px;
+        border-radius:6px;
 }
-
-.app .module .inform {
-  font-size: 24px;
-  text-align: justify;
+.app .module .inform{
+font-size:24px;
+text-align:justify;
 }
-
-.cover {
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  background-color: #000;
-  opacity: 0.5;
+.cover{
+width:100%;
+height:100%;
+position:fixed;
+top:0;
+left:0;
+background-color:#000;
+opacity:0.5;
 }
-
-.footer {
-  position: fixed;
-  width: 100%;
-  bottom: 0;
-  background-color: #444750;
-  color: #f6f6f6;
-  font-weight: bold;
-  text-align: right;
-  vertical-align: center;
-  overflow: hidden;
-  -webkit-transition: all 0.3s ease-in-out;
-  overflow: hidden;
+.footer{
+position:fixed;
+width:100%;
+bottom:0;
+background-color:#444750;
+color:#f6f6f6;
+font-weight:bold;
+text-align:right;
+vertical-align:center;
+overflow:hidden;
+-webkit-transition:all 0.3s ease-in-out;
+   -moz-transition:all 0.3s ease-in-out;
+     -o-transition:all 0.3s ease-in-out;
+        transition:all 0.3s ease-in-out;
 }
-
-.footer .link {
-  cursor: pointer;  
+.footer .link{
+cursor:pointer;
 }
-
-.more {
-  opacity: 0.9;
+.more{
+opacity:0.9;
 }
-
-.more:hover {
-  opacity: 1;
+.more:hover{
+opacity:1;
 }
-
-.footer ul, .footer div {
-  color: inherit;
-  font-weight: inherit;
-  display: block;
+.footer ul, .footer div{
+color:inherit;
+font-weight:inherit;
+display:block;
 }
-
-.footer span {
-  color: inherit;
-  font-weight: inherit;
-  margin: auto 1em;
+.footer span{
+color:inherit;
+font-weight:inherit;
+margin:auto 1em;
 }
-
-.cover.ng-enter, .cover.ng-leave {
-  -webkit-transition: all 0.3s ease-in-out;
+.cover.ng-enter, .cover.ng-leave{
+-webkit-transition:all 0.3s ease-in-out;
+   -moz-transition:all 0.3s ease-in-out;
+     -o-transition:all 0.3s ease-in-out;
+        transition:all 0.3s ease-in-out;
 }
-
 .cover.ng-enter, .cover.ng-leave.ng-leave-active{
-  opacity: 0;
+opacity:0;
 }
-
 .cover.ng-leave, .cover.ng-enter.ng-enter-active{
-  opacity: 0.5;
+opacity:0.5;
 }
-
 .footer.ng-enter, .footer.ng-leave.ng-leave-active{
-  bottom: -100%;
+bottom:-100%;
 }
-
 .footer.ng-leave, .footer.ng-enter.ng-enter-active{
-  bottom: 0;
+bottom:0;
 }
-
 .popup{
-  -webkit-transition: all 0.3s ease-in-out;
-  bottom: 0;
+-webkit-transition:all 0.3s ease-in-out;
+   -moz-transition:all 0.3s ease-in-out;
+     -o-transition:all 0.3s ease-in-out;
+        transition:all 0.3s ease-in-out;
+bottom:0;
 }
-
 .popup.ng-hide-add,
-.popup.ng-hide-remove {
-  display:block!important;
+.popup.ng-hide-remove{
+display:block!important;
 }
-
-.popup.ng-hide {
-  bottom: -100%; 
+.popup.ng-hide{
+bottom:-100%;
 }
-
-.popup .box .text {
-  color: #707070;
+.popup .box .text{
+color:#707070;
 }
-
-.popup {
-  border-top: 1px solid #3F3F3F;
-  background-color: #f6f6f6;
-  color: #444750;
-  font-weight: normal;
+.popup{
+border-top:1px solid #3F3F3F;
+background-color:#f6f6f6;
+color:#444750;
+font-weight:normal;
 }
-
-.popup .box {
-  padding: 0 2em;
-  font-size: 32px;
+.popup .box{
+padding:0 2em;
+font-size:32px;
 }
-
-.popup .buttons {
-  margin: 0.5em auto;
-  font-size: 30px;
-  font-weight: bold;
-  text-transform: uppercase;
+.popup .buttons{
+margin:0.5em auto;
+font-size:30px;
+font-weight:bold;
+text-transform:uppercase;
 }
-
-.popup .video {
-  margin: 1em auto;
-  width: 560px;
-  height: 315px;
+.popup .video{
+margin:1em auto;
+width:560px;
+height:315px;
 }
-
-.footer ul {
-  margin-right: 2em;
+.footer ul{
+margin-right:2em;
 }
-
-.footer .box {
-  margin: 2em auto;
+.footer .box{
+margin:2em auto;
 }
-
-.footer .box div {
-  text-align: center;
+.footer .box div{
+text-align:center;
 }
-
-.footer li {
-  display: inline-block;
-  line-height: 50px;
-  font-size: 18px;
-  color: #f6f6f6;
-  font-weight: bold;
-  text-align: right;
-  margin: 0 1em;
+.footer li{
+display:inline-block;
+line-height:50px;
+font-size:18px;
+color:#f6f6f6;
+font-weight:bold;
+text-align:right;
+margin:0 1em;
 }
-
-.footer li:hover {
-  text-decoration: underline;
+.footer li:hover{
+text-decoration:underline;
 }
-
-.footer.calendarbutton {
-  height: 50px;
-  width: auto;
-  padding: 1px 20px;
+.footer.calendarbutton{
+height:50px;
+width:auto;
+padding:1px 20px;
 }
-
-.footer.calendarbutton span, .footer.calendarbutton a {
-  line-height: 50px;
-  font-size: 18px;
-  cursor: pointer;
+.footer.calendarbutton span, .footer.calendarbutton a{
+line-height:50px;
+font-size:18px;
+cursor:pointer;
 }
-
-.footer.calendarbutton span.link:hover, .footer.calendarbutton a.link:hover {
-  text-decoration: underline;
+.footer.calendarbutton span.link:hover, .footer.calendarbutton a.link:hover{
+text-decoration:underline;
 }
-
-#canvas {
-  height: 527px;
-  box-shadow: -3px 2px 19px -7px #000;
-  position: fixed;
-  bottom: 3em;
-  margin-bottom: 2px;
-  -webkit-transition: all 0.2s ease-in-out!important;
+#canvas{
+height:527px;
+-webkit-box-shadow:-3px 2px 19px -7px #000;
+   -moz-box-shadow:-3px 2px 19px -7px #000;
+        box-shadow:-3px 2px 19px -7px #000;
+position:fixed;
+bottom:3em;
+margin-bottom:2px;
+-webkit-transition:all 0.2s ease-in-out!important;
+   -moz-transition:all 0.2s ease-in-out!important;
+     -o-transition:all 0.2s ease-in-out!important;
+        transition:all 0.2s ease-in-out!important;
 }
-
-#canvas.ng-hide-add, #canvas.ng-hide-remove {
-  transition:0.5s linear all;
-  display:block!important;
+#canvas.ng-hide-add, #canvas.ng-hide-remove{
+-webkit-transition:0.5s linear all;
+   -moz-transition:0.5s linear all;
+     -o-transition:0.5s linear all;
+        transition:0.5s linear all;
+display:block!important;
 }
-
-#canvas.ng-hide {
-  height: 0;
+#canvas.ng-hide{
+height:0;
 }
-
-.controlpanel {
-  font-size: 18px;
+.controlpanel{
+font-size:18px;
 }
-
-.controlpanel div.title {
-  text-align: center;
-  font-size: 30px;
-  font-weight: bold;
-  text-transform: uppercase;
-  margin-bottom: 0.4em;
+.controlpanel div.title{
+text-align:center;
+font-size:30px;
+font-weight:bold;
+text-transform:uppercase;
+margin-bottom:0.4em;
 }
-
-.controlpanel ul,.controlpanel li,.controlpanel div {
-  font-size: inherit;
+.controlpanel ul,.controlpanel li,.controlpanel div{
+font-size:inherit;
 }
-
-.controlpanel li {
-  display: inline-block;
+.controlpanel li{
+display:inline-block;
 }
-
-.controlpanel table {
-  padding: 0;
-  width: 100%;
-  border-collapse: collapse;
+.controlpanel table{
+padding:0;
+width:100%;
+border-collapse:collapse;
 }
-
-.controlpanel table.list {
-  border-top: 2px solid #808080;
-  border-bottom: 2px solid #808080;
+.controlpanel table.list{
+border-top:2px solid #808080;
+border-bottom:2px solid #808080;
 }
-
-.controlpanel table tr {
-  padding: 0;
-  line-height: 2.5em;
-  border-bottom: 1px solid #B6B6B6;
-  -webkit-transition: all 0.3s ease;
-  cursor: pointer;
+.controlpanel table tr{
+padding:0;
+line-height:2.5em;
+border-bottom:1px solid #B6B6B6;
+-webkit-transition:all 0.3s ease;
+   -moz-transition:all 0.3s ease;
+     -o-transition:all 0.3s ease;
+        transition:all 0.3s ease;
+cursor:pointer;
 }
-
-.controlpanel table.list tr:hover td {
-  background-color: #FFF;
+.controlpanel table.list tr:hover td{
+background-color:#FFF;
 }
-
-.controlpanel table.menu tr.title {
-  line-height: 2em;
-  font-weight: bold;
-  color: #444750;
+.controlpanel table.menu tr.title{
+line-height:2em;
+font-weight:bold;
+color:#444750;
 }
-
-.controlpanel table tr td {
-  overflow: hidden;
-  padding: 0;
-  text-align: center;
+.controlpanel table tr td{
+overflow:hidden;
+padding:0;
+text-align:center;
 }
-
-.controlpanel table.list tr td {
-  text-decoration: line-through;
+.controlpanel table.list tr td{
+text-decoration:line-through;
 }
-
-.controlpanel table.list tr.on td {
-  text-decoration: none;
+.controlpanel table.list tr.on td{
+text-decoration:none;
 }
-
-.controlpanel table tr.title td.select {
-  background-color: #f6f6f6;
+.controlpanel table tr.title td.select{
+background-color:#f6f6f6;
 }
-
-.controlpanel table tr.title td.status {
-  background-color: #f6f6f6;
+.controlpanel table tr.title td.status{
+background-color:#f6f6f6;
 }
-
-.controlpanel table td.desc {
-  padding-left: 12px;
+.controlpanel table td.desc{
+padding-left:12px;
 }
-
-.controlpanel table tr td.select {
-  width: 30px;
+.controlpanel table tr td.select{
+width:30px;
 }
-
-.controlpanel table tr td.select .checker-outer {
-  width: 20px;
-  height: 20px;
-  border: 2px solid #757575;
-  cursor: pointer;
-  -webkit-transition: all 0.3s ease;
+.controlpanel table tr td.select .checker-outer{
+width:20px;
+height:20px;
+border:2px solid #757575;
+cursor:pointer;
+-webkit-transition:all 0.3s ease;
+   -moz-transition:all 0.3s ease;
+     -o-transition:all 0.3s ease;
+        transition:all 0.3s ease;
 }
-
-.controlpanel table tr td.select .checker-inner {
-  width: 14px;
-  height: 14px;
-  margin: 1px auto;
-  -webkit-transition: all 0.3s ease;
+.controlpanel table tr td.select .checker-inner{
+width:14px;
+height:14px;
+margin:1px auto;
+-webkit-transition:all 0.3s ease;
+   -moz-transition:all 0.3s ease;
+     -o-transition:all 0.3s ease;
+        transition:all 0.3s ease;
 }
-
-.controlpanel table tr td.select .checker-outer.checked .checker-inner {
-  background-color: #444750;
+.controlpanel table tr td.select .checker-outer.checked .checker-inner{
+background-color:#444750;
 }
-
-.controlpanel table tr td.desc {
-  text-align: left;
+.controlpanel table tr td.desc{
+text-align:left;
 }
-
-.controlpanel table tr td.repeat {
-  width: 100px;
+.controlpanel table tr td.repeat{
+width:100px;
 }
-
-.controlpanel table tr td.time {
-  width: 120px;
+.controlpanel table tr td.time{
+width:120px;
 }
-
-.controlpanel table tr td.pre {
-  width: 120px;
+.controlpanel table tr td.pre{
+width:120px;
 }
-
-.controlpanel table tr td.status {
-  width: 45px;
-  text-align: right;
-  cursor: pointer;
+.controlpanel table tr td.status{
+width:45px;
+text-align:right;
+cursor:pointer;
 }
-
-.controlpanel table tr td.status .switcher-background {
-  margin-left: 9px;
-  width: 35px;
-  height: 20px;
-  border: 2px solid #6D6D6D;
-  overflow: hidden;
-  background-color: #B0B0B0;
-  -webkit-transition: all 0.5s ease;
+.controlpanel table tr td.status .switcher-background{
+margin-left:9px;
+width:35px;
+height:20px;
+border:2px solid #6D6D6D;
+overflow:hidden;
+background-color:#B0B0B0;
+-webkit-transition:all 0.5s ease;
+   -moz-transition:all 0.5s ease;
+     -o-transition:all 0.5s ease;
+        transition:all 0.5s ease;
 }
-
-.controlpanel table tr td.status .switcher-move {
-  width: 10px;
-  height: 20px;
-  background-color: #6D6D6D;
-  margin-left: 0px;
-  -webkit-transition: all 0.5s ease;
+.controlpanel table tr td.status .switcher-move{
+width:10px;
+height:20px;
+background-color:#6D6D6D;
+margin-left:0px;
+-webkit-transition:all 0.5s ease;
+   -moz-transition:all 0.5s ease;
+     -o-transition:all 0.5s ease;
+        transition:all 0.5s ease;
 }
-
 .controlpanel table tr td.status .switcher-background.on{
-  background-color: #f6f6f6;
+background-color:#f6f6f6;
 }
-
-.controlpanel table tr td.status .switcher-background.on .switcher-move {
-  margin-left: 21px;
+.controlpanel table tr td.status .switcher-background.on .switcher-move{
+margin-left:21px;
 }
-
-.controlpanel .toolbar {
-  width: 100%;
-  background-color: #696969;
-  color: #f6f6f6;
-  font-weight: bold;
-  font-size: 18px;
-  height: 3em;
-  overflow: hidden;
+.controlpanel .toolbar{
+width:100%;
+background-color:#696969;
+color:#f6f6f6;
+font-weight:bold;
+font-size:18px;
+height:3em;
+overflow:hidden;
 }
-
-.controlpanel .toolbar div {
-  cursor: pointer;
-  color: inherit;
-  font: inherit;
-  text-align: center;
-  height: 100%;
-  line-height: 3em;
-  display: inline-block;
-  overflow: hidden;
-  -webkit-transition: all 0.3s ease;
+.controlpanel .toolbar div{
+cursor:pointer;
+color:inherit;
+font:inherit;
+text-align:center;
+height:100%;
+line-height:3em;
+display:inline-block;
+overflow:hidden;
+-webkit-transition:all 0.3s ease;
+   -moz-transition:all 0.3s ease;
+     -o-transition:all 0.3s ease;
+        transition:all 0.3s ease;
 }
-
-.controlpanel .toolbar span {
-  font: inherit;
-  color: inherit;
+.controlpanel .toolbar span{
+font:inherit;
+color:inherit;
 }
-
-.controlpanel .toolbar .create {
-  width: 100%;
+.controlpanel .toolbar .create{
+width:100%;
 }
-
-.controlpanel .toolbar .delete {
-  width: 50%;
-  margin-left: -50%;
-  background-color: #AD3030;
+.controlpanel .toolbar .delete{
+width:50%;
+margin-left:-50%;
+background-color:#AD3030;
 }
-
-.controlpanel .toolbar.hasDeleteButton div {
-  width: 50%;
+.controlpanel .toolbar.hasDeleteButton div{
+width:50%;
 }
-
-.controlpanel .toolbar.hasDeleteButton .delete {
-  margin-left: 0;
+.controlpanel .toolbar.hasDeleteButton .delete{
+margin-left:0;
 }
-
-textarea {
-  -webkit-user-select: auto;
+textarea{
+-webkit-user-select:auto;
 }
-
 /* Responsive: Portrait tablets and up */
-@media screen and (min-width: 960px) {
-  
+@media screen and (min-width: 960px){
 }

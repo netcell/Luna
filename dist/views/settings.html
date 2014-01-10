@@ -10,23 +10,23 @@
 					</div>
 				</td>
 			</tr>
-			<tr ng-class="{on: status}">
+			<tr ng-class="{on: User.hasFacebook}">
 				<td class="desc">Nhắc nhở qua Facebook</td>
 				<td class="status">
-					<div class="switcher-background" ng-class="{on: status}" ng-click="switchStatus();">
+					<div class="switcher-background" ng-class="{on: User.hasFacebook}" ng-click="switchStatus();">
 						<div class="switcher-move"></div>
 					</div>
 				</td>
 			</tr>
-			<tr class="on">
+			<tr class="">
 				<td class="desc">Nhắc nhở qua Whatsapp</td>
 				<td class="status">
-					<div class="switcher-background on" ng-click="switchStatus();">
+					<div class="switcher-background" ng-click="switchStatus();">
 						<div class="switcher-move"></div>
 					</div>
 				</td>
 			</tr>
 		</tbody>
 	</table>
-	<div class="toolbar" ng-class="{hasDeleteButton: true}"><div class="delete" ng-click="logout()">Đăng xuất</div><div class="create" ng-click="updateEmail()">Đổi email</div></div>
+	<div class="toolbar hasDeleteButton"><a href="/logout"><div class="delete">Đăng xuất</div></a><a href="#/update-email"><div class="create">Đổi email</div></a></div>
 </div>
