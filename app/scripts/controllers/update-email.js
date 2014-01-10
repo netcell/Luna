@@ -2,7 +2,17 @@
 
 angular.module('lunaApp')
   .controller('UpdateEmailCtrl', function ($location,$http,$scope,Strings,User, Validate) {
-
+    $scope.main.createPopup('Đang xử lý');
+    User.signIn(function(exitCode){
+        if (exitCode) {
+            $scope.originalEmail = User.getEmail();
+            $scope.email = User.getEmail();
+            $scope.main.closePopup();
+        } else {
+            $location.path('/sign-in');
+            $scope.main.alert('Có lỗi trong quá trình đăng nhập. Xin hãy thử lại sau.');
+        }
+    })
     $scope.footer.buttons = [
         {
             name:'cập nhật',
@@ -23,25 +33,23 @@ angular.module('lunaApp')
     });
 
     $scope.submit = function(){
-    	if ($scope.email){
+    	$scope.email = $scope.email.replace(" ", "");
+        if ($scope.email != $scope.originalEmail 
+            && $scope.email && !/^\s*$/.test($scope.email)){
             if (Validate.validateEmail($scope.email)) {
                 $scope.main.createPopup('Đang xử lý');
                 $http.get('/account/update-email/'+$scope.email).then(function(res){
-                	if (res.data !== "1") {
-                        $scope.main.alert(Strings.CONNECTION_ERROR);
-                    } else {
-                        User.setEmail($scope.email);
-                        $scope.main.closePopup();
-                        $location.path("/confirmation/email");
-                    }
+                    User.setEmail($scope.email);
+                    $scope.main.closePopup();
+                    $location.path("/confirmation/email");
                 }, function(err){
-                    $scope.main.alert(Strings.CONNECTION_ERROR);
+                    $scope.main.alert('hệ thống đang bận, xin thử lại sau ít phút');
                 });
             } else {
                 $scope.main.alert('Bạn cần nhập đúng địa chỉ email.');    
             }
         } else {
-            $scope.main.alert('Bạn cần nhập địa chỉ email.');
+            $location.path("/event-list");
         }
     }
   });
