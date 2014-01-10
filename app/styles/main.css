@@ -659,6 +659,14 @@ a, a:hover, a:active {
   font-size: 18px;
 }
 
+.controlpanel div.title {
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 0.4em;
+}
+
 .controlpanel ul,.controlpanel li,.controlpanel div {
   font-size: inherit;
 }

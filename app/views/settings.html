@@ -1,0 +1,32 @@
+<div autoscroll class="controlpanel module-content" grid = 2>
+	<div class="title">Thiết lập tài khoản</div>
+	<table class="list">
+		<tbody>
+			<tr class="on">
+				<td class="desc">Nhắc nhở qua email</td>
+				<td class="status">
+					<div class="switcher-background on" ng-click="switchStatus();">
+						<div class="switcher-move"></div>
+					</div>
+				</td>
+			</tr>
+			<tr ng-class="{on: status}">
+				<td class="desc">Nhắc nhở qua Facebook</td>
+				<td class="status">
+					<div class="switcher-background" ng-class="{on: status}" ng-click="switchStatus();">
+						<div class="switcher-move"></div>
+					</div>
+				</td>
+			</tr>
+			<tr class="on">
+				<td class="desc">Nhắc nhở qua Whatsapp</td>
+				<td class="status">
+					<div class="switcher-background on" ng-click="switchStatus();">
+						<div class="switcher-move"></div>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<div class="toolbar" ng-class="{hasDeleteButton: true}"><div class="delete" ng-click="logout()" >Đăng xuất</div><div class="create" ng-click="updateEmail()">Đổi email</div></div>
+</div>

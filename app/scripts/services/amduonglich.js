@@ -819,6 +819,12 @@ angular.module('lunaApp')
       getCurrentLunarDate: function(){
         var now = new Date();
         return getLunarDateFromSolarDate(now.getDate(), now.getMonth()+1, now.getFullYear(), 7);
+      },
+      calculateCanChi: function(year){
+        var Can=["canh", "tân", "nhâm", "quý", "giáp", "ất", "bính", "đinh", "mậu", "kỷ"];
+        var Chi=["thân","dậu","tuất","hợi","tý","sửu","dần","mão","thìn","tỵ","ngọ","mùi"];
+        return Can[year%10]+ " " + Chi[year%12];
+          
       }
     };
   });

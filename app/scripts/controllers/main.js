@@ -21,6 +21,7 @@ angular.module('lunaApp')
 
 		$scope.time.current_date = date[0];
 		$scope.time.current_month = date[1];
+    $scope.time.current_year = amduonglich.calculateCanChi(date[2]);
 
     $scope.footer={};
     $scope.footer.buttons = [];
