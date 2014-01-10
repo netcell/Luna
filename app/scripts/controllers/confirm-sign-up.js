@@ -35,7 +35,7 @@ angular.module('lunaApp')
                 $http.get('/account/update-email/'+$scope.email).then(function(res){
                 	User.setEmail($scope.email);
                 	$scope.main.closePopup();
-                	$location.path("/event-list");
+                	$location.path("/confirmation/email");
                 }, function(err){
                     $scope.main.alert('hệ thống đang bận, xin thử lại sau ít phút');
                 });
