@@ -24,13 +24,14 @@ angular.module('lunaApp')
               status: row.status,
               switchStatus: function(){
                 console.log(this);
+                var oldStatus = this.status;
                 this.status = 1-this.status;
                 var that = this;
                 console.log("");
                 $http.get('/account/status-event/'+this.id+"/"+this.status)
                 .then(function(object){
                   if (object.data==="0") {
-                    this.status = 1-this.status;
+                    this.status = oldStatus;
                     $scope.main.alert(Strings.CONNECTION_ERROR);
                   } else {
                   }
