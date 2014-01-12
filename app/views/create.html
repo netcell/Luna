@@ -11,12 +11,27 @@
 		thời gian
 	</div>
 	<div class="input more-line-height">
+		<span class="label" id="create-date-label">
+			ngày
+		</span>
+		<select class="size-2" id="create-date" ng-model="selection.date" ng-options="date for date in options.dates"></select>
+		<span class="label" id="create-month-label">
+			tháng
+		</span>
+		<select class="size-5" id="create-month" ng-model="selection.month" ng-options="month.value for month in options.months"></select>
 		<span class="label">
 			hàng
 		</span>
 		<select class="size-3" ng-model="selection.repeat" ng-options="repeat.value for repeat in options.repeats"></select>
 	</div>
+	<div class="seperator"></div>
+	<div class="title">
+		thông báo
+	</div>
 	<div class="input more-line-height">
+		<span class="label">
+			vào
+		</span>
 		<select class="size-2" ng-model="selection.hour" ng-options="hour.value for hour in options.hours"></select>
 		<span class="label">
 			giờ
@@ -27,16 +42,7 @@
 		</span>
 		<select class="size-3" ng-model="selection.period" ng-options="period.value for period in options.periods"></select>
 	</div>
-	<div class="input more-line-height">
-		<span class="label" id="create-date-label">
-			ngày
-		</span>
-		<select class="size-2" id="create-date" ng-model="selection.date" ng-options="date for date in options.dates"></select>
-		<span class="label" id="create-month-label">
-			tháng
-		</span>
-		<select class="size-5" id="create-month" ng-model="selection.month" ng-options="month.value for month in options.months"></select>
-	</div>
+	
 	<div class="input more-line-height" ng-show="selection.repeat.index">
 		<span class="label">
 			báo trước
