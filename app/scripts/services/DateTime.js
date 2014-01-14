@@ -37,6 +37,10 @@ angular.module('lunaApp')
         return this.months[date-1];
       },
 
+      objectLunarHour: function(hour){
+        return this.hours[parseInt(hour)-1];
+      },
+
       getCurrentHour: function(asObject){
         var h = new Date().getHours() || 24;
         return this.hours[(h-1)%12];

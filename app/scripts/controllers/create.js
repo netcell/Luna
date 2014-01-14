@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('lunaApp')
-  .controller('CreateCtrl', function (Strings, $scope, $http, $location, Share, Validate, DateTime, User) {
+  .controller('CreateCtrl', function (createLP,Strings, $scope, $http, $location, Share, Validate, DateTime, User) {
     
     $scope.User = User.getInfo();
 
@@ -30,6 +30,7 @@ angular.module('lunaApp')
     $scope.options.repeats = DateTime.repeats;
 
     var data = Share.receive("event-to-edit");
+    var lpdata = {};
     
     //INIT
     $scope.selection.desc = data.message?data.message:"";
@@ -46,6 +47,35 @@ angular.module('lunaApp')
     if (data.pre) {
         data.pre = parseInt(data.pre)<10?"0"+data.pre:""+data.pre;
     }
+
+    $scope.$watch('selection.desc',function(newValue){
+        lpdata = createLP.read(newValue);
+        if (lpdata.hasOwnProperty('hour')) {
+            $scope.selection.hour = DateTime.objectLunarHour(lpdata.hour);
+            $scope.selection.minute = "00";
+        }
+        if (lpdata.hasOwnProperty('period'))
+            $scope.selection.period = $scope.options.periods[lpdata.period];
+
+        if (lpdata.hasOwnProperty('pre_kind'))
+            $scope.selection.pre_kind = $scope.options.pre_kind[lpdata.pre_kind];
+        if (lpdata.hasOwnProperty('pre'))
+            $scope.selection.pre = lpdata.pre;
+
+        if (lpdata.hasOwnProperty('minute'))
+            $scope.selection.minute = lpdata.minute;
+
+        if (lpdata.hasOwnProperty('repeat'))
+            $scope.selection.repeat = $scope.options.repeats[parseInt(lpdata.repeat)];
+        if (lpdata.hasOwnProperty('date')) {
+            $scope.selection.date = DateTime.objectLunarDate(parseInt(lpdata.date));
+            $scope.selection.repeat = $scope.options.repeats[1];
+        }
+        if (lpdata.hasOwnProperty('month')) {
+            $scope.selection.month = DateTime.objectLunarMonth(parseInt(lpdata.month));
+            $scope.selection.repeat = $scope.options.repeats[2];
+        }
+    })
 
     $scope.selection.hour = h?h:DateTime.getCurrentHour(true);
     $scope.options.periods = DateTime.periods[$scope.selection.hour.periods];
