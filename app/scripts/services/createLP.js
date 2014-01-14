@@ -51,7 +51,7 @@ angular.module('lunaApp')
             'ngay' : 1
         };
         data.pre = a.extract('pre');
-        if (parseInt(data.pre)<10) data.pre += "0"+data.pre
+        if (parseInt(data.pre)<10) data.pre = "0"+data.pre
         data.pre_kind = map[input];
     });
 
