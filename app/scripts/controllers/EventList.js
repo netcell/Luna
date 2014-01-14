@@ -9,6 +9,7 @@ angular.module('lunaApp')
           $scope.events = [];
           for (var i = list.length - 1; i >= 0; i--) {
             var row = list[i];
+            if (row.date == "100") row.date = "30";
             row.minute = parseInt(row.minute)<10?"0"+row.minute:""+row.minute;
             var desc = 'Không có nội dung';
             if (row.message) desc = row.message.length>25?row.message.substr(0,23)+"...":row.message;
@@ -18,24 +19,24 @@ angular.module('lunaApp')
               checked: false,
               desc: desc,
               repeat: ['Ngày','Tháng','Năm'][row.repeatType],
-              time: row.hour+':'+row.minute,
+              time: (row.hour=="24"?"00":(row.hour<10?"0"+row.hour:row.hour))+':'+row.minute,
               pre: row.pre?row.pre+" "+['tiếng', 'ngày'][row.pre_kind]:'Không',
               status: row.status,
               switchStatus: function(){
                 console.log(this);
-                var newStatus = 1-this.status;
+                var oldStatus = this.status;
+                this.status = 1-this.status;
                 var that = this;
                 console.log("");
-                $scope.main.createPopup('Đang xử lý');
-                $http.get('/account/status-event/'+this.id+"/"+newStatus)
+                $http.get('/account/status-event/'+this.id+"/"+this.status)
                 .then(function(object){
                   if (object.data==="0") {
+                    this.status = oldStatus;
                     $scope.main.alert(Strings.CONNECTION_ERROR);
                   } else {
-                    that.status=newStatus;
-                    $scope.main.closePopup();
                   }
                 },function(){
+                  this.status = 1-this.status;
                   $scope.main.alert(Strings.CONNECTION_ERROR);
                 });
               },

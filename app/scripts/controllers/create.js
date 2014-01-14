@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('lunaApp')
-  .controller('CreateCtrl', function (Strings, $scope, $http, $location, Share, Validate, DateTime, User) {
+  .controller('CreateCtrl', function (createLP,Strings, $scope, $http, $location, Share, Validate, DateTime, User) {
     
     $scope.User = User.getInfo();
 
@@ -30,6 +30,7 @@ angular.module('lunaApp')
     $scope.options.repeats = DateTime.repeats;
 
     var data = Share.receive("event-to-edit");
+    var lpdata = {};
     
     //INIT
     $scope.selection.desc = data.message?data.message:"";
@@ -47,6 +48,35 @@ angular.module('lunaApp')
         data.pre = parseInt(data.pre)<10?"0"+data.pre:""+data.pre;
     }
 
+    $scope.$watch('selection.desc',function(newValue){
+        lpdata = createLP.read(newValue);
+        if (lpdata.hasOwnProperty('hour')) {
+            $scope.selection.hour = DateTime.objectLunarHour(lpdata.hour);
+            $scope.selection.minute = "00";
+        }
+        if (lpdata.hasOwnProperty('period'))
+            $scope.selection.period = $scope.options.periods[lpdata.period];
+
+        if (lpdata.hasOwnProperty('pre_kind'))
+            $scope.selection.pre_kind = $scope.options.pre_kind[lpdata.pre_kind];
+        if (lpdata.hasOwnProperty('pre'))
+            $scope.selection.pre = lpdata.pre;
+
+        if (lpdata.hasOwnProperty('minute'))
+            $scope.selection.minute = lpdata.minute;
+
+        if (lpdata.hasOwnProperty('repeat'))
+            $scope.selection.repeat = $scope.options.repeats[parseInt(lpdata.repeat)];
+        if (lpdata.hasOwnProperty('date')) {
+            $scope.selection.date = DateTime.objectLunarDate(parseInt(lpdata.date));
+            $scope.selection.repeat = $scope.options.repeats[1];
+        }
+        if (lpdata.hasOwnProperty('month')) {
+            $scope.selection.month = DateTime.objectLunarMonth(parseInt(lpdata.month));
+            $scope.selection.repeat = $scope.options.repeats[2];
+        }
+    })
+
     $scope.selection.hour = h?h:DateTime.getCurrentHour(true);
     $scope.options.periods = DateTime.periods[$scope.selection.hour.periods];
     $scope.selection.period = p?p:DateTime.getCurrentPeriod(true);
@@ -58,7 +88,7 @@ angular.module('lunaApp')
 
     $scope.selection.date = data.date?DateTime.objectLunarDate(parseInt(data.date)):DateTime.getCurrentLunarDate(true);
     $scope.selection.month = data.month?DateTime.objectLunarMonth(parseInt(data.month)):DateTime.getCurrentLunarMonth(true);
-    $scope.selection.repeat = $scope.options.repeats[data.repeatType?parseInt(data.repeatType):0];
+    $scope.selection.repeat = $scope.options.repeats[data.repeatType?parseInt(data.repeatType):1];
     $scope.selection.email = User.getEmail();
     
     var init = 4;
@@ -111,41 +141,6 @@ angular.module('lunaApp')
         data.switchStatus();
     }
 
-    $scope.footer.buttons = [
-        {
-            name:$scope.submitText,
-            action: $scope.submit
-        }
-    ];
-
-    if (data) {
-        $scope.footer.buttons.push(
-            {
-                name:$scope.deleteText,
-                action: $scope.delete
-            }
-        );
-        $scope.footer.buttons.push(
-            {
-                name:$scope.activeText,
-                action: $scope.switchStatus
-            }
-        );     
-    }
-
-    $scope.footer.buttons.push(
-        {
-            name:'quay lại',
-            action: function(){
-                $scope.main.back();
-            }
-        }
-    );
-
-    $scope.$on('$destroy', function(){
-        $scope.footer.buttons = [];
-    });
-
     $scope.submit = function(){
         var form = {
             udid:   Date.now()+"-"+(((1+Math.random())*0x10000)|0).toString(16),
@@ -192,7 +187,7 @@ angular.module('lunaApp')
                     $scope.main.alert(Strings.CONNECTION_ERROR);
                 });
             }
-            if (!form.desc || /^\s*$/.test(form.desc)) {
+            if (!data && (!form.desc || /^\s*$/.test(form.desc))) {
                 form.desc = "";
                 $scope.main.pauseup([
                     "Bạn chưa điền nội dung nhắc nhở.",
@@ -213,5 +208,47 @@ angular.module('lunaApp')
         }
         
     }
+
+    $scope.footer.buttons = [
+        {
+            name:$scope.submitText,
+            action: $scope.submit
+        }
+    ];
+
+    if (data) {
+        $scope.footer.buttons.push(
+            {
+                name:$scope.deleteText,
+                action: $scope.delete
+            }
+        );
+        $scope.footer.buttons.push(
+            {
+                name:$scope.activeText,
+                action: $scope.switchStatus
+            }
+        );
+        $scope.$watch('data.status', function(){
+            $scope.activeText = data.status?"tắt nhắc nhở":"bật nhắc nhở";
+            $scope.footer.buttons[2] = {
+                name:$scope.activeText,
+                action: $scope.switchStatus
+            };
+        })
+    }
+
+    $scope.footer.buttons.push(
+        {
+            name:'quay lại',
+            action: function(){
+                $scope.main.back();
+            }
+        }
+    );
+
+    $scope.$on('$destroy', function(){
+        $scope.footer.buttons = [];
+    });
     
   });

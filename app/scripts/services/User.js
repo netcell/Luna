@@ -7,6 +7,7 @@ angular.module('lunaApp')
       $sessionStorage.User.signedIn = false;
       $sessionStorage.User.name = "";
       $sessionStorage.User.email = "";
+      $sessionStorage.User.hasFacebook = 0;
     }
 
     function signIn(callback,silent){
@@ -23,6 +24,7 @@ angular.module('lunaApp')
           $sessionStorage.User.signedIn = true;
           $sessionStorage.User.name = data.name;
           $sessionStorage.User.email = data.email;
+          $sessionStorage.User.hasFacebook = data.hasFacebook;
           callback(1);
         }
       }, function(err){
@@ -33,9 +35,7 @@ angular.module('lunaApp')
     };
 
     function signOut(){
-      $sessionStorage.User.signedIn = false;
-      $sessionStorage.User.name = "";
-      $sessionStorage.User.email = "";
+      clearUser();
       $http.get('/logout')
       .then(function(){
         return 1;
