@@ -960,6 +960,6 @@ textarea {
   }
 
   .mobile-only {
-    display: block;
+    display: block!important;
   }
 }
