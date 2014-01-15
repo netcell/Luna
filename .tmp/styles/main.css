@@ -570,8 +570,8 @@ a:active {
 
 .cover.ng-enter,
 .cover.ng-leave {
-  -webkit-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
 }
 
 .cover.ng-enter,
@@ -923,7 +923,12 @@ textarea {
     bottom: auto;
   }
 
-
+  #canvas {
+    max-width: 527px;
+    max-height: 527px;
+    width: 100%;
+    margin: auto;
+  }
 
   .module-content-view.ng-enter,
   .module-content-view.ng-leave {
