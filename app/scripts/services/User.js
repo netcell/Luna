@@ -18,8 +18,10 @@ angular.module('lunaApp')
         if (data==="0") {
           console.log(data);
           clearUser();
-          if (!silent) $location.path('/sign-in');
-          $scope.main.alert(Strings.CONNECTION_ERROR);
+          if (!silent) {
+            $scope.main.closePopup();
+            $location.path('/sign-in');
+          }
           callback(0);
         } else {
           $sessionStorage.User.signedIn = true;
@@ -30,8 +32,10 @@ angular.module('lunaApp')
         }
       }, function(err){
         clearUser();
-        if (!silent) $location.path('/sign-in');
-        $scope.main.alert(Strings.CONNECTION_ERROR);
+        if (!silent) {
+          $scope.main.closePopup();
+          $location.path('/sign-in');
+        }
         callback(0);
       });
     };
