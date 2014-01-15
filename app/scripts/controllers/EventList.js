@@ -2,7 +2,7 @@
 
 angular.module('lunaApp')
   .controller('EventlistCtrl', function ($http,$scope,User,$location,Share, Events, Strings) {
-    $scope.main.createPopup('Đang xử lý', function(){
+    $scope.main.createWaiter('Đang xử lý', function(){
       User.signIn(function(){
         Events.getEventList(function(exitCode,list){
           if (exitCode) {
