@@ -70,7 +70,7 @@ angular.module('lunaApp')
 
     a.state(6)
     .extract('pmonth')
-    .on(['thang']).transitionTo(8);
+    .on(['thang','nam']).transitionTo(8);
 
     a.state(7)
     .outcome(function(){
@@ -79,8 +79,17 @@ angular.module('lunaApp')
     .on(['thang','/','.','-']).transitionTo(16);
 
     a.state(8)
-    .outcome(function(){
-        data.date = 30;
+    .outcome(function(input){
+        switch(a.extract('pmonth')){
+            case 'dau': 
+                data.date = 1; 
+                if (input==="nam") data.month=1;
+                break;
+            case 'cuoi': 
+                data.date = 30;
+                if (input==="nam") data.month=12;
+                break;
+        }
     })
     .onRecognize('month').transitionTo(17)
     .on(['mot','hai','ba','bon','nam','sau','bay','tam','chin','muoi','chap'])
