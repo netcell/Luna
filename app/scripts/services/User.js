@@ -19,6 +19,7 @@ angular.module('lunaApp')
           console.log(data);
           clearUser();
           if (!silent) $location.path('/sign-in');
+          $scope.main.alert(Strings.CONNECTION_ERROR);
           callback(0);
         } else {
           $sessionStorage.User.signedIn = true;
@@ -30,6 +31,7 @@ angular.module('lunaApp')
       }, function(err){
         clearUser();
         if (!silent) $location.path('/sign-in');
+        $scope.main.alert(Strings.CONNECTION_ERROR);
         callback(0);
       });
     };
