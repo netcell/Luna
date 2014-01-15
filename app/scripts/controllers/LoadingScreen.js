@@ -1,4 +1,4 @@
-'use strict';
+//'use strict';
 
 angular.module('lunaApp')
   .controller('LoadingscreenCtrl', function ($scope, $window, $q, $timeout, $http) {

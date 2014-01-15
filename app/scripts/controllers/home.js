@@ -1,4 +1,4 @@
-'use strict';
+//'use strict';
 
 angular.module('lunaApp')
   .controller('HomeCtrl', function ($scope,$location,User) {

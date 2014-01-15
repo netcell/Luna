@@ -1,4 +1,4 @@
-'use strict';
+//'use strict';
 
 angular.module('lunaApp')
   .factory('User', function ($location,$sessionStorage,$http) {

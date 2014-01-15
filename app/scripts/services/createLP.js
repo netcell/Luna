@@ -1,4 +1,4 @@
-'use strict';
+//'use strict';
 
 angular.module('lunaApp')
   .factory('createLP', function (Automata) {

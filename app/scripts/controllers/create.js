@@ -1,4 +1,4 @@
-'use strict';
+//'use strict';
 
 angular.module('lunaApp')
   .controller('CreateCtrl', function (createLP,Strings, $scope, $http, $location, Share, Validate, DateTime, User) {

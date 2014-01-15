@@ -1,4 +1,4 @@
-'use strict';
+//'use strict';
 
 angular.module('lunaApp')
   .controller('HasCtrl', function ($scope,$timeout,$location,$routeParams) {

@@ -1,4 +1,4 @@
-'use strict';
+//'use strict';
 
 angular.module('lunaApp')
   .controller('MainCtrl', function ($location, $scope, User, amduonglich, $window, DateTime, $timeout) {

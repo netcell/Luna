@@ -1,4 +1,4 @@
-'use strict';
+//'use strict';
 
 angular.module('lunaApp')
   .directive('quickCreateHome', function ($window, $location) {

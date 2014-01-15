@@ -1,4 +1,4 @@
-//'use strict';
+////'use strict';
 
 angular.module('lunaApp')
   .controller('EventlistCtrl', function ($http,$scope,User,$location,Share, Events, Strings) {

@@ -1,4 +1,4 @@
-'use strict';
+//'use strict';
 
 angular.module('lunaApp')
   .controller('DeleteCtrl', function ($scope,$http,$location,Validate,User) {
