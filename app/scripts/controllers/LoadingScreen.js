@@ -11,24 +11,5 @@ angular.module('lunaApp')
         $http.get('views/under-construction.html'),
         $http.get('views/has.html')
     ];
-    // var loaded = 0;
-    // for (var i = loader.length - 1; i >= 0; i--) {
-    //     loader[i].then(function(){
-    //         loaded++;
-    //         $('.loader').animate({
-    //             width: (loaded/loader.length)*100 + "%"
-    //         },50);
-    //     });
-    // };
-    // $q.all(loader).then(function() {
-    //     $('.loader').stop();
-    //     $('.loader').animate({
-    //             width: (loaded/loader.length)*100 + "%"
-    //         },{
-    //             duration:500,
-    //             complete: function(){
-                    $('.loading-screen').fadeOut(500);
-    //             }
-    //         });
-    // });
+    $('.loading-screen').fadeOut(500);
   });

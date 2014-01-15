@@ -13,22 +13,6 @@
 	</table>
 	<table class="list">
 		<tbody>
-			<tr ng-class="on">
-				<td class="select">
-					<div class="checker-outer" ng-class="checked" ng-click="event.checked=!event.checked;">
-						<div class="checker-inner"></div>
-					</div>
-				</td>
-				<td class="desc">fdafdasfdsafdafdasfdasfdasfdafdasfdsa</td>
-				<td class="time">12:57</td>
-				<td class="repeat">Share</td>
-				<td class="pre">24 giờ</td>
-				<td class="status">
-					<div class="switcher-background" ng-class="on">
-						<div class="switcher-move"></div>
-					</div>
-				</td>
-			</tr>
 			<tr ng-repeat="event in events track by $index" ng-class="{on: event.status}">
 				<td class="select">
 					<div class="checker-outer" ng-class="{checked: event.checked}" ng-click="event.checked=!event.checked; countChecker();">
