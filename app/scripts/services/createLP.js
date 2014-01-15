@@ -37,17 +37,18 @@ angular.module('lunaApp')
 
     a.state(11)
     .extract('pre')
-    .on(['ngay','tieng','gio']).transitionTo(13);
+    .on(['ngay','tieng','gio','h']).transitionTo(13);
 
     a.state(12)
     .extract('pre')
-    .on(['tieng','gio']).transitionTo(13);
+    .on(['tieng','gio','h']).transitionTo(13);
 
     a.state(13)
     .outcome(function(input){
         var map = {
             'tieng' : 0,
             'gio' : 0,
+            'h' : 0,
             'ngay' : 1
         };
         data.pre = a.extract('pre');
