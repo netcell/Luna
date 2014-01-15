@@ -15,10 +15,11 @@
     <meta property="og:url" content="http://amduonglich.com">
     <meta property="og:image" content="http://amduonglich.com/images/Screenshot.png">
     <meta property="fb:app_id" content="1384328445159118">
+    <meta name="viewport" content="width=583px, user-scalable=no, minimal-ui">
     <link rel="icon" type="image/png" href="apple-touch-icon.png">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-        <link rel="stylesheet" href="styles/019e9da2.main.css"/>
+        <link rel="stylesheet" href="styles/3fe9a109.main.css"/>
 </head>
   <body ng-app="lunaApp">
     <!--[if lt IE 7]>
@@ -50,7 +51,7 @@
         <div class="app-name abs-center no-user-select pointer"><a href="/#">âm dương lịch</a><div class="fun-fact"><div class="quote">&ldquo;</div><div class="content">Đặt nhắc nhở theo lịch truyền thống của Việt Nam qua email và facebook</div><div class="quote">&rdquo;</div></div></div>
         
         <div class="app abs-center no-user-select" ng-init="grid.value=1" app-directive="">
-          <div class="time" ng-click="main.showCalendar=!main.showCalendar">
+          <div class="time no-mobile-display" ng-click="main.showCalendar=!main.showCalendar">
             <div class="info">
               <div class="day" ng-bind="time.current_day"></div>
               <div class="date-month">
@@ -79,6 +80,10 @@
       <div class="cover" ng-click="main.showCalendar=false" ng-if="main.showCalendar"></div>
       <canvas id="canvas" ng-show="main.showCalendar"></canvas>
       <div class="footer calendarbutton">
+        <div class="mobile-only" style="position:absolute; top:0;left:0">
+              <div class="fb-like" data-href="https://www.facebook.com/amduonglich" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false" style="position: absolute;left: 0;top: 1em; overflow: hidden"></div>
+              <div class="fb-share-button" data-href="http://amduonglich.com" data-type="button_count" style="position: absolute;left: 89px;top: 0.35em; width:auto!important; height:40px!important; overflow: hidden"></div>
+        </div>
         <span class="link" ng-click="main.showCalendar=!main.showCalendar">
           lịch
         </span>
@@ -115,13 +120,13 @@
   </script>
 
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-    <script src="scripts/69e417c1.preloading.js"></script>
+    <script src="scripts/18e1f6e0.preloading.js"></script>
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular.min.js"></script>
 
-        <script src="scripts/49456828.modules.js"></script>
+        <script src="scripts/806d0a5a.modules.js"></script>
 
 
-        <script src="scripts/ec89995e.scripts.js"></script>
+        <script src="scripts/0b9a109c.scripts.js"></script>
 
         <!-- <script src="scripts/animations/content-module.js"></script> -->
 </body>

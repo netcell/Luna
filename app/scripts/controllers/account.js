@@ -11,7 +11,7 @@ angular.module('lunaApp')
             $location.path('/sign-in');
             $scope.main.alert('Có lỗi trong quá trình đăng nhập. Xin hãy thử lại sau.');
         }
-    })
+    });
     $scope.footer.buttons = [
     	{
     		name:'danh sách nhắc nhở',
