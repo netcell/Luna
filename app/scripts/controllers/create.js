@@ -50,6 +50,7 @@ angular.module('lunaApp')
 
     $scope.$watch('selection.desc',function(newValue){
         lpdata = createLP.read(newValue);
+        console.log(lpdata)
         if (lpdata.hasOwnProperty('hour')) {
             $scope.selection.hour = DateTime.objectLunarHour(lpdata.hour);
             $scope.selection.minute = "00";
@@ -57,10 +58,10 @@ angular.module('lunaApp')
         if (lpdata.hasOwnProperty('period'))
             $scope.selection.period = $scope.options.periods[lpdata.period];
 
-        if (lpdata.hasOwnProperty('pre_kind'))
-            $scope.selection.pre_kind = $scope.options.pre_kind[lpdata.pre_kind];
         if (lpdata.hasOwnProperty('pre'))
             $scope.selection.pre = lpdata.pre;
+        if (lpdata.hasOwnProperty('pre_kind'))
+            $scope.selection.pre_kind = $scope.options.pre_kind[lpdata.pre_kind];
 
         if (lpdata.hasOwnProperty('minute'))
             $scope.selection.minute = lpdata.minute;
@@ -98,7 +99,9 @@ angular.module('lunaApp')
             init--;
         } else {
             $scope.options.pre = pre[newValue.index];
-            $scope.selection.pre = '00';
+            if (newValue.index===1 && parseInt($scope.selection.pre)>5) {
+                $scope.selection.pre = '00';
+            }
         }
     });
 
