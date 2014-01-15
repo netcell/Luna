@@ -9,7 +9,9 @@ angular.module('lunaApp')
           $scope.events = [];
           for (var i = list.length - 1; i >= 0; i--) {
             var row = list[i];
-            if (row.date == "100") row.date = "30";
+            if (row.date == "100") {
+              row.date = "30";
+            }
             row.minute = parseInt(row.minute)<10?"0"+row.minute:""+row.minute;
             var desc = 'Không có nội dung';
             if (row.message) desc = row.message.length>25?row.message.substr(0,23)+"...":row.message;
