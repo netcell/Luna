@@ -79,7 +79,7 @@ angular.module('lunaApp')
           $scope.main.alert(Strings.CONNECTION_ERROR);
         }
       });
-    });
+    },true);
 
   	$scope.deleteList = [];
     var deleteIndexList = [];

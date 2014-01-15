@@ -15,6 +15,7 @@
     <meta property="og:url" content="http://amduonglich.com" />
     <meta property="og:image" content="http://amduonglich.com/images/Screenshot.png" />
     <meta property="fb:app_id" content="1384328445159118" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimal-ui" />
     <link rel="icon" 
         type="image/png" 
         href="apple-touch-icon.png" />
@@ -54,7 +55,7 @@
         <div class="app-name abs-center no-user-select pointer"><a href="/#">âm dương lịch</a><div class="fun-fact"><div class="quote">&ldquo;</div><div class="content">Đặt nhắc nhở theo lịch truyền thống của Việt Nam qua email và facebook</div><div class="quote">&rdquo;</div></div></div>
         
         <div class="app abs-center no-user-select" ng-init="grid.value=1" app-directive>
-          <div class="time" ng-click="main.showCalendar=!main.showCalendar">
+          <div class="time no-mobile-display" ng-click="main.showCalendar=!main.showCalendar">
             <div class="info">
               <div class="day" ng-bind='time.current_day'></div>
               <div class="date-month">
@@ -125,6 +126,7 @@
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular.min.js"></script>
 
         <!-- build:js scripts/modules.js -->
+        <script type="text/javascript" src="/bower_components/fastclick/lib/fastclick.js"></script>
         <script src="bower_components/angular-cookies/angular-cookies.js"></script>
         <script src="bower_components/angular-route/angular-route.js"></script>
         <script src="bower_components/angular-animate/angular-animate.js"></script>

@@ -151,13 +151,12 @@ a:active {
 }
 
 .abs-center {
-  width: 960px;
+  width: 100%;
   margin: 0 auto;
 }
 
 .container {
   width: 100%;
-  min-width: 960px;
   position: relative;
   min-height: 100%;
   overflow: hidden;
@@ -728,6 +727,9 @@ a:active {
 }
 
 .controlpanel table {
+  table-layout: fixed;
+  overflow: hidden;
+  white-space: nowrap;
   padding: 0;
   width: 100%;
   border-collapse: collapse;
@@ -908,8 +910,51 @@ textarea {
   -webkit-user-select: auto;
 }
 
-/* Responsive: Portrait tablets and up */
+.mobile-only {
+  display: none;
+}
 
-@media screen and (min-width: 960px) {
+@media screen and (max-width: 959px) {
+  .footer.calendarbutton {
+    height: 50px;
+    width: 100%;
+    padding: 1px 20px;
+    top: 0;
+    bottom: auto;
+  }
 
+
+
+  .module-content-view.ng-enter,
+  .module-content-view.ng-leave {
+    -webkit-transition: none;
+    transition: none;
+  }
+
+  .module {
+    margin: auto;
+    width: 100%!important;
+  }
+
+  .container {
+    padding-top: 30px;
+    min-width: 583px;
+  }
+
+  .greeting {
+    width: 60%;
+    margin-left: 20%;
+  }
+
+  .greeting.center {
+    text-align: center;
+  }
+
+  .no-mobile-display {
+    display: none;
+  }
+
+  .mobile-only {
+    display: block;
+  }
 }
