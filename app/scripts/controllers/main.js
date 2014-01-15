@@ -31,7 +31,7 @@ angular.module('lunaApp')
     $scope.main={};
 
     var popupOn = function(){
-      $scope.hasPopup = false;
+      //$scope.hasPopup = false;
       //$timeout(function(){
         $scope.hasPopup = true;
       //}, 100);

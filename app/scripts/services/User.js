@@ -19,7 +19,6 @@ angular.module('lunaApp')
           console.log(data);
           clearUser();
           if (!silent) {
-            $scope.main.closePopup();
             $location.path('/sign-in');
           }
           callback(0);
@@ -33,7 +32,6 @@ angular.module('lunaApp')
       }, function(err){
         clearUser();
         if (!silent) {
-          $scope.main.closePopup();
           $location.path('/sign-in');
         }
         callback(0);
