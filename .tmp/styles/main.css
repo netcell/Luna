@@ -911,7 +911,7 @@ textarea {
 }
 
 .mobile-only {
-  display: none;
+  display: none!important;
 }
 
 @media screen and (max-width: 959px) {
@@ -956,7 +956,7 @@ textarea {
   }
 
   .no-mobile-display {
-    display: none;
+    display: none!important;
   }
 
   .mobile-only {
