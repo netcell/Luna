@@ -76,6 +76,7 @@ angular.module('lunaApp')
           }, 500);
           $scope.main.closePopup();
         } else {
+          console.log('');
           $scope.main.alert(Strings.CONNECTION_ERROR);
         }
       });
