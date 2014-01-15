@@ -8,10 +8,10 @@ angular.module('lunaApp')
             $scope.User = User.getInfo();
             $scope.main.closePopup();
         } else {
-            //$location.path('/sign-in');
+            $location.path('/sign-in');
             $scope.main.alert('Có lỗi trong quá trình đăng nhập. Xin hãy thử lại sau.');
         }
-    },true);
+    });
     $scope.footer.buttons = [
     	{
     		name:'danh sách nhắc nhở',
