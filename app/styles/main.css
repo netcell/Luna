@@ -772,6 +772,8 @@ textarea{
 
 @media screen and (max-width: 959px){
 
+
+
 .footer.calendarbutton {
 height: 50px;
 width: 100%;
@@ -787,11 +789,11 @@ bottom: auto;
   margin: auto;
 }
 
-.module-content-view.ng-enter, .module-content-view.ng-leave{
--webkit-transition: none;
-   -moz-transition: none;
-     -o-transition: none;
-        transition: none;
+.module-content-view, .popup, .cover{
+-webkit-transition: none!important;
+   -moz-transition: none!important;
+     -o-transition: none!important;
+        transition: none!important;
 }
 
 .module {

@@ -930,10 +930,11 @@ textarea {
     margin: auto;
   }
 
-  .module-content-view.ng-enter,
-  .module-content-view.ng-leave {
-    -webkit-transition: none;
-    transition: none;
+  .module-content-view,
+  .popup,
+  .cover {
+    -webkit-transition: none!important;
+    transition: none!important;
   }
 
   .module {
