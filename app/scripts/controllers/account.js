@@ -8,11 +8,10 @@ angular.module('lunaApp')
             $scope.User = User.getInfo();
             $scope.main.closePopup();
         } else {
-            //$location.path('/sign-in');
-            $scope.User = User.getInfo();
+            $location.path('/sign-in');
             $scope.main.alert('Có lỗi trong quá trình đăng nhập. Xin hãy thử lại sau.');
         }
-    },true);
+    });
     $scope.footer.buttons = [
     	{
     		name:'danh sách nhắc nhở',
@@ -36,7 +35,6 @@ angular.module('lunaApp')
         console.log('/account/setting/1/'+$scope.User.emailIsOn);
         $http.get('/account/setting/1/'+$scope.User.emailIsOn)
         .then(function(object){
-            console.log(data);
             if (object.data==="0") {
                 $scope.User.emailIsOn = oldStatus;
                 $scope.main.alert(Strings.CONNECTION_ERROR);
