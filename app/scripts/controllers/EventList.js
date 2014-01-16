@@ -23,7 +23,7 @@ angular.module('lunaApp')
               pre: row.pre?row.pre+" "+['tiếng', 'ngày'][row.pre_kind]:'Không',
               status: row.status,
               switchStatus: function(){
-                console.log(this);
+                console.log("");
                 var oldStatus = this.status;
                 this.status = 1-this.status;
                 var that = this;

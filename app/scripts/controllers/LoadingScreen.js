@@ -12,6 +12,7 @@ angular.module('lunaApp')
         $http.get('views/has.html')
     ];
     $('.loading-screen').fadeOut(500);
+    
     $( document ).on(
     "click",
     "a",

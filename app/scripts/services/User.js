@@ -7,7 +7,8 @@ angular.module('lunaApp')
       $sessionStorage.User.signedIn = false;
       $sessionStorage.User.name = "";
       $sessionStorage.User.email = "";
-      $sessionStorage.User.hasFacebook = 0;
+      $sessionStorage.User.emailIsOn = 0;
+      $sessionStorage.User.facebookNotOn = 2;
     }
 
     function signIn(callback,silent){
@@ -26,7 +27,8 @@ angular.module('lunaApp')
           $sessionStorage.User.signedIn = true;
           $sessionStorage.User.name = data.name;
           $sessionStorage.User.email = data.email;
-          $sessionStorage.User.hasFacebook = data.hasFacebook;
+          $sessionStorage.User.emailIsOn = data.enableEmail;
+          $sessionStorage.User.facebookNotOn = data.hasFacebook;
           callback(1);
         }
       }, function(err){
