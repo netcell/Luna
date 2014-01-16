@@ -1,7 +1,7 @@
 //'use strict';
 
 angular.module('lunaApp')
-  .controller('AccountCtrl', function ($http,$scope,$location,User) {
+  .controller('AccountCtrl', function (Strings,$http,$scope,$location,User) {
     $scope.main.createPopup('Đang xử lý');
     User.signIn(function(exitCode){
         if (exitCode) {
@@ -37,6 +37,7 @@ angular.module('lunaApp')
         console.log("");
         $http.get('/account/setting/1/'+$scope.User.emailIsOn)
         .then(function(object){
+            console.log(data);
             if (object.data==="0") {
                 $scope.User.emailIsOn = oldStatus;
                 $scope.main.alert(Strings.CONNECTION_ERROR);
