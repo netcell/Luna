@@ -28,6 +28,7 @@ angular.module('lunaApp')
     .on(['ngay','mung']).transitionTo(18)
     .onRecognize(numberRecog(24)).transitionTo(1)
     .onRecognize(numberRecog(30,25)).transitionTo(15)
+    .on(['thang']).transitionTo(16)
     .on('hang').transitionTo(9)
     .on('truoc').transitionTo(10);
 
