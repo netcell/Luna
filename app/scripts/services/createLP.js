@@ -67,6 +67,11 @@ angular.module('lunaApp')
             'nam'  : 2
         };
         data.repeat = map[input];
+        if (input==='ngay') {
+            data.hour = a.extract('hour');
+        } else if (input==='thang') {
+            data.date = a.extract('date');
+        }
     });
 
     a.state(6)
@@ -101,10 +106,12 @@ angular.module('lunaApp')
     .extract('date')
     .on(['gio','h',':']).transitionTo(2)
     .on(['chieu','dem','toi','pm']).transitionTo(4)
+    .on('hang').transitionTo(9)
     .on(['thang','/','.','-']).transitionTo(16);
 
     a.state(15)
     .extract('date')
+    .on('hang').transitionTo(9)
     .on(['thang','/','.','-']).transitionTo(16);
 
     function extractHour(){

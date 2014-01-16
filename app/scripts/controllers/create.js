@@ -1,17 +1,19 @@
 //'use strict';
 
 angular.module('lunaApp')
-  .controller('CreateCtrl', function (createLP,Strings, $scope, $http, $location, Share, Validate, DateTime, User) {
+  .controller('CreateCtrl', function (createLP,Strings,$timeout, $scope, $http, $location, Share, Validate, DateTime, User) {
     
     $scope.User = User.getInfo();
 
     //Selected values
     $scope.selection = {};
+    var SELECTION = $scope.selection;
     //List of Options
     $scope.options = {};
+    var OPTIONS = $scope.options;
 
-    $scope.options.hours = DateTime.hours;
-    $scope.options.pre_kind = [
+    OPTIONS.hours = DateTime.hours;
+    OPTIONS.pre_kind = [
         { value: 'tiếng' , index: 0 },
         { value: 'ngày', index: 1 }
     ];
@@ -24,16 +26,16 @@ angular.module('lunaApp')
         ],
         [ '00', '01', '02', '03', '04', '05' ]
     ];
-    $scope.options.minutes = DateTime.minutes;
-    $scope.options.dates = DateTime.dates;
-    $scope.options.months = DateTime.months;
-    $scope.options.repeats = DateTime.repeats;
+    OPTIONS.minutes = DateTime.minutes;
+    OPTIONS.dates = DateTime.dates;
+    OPTIONS.months = DateTime.months;
+    OPTIONS.repeats = DateTime.repeats;
 
     var data = Share.receive("event-to-edit");
     var lpdata = {};
     
     //INIT
-    $scope.selection.desc = data.message?data.message:"";
+    SELECTION.desc = data.message?data.message:"";
     
     var h = false;
     var p = false;
@@ -47,49 +49,54 @@ angular.module('lunaApp')
     if (data.pre) {
         data.pre = parseInt(data.pre)<10?"0"+data.pre:""+data.pre;
     }
+    var timer = $timeout(function(){
 
+    });
     $scope.$watch('selection.desc',function(newValue){
-        lpdata = createLP.read(newValue);
-        if (lpdata.hasOwnProperty('hour')) {
-            $scope.selection.hour = DateTime.objectLunarHour(lpdata.hour);
-            $scope.selection.minute = "00";
-        }
-        if (lpdata.hasOwnProperty('period'))
-            $scope.selection.period = $scope.options.periods[lpdata.period];
+        $timeout.cancel( timer );
+        timer = $timeout(function(){
+            lpdata = createLP.read(newValue);
+            if (lpdata.hasOwnProperty('hour')) {
+                SELECTION.hour = DateTime.objectLunarHour(lpdata.hour);
+                SELECTION.minute = "00";
+            }
+            if (lpdata.hasOwnProperty('period'))
+                SELECTION.period = OPTIONS.periods[lpdata.period];
 
-        if (lpdata.hasOwnProperty('pre'))
-            $scope.selection.pre = lpdata.pre;
-        if (lpdata.hasOwnProperty('pre_kind'))
-            $scope.selection.pre_kind = $scope.options.pre_kind[lpdata.pre_kind];
+            if (lpdata.hasOwnProperty('pre'))
+                SELECTION.pre = lpdata.pre;
+            if (lpdata.hasOwnProperty('pre_kind'))
+                SELECTION.pre_kind = OPTIONS.pre_kind[lpdata.pre_kind];
 
-        if (lpdata.hasOwnProperty('minute'))
-            $scope.selection.minute = lpdata.minute;
+            if (lpdata.hasOwnProperty('minute'))
+                SELECTION.minute = lpdata.minute;
 
-        if (lpdata.hasOwnProperty('repeat'))
-            $scope.selection.repeat = $scope.options.repeats[parseInt(lpdata.repeat)];
-        if (lpdata.hasOwnProperty('date')) {
-            $scope.selection.date = DateTime.objectLunarDate(parseInt(lpdata.date));
-            $scope.selection.repeat = $scope.options.repeats[1];
-        }
-        if (lpdata.hasOwnProperty('month')) {
-            $scope.selection.month = DateTime.objectLunarMonth(parseInt(lpdata.month));
-            $scope.selection.repeat = $scope.options.repeats[2];
-        }
+            if (lpdata.hasOwnProperty('repeat'))
+                SELECTION.repeat = OPTIONS.repeats[parseInt(lpdata.repeat)];
+            if (lpdata.hasOwnProperty('date')) {
+                SELECTION.date = DateTime.objectLunarDate(parseInt(lpdata.date));
+                SELECTION.repeat = OPTIONS.repeats[1];
+            }
+            if (lpdata.hasOwnProperty('month')) {
+                SELECTION.month = DateTime.objectLunarMonth(parseInt(lpdata.month));
+                SELECTION.repeat = OPTIONS.repeats[2];
+            }
+        },300);
     })
 
-    $scope.selection.hour = h?h:DateTime.getCurrentHour(true);
-    $scope.options.periods = DateTime.periods[$scope.selection.hour.periods];
-    $scope.selection.period = p?p:DateTime.getCurrentPeriod(true);
+    SELECTION.hour = h || DateTime.getCurrentHour(true);
+    OPTIONS.periods = DateTime.periods[SELECTION.hour.periods];
+    SELECTION.period = p || DateTime.getCurrentPeriod(true);
 
-    $scope.selection.pre_kind = $scope.options.pre_kind[data.pre?parseInt(data.pre_kind):1];
-    $scope.options.pre = pre[$scope.selection.pre_kind.index];
-    $scope.selection.pre = data.pre?data.pre:'00';
-    $scope.selection.minute = data.minute?data.minute:DateTime.getCurrentMinute(true);
+    SELECTION.pre_kind = OPTIONS.pre_kind[parseInt(data.pre_kind)||1];
+    OPTIONS.pre = pre[SELECTION.pre_kind.index];
+    SELECTION.pre = data.pre||'00';
+    SELECTION.minute = data.minute||DateTime.getCurrentMinute(true);
 
-    $scope.selection.date = data.date?DateTime.objectLunarDate(parseInt(data.date)):DateTime.getCurrentLunarDate(true);
-    $scope.selection.month = data.month?DateTime.objectLunarMonth(parseInt(data.month)):DateTime.getCurrentLunarMonth(true);
-    $scope.selection.repeat = $scope.options.repeats[data.repeatType?parseInt(data.repeatType):1];
-    $scope.selection.email = User.getEmail();
+    SELECTION.date = data.date?DateTime.objectLunarDate(parseInt(data.date)):DateTime.getCurrentLunarDate(true);
+    SELECTION.month = data.month?DateTime.objectLunarMonth(parseInt(data.month)):DateTime.getCurrentLunarMonth(true);
+    SELECTION.repeat = OPTIONS.repeats[parseInt(data.repeatType)||1];
+    SELECTION.email = User.getEmail();
     
     var init = 4;
 
@@ -97,9 +104,9 @@ angular.module('lunaApp')
         if (init) {
             init--;
         } else {
-            $scope.options.pre = pre[newValue.index];
-            if (newValue.index===1 && parseInt($scope.selection.pre)>5) {
-                $scope.selection.pre = '00';
+            OPTIONS.pre = pre[newValue.index];
+            if (newValue.index===1 && parseInt(SELECTION.pre)>5) {
+                SELECTION.pre = '00';
             }
         }
     });
@@ -108,25 +115,25 @@ angular.module('lunaApp')
     	if (init) {
     		init--;
     	} else {
-	    	var period_index = $scope.selection.period.index;
-	    	$scope.options.periods=DateTime.periods[newValue.periods];
-	    	$scope.selection.period=$scope.options.periods[period_index];
+	    	var period_index = SELECTION.period.index;
+	    	OPTIONS.periods=DateTime.periods[newValue.periods];
+	    	SELECTION.period=OPTIONS.periods[period_index];
 	    }
     });
 
     $scope.$watch('selection.date', function(newValue, oldValue, scope) {
     	if (init) {
     		init--;
-    	} else if ($scope.selection.repeat.index==0) {
-	    	$scope.selection.repeat = $scope.options.repeats[1];
+    	} else if (SELECTION.repeat.index==0) {
+	    	SELECTION.repeat = OPTIONS.repeats[1];
 	    }
     });
 
     $scope.$watch('selection.month', function(newValue, oldValue, scope) {
     	if (init) {
     		init--;
-    	} else if ($scope.selection.repeat.index!=2) {
-	    	$scope.selection.repeat = $scope.options.repeats[2];
+    	} else if (SELECTION.repeat.index!=2) {
+	    	SELECTION.repeat = OPTIONS.repeats[2];
 	    }
     });
 
@@ -156,16 +163,16 @@ angular.module('lunaApp')
     $scope.submit = function(){
         var form = {
             udid:   Date.now()+"-"+(((1+Math.random())*0x10000)|0).toString(16),
-            desc:       $scope.selection.desc,
-            hour:       $scope.selection.hour.value,
-            minute:     $scope.selection.minute,
-            period:     $scope.selection.period.standard,
-            date:       $scope.selection.date,
-            month:      $scope.selection.month.standard,
-            repeat:     $scope.selection.repeat.index,
-            email:      $scope.selection.email,
-            pre:        $scope.selection.pre,
-            pre_kind:   $scope.selection.pre_kind
+            desc:       SELECTION.desc,
+            hour:       SELECTION.hour.value,
+            minute:     SELECTION.minute,
+            period:     SELECTION.period.standard,
+            date:       SELECTION.date,
+            month:      SELECTION.month.standard,
+            repeat:     SELECTION.repeat.index,
+            email:      SELECTION.email,
+            pre:        SELECTION.pre,
+            pre_kind:   SELECTION.pre_kind
         };
         function sendInfo(){
             if (!form.repeat) {
@@ -174,7 +181,7 @@ angular.module('lunaApp')
             switch(form.date){
                 case '30': form.date = 100; break;
             };
-            User.setEmail($scope.selection.email);
+            User.setEmail(SELECTION.email);
             var f = function(){
                 $scope.main.createPopup('Đang xử lý');
                 if (data) $http.post('/account/edit-event/'+data.id, form)
@@ -208,9 +215,9 @@ angular.module('lunaApp')
             } else f();
         }
         if (!$scope.User.signedIn){
-            if (!$scope.selection.email || /^\s*$/.test($scope.selection.email)) 
+            if (!SELECTION.email || /^\s*$/.test(SELECTION.email)) 
                 $scope.main.alert('Bạn cần nhập địa chỉ email')
-            else if (!Validate.validateEmail($scope.selection.email))
+            else if (!Validate.validateEmail(SELECTION.email))
                 $scope.main.alert('Bạn cần nhập đúng địa chỉ email')
             else {
                 sendInfo();
