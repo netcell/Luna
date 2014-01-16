@@ -54,7 +54,7 @@ angular.module('lunaApp')
             $scope.User.facebookNotOn = 1-$scope.User.facebookNotOn;
             var that = this;
             console.log("");
-            $http.get('/account/setting/2/'+$scope.User.facebookNotOn)
+            $http.get('/account/setting/2/'+(1-$scope.User.facebookNotOn))
             .then(function(object){
                 if (object.data==="0") {
                     $scope.User.facebookNotOn = oldStatus;
