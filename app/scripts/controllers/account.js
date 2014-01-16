@@ -33,8 +33,7 @@ angular.module('lunaApp')
         console.log("");
         var oldStatus = $scope.User.emailIsOn;
         $scope.User.emailIsOn = 1-$scope.User.emailIsOn;
-        var that = this;
-        console.log("");
+        console.log('/account/setting/1/'+$scope.User.emailIsOn);
         $http.get('/account/setting/1/'+$scope.User.emailIsOn)
         .then(function(object){
             console.log(data);
@@ -44,8 +43,8 @@ angular.module('lunaApp')
             } else {
             }
         },function(){
-        $scope.User.emailIsOn = 1-$scope.User.emailIsOn;
-        $scope.main.alert(Strings.CONNECTION_ERROR);
+            $scope.User.emailIsOn = 1-$scope.User.emailIsOn;
+            $scope.main.alert(Strings.CONNECTION_ERROR);
         });
     };
     $scope.switchFacebook = function(){
