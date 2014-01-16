@@ -31,7 +31,9 @@ angular.module('lunaApp')
     $scope.main={};
 
     var popupOn = function(){
+      $timeout(function(){
         $scope.hasPopup = true;
+      });
     }
 
     //$scope.main.onDateChosen = CAAT.chooseDate;

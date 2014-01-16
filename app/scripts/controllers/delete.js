@@ -25,6 +25,7 @@ angular.module('lunaApp')
 
     $scope.submit = function(){
     	if ($scope.email && !/^\s*$/.test($scope.email)){
+            console.log("he")
             if (Validate.validateEmail($scope.email)) {
                 User.setEmail($scope.email);
                 $scope.main.createPopup('Đang xử lý');

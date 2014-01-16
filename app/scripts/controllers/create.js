@@ -50,7 +50,6 @@ angular.module('lunaApp')
 
     $scope.$watch('selection.desc',function(newValue){
         lpdata = createLP.read(newValue);
-        console.log(lpdata)
         if (lpdata.hasOwnProperty('hour')) {
             $scope.selection.hour = DateTime.objectLunarHour(lpdata.hour);
             $scope.selection.minute = "00";
@@ -142,7 +141,17 @@ angular.module('lunaApp')
     };
     $scope.switchStatus = function(){
         data.switchStatus();
-    }
+    };
+
+    $('#createDesc').bind("keydown keypress", function (event) {
+        if(event.which === 13) {
+            $scope.main.pauseup((data?"Cập nhật":"Tạo")+" nhắc nhở?",function(){
+                $scope.submit();
+            });
+
+            event.preventDefault();
+        }
+    });
 
     $scope.submit = function(){
         var form = {
