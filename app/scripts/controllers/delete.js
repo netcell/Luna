@@ -28,7 +28,7 @@ angular.module('lunaApp')
             console.log("he")
             if (Validate.validateEmail($scope.email)) {
                 User.setEmail($scope.email);
-                $scope.main.createPopup('Đang xử lý');
+                //$scope.main.createPopup('Đang xử lý');
                 $http.get('/user/delete-event/'+$scope.email).then(function(res){
                 	$scope.main.closePopup();
                     if (res.data == "0") {

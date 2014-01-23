@@ -29,7 +29,7 @@ angular.module('lunaApp')
 		$scope.image = images[$routeParams.action];
 
 		$scope.submit = function(){
-			$scope.main.createPopup('Đang xử lý');
+			//$scope.main.createPopup('Đang xử lý');
 			if ($routeParams.action === "create") {
 				var form = Share.receive("form-create");
 				$http.post('/user/try-create', form).then(function(res){

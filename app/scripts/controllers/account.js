@@ -2,7 +2,7 @@
 
 angular.module('lunaApp')
   .controller('AccountCtrl', function (Strings,$http,$scope,$location,User) {
-    $scope.main.createPopup('Đang xử lý');
+    //$scope.main.createPopup('Đang xử lý');
     User.signIn(function(exitCode){
         if (exitCode) {
             $scope.User = User.getInfo();

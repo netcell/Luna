@@ -2,7 +2,7 @@
 
 angular.module('lunaApp')
   .controller('UpdateEmailCtrl', function ($location,$http,$scope,Strings,User, Validate) {
-    $scope.main.createPopup('Đang xử lý');
+    //$scope.main.createPopup('Đang xử lý');
     User.signIn(function(exitCode){
         if (exitCode) {
             $scope.originalEmail = User.getEmail();
@@ -37,7 +37,7 @@ angular.module('lunaApp')
         if ($scope.email != $scope.originalEmail 
             && $scope.email && !/^\s*$/.test($scope.email)){
             if (Validate.validateEmail($scope.email)) {
-                $scope.main.createPopup('Đang xử lý');
+                //$scope.main.createPopup('Đang xử lý');
                 $http.get('/account/update-email/'+$scope.email).then(function(res){
                     User.setEmail($scope.email);
                     $scope.main.closePopup();

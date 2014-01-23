@@ -183,7 +183,7 @@ angular.module('lunaApp')
             };
             User.setEmail(SELECTION.email);
             var f = function(){
-                $scope.main.createPopup('Đang xử lý');
+                //$scope.main.createPopup('Đang xử lý');
                 if (data) $http.post('/account/edit-event/'+data.id, form)
                     .then(function(res){
                         $scope.main.closePopup();

@@ -2,7 +2,7 @@
 
 angular.module('lunaApp')
   .controller('EventlistCtrl', function ($http,$scope,User,$location,Share, Events, Strings) {
-    $scope.main.createPopup('Đang xử lý');
+    //$scope.main.createPopup('Đang xử lý');
     User.signIn(function(){
       Events.getEventList(function(exitCode,list){
         if (exitCode) {
@@ -48,7 +48,7 @@ angular.module('lunaApp')
                   $scope.main.pauseup(
                     "Bạn có chắc muốn xóa nhắc nhở này chọn không?"
                   ,function(){
-                    $scope.main.createPopup('Đang xử lý');
+                    //$scope.main.createPopup('Đang xử lý');
                     $http.post('/account/delete-event', [id])
                     .then(function(object){
                       if (object.data==="0") {
@@ -105,7 +105,7 @@ angular.module('lunaApp')
       $scope.main.pauseup(
         "Bạn có chắc muốn xóa các nhắc nhở đã chọn không?"
       ,function(){
-        $scope.main.createPopup('Đang xử lý');
+        //$scope.main.createPopup('Đang xử lý');
         $http.post('/account/delete-event', $scope.deleteList)
         .then(function(){
           for (var i = 0, length = deleteIndexList.length; i < length; i++) {
