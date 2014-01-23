@@ -2,26 +2,26 @@
 	<div class="title">Thiết lập tài khoản</div>
 	<table class="list">
 		<tbody>
-			<tr ng-class="{on: User.emailIsOn}">
+			<tr ng-class="{on: User.emailIsOn}" ng-click="switchEmail();">
 				<td class="desc">Nhắc nhở qua email</td>
 				<td class="status">
-					<div class="switcher-background" ng-class="{on: User.emailIsOn}" ng-click="switchEmail();">
+					<div class="switcher-background" ng-class="{on: User.emailIsOn}" >
 						<div class="switcher-move"></div>
 					</div>
 				</td>
 			</tr>
-			<tr ng-class="{on: !User.facebookNotOn}">
+			<tr ng-class="{on: !User.facebookNotOn}" ng-click="switchFacebook();">
 				<td class="desc">Nhắc nhở qua Facebook</td>
 				<td class="status">
-					<div class="switcher-background" ng-class="{on: !User.facebookNotOn}" ng-click="switchFacebook();">
+					<div class="switcher-background" ng-class="{on: !User.facebookNotOn}" >
 						<div class="switcher-move"></div>
 					</div>
 				</td>
 			</tr>
-			<tr class="">
+			<tr class="" ng-click="switchStatus();">
 				<td class="desc">Nhắc nhở qua Whatsapp</td>
 				<td class="status">
-					<div class="switcher-background" ng-click="switchStatus();">
+					<div class="switcher-background" >
 						<div class="switcher-move"></div>
 					</div>
 				</td>
