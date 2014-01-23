@@ -3,16 +3,21 @@
 angular.module('lunaApp')
   .controller('UpdateEmailCtrl', function ($location,$http,$scope,Strings,User, Validate) {
     //$scope.main.createPopup('Đang xử lý');
-    User.signIn(function(exitCode){
+    if (User.getInfo().signedIn) {
+      $scope.originalEmail = User.getEmail();
+      $scope.email = User.getEmail();
+    } else {
+      User.signIn(function(exitCode){
         if (exitCode) {
-            $scope.originalEmail = User.getEmail();
-            $scope.email = User.getEmail();
-            $scope.main.closePopup();
+          $scope.originalEmail = User.getEmail();
+          $scope.email = User.getEmail();
+          $scope.main.closePopup();
         } else {
-            $location.path('/sign-in');
-            $scope.main.alert('Có lỗi trong quá trình đăng nhập. Xin hãy thử lại sau.');
+          $location.path('/sign-in');
+          $scope.main.alert('Có lỗi trong quá trình đăng nhập. Xin hãy thử lại sau.');
         }
-    })
+      })
+    }
     $scope.footer.buttons = [
         {
             name:'cập nhật',

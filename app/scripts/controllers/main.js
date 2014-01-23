@@ -2,8 +2,7 @@
 
 angular.module('lunaApp')
   .controller('MainCtrl', function ($location, $scope, User, amduonglich, $window, DateTime, $timeout) {
-
-    User.signIn(function(){
+    if (User.getInfo().signedIn) {
       $scope.username = User.getInfo().name;
       $scope.accountMenu = function(){
         $location.path('/account');
@@ -11,7 +10,17 @@ angular.module('lunaApp')
       $scope.feedback = function(){
         $location.path('/feedback');
       }
-    },true);
+    } else {
+      User.signIn(function(){
+        $scope.username = User.getInfo().name;
+        $scope.accountMenu = function(){
+          $location.path('/account');
+        }
+        $scope.feedback = function(){
+          $location.path('/feedback');
+        }
+      },true);
+    }
 
     $scope.time = {};
   	

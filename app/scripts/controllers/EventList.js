@@ -2,8 +2,7 @@
 
 angular.module('lunaApp')
   .controller('EventlistCtrl', function ($http,$scope,User,$location,Share, Events, Strings) {
-    $scope.main.createPopup('Đang xử lý');
-    User.signIn(function(){
+    function load(){
       Events.getEventList(function(exitCode,list){
         if (exitCode) {
           $scope.events = [];
@@ -80,7 +79,15 @@ angular.module('lunaApp')
           $scope.main.alert(Strings.CONNECTION_ERROR);
         }
       });
-    });
+    }
+    if (User.getInfo().signedIn) {
+      load();
+    } else {
+      $scope.main.createPopup('Đang xử lý');
+      User.signIn(function(){
+        load();   
+      });
+    }
 
   	$scope.deleteList = [];
     var deleteIndexList = [];
