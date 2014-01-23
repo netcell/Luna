@@ -2,6 +2,7 @@
 
 angular.module('lunaApp')
   .controller('MainCtrl', function ($location, $scope, User, amduonglich, $window, DateTime, $timeout) {
+    $scope.homelink = '/#';
     if (User.getInfo().signedIn) {
       $scope.username = User.getInfo().name;
       $scope.accountMenu = function(){
@@ -10,6 +11,7 @@ angular.module('lunaApp')
       $scope.feedback = function(){
         $location.path('/feedback');
       }
+      $scope.homelink = '/#/event-list';
     } else {
       User.signIn(function(){
         $scope.username = User.getInfo().name;
@@ -19,6 +21,7 @@ angular.module('lunaApp')
         $scope.feedback = function(){
           $location.path('/feedback');
         }
+        $scope.homelink = '/#/event-list';
       },true);
     }
 
